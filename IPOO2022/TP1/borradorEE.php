@@ -16,11 +16,7 @@
         private $codigoViaje;
         private $destino;
         private $capacidadPasajeros;
-        private $cantidadPasajeros;
-        //Atributos del pasajero
-        private $nombrePasajero;
-        private $apellidoPasajero;
-        private $documentoPasajero;
+        private $arrayPasajeros = [];
 
         //Métodos de acceso
         public function getCodigoViaje() {
@@ -32,17 +28,8 @@
         public function getCapacidadPasajeros() {
             return $this->capacidadPasajeros;
         }
-        public function getCantidadPasajeros() {
+        public function getArrayPasajeros() {
             return $this->cantidadPasajeros;
-        }
-        public function getNombrePasajero() {
-            return $this->nombrePasajero;
-        }
-        public function getApellidoPasajero() {
-            return $this->apellidoPasajero;
-        }
-        public function getDocumentoPasajero() {
-            return $this->documentoPasajero;
         }
 
         public function setCodigoViaje($codigoViaje) {
@@ -54,78 +41,138 @@
         public function setCapacidadPasajeros($capacidadPasajeros) {
             $this->capacidadPasajeros = $capacidadPasajeros;
         }
-        public function setCantidadPasajeros($cantidadPasajeros) {
-            $this->cantidadPasajeros = $cantidadPasajeros;
-        }
-        public function setNombrePasajero($nombrePasajero) {
-            $this->nombrePasajero = $nombrePasajero;
-        }
-        public function setApellidoPasajero($apellidoPasajero) {
-            $this->apellidoPasajero = $apellidoPasajero;
-        }
-        public function setDocumentoPasajero($documentoPasajero) {
-            $this->documentoPasajero = $documentoPasajero;
+        public function setArrayPasajeros($arrayPasajeros) {
+            $this->arrayPasajeros = $arrayPasajeros;
         }
         
         //Métodos
-        public function __construct($codigoViaje, $destino, $capacidadPasajeros, $cantidadPasajeros, $nombrePasajero, $apellidoPasajero, $documentoPasajero) {
+        public function __construct($codigoViaje, $destino, $capacidadPasajeros, $arrayPasajeros) {
             $this->codigoViaje = $codigoViaje;
             $this->destino = $destino;
             $this->capacidadPasajeros = $capacidadPasajeros;
-            $this->cantidadPasajeros = $cantidadPasajeros;
-            $this->nombrePasajero = $nombrePasajero;
-            $this->apellidoPasajero = $apellidoPasajero;
-            $this->documentoPasajero = $documentoPasajero;
+            $this->arrayPasajeros = $arrayPasajeros;
         }
 
+        public function coleccionViajes($contador) {
+            $coleccionViajes[$contador] = array("Codigo"=>$this->getCodigoViaje(),
+                                        "Destino"=>$this->getDestino(),
+                                        "Capacidad"=>$this->getCapacidadPasajeros(),
+                                        "Cantidad"=>$this->getCantidadPasajeros());
+            return $coleccionViajes;
+        }
+        
         /**
          * Método 1: datosViaje - 
          * Retorna un arreglo con los datos de los viajes.
          * @return array
          */
-        public function datosViaje() {
-            $contador = 0;
-            $arrayViajes[$contador] = array("Codigo"=>$this->getCodigoViaje(),
-                                    "Destino"=>$this->getDestino(),
-                                    "Capacidad"=>$this->getCapacidadPasajeros(),
-                                    "Cantidad"=>$this->getCantidadPasajeros());
-            $contador++;
+        /*public function datosViaje() {
+            $arrayViajes = array("Codigo"=>$this->getCodigoViaje(),
+                                "Destino"=>$this->getDestino(),
+                                "Capacidad"=>$this->getCapacidadPasajeros(),
+                                "Cantidad"=>$this->getCantidadPasajeros());
             return $arrayViajes;
-        }
+        }*/
 
-        /**
+        /*
          * Método 2: datosPasajeros - 
          * Retorna un arreglo con los datos de los pasajeros.
          * @return array
+        public function datosPasajero($contadorPasajeros, $pasajero) {
+            $bandera = false;
+            if ($this->validarCantPasajeros($contadorPasajeros) == false) {
+                $bandera = false;
+            } else {
+                array_push($this->arrayPasajeros, $pasajero);
+                $this->getCantidadPasajerosInt++;
+                $bandera = true;
+            }
+            return $bandera;
+        }*/
+
+        /**
+         * Método 3: validarCantPasajeros - 
+         * Retorna TRUE si la cant. de pasajeros agregados no supera la capacidad máxima del viaje.
+         * @return boolean
          */
-        public function datosPasajero($contador) {
-            $arrayPasajeros[$contador] = array("Nombre"=>$this->getNombrePasajero(),
-                                        "Apellido"=>$this->getApellidoPasajero(),
-                                        "Documento"=>$this->getDocumentoPasajero());
-            return $arrayPasajeros;
+        public function validarCantPasajeros($contadorPasajeros, $pasajeroArray) {
+            $bandera = false;
+            $capMaxima = $this->getCapacidadPasajeros();
+            if (($contadorPasajeros + $this->getCantidadPasajeros()) >= $capMaxima) {
+                $this->setCantidadPasajeros($this->getCantidadPasajeros());
+                $bandera = false;
+            } else {
+                array_push($this->arrayPasajeros, $pasajeroArray);
+                $this->setCantidadPasajeros($this->getCantidadPasajeros() + $contadorPasajeros);
+                $bandera = true;
+            }
+            return $bandera;
         }
 
-        public function validarCodigo($codigo) {
-            $i = 0;
+        /**
+         * Método 4: validarCodigo - 
+         * Retorna TRUE si el código ingresado se corresponde con alguno de los guardados en datosViaje.
+         * @return boolean
+         */
+        public function validarCodigo($codigo, $contador) {
+            /*$i = 0;
             $bandera = false;
             $viajesArreglo = $this->datosViaje();
             while($i<count($viajesArreglo) && !$bandera) {
-                $unViaje = $viajesArreglo[$i];
-                if ($unViaje["Codigo"] == $codigo) {
+                if ($viajesArreglo[$i]["Codigo"] == $codigo) {
                     $bandera = true;
-                } elseif ($unViaje["Codigo"] <> $codigo) {
+                } elseif ($viajesArreglo[$i]["Codigo"] <> $codigo) {
                     $bandera;
                 }
                 $i++;
             }
             //print_r($unViaje);
             return $bandera;
+            */
+            /*$arrayViajes = $this->datosViaje();
+            $i = 0;
+            $bandera = false;
+            while ($i<count($arrayViajes) && !$bandera) {
+                if ($arrayViajes[$i]["Codigo"] == $codigo) {
+                    $bandera = true;
+                } else {
+                    $bandera = false;
+                }
+                $i++;
+            }
+            return $bandera;*/
+            $i = 0;
+            $bandera = false;
+            //$arrayViajes = $this->getArrayViajes();
+            while ($i<$contador && !$bandera) {
+                $arrayViajes = $this->getArrayViajes()[$i];
+                $unViaje = $arrayViajes[$i];
+                /*foreach ($arrayViajes as $viaje) {
+                    if ($viaje == $codigo) {
+                        $bandera = true;
+                    } else {
+                        $bandera = false;
+                    }
+                }*/
+                if ($unViaje["Codigo"] == $codigo) {
+                    $bandera = true;
+                } else {
+                    $bandera = false;
+                }
+                $i++;
+            }
+            return $bandera;
         }
 
+        /**
+         * Método 5: validarDocumento - 
+         * Retorna TRUE si el documento ingresado se corresponde con alguno de los guardados en datosPasajero.
+         * @return boolean
+         */
         public function validarDocumento($documento) {
             $i = 0;
             $bandera = false;
-            $pasajerosArreglo = $this->datosPasajero();
+            $pasajerosArreglo = $this->getArrayPasajeros();
             while($i<count($pasajerosArreglo) && !$bandera) {
                 $unPasajero = $pasajerosArreglo[$i];
                 if ($unPasajero["Documento"] == $documento) {
@@ -139,12 +186,17 @@
             return $bandera;
         }
 
-        //Dado el código de un viaje, modifica el destino, la capacidad máxima de pasajeros y la cantidad de pasajeros.
-        public function modificarDatosViaje($codigo, $nuevoCodigo, $nuevoDestino, $nuevaCapacidadPasajeros, $nuevaCantPasajeros) {
+        /**
+         * Método 6: modificarDatosViaje - 
+         * Dado el código de un viaje, modifica el destino, la capacidad máxima de pasajeros y la cantidad de pasajeros.
+         * @return boolean
+         */
+        public function modificarDatosViaje($contador, $codigo, $nuevoCodigo, $nuevoDestino, $nuevaCapacidadPasajeros, $nuevaCantPasajeros) {
             $i = 0;
             $bandera = false;
-            $viajesArreglo = $this->datosViaje();
-            while($i<count($viajesArreglo) && !$bandera) {
+            //$viajesArreglo = $this->getArrayViajes();
+            while($i<$contador && !$bandera) {
+                $viajesArreglo = $this->getArrayViajes()[$i];
                 $unViaje = $viajesArreglo[$i];
                 if ($unViaje["Codigo"] == $codigo) {
                     $unViaje["Codigo"] = $this->setCodigoViaje($nuevoCodigo);
@@ -163,26 +215,26 @@
             return $bandera;
         }
 
-        //Dado el documento de un pasajero, se modifica el nombre, apellido y dni.
+        /**
+         * Método 7: modificarDatosPasajero - 
+         * Dado el documento de un pasajero, se modifica el nombre, apellido y dni.
+         * @return boolean
+         */
         public function modificarDatosPasajero($documento, $nuevoNombre, $nuevoApellido, $nuevoDni) {
             $i = 0;
             $bandera = false;
-            $pasajerosArreglo = $this->datosPasajero();
-            while($i<count($pasajerosArreglo) && !$bandera) {
-                $unPasajero = $pasajerosArreglo[$i];
-                if ($unPasajero["Documento"] == $documento) {
-                    $unPasajero["Nombre"] = $this->setNombrePasajero($nuevoNombre);
-                    $unPasajero["Apellido"] = $this->setApellidoPasajero($nuevoApellido);
-                    $unPasajero["Documento"] = $this->setDocumentoPasajero($nuevoDni);
-                    $pasajerosArreglo[$i] = $unPasajero;
-                    //array_push($pasajerosArreglo[$i], $unPasajero);
+            $arrayPasajeros = $this->getArrayPasajeros();
+            while ($i<count($arrayPasajeros) && !$bandera) {
+                if ($documento == $arrayPasajeros[$i]["Documento"]) {
+                    $arrayPasajeros[$i]["Nombre"] = $nuevoNombre;
+                    $arrayPasajeros[$i]["Apellido"] = $nuevoApellido;
+                    $arrayPasajeros[$i]["Documento"] = $nuevoDni;
                     $bandera = true;
-                } elseif ($unPasajero["Documento"] <> $documento) {
-                    $bandera;
+                } else {
+                    $bandera = false;
                 }
                 $i++;
             }
-            //print_r($unPasajero);
             return $bandera;
         }
 

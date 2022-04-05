@@ -8,12 +8,13 @@
     //echo $cadena."\n";
 
 	function main() {
-		$objViaje = new Viaje("", "", 0, 0, "", "", 0);
+		$objViaje = new Viaje("", "", 0, 0, 0, 0);
 		$opcion = 1;
-		$contPasajeros= 0;
+		$contViajes = 0;
 		while ($opcion != 0) {
 			$opcion = menuDeOpciones();
 			if ($opcion == 1) {
+				$objViaje->coleccionViajes($contViajes);
 				//Se le pide al usuario que ingrese los datos del viaje:
 				echo "\n***********************************\n";
 				echo "| Ingrese el código del viaje: ";
@@ -23,20 +24,21 @@
 				$destino = trim(fgets(STDIN));
 				$objViaje->setDestino($destino);
 				echo "| Ingrese la capacidad máxima de pasajeros: ";
-				$capMáxima = trim(fgets(STDIN));
-				$objViaje->setCapacidadPasajeros($capMáxima);
+				$capMaxima = trim(fgets(STDIN));
+				$objViaje->setCapacidadPasajeros($capMaxima);
 				echo "| Ingrese la cantidad de pasajeros: ";
 				$cantPasajeros = trim(fgets(STDIN));
 				$objViaje->setCantidadPasajeros($cantPasajeros);
 				//Se muestran en pantalla los datos ingresados:
 				$cadena = $objViaje->__toString();
     			echo $cadena."\n";
+				$contViajes = $contViajes + 1;
 			} elseif ($opcion == 2) {
 				echo "\n***********************************\n";
 				//Se modifican el código-destino-capacidad-cantidad del arreglo de Viajes:
                 echo "| Ingrese el código del viaje que desea modificar: ";
                 $codViaje = trim(fgets(STDIN));
-				$validacion = $objViaje->validarCodigo($codViaje);
+				$validacion = $objViaje->validarCodigo($codViaje, $contViajes);
 				if ($validacion == true) {
 					echo "  + Ingrese el nuevo código del viaje: ";
 					$nuevoCodigo = trim(fgets(STDIN));
@@ -46,7 +48,7 @@
 					$nuevaCapacidad = trim(fgets(STDIN));
 					echo "  + Ingrese la nueva cantidad de pasajeros del viaje: ";
 					$nuevaCantidad = trim(fgets(STDIN));
-					$modificacion = $objViaje->modificarDatosViaje($codViaje, $nuevoCodigo, $nuevoDestino, $nuevaCapacidad, $nuevaCantidad);
+					$modificacion = $objViaje->modificarDatosViaje($contViajes, $codViaje, $nuevoCodigo, $nuevoDestino, $nuevaCapacidad, $nuevaCantidad);
 					//Se muestra un msj según el reultado de las modificaciones:
 					$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se puedieron modificar.");
 					echo "\n    >>> ".$resultado."\n";
@@ -55,26 +57,32 @@
 				} else {
 					echo "\n  >>> ERROR. El código ingresado no corresponde a ningún viaje.\n";
 				}
-			} elseif ($opcion == 3) {
+			} elseif ($opcion == 3) { //Agregar pasajeros
+				$contPasajeros = 0;
 				//Se le pide al usuario que ingrese los datos del pasajero:
 				echo "\n***********************************\n";
 				echo "| Ingrese el nombre del pasajero: ";
 				$nombre = trim(fgets(STDIN));
-				$objViaje->setNombrePasajero($nombre);
 				echo "| Ingrese el apellido del pasajero: ";
 				$apellido = trim(fgets(STDIN));
-				$objViaje->setApellidoPasajero($apellido);
 				echo "| Ingrese el documento del pasajero: ";
 				$documento = trim(fgets(STDIN));
-				$objViaje->setDocumentoPasajero($documento);
-				$objViaje->datosPasajero($contPasajeros);
-				$contPasajeros = $contPasajeros + 1;
-			} elseif ($opcion == 4) {
-				echo "\n***********************************\n";
-				//Se modifican el nombre-apellido-dni del arreglo de Pasajeros:
-                echo "| Ingrese el documento del pasajero que desea modificar: ";
-                $documento = trim(fgets(STDIN));
-				$validacion = $objViaje->validarDocumento($documento);
+				$arrayPasajeros = ["Nombre"=>$nombre, "Apellido"=>$apellido, "Documento"=>$documento];
+				//$objViaje->datosPasajero($contPasajeros, $arrayPasajeros);
+				//Se valida que la cant. de pasajeros no supere el límite de pasajeros del viaje
+				$resp = $objViaje->validarCantPasajeros($contPasajeros, $arrayPasajeros);
+				if ($resp == true) {
+					//$objViaje->datosPasajero($contPasajeros, $nombre, $apellido, $documento);
+					echo "\n	>>> Se agregó el pasajero correctamente.\n";
+				} else {
+					echo "\n	>>>ATENCIÓN: Se alcanzó la capacidad máxima del viaje.\n";
+				}
+			} elseif ($opcion == 4) { //modificar datos del pasajero
+					echo "\n***********************************\n";
+					//Se modifican el nombre-apellido-dni del arreglo de Pasajeros:
+					echo "| Ingrese el documento del pasajero que desea modificar: ";
+					$documento = trim(fgets(STDIN));
+					$validacion = $objViaje->validarDocumento($documento);
 				if ($validacion == true) {
 					echo "  + Ingrese el nuevo nombre del pasajero: ";
 					$nuevoNombre = trim(fgets(STDIN));
@@ -103,7 +111,7 @@
 		echo "\n| Opción 2: Modificar datos del viaje";
 		echo "\n| Opción 3: Ingresar datos del pasajero";
 		echo "\n| Opción 4: Modificar datos del pasajero";
-		echo "\n| Precione 0 para finalizar.\n";
+		echo "\n| Presione 0 para finalizar.\n";
 		$opcion = trim(fgets(STDIN))."\n";
 		return $opcion;
 	} main();
