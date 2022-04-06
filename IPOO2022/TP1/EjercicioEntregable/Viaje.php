@@ -111,6 +111,7 @@
         /**
          * Método 5: mostrarPasajeros - 
          * Muestra los datos de un pasajero.
+         * @return string
          */
         public function mostrarPasajeros($indicePasajero) {
             $arrayPasajeros = $this->getPasajeros();
@@ -125,6 +126,26 @@
                 }
             }
             return $cadena;
+        }
+
+        /**
+         * Método 6: modificarDatosViaje - 
+         * Modifica los datos del viaje.
+         * @return boolean
+         */
+        public function modificarDatosViaje($codViaje, $destino, $capacidadMaxima) {
+            $bandera = true;
+            if ($codViaje != "*") {
+                $this->setCodigoViaje($codViaje);
+            }
+            if ($destino != "*") {
+                $this->setDestino($destino);
+            }
+            if ($capacidadMaxima != "*") {
+                $this->setCapacidadPasajeros($capacidadMaxima);
+            }
+            //print_r($unViaje);
+            return $bandera;
         }
 
         public function __toString() {
