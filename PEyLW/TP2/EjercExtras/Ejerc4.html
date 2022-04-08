@@ -1,8 +1,66 @@
 <!DOCTYPE html>
     <head>
-        <title>Librería</title>
+        <title>Tablas Anidadas</title>
     </head>
     <body bgcolor="black" text="#fff">
+        <table align="center" width="550" cellspacing="0" cellpadding="3" border="2" bgcolor="#000" style="font-family:Helvetica; font-size:small;">
+            <tr>
+                <th colspan="2" bgcolor="#fff"><font color="black">EJERCICIO DE TABLAS ANIDADAS</font></th>
+            </tr>
+            <tr>
+                <td rowspan="4">
+                    <!-- Tabla interna 1 -->
+                    <table align="center" border="1" width="200">
+                        <caption style="font-family:Verdana; font-size:small;"><font>Tabla interna 1</font></caption>
+                        <tr>
+                            <th>Encabezado 1</th>
+                            <td>Encabezado 2</td>
+                        </tr>
+                        <tr>
+                            <td>Celda 1</td>
+                            <td>Celda 2</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Fila 1</td>
+            </tr>
+            <tr>
+                <td>Fila 2</td>
+            </tr>
+            <tr>
+                <td>Fila 3</td>
+            </tr>
+            <tr>
+                <td>
+                    Las tablas pueden contener otros elementos HTML, tales como:
+                    <ul>
+                        <li>Texto</li>
+                        <li>Imágenes</li>
+                        <li>Links</li>
+                        <li>Otras tablas</li>
+                        <li>Y más...</li>
+                    </ul>
+                </td>
+                <td rowspan="2">
+                    <table align="center" border="1" width="200">
+                        <caption style="font-family:Verdana; font-size:small;"><font>Tabla interna 2</font></caption>
+                        <tr>
+                            <th>Encabezado 1</th>
+                            <td>Encabezado 2</td>
+                        </tr>
+                        <tr>
+                            <td>Celda 1</td>
+                            <td>Celda 2</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>Pie de página</td>
+            </tr>
+        </table>
 
         <hr width="80%" align="center" color="white"/>
 		<br/><div align="center">

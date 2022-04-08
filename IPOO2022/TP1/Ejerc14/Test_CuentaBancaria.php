@@ -1,7 +1,7 @@
 <?php
 //Funciona.
         include "CuentaBancaria.php";
-        $objCuenta = new CuentaBancaria("Dean W.", 44014172, 10000, 0.5);    //cuenta_1
+        $objCuenta = new CuentaBancaria("Dean W.", 44014172, 130000, 10);    //cuenta_1
         $datos = $objCuenta->__toString();
         echo $datos;
         $saldo = $objCuenta->actualizarSaldo();

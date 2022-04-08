@@ -44,7 +44,7 @@ class CuentaBancaria {
     public function retirar($cantidad) {
         if ($this->getSaldoActual() >= $cantidad) {
             $this->setSaldoActual($this->getSaldoActual() - $cantidad);
-            $alerta = "$".$this->getSaldoActual();
+            $alerta = "$".round($this->getSaldoActual());
         } else {
             $alerta = "No hay saldo suficiente.\n";
         }

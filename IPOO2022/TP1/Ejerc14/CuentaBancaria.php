@@ -62,8 +62,16 @@
             $saldoActual = $this->getSaldoActual();
             $interesDiario = $interesAnual / 365;
             $actualizacion = $saldoActual * $interesDiario;
-            return $actualizacion;
+            $nuevoSaldo = $saldoActual + $actualizacion;
+            return $nuevoSaldo;
         }
+        /*
+        public function actualizarSaldo($saldo, $interes){
+            $saldoActu = $this->getSaldoActual(); //130000
+            $intActu = $this->getInteresAnual(); //10 int diaria del 0.027%
+            $nuevoSaldo = $saldoActu * ($intActu / 365);
+            return $nuevoSaldo;
+        }*/
 
         //depositar($cant): Permite ingresar una cantidad de dinero en la cuenta
         public function depositar($cantidad) {
