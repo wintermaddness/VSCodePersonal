@@ -5,16 +5,18 @@
 		private $titulo;
 		private $anioEdicion;
 		private $editorial;
-		private $nombreAutor;
-		private $apellidoAutor;
+		private $objAutor;
+		private $cantPaginas;
+		private $sinopsis;
 
-		public function __construct($ISBN, $titulo, $anioEdicion, $editorial, $nombreAutor, $apellidoAutor) {
+		public function __construct($ISBN, $titulo, $anioEdicion, $editorial, $objAutor, $cantPaginas, $sinopsis) {
 			$this->ISBN = $ISBN;
 			$this->titulo = $titulo;
 			$this->anioEdicion = $anioEdicion;
 			$this->editorial = $editorial;
-			$this->nombreAutor = $nombreAutor;
-			$this->apellidoAutor = $apellidoAutor;	
+			$this->objAutor = $objAutor;
+			$this->cantPaginas = $cantPaginas;
+			$this->sinopsis = $sinopsis;	
 		}
 		
 		public function getISBN() {
@@ -29,11 +31,14 @@
 		public function geteditorial() {
 			return $this->editorial;
 		}
-		public function getnombreAutor() {
-			return $this->nombreAutor;
+		public function getObjAutor() {
+			return $this->objAutor;
 		}
-		public function getapellidoAutor() {
-			return $this->apellidoAutor;
+		public function getCantPaginas() {
+			return $this->cantPaginas;
+		}
+		public function getSinopsis() {
+			return $this->sinopsis;
 		}
 
 		public function setISBN($ISBN) {
@@ -48,11 +53,14 @@
 		public function seteditorial($editorial) {
 			$this->editorial = $editorial;
 		}
-		public function setnombreAutor($nombreAutor) {
-			$this->nombreAutor = $nombreAutor;
+		public function setObjAutor($objAutor) {
+			$this->objAutor = $objAutor;
 		}
-		public function setapellidoAutor($apellidoAutor) {
-			$this->apellidoAutor = $apellidoAutor;
+		public function setCantPaginas($cantPaginas) {
+			$this->cantPaginas = $cantPaginas;
+		}
+		public function setSinopsis($sinopsis) {
+			$this->sinopsis = $sinopsis;
 		}
 
         //Indica si el libro pertenece a una editorial dada
@@ -102,12 +110,14 @@
 
         //Retorna la información de los atributos de la clase
 		public function __toString() {
+			$objAutor = $this->getObjAutor();
 			$cadena= "| Codigo ISBN: ".$this->getISBN()."\n"
 					."| Título: ".$this->gettitulo()."\n"
 					."| Año de Edición: ".$this->getanioEdicion()."\n"
 					."| Editorial: " .$this->geteditorial()."\n"
-					."| Nombre del autor: " .$this->getnombreAutor()."\n"
-					."| Apellido del autor: ".$this->getapellidoAutor()."\n";
+					."| Apellido, Nombre del autor: " .$objAutor->getApellido().", ".$objAutor->getNombre()."\n"
+					."| Cantidad de páginas: ".$this->getCantPaginas()."\n"
+					."| Sinopsis: \n".$this->getSinopsis()."\n";
 			return $cadena;
 		}
 	}

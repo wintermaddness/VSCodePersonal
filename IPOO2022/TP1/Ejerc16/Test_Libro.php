@@ -1,7 +1,7 @@
 <?php
 //Funciona.
 	include 'Libro.php';
-	$objLibro = new libro("7787", "Odisea", "1999", "Mers", "Mauro", "Mels");
+	$objLibro = new Libro("7787", "Odisea", "1999", "Mers", "Mauro", "Mels");
 	echo $objLibro;
 	$resp = $objLibro->perteneceEditorial("Mers");
 	if ($resp == true) {
