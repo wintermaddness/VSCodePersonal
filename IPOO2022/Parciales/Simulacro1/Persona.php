@@ -55,9 +55,10 @@
         }
 
         //Métodos varios
-        public function __construct($nombre, $apellido, $direccion, $mail, $telefono, $neto) {
+        public function __construct($nombre, $apellido, $dni, $direccion, $mail, $telefono, $neto) {
             $this->nombre = $nombre;
             $this->apellido = $apellido;
+            $this->dni = $dni;
             $this->direccion = $direccion;
             $this->mail = $mail;
             $this->telefono = $telefono;

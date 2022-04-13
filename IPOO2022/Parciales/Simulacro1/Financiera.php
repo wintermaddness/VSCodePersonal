@@ -27,10 +27,9 @@
         }
 
         //Métodos
-        public function __construct($denominacion, $direccion, $arrayPrestamos) {
+        public function __construct($denominacion, $direccion) {
             $this->denominacion = $denominacion;
             $this->direccion = $direccion;
-            $this->arrayPrestamos = $arrayPrestamos;
         }
 
         /**
@@ -52,7 +51,7 @@
             foreach ($arrayPrestamos as $indice => $elemento) {
                 $prestamo = $elemento;
                 $estadoPrestamo = $prestamo->getFechaOtorgamiento();
-                if($estadoPrestamo == "No aprobado."){
+                if ($estadoPrestamo == "No aprobado.") {
                     $monto = $prestamo->getMonto();
                     $cantCuotas = $prestamo->getCantCuotas();
                     $montoPorCuota = $monto / $cantCuotas;
@@ -74,9 +73,9 @@
         public function informarCuotaPagar($idPrestamo) {
             $arrayPrestamos = $this->getArrayPrestamos();
             foreach ($arrayPrestamos as $indice => $elemento) {
-                $id = $elemento->getId();
+                $prestamo = $elemento;
+                $id = $prestamo->getId();
                 if ($id == $idPrestamo) {
-                    $prestamo = $elemento;
                     $cuotaAPagar = $prestamo->darSiguienteCuotaPagar();
                     return $cuotaAPagar;
                 }
@@ -89,19 +88,20 @@
          * @return string
          */
         private function mostrarPrestamos() {
+            $cadena = "";
             $arrayPrestamos = $this->getArrayPrestamos();
             foreach ($arrayPrestamos as $indice => $elemento) {
                 $unPrestamo = $elemento->__toString();
-                $cadena = $unPrestamo;
+                $cadena = "".$unPrestamo;
             }
             return $cadena;
         }
 
         public function __toString() {
-            //$prestamos = $this->mostrarPrestamos();
+            $prestamos = $this->mostrarPrestamos();
             $cadena = "| Denominación: ".$this->getDenominacion()."\n"
                     ."| Dirección: ".$this->getDireccion()."\n"
-                    ."| Préstamos: ".$this->mostrarPrestamos()."\n";
+                    ."| Préstamos: ".$prestamos."\n";
             return $cadena;
         }
     }

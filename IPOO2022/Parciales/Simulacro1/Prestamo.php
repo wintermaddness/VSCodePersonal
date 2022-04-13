@@ -85,7 +85,7 @@
             } else {
                 foreach ($arrayCuotas as $indice => $elemento) {
                     $unaCuota = $elemento->__toString();
-                    $cadena = $unaCuota;
+                    $cadena = "".$unaCuota;
                 }
             }
             return $cadena;
@@ -140,7 +140,7 @@
             $cantCuotas = $this->getCantCuotas();
             $montoCuota = $monto / $cantCuotas;
             $arrayCuotas = [];
-            for ($i=0; $i<=$cantCuotas; $i++) {
+            for ($i=1; $i<=$cantCuotas; $i++) {
                 $interes = $this->calcularInteresPrestamo($i);
                 $cuota = new Cuota($i, $montoCuota, $interes); //Se guardan los datos en la clase Cuota.php
                 $arrayCuotas[$i] = $cuota;
@@ -155,22 +155,19 @@
          */
         public function darSiguienteCuotaPagar() {
             $arrayCuotas = $this->getArrayCuotas();
-            $cantCuotas = count($arrayCuotas);
-            $nroCuota = 0;
-            $i = 1;
-            do {
-                $cuota = $arrayCuotas[$i];
-                $estadoCuota = $cuota->getCancelada();
-                if (!$estadoCuota) {
-                    $nroCuota = $i;
-                    break;
+            $siguienteCuota = null;
+            $estado = true;
+            foreach ($arrayCuotas as $indice => $elemento) {
+                if ($estado) {
+                    $cuota = $elemento;
+                    $estadoCuota = $cuota->getCancelada();
+                    if ($estadoCuota == 'Sin pagar') {
+                        $estado = false;
+                        $siguienteCuota = $elemento;
+                    }
                 }
-                $i++;
-            } while ($cantCuotas == $i);
-            if ($nroCuota == 0) {
-                $nroCuota = null;
             }
-            return $nroCuota;
+            return $siguienteCuota;
         }
 
         public function __toString() {
