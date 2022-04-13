@@ -50,7 +50,7 @@
             $montoCuota = $this->getMonto_Cuota();
             $montoInteres = $this->getMonto_Interes();
             $MontoFinal = $montoCuota + $montoInteres;
-            return $this->getMonto_Cuota($MontoFinal);
+            return $this->setMonto_Cuota($MontoFinal);
         }
 
         public function estadoCuota() {

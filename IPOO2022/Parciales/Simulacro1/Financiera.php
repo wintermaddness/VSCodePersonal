@@ -92,7 +92,7 @@
             $arrayPrestamos = $this->getArrayPrestamos();
             foreach ($arrayPrestamos as $indice => $elemento) {
                 $unPrestamo = $elemento->__toString();
-                $cadena = "".$unPrestamo;
+                $cadena .= $unPrestamo;
             }
             return $cadena;
         }

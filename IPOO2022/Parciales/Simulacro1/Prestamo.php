@@ -85,7 +85,7 @@
             } else {
                 foreach ($arrayCuotas as $indice => $elemento) {
                     $unaCuota = $elemento->__toString();
-                    $cadena = "".$unaCuota;
+                    $cadena .= $unaCuota;
                 }
             }
             return $cadena;
@@ -143,7 +143,7 @@
             for ($i=1; $i<=$cantCuotas; $i++) {
                 $interes = $this->calcularInteresPrestamo($i);
                 $cuota = new Cuota($i, $montoCuota, $interes); //Se guardan los datos en la clase Cuota.php
-                $arrayCuotas[$i] = $cuota;
+                $arrayCuotas[$i-1] = $cuota;
             }
             $this->setArrayCuotas($arrayCuotas);
         }
@@ -172,7 +172,7 @@
 
         public function __toString() {
             $objPersona = $this->getObjPersona();
-            $persona = $objPersona->__toString();
+            $persona = $objPersona->__toString(); //revisar
             $cuotas = $this->getArrayCuotas();
             $cadena = "| ID: ".$this->getId()."\n"
                         ."| Código del producto: ".$this->getCodElectrodomestico()."\n"
