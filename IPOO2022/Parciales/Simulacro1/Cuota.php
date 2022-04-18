@@ -30,12 +30,7 @@
             $this->monto_interes = $monto_interes;
         }
         public function setCancelada($cancelada) {
-            if ($cancelada) {
-                $estado = "Pagada";
-            } else {
-                $estado = "Sin pagar";
-            }
-            $this->cancelada = $estado;
+            $this->cancelada = $cancelada;
         }
 
         //Métodos
@@ -53,20 +48,20 @@
             return $this->setMonto_Cuota($MontoFinal);
         }
 
-        public function estadoCuota() {
-            if ($this->getCancelada() == "Pagada"){
-                $estado = "Pagada";
-            } else {
-                $estado = "Sin pagar";
+        private function estadoCuota(){
+            if ($this->getCancelada() == true){
+                $cadena = "Pagada";
+            }else{
+                $cadena = "Sin pagar";
             }
-            return $estado;
+            return $cadena;
         }
 
         public function __toString() {
-            $cadena = "+| Cuota N°: ".$this->getNumero()."\n"
+            $cadena = "\n+| Cuota N°: ".$this->getNumero()."\n"
                     ."+| Monto cuota final: ".$this->getMonto_Cuota()."\n"
                     ."+| Monto interés (incluido en el monto final): ".$this->getMonto_Interes()."\n"
-                    ."+| Estado: ".$this->getCancelada()."\n";
+                    ."+| Estado: ".$this->estadoCuota()."\n";
             return $cadena;
         }
     }

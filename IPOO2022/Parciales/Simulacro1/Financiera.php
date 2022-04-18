@@ -38,7 +38,8 @@
          */
         public function incorporarPrestamo($nuevoPrestamo) {
             $arrayPrestamos = $this->getArrayPrestamos();
-            array_push($arrayPrestamos, $nuevoPrestamo);
+            //array_push($arrayPrestamos, $nuevoPrestamo);
+            $arrayPrestamos[count($arrayPrestamos)] = $nuevoPrestamo;
             $this->setArrayPrestamos($arrayPrestamos);
         }
 
@@ -47,20 +48,31 @@
          * Recorre la lista de prestamos de los que no han sido generadas sus cuotas.
          */
         public function otorgarPrestamoSiCalifica() {
+            /*
             $arrayPrestamos = $this->getArrayPrestamos();
-            foreach ($arrayPrestamos as $indice => $elemento) {
-                $prestamo = $elemento;
-                $estadoPrestamo = $prestamo->getFechaOtorgamiento();
-                if ($estadoPrestamo == "No aprobado.") {
-                    $monto = $prestamo->getMonto();
-                    $cantCuotas = $prestamo->getCantCuotas();
-                    $montoPorCuota = $monto / $cantCuotas;
-                    $ObjPersona = $prestamo->getObjPersona();
-                    $montoNeto = $ObjPersona->getNeto();
-                    //Se verifica que el monto / cantCuotas no supere el 40% del neto del solicitante
-                    $verificacion = $montoNeto * 0.4;
-                    if ($montoPorCuota <= $verificacion) {
+            $cantPrestamos = count($arrayPrestamos);
+            for ($i=0; $i<$cantPrestamos; $i++) {
+                if (count($arrayPrestamos[$i]->getArrayCuotas()) == 0) {
+                    $objPersona = $arrayPrestamos[$i]->getObjPersona();
+                    if (($arrayPrestamos[$i]->getMonto() / $arrayPrestamos[$i]->getCantCuotas()) <= ($objPersona->getNeto() * 0.4)) {
+                       $arrayPrestamos[$i]->otorgarPrestamo();
+                    }
+                }
+            }
+            foreach ($arrayPrestamos as $prestamo) {
+                if (count($prestamo->getArrayCuotas()) == 0) {
+                    $objPersona = $prestamo->getObjPersona();
+                    if (($prestamo->getMonto() / $prestamo->getCantCuotas()) <= ($objPersona->getNeto() * 0.4)) {
                         $prestamo->otorgarPrestamo();
+                    }
+                }
+            }
+            */
+            for ($i=0; $i < count($this->getArrayPrestamos()); $i++) {
+                if (count($this->getArrayPrestamos()[$i]->getArrayCuotas()) == 0) {
+                    $objPersona = $this->getArrayPrestamos()[$i]->getObjPersona();
+                    if ($this->getArrayPrestamos()[$i]->getMonto() / $this->getArrayPrestamos()[$i]->getCantCuotas() <= $objPersona->getNeto() * 0.4) {
+                        $this->getArrayPrestamos()[$i]->otorgarPrestamo();
                     }
                 }
             }
@@ -72,7 +84,7 @@
          */
         public function informarCuotaPagar($idPrestamo) {
             $arrayPrestamos = $this->getArrayPrestamos();
-            foreach ($arrayPrestamos as $indice => $elemento) {
+            foreach ($arrayPrestamos as $elemento) {
                 $prestamo = $elemento;
                 $id = $prestamo->getId();
                 if ($id == $idPrestamo) {
@@ -90,9 +102,8 @@
         private function mostrarPrestamos() {
             $cadena = "";
             $arrayPrestamos = $this->getArrayPrestamos();
-            foreach ($arrayPrestamos as $indice => $elemento) {
-                $unPrestamo = $elemento->__toString();
-                $cadena .= $unPrestamo;
+            foreach ($arrayPrestamos as $elemento) {
+                $cadena .= $elemento;
             }
             return $cadena;
         }
@@ -101,7 +112,7 @@
             $prestamos = $this->mostrarPrestamos();
             $cadena = "| Denominación: ".$this->getDenominacion()."\n"
                     ."| Dirección: ".$this->getDireccion()."\n"
-                    ."| Préstamos: ".$prestamos."\n";
+                    ."| Préstamos: \n".$prestamos."\n";
             return $cadena;
         }
     }

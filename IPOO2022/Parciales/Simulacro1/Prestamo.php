@@ -3,7 +3,7 @@
 //la colección de cuotas y la referencia a la persona que solicitó el préstamo.
     class Prestamo {
         private $id;
-        private $codElectrodomestico;
+        private $codElectrodomestico = "";
         private $fechaOtorgamiento = "No aprobado.";
         private $monto;
         private $cantCuotas;
@@ -81,9 +81,9 @@
             $arrayCuotas = $this->getArrayCuotas();
             $cantCuotas = count($arrayCuotas);
             if ($cantCuotas == 0) {
-                $cadena = "Préstamo no aprobado.";
+                $cadena = "Préstamo no aprobado.\n";
             } else {
-                foreach ($arrayCuotas as $indice => $elemento) {
+                foreach ($arrayCuotas as $elemento) {
                     $unaCuota = $elemento->__toString();
                     $cadena .= $unaCuota;
                 }
@@ -157,11 +157,11 @@
             $arrayCuotas = $this->getArrayCuotas();
             $siguienteCuota = null;
             $estado = true;
-            foreach ($arrayCuotas as $indice => $elemento) {
+            foreach ($arrayCuotas as $elemento) {
                 if ($estado) {
                     $cuota = $elemento;
                     $estadoCuota = $cuota->getCancelada();
-                    if ($estadoCuota == 'Sin pagar') {
+                    if ($estadoCuota == "Sin pagar") {
                         $estado = false;
                         $siguienteCuota = $elemento;
                     }
@@ -170,18 +170,28 @@
             return $siguienteCuota;
         }
 
+        public function estadoCuota() {
+            $estadoCuotas = $this->darSiguienteCuotaPagar();
+            if ($estadoCuotas == null) {
+                $cadena = "Cuotas canceladas.";
+            } else {
+                $cadena = $estadoCuotas;
+            }
+            return $cadena;
+        }
+
         public function __toString() {
             $objPersona = $this->getObjPersona();
-            $persona = $objPersona->__toString(); //revisar
-            $cuotas = $this->getArrayCuotas();
-            $cadena = "| ID: ".$this->getId()."\n"
+            //$persona = $objPersona->__toString();
+            //$cuotas = $this->estadoCuota();
+            $cadena = "\n| ID: ".$this->getId()."\n"
                         ."| Código del producto: ".$this->getCodElectrodomestico()."\n"
                         ."| Fecha de entrega: ".$this->getFechaOtorgamiento()."\n"
                         ."| Monto: ".$this->getMonto()."\n"
                         ."| Cant. de cuotas: ".$this->getCantCuotas()."\n"
                         ."| Tasa de interés: ".$this->getTasaInteres()."\n"
-                        ."| Datos del solicitante: ".$persona."\n"
-                        ."| Datos de las cuotas: ".$cuotas."\n";
+                        ."| Datos del solicitante: ".$objPersona."\n"
+                        ."| Datos de las cuotas: ".$this->estadoCuota()."\n";
             return $cadena;
         }
     }
