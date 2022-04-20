@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2? family=Dancing+Script&display=swap" rel="stylesheet">
+        <style type="text/css">
+            /* Selector universal "*" */
+            * {color:teal;}
+            /* Selector de etiqueta */
+            h1 {color:red;font-family:geneva;font-size:36px;}
+            h2 {color:green;font-family:geneva;font-size:24px;}
+            h3 {color:orange;font-family:geneva;font-size:18px;}
+            h4 {color:slateblue;font-family:'Franklin Gothic Medium';}
+            p {color:grey;font-family:verdana;font-size:medium;}
+            span {font-style:oblique;}
+            /* Selector de etiquetas - simplificada */
+            h1, h2, h3 {
+                font-weight:normal;
+                font-family:'Courier New', Courier, monospace;
+            }
+            /* Selectores de clase */
+            .texto {font-style:oblique;}
+            .titulo {font-style:italic;}
+            /* Selectores de ID */
+            #especial {
+                color:brown;
+                font-size:24px;
+                font-style:italic;
+                font-weight:bolder;
+            }
+            /* Aplicar estilos de fuentes externos */
+            #prueba {
+                font-family:'Dancing Script';
+                font-style:cursive;
+            }
+        </style>
+    </head>
+    <body>
+        <h4>Titular de la página</h4>
+        <p>
+            <span>Lorem ipsum dolor</span>, sit amet consectetur adipisicing elit. Repellat expedita fuga doloribus dolore impedit possimus itaque accusamus error totam quia!
+        </p>
+        <h1>Texto 1</h1>
+        <h2>Texto 2</h2>
+        <h3>Texto 3</h3>
+        <h5 class="titulo">Titulo de clase</h5>
+        <p class="texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, quisquam?</p>
+        <p id="especial">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, consequuntur.</p>
+        <p id="prueba">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, consequatur!</p>
+    </body>
+</html>

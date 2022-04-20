@@ -85,7 +85,7 @@
     public function agregarPasajeros($nuevoPasajero) {
         $arrayPasajeros = $this->getObjArrayPasajeros();
         $indMaximo = count($arrayPasajeros);
-        //Valido que el pasajero ingresado no esté en el vieje inicialmente:
+        //Valido que el pasajero ingresado no esté en el viaje inicialmente:
         $dniEncontrado = true;
         $i = 0;
         $dniComparacion = $nuevoPasajero->getDni();
