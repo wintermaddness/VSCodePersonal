@@ -47,8 +47,7 @@
             $cadena = $this->armarCadenaArrayFunciones();
             $datoTeatro = "| Teatro: ".$this->get_NombreTeatro().
                         "\n| Dirección: ".$this->get_DireccionTeatro().
-                        "\n".($cadena==""?
-                        "No hay funciones. ": "Funciones\n".$cadena); 
+                        "\n".($cadena==""?"No hay funciones. ": "Funciones\n".$cadena); 
             return $datoTeatro;
         }
 

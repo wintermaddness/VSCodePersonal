@@ -135,7 +135,7 @@
 				if ($validacion == false) {
 					echo "\n>>> ERROR. El documento ingresado no se corresponde con ningún pasajero.\n";
 				} else {
-					$datosPasajero = $objViaje->mostrarPasajeros($validacion);
+					$datosPasajero = $objViaje->mostrarPasajeros($documentoPasajero);
 					echo $datosPasajero;
 				}
 				break;

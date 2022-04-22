@@ -1,7 +1,5 @@
 <?php
-    include "Viaje.php";
-	include "ResponsableV.php";
-	include "Pasajero.php";
+    include "ViajeCelesteAliaga.php";
 
 	function menuDeOpciones() {
 		$menu = "\n---------------Menú de opciones---------------".
@@ -15,7 +13,6 @@
 		return $menu;
 	}
 
-	//Se piden los datos del viaje inicial:
 	echo ">>> Por favor, ingrese los datos del viaje <<<\n";
 	echo "| Ingrese el código de viaje: ";
 	$codViaje = trim(fgets(STDIN));
@@ -23,23 +20,9 @@
 	$destino = trim(fgets(STDIN));
 	echo "| Ingrese la capacidad máxima de pasajeros: ";
 	$capacidadMaxima = trim(fgets(STDIN));
-	//Se piden los datos del responsable del viaje:
-	echo ">>> Ingrese Los datos del responsable del viaje <<\n";
-	echo "| Ingrese el nombre: ";
-	$nombreResponsable = trim(fgets(STDIN));
-	echo "| Ingrese el apellido: ";
-	$apellidoResponsable = trim(fgets(STDIN));
-	echo "| Ingrese el N° de empleado: ";
-	$nroEmpleado = trim(fgets(STDIN));
-	echo "| Ingrese el N° de licencia: ";
-	$nroLicencia = trim(fgets(STDIN));
+	$arrayPasajeros = [];
 
-	//Se crean los objetos:
-	$objResponsable = new ResponsableV($nombreResponsable, $apellidoResponsable, $nroEmpleado, $nroLicencia);
-	$objViaje = new Viaje($codViaje, $destino, $capacidadMaxima, $objResponsable);
-	echo $objViaje;
-
-	//Se inicializa el menú de opciones:
+	$objViaje = new Viaje($codViaje, $destino, $capacidadMaxima, $arrayPasajeros);
 	do {
 		$menu = menuDeOpciones();
 		echo $menu;
@@ -47,8 +30,8 @@
 		switch ($opcion) {
 			case 1:
 				echo  "\n--------- Cargar pasajero ---------\n" ;
-				echo  "| Ingrese los datos de un pasajero: ";
-				/*$limitePasajeros = trim(fgets(STDIN));
+				echo  "| ¿Cuántos pasajeros desea ingresar?: ";
+				$limitePasajeros = trim(fgets(STDIN));
 				for ($i=0; $i<$limitePasajeros; $i++) {
 					echo "\n	+ Ingrese el nombre del pasajero: ";
 					$arregloPasajeros[$i]["nombre"] = trim(fgets(STDIN));
@@ -56,42 +39,26 @@
 					$arregloPasajeros[$i]["apellido"] = trim(fgets(STDIN));
 					echo "	+ Ingrese el número de documento del pasajero: ";
 					$arregloPasajeros[$i]["dni"] = trim(fgets(STDIN));
-					echo "	+ Ingrese el número de teléfono del pasajero: ";
-					$arregloPasajeros[$i]["telefono"] = trim(fgets(STDIN));
-				}*/
-					echo "\n	+ Ingrese el nombre del pasajero: ";
-					$nombre = trim(fgets(STDIN));
-					echo "	+ Ingrese el apellido del pasajero: ";
-					$apellido = trim(fgets(STDIN));
-					echo "	+ Ingrese el número de documento del pasajero: ";
-					$dni = trim(fgets(STDIN));
-					echo "	+ Ingrese el número de teléfono del pasajero: ";
-					$telefono = trim(fgets(STDIN));
-					$objPasajero = new Pasajero($nombre, $apellido, $dni, $telefono);
-					$agregarPasajero = $objViaje->agregarPasajeros($objPasajero);
-					if ($agregarPasajero == false) {
-						echo "\n>>> ERROR. El pasajero ya se encuentra en el viaje.\n";
-					} else {
-						echo "\n>>> Se agregó el pasajero con éxito.\n";
-					}
+				}
+				if ($i == 0) {
+					echo "\n>>> No ingresó ningún pasajero.\n";
+				} else {
+					$objViaje->agregarPasajeros($arregloPasajeros);
+					echo "\n>>> Se ingresó/ingresaron ".$i." pasajero/s con éxito.\n";
+				}
 				break;
 			case 2:
 				echo "----- Modificar pasajero -----\n";
-				echo "| Ingrese el número de documento del pasajero a modificar: ";
-				$dniPasajero = trim(fgets(STDIN));
-				$validacion = $objViaje->validarDocumento($dniPasajero);
-				if ($validacion == true) {
-					echo "\n	+ Ingrese el nuevo nombre del pasajero: ";
-					$nuevoNombre = trim(fgets(STDIN));
-					echo "	+ Ingrese el nuevo apellido del pasajero: ";
-					$nuevoApellido = trim(fgets(STDIN));
-					echo "	+ Ingrese el nuevo número de telefono del pasajero: ";
-					$nuevoTelefono = trim(fgets(STDIN));
-					$modificacion = $objViaje->modificarPasajeros($dniPasajero, $nuevoNombre, $nuevoApellido, $nuevoTelefono);
-					echo "\n>>> Pasajero modificado exitosamente.\n";
-				} else {
-					echo "\n>>> ERROR. El documento ingresado no se corresponde con ningún pasajero.\n";
-				}
+				echo "| Ingrese el número del pasajero a modificar: ";
+				$indPasajero = trim(fgets(STDIN));
+				echo "\n	+ Ingrese el nuevo nombre del pasajero: ";
+				$nuevoNombre = trim(fgets(STDIN));
+				echo "	+ Ingrese el nuevo apellido del pasajero: ";
+				$nuevoApellido = trim(fgets(STDIN));
+				echo "	+ Ingrese el nuevo número de documento del pasajero: ";
+				$nuevoDni = trim(fgets(STDIN));
+				$objViaje->modificarPasajeros($indPasajero, $nuevoNombre, $nuevoApellido, $nuevoDni);
+				echo "\n>>> Pasajero modificado exitosamente.\n";
 				break;
 			case 3:
 				echo "----- Eliminar pasajero -----\n" ;
@@ -110,13 +77,13 @@
 				$nuevaCapacidad = trim(fgets(STDIN));
 				$modificacion = $objViaje->modificarDatosViaje($nuevoCodigo, $nuevoDestino, $nuevaCapacidad);
 				//Se muestra un msj según el resultado de las modificaciones:
-				$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se pudieron modificar.");
+				$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se puedieron modificar.");
 				echo "\n    >>> ".$resultado."\n";
 				break;
 			case 5:
 				echo "----- Ver datos del viaje -----";
 				$cadena = $objViaje->__toString();
-				echo $cadena;
+				echo $cadena."\n";
 				break;
 			case 6:
 				echo "----- Mostrar pasajero -----\n" ;
