@@ -68,11 +68,14 @@
                 }
             }
             */
-            for ($i=0; $i < count($this->getArrayPrestamos()); $i++) {
-                if (count($this->getArrayPrestamos()[$i]->getArrayCuotas()) == 0) {
-                    $objPersona = $this->getArrayPrestamos()[$i]->getObjPersona();
-                    if ($this->getArrayPrestamos()[$i]->getMonto() / $this->getArrayPrestamos()[$i]->getCantCuotas() <= $objPersona->getNeto() * 0.4) {
-                        $this->getArrayPrestamos()[$i]->otorgarPrestamo();
+            $arrayPrestamos = $this->getArrayPrestamos();
+            $cantPrestamos = count($arrayPrestamos);
+            for ($i=0; $i<$cantPrestamos; $i++) {
+                $unPrestamo = $arrayPrestamos[$i];
+                if (count($unPrestamo->getArrayCuotas()) == 0) {
+                    $objPersona = $unPrestamo->getObjPersona();
+                    if ($unPrestamo->getMonto() / $unPrestamo->getCantCuotas() <= $objPersona->getNeto() * 0.4) {
+                        $unPrestamo[$i]->otorgarPrestamo();
                     }
                 }
             }
