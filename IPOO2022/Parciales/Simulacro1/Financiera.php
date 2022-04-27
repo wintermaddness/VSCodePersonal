@@ -59,15 +59,17 @@
                     }
                 }
             }
-            foreach ($arrayPrestamos as $prestamo) {
+            */
+            $arrayPrestamos = $this->getArrayPrestamos();
+            /*foreach ($arrayPrestamos as $prestamo) {
                 if (count($prestamo->getArrayCuotas()) == 0) {
                     $objPersona = $prestamo->getObjPersona();
                     if (($prestamo->getMonto() / $prestamo->getCantCuotas()) <= ($objPersona->getNeto() * 0.4)) {
                         $prestamo->otorgarPrestamo();
                     }
                 }
-            }
-            */
+            }*/
+            /*
             $arrayPrestamos = $this->getArrayPrestamos();
             $cantPrestamos = count($arrayPrestamos);
             for ($i=0; $i<$cantPrestamos; $i++) {
@@ -79,6 +81,22 @@
                     }
                 }
             }
+            */
+            foreach ($arrayPrestamos as $prestamo) {
+                $estadoPrestamo = $prestamo->getFechaOtorgamiento();
+                if ($estadoPrestamo == "No aprobado.") {
+                    $monto = $prestamo->getMonto();
+                    $cantCuotas = $prestamo->getCantCuotas();
+                    $montoPorCuota = $monto / $cantCuotas;
+                    $objPersona = $prestamo->getObjPersona();
+                    $montoNeto = $objPersona->getNeto();
+                    $montoNetoCuarenta = $montoNeto * 0.4;
+                    if ($montoPorCuota <= $montoNetoCuarenta) {
+                        $prestamo->otorgarPrestamo();
+                    }
+                }
+            }
+            
         }
 
         /**
@@ -105,8 +123,8 @@
         private function mostrarPrestamos() {
             $cadena = "";
             $arrayPrestamos = $this->getArrayPrestamos();
-            foreach ($arrayPrestamos as $elemento) {
-                $cadena .= $elemento;
+            foreach ($arrayPrestamos as $prestamo) {
+                $cadena .= $prestamo;
             }
             return $cadena;
         }

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+    <head>
+        <title>Formulario Inmobiliaria</title>
+        <style>
+            .form .text {
+                border: 1px solid #c5c5c5;
+                font-family: Arial;
+                font-size: 12px;
+                font: solid #666;
+                padding: 5px;
+            }
+            .buttom {
+                border-color: #00f;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                background-color: #0f0;
+            }
+        </style>
+    </head>
+    <body bgcolor="white" text="#000">
+        <form action="" class="form">
+            <table border="0" class="table">
+                <tr>
+                    <caption>REGISTRO DE CONSULTAS</caption>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su nombre:
+                    </td>
+                    <td colspan="2" class="text">
+                        <input type="text" maxlength="25"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su apellido:
+                    </td>
+                    <td colspan="2" class="text">
+                        <input type="text" maxlength="25"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su dirección:
+                    </td>
+                    <td>
+                        <textarea name="direccion" id="" cols="21" rows="2" maxlength="30"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su teléfono:
+                    </td>
+                    <td colspan="2" class="text">
+                        <input type="text" value="0299-" maxlength="15"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ¿Qué desea hacer?:
+                    </td>
+                    <td colspan="1">
+                        <input type="radio" name="inmueble1" checked/>Alquilar<br/>
+                        <input type="radio" name="inmueble1"/>Comprar
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Seleccione alguna opción:
+                    </td>
+                    <td>
+                        <input type="checkbox" checked/>Zona centro<br/>
+                        <input type="checkbox"/>Zona norte<br/>
+                        <input type="checkbox" checked/>Zona sur
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <textarea name="comentario" id="comentarioBusqueda" cols="45" rows="10">
+                            Ayúdenos a ayudarlo ¿Qué es lo que está buscando?...
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right">
+                        <input type="reset" class="button"/>
+                        <input type="submit" class="button"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

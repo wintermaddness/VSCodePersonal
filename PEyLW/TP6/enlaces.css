@@ -1,0 +1,25 @@
+* {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+#div1 {
+    background-color:lightcyan;
+    padding:10px 40px 50px;
+}
+a:link {
+    color:darkgreen;
+    font-weight:bolder;
+}
+a:active {
+    color:blue;
+    font-weight:bolder;
+    font-size:2em;
+}
+a:visited {
+    color:red;
+    font-weight:bolder;
+}
+a:hover {
+    color:red;
+    font-style:italic;
+    font-weight:bolder;
+}
