@@ -3,20 +3,37 @@
         <title>Formulario Inmobiliaria</title>
         <style>
             .table {
-                width: 25em;
+                width: 20em;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                font-size:large;
             }
-            input, textarea {
-                font: 0.5em/0.5em "handwriting", cursive, sans-serif;
-                border: none;
-                padding: 0 1px;
+            caption {
+                font-weight: bold;
+            }
+            #checkbox {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: small;
+            }
+            .data {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                border-color: gray;
                 margin: 0;
-                width: 80%;
-                background : none;
+                padding-left: 3px;
+                border-radius: 5em;
+            }
+            #comentarioBusqueda {
+                font-family: "handwriting", cursive, sans-serif;
+                border-color: gray;
+                border-radius: 1em;
+                padding: 5px;
+                margin: 0;
+                width: 97%;
+                background: none;
             }
             input[type="reset"] {
                 border: 3px solid rgb(96, 93, 93);
                 background-color: rgb(110, 107, 107);
-                border-radius: 5px;
+                border-radius: 5em;
                 padding: 5px 1.7em;
                 font-weight: bold;
                 color: #fff;
@@ -27,7 +44,7 @@
             input[type="submit"] {
                 border: 3px solid rgb(96, 93, 93);
                 background-color: rgb(110, 107, 107);
-                border-radius: 5px;
+                border-radius: 5em;
                 padding: 5px 3em;
                 font-weight: bold;
                 color: #fff;
@@ -39,7 +56,7 @@
     </head>
     <body bgcolor="white" text="#000">
         <form action="">
-            <table border="1" class="table">
+            <table border="0" class="table">
                 <tr>
                     <caption>REGISTRO DE CONSULTAS</caption>
                 </tr>
@@ -47,16 +64,16 @@
                     <td>
                         Ingrese su nombre:
                     </td>
-                    <td colspan="2" class="text">
-                        <input type="text" maxlength="25"/>
+                    <td colspan="2">
+                        <input type="text" class="data" maxlength="25"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         Ingrese su apellido:
                     </td>
-                    <td colspan="2" class="text">
-                        <input type="text" maxlength="25"/>
+                    <td colspan="2">
+                        <input type="text" class="data" maxlength="25"/>
                     </td>
                 </tr>
                 <tr>
@@ -64,15 +81,15 @@
                         Ingrese su dirección:
                     </td>
                     <td>
-                        <textarea name="direccion" id="" cols="21" rows="2" maxlength="30"></textarea>
+                        <input type="text" class="data" maxlength="30"/>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         Ingrese su teléfono:
                     </td>
-                    <td colspan="2" class="text">
-                        <input type="text" value="0299-" maxlength="15"/>
+                    <td colspan="2">
+                        <input type="text" class="data" value="0299-" maxlength="15"/>
                     </td>
                 </tr>
                 <tr>
