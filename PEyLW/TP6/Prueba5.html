@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+    <head>
+        <title>Fondos y gradientes - CSS</title>
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            p {
+                color: aliceblue;
+                font-size: 2rem;
+                text-transform:uppercase;
+                text-shadow: 1px 1px 1px rgb(115, 113, 113),
+                             2px 2px 1px rgb(37, 35, 35);
+                padding-top: 1.3em;
+                text-align: center;
+                letter-spacing: 1px;
+            }
+            .wrapper {
+                display: flex;
+            }
+            .box {
+                width: 300px;
+                height: 200px;
+                padding: .5em;
+                border: 1px solid #ccc;
+                margin: 20px;
+            }      
+            .a {
+                background-image: linear-gradient(95deg, rgba(0,249,255,1) 40%, rgba(51,56,57,1) 96%);
+            }
+            .b {
+                background-image: radial-gradient(circle, rgba(0,249,255,1) 39%, rgba(51,56,57,1) 96%);
+                background-size: 100px 50px;
+                /* background-size: cover; */
+            }
+            .prueba1 {
+                background-image: linear-gradient(95deg, darkblue 40%, black 96%);
+            }
+            .prueba2 {
+                background-image: radial-gradient(circle, rgb(12, 3, 134) 39%, rgb(9, 11, 11) 96%);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="box prueba1">
+                <p>
+                    Fondos
+                </p>
+            </div>
+            <div class="box prueba2">
+                <p>
+                    Gradientes
+                </p>
+            </div>
+        </div>
+        <div class="wrapper">
+            <div class="box a"></div>
+            <div class="box b"></div>
+        </div>
+    </body>
+</html>

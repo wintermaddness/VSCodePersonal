@@ -2,23 +2,44 @@
     <head>
         <title>Formulario Inmobiliaria</title>
         <style>
-            .form .text {
-                border: 1px solid #c5c5c5;
-                font-family: Arial;
-                font-size: 12px;
-                font: solid #666;
-                padding: 5px;
+            .table {
+                width: 25em;
             }
-            .buttom {
-                border-color: #00f;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                background-color: #0f0;
+            input, textarea {
+                font: 0.5em/0.5em "handwriting", cursive, sans-serif;
+                border: none;
+                padding: 0 1px;
+                margin: 0;
+                width: 80%;
+                background : none;
+            }
+            input[type="reset"] {
+                border: 3px solid rgb(96, 93, 93);
+                background-color: rgb(110, 107, 107);
+                border-radius: 5px;
+                padding: 5px 1.7em;
+                font-weight: bold;
+                color: #fff;
+            }
+            input[type="reset"]:hover {
+                background-color: rgb(84, 83, 83);
+            }
+            input[type="submit"] {
+                border: 3px solid rgb(96, 93, 93);
+                background-color: rgb(110, 107, 107);
+                border-radius: 5px;
+                padding: 5px 3em;
+                font-weight: bold;
+                color: #fff;
+            }
+            input[type="submit"]:hover {
+                background-color: rgb(84, 83, 83);
             }
         </style>
     </head>
     <body bgcolor="white" text="#000">
-        <form action="" class="form">
-            <table border="0" class="table">
+        <form action="">
+            <table border="1" class="table">
                 <tr>
                     <caption>REGISTRO DE CONSULTAS</caption>
                 </tr>
@@ -82,8 +103,8 @@
                 </tr>
                 <tr>
                     <td colspan="2" align="right">
-                        <input type="reset" class="button"/>
-                        <input type="submit" class="button"/>
+                        <input type="reset"/>
+                        <input type="submit"/>
                     </td>
                 </tr>
             </table>
