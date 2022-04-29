@@ -116,20 +116,23 @@
          * al invocar al método "asignarAsientosDisponibles".
          * Retorna la instancia del viaje asignado, NULL caso contrario.
          */
-        public function venderViajeADestino($cantAsientos, $fechaViaje, $destino) {
-            $arrayViajes = $this->getArrayViajes();
-            foreach ($arrayViajes as $unViaje) {
-                $validacionAsientos = $unViaje->asignarLugaresDisponibles($cantAsientos);
-                if ($validacionAsientos == true) {
-                    $viajeVendido = ">>> Datos de venta del Viaje <<<\n".
-                                    "   + Destino: ".$destino."\n".
-                                    "   + Fecha del viaje: ".$fechaViaje."\n".
-                                    "   + Cantidad de Asientos: ".$cantAsientos."\n";
+        public function venderViajeADestino($cantAsientos, $destino) {
+            $arrayViajesDisponibles = $this->darViajeADestino($destino, $cantAsientos);
+            $busqueda = true;
+            $ventaViaje = null;
+            $i = 0;
+            while ($busqueda && $i < count($arrayViajesDisponibles)) {
+                if (strtolower($arrayViajesDisponibles[$i]->getDestino()) == strtolower($destino)) {
+                    $busqueda = false;
+                    $ventaViaje = $arrayViajesDisponibles[$i];
                 } else {
-                    $viajeVendido = null;
+                    $i++;
                 }
             }
-            return $viajeVendido;
+            if ($ventaViaje != null) {
+                $ventaViaje->asignarAsientosDisponibles($cantAsientos);
+            }
+            return $ventaViaje;
         }
 
         /**
@@ -139,7 +142,6 @@
          */
         public function montoRecaudado() {
             $arrayViajes = $this->getArrayViajes();
-            $cantViajes = count($arrayViajes);
             $montoEmpresa = 0;
             foreach ($arrayViajes as $unViaje) {
                 $cantAsientosVendidos = $unViaje->getCantAsientos() - $unViaje->getCantAsientosLibres();
@@ -166,7 +168,7 @@
         public function __toString() {
             $cadena = "+ ID: ".$this->getId()."\n".
                     "+ Nombre: ".$this->getNombre()."\n".
-                    "+ Viajes: ".$this->mostrarViajes()."\n";
+                    "+ Viajes: ".$this->mostrarViajes();
             return $cadena;
         }
     }

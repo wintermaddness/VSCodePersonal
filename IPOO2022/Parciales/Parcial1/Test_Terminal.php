@@ -22,9 +22,7 @@
     $objEmpresa1 = new Empresa(1, "Metrovías", $coleccionViajes1);
     $objEmpresa2 = new Empresa(2, "Patagonia", $coleccionViajes2);
 
-    $coleccionEmpresasRegistradas = [];
-    $coleccionEmpresasRegistradas[0] = [$objEmpresa1];
-    $coleccionEmpresasRegistradas[1] = [$objEmpresa2];
+    $coleccionEmpresasRegistradas = [$objEmpresa1, $objEmpresa2];
 
     //denominación, dirección y la colección empresas registradas
     $objTerminal = new Terminal("Viajera", "El Dorado 1917", $coleccionEmpresasRegistradas);
@@ -33,7 +31,6 @@
     //$ventaViaje = $objTerminal->ventaAutomatica(3, "Arkansas"); ->> aplicación del método según la consigna del test.
     //El enunciado del método pide como parámetros: $cantAsientos, $fecha, $destino, $empresa
     $ventaViaje = $objTerminal->ventaAutomatica(3, "22 de abril", "Arkansas", "Metrovías"); //->> aplicación del método según el enunciado de la clase.
-    echo "1)\n".$ventaViaje."\n";
 
     //2. empresaMayorRecaudación
     $empresaMayorRecaudacion = $objTerminal->empresaMayorRecaudacion();
@@ -41,5 +38,5 @@
 
     //3. responsableViaje($numeroViaje)
     $responsable = $objTerminal->responsableViaje(3);
-    echo "3)".$responsable."\n";
+    echo "3)\n".$responsable."\n";
 ?>

@@ -114,7 +114,7 @@
                     "+ Fecha: ".$this->getFecha()."\n".
                     "+ Cantidad de Asientos: ".$this->getCantAsientos()."\n".
                     "+ Asientos Disponibles: ".$this->getCantAsientosLibres()."\n".
-                    "+ Responsable del Viaje: ".$objResponsable."\n";
+                "+ Responsable del Viaje: \n".$objResponsable."\n";
             return $cadena;
         }
     }

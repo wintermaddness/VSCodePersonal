@@ -76,19 +76,25 @@
          * @return string
          */
         public function responsableViaje($numeroViaje) {
-            $i = 0;
             $arrayEmpresas = $this->getArrayEmpresas();
-            foreach ($arrayEmpresas as $unaEmpresa) {
-                $cantViajes = count($unaEmpresa->getArrayViajes());
-                do {
-                    $unViaje = $unaEmpresa[$i];
-                    $nroViaje = $unViaje->getNumero();
-                    if ($nroViaje == $numeroViaje) {
-                        $objResponsable = $unViaje->getObjResponsable();
+            $busqueda = true;
+            $responsable = null;
+            $j = 0;
+            $i = 0;
+            while($busqueda && $i < count($arrayEmpresas)){
+                $arrayViajes = $arrayEmpresas[$i]->getArrayViajes();
+                $j = 0;
+                while($busqueda && $j < count($arrayViajes)){
+                    if($arrayViajes[$j]->getNumero() == $numeroViaje){
+                        $busqueda = false;
+                        $responsable = $arrayViajes[$j]->getObjResponsable();
+                    }else{
+                        $j++;
                     }
-                } while($i < $cantViajes);
+                }
+                $i++;
             }
-            return $objResponsable;
+            return $responsable;
         }
 
         public function __toString() {
