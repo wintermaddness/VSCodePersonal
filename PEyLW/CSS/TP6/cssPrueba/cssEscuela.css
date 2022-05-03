@@ -1,0 +1,65 @@
+/* Cuerpo */
+body {
+    background-color: #bbb;
+    font: #000;
+    width: 100%;
+    max-width: 900px;
+    margin: 2em auto;
+    font: .9em/1.2 Arial, Helvetica, sans-serif;
+}
+/* DIV's */
+.cabecera {
+    column-count: 1;
+    text-align: center;
+}
+.contenedor {
+    column-count: 2;
+    column-gap: 20px;
+    column-rule: 1px ridge rgb(164, 162, 162);
+    margin: 0 1em;
+    text-align: center;
+}
+/* Imágenes */
+#img1 {
+    height: 300px; 
+    width: 65%;
+    border-radius: 40px 40px 40px 40px;
+    padding-top: 1em;
+}
+#img2 {
+    height: 20px; 
+    width: 205px;
+    border-radius: 40px 40px 40px 40px;
+    padding-top: 0.5em;
+}
+/* Líneas */
+hr {
+    color: gray;
+    width: 35%;
+    size: 1%;
+}
+/* Texto */
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.3em;
+}
+h2 {
+    font-weight: bold;
+    font-size: 1em;
+}
+h3 {
+    font-weight: lighter;
+    font-size: x-small;
+}
+h5 {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    column-span: all;
+    background-color: rgb(157, 152, 152);
+    color: rgb(0, 0, 0);
+    padding: 0.5em;
+}
+p {
+    text-align: justify;
+    margin: 0 0em 1em 0em;
+}
