@@ -39,9 +39,33 @@
             .prueba2 {
                 background-image: radial-gradient(circle, rgb(12, 3, 134) 39%, rgb(9, 11, 11) 96%);
             }
+            /* Estilo del slider */
+            /* @keyframes slidy {0% { left: 0%; } 20% { left: 0%; } 25% { left: -100%; } 45% { left: -100%; } 50% { left: -200%; } 70% { left: -200%; } 75% { left: -300%; } 95% { left: -300%; } 100% { left: -400%;} } */
+            @keyframes slidy {0% { left: 0%; } 15% { left: 0%; } 20% { left: -100%; } 66% { left: -100%; } 70% { left: -200%; } 100% { left: -200%; }  }
+            body {
+                margin: 0;
+            }
+            div#slider {
+                overflow: hidden;
+            }
+            div#slider figure img {
+                width: 33.333%;
+                float: left;
+            }
+            div#slider figure {
+                position: relative;
+                width: 300%;
+                margin: 0;
+                left: 0;
+                text-align: left;
+                z-index:-222;
+                font-size: 0;
+                animation: 18s slidy infinite;
+            }
         </style>
     </head>
     <body>
+        <!-- Gradientes -->
         <div class="wrapper">
             <div class="box prueba1">
                 <p>
@@ -58,5 +82,15 @@
             <div class="box a"></div>
             <div class="box b"></div>
         </div>
+        <!-- /Gradientes -->
+        <!-- Slider -->
+        <div id="slider">
+            <figure>
+                <img src="klipartz.png" border="0">
+                <img src="klipartz.png" border="0">
+                <img src="klipartz.png" border="0">
+            </figure>
+        </div>
+        <!-- /Slider -->
     </body>
 </html>

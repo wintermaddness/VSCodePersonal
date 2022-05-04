@@ -48,7 +48,6 @@ img { border: none; }
    sean necesarios.
    ================================================================== */
 
-
 #cabecera,
 #menu,
 #lateral,
@@ -60,6 +59,8 @@ img { border: none; }
 #pie {
   padding: .5em;
   border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
 }
 #lateral {
   padding: 0;
@@ -70,18 +71,22 @@ img { border: none; }
 #menu {
   margin-bottom: .5em;
   border-bottom: 1px solid #004C99;
+  background-image:url("fondo_menu.gif");
 }
 #contenido {
   width: 77%;
   padding: 0;
 }
 #contenido #principal {
-  width: 73%;
+  width: 61.5%;
+  text-align: justify;
 }
 #contenido #secundario {
   border: 1px solid #C60;
+  width: 30%;
 }
 #pie {
+  background-color: #f8f8f8;
   padding: .5em 0;
   margin-top: 1em;
   border-top: 1px solid #C5C5C5;
@@ -91,12 +96,45 @@ img { border: none; }
   margin-bottom: 1em;
 }
 #contenido #principal .articulo img { 
-  margin: .5em;
+  margin: 0.5em 0.5em 0 0;
 }
 #lateral #noticias {
   border: 1px solid #C5C5C5;
+  background-color: #f8f8f8;
 }
 #lateral #publicidad {
   margin-top: 1em;
   border: 1px dashed #C60;
+  background-color: #eedba4; /*fff6dc*/
+}
+#contenido #secundario h2 {
+  background-color: #DB905C;
+  padding: .2em;
+}
+#menu_principal a {
+  color: #C60;
+  font-weight: bolder;
+  /*letter-spacing: 1px;*/
+}
+#menu_principal a:active {
+  color: blue;
+  font-weight: bolder;
+  font-size: 1em;
+}
+#menu_principal li {
+  padding: 0.5em;
+}
+/* Estilos de botones */
+#menu_principal input[type="button"] {
+  border: 2px solid rgb(30, 51, 157);
+  background-color: rgb(194, 137, 72);
+  border-radius: 1em;
+  padding: 5px 2em;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+#menu_principal input[type="button"]:hover {
+  background-color: rgb(118, 81, 26);
+  color: rgb(255, 249, 249);
+  text-shadow: #777;
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Ejercicio Posicionamiento float - CSS</title>
+        <style type="text/css">
+            .contenedor {
+                column-count: 2;
+                column-gap: 0px;
+                column-rule: 1px ridge gray;
+                margin: 5px;
+            }
+            .pasePag {
+                background-color: lightgray;
+                text-align: left;
+                padding: 1em;
+            }
+            .pasePag2 {
+                background-color: lightgray;
+                text-align: right;
+                padding: 1em;
+            }
+            /* Estilos de botones */
+            input[type="button"] {
+                border: 2px solid rgb(177, 176, 176);
+                background-color: lightgray;
+                border-radius: 5em;
+                padding: 5px 3em;
+                font-weight: bold;
+                color: rgb(21, 20, 20);
+                column-span: 1;
+            }
+            input[type="button"]:hover {
+                background-color: rgb(84, 83, 83);
+                color: rgb(247, 247, 247);
+            }
+        </style>
+    </head>
+    <body>
+        <!--  
+        <div class="contenedor">
+            <div class="pasePag">
+                &laquo; Anterior
+            </div>
+            <div class="pasePag2">
+                Siguiente &raquo;
+            </div>
+        </div> -->
+        <div class="contenedor">
+            <div class="pasePag">
+                <a href="Ejerc1.html"><input type="button" value="Anterior"></a>
+            </div>
+            <div class="pasePag2">
+                <a href="Ejerc1.html"><input type="button" value="Siguiente"></a>
+            </div>
+        </div>
+    </body>
+</html>
