@@ -97,10 +97,20 @@
             return $responsable;
         }
 
+        public function mostrarEmpresas() {
+            $cadena = "";
+            $arrayEmpresas = $this->getArrayEmpresas();
+            foreach ($arrayEmpresas as $unaEmpresa) {
+                $cadena .= "\nID: ".$unaEmpresa->getId()."\nNombre: ".$unaEmpresa->getNombre()."\n";
+            }
+            return $cadena;
+        }
+
         public function __toString() {
-            $cadena = "+ Denominación: ".$this->getDenominacion()."\n".
-                    "+ Dirección: ".$this->getDireccion()."\n".
-                    "+ Empresas Registradas: ".$this->getArrayEmpresas()."\n";
+            $arrayEmpresas = $this->mostrarEmpresas();
+            $cadena = ">> Denominación: ".$this->getDenominacion()."\n".
+                    ">> Dirección: ".$this->getDireccion()."\n".
+                    ">> Empresas Registradas: ".$arrayEmpresas;
             return $cadena;
         }
     }

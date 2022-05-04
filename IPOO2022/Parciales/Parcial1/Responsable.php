@@ -61,12 +61,12 @@
         }
 
         public function __toString() {
-            $cadena = "+ Nombre: ".$this->getNombre()."\n".
-                    "+ Apellido: ".$this->getApellido()."\n".
-                    "+ DNI: ".$this->getDni()."\n".
-                    "+ Dirección: ".$this->getDireccion()."\n".
-                    "+ Correo: ".$this->getMail()."\n".
-                    "+ Teléfono: ".$this->getTelefono()."\n";
+            $cadena = "|+ Nombre: ".$this->getNombre()."\n".
+                    "|+ Apellido: ".$this->getApellido()."\n".
+                    "|+ DNI: ".$this->getDni()."\n".
+                    "|+ Dirección: ".$this->getDireccion()."\n".
+                    "|+ Correo: ".$this->getMail()."\n".
+                    "|+ Teléfono: ".$this->getTelefono()."\n";
             return $cadena;
         }
     }

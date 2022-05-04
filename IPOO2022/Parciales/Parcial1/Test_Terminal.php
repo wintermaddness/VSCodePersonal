@@ -26,6 +26,7 @@
 
     //denominación, dirección y la colección empresas registradas
     $objTerminal = new Terminal("Viajera", "El Dorado 1917", $coleccionEmpresasRegistradas);
+    echo "1)\n".$objTerminal."\n";
 
     //1. ventaAutomatica (cant. asientos: 3 - destino: Arkansas)
     //$ventaViaje = $objTerminal->ventaAutomatica(3, "Arkansas"); ->> aplicación del método según la consigna del test.
@@ -34,7 +35,7 @@
 
     //2. empresaMayorRecaudación
     $empresaMayorRecaudacion = $objTerminal->empresaMayorRecaudacion();
-    echo "2)\n".$empresaMayorRecaudacion."\n";
+    echo "2)\n".$empresaMayorRecaudacion;
 
     //3. responsableViaje($numeroViaje)
     $responsable = $objTerminal->responsableViaje(3);

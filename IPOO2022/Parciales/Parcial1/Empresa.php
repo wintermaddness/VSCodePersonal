@@ -166,9 +166,9 @@
         }
 
         public function __toString() {
-            $cadena = "+ ID: ".$this->getId()."\n".
-                    "+ Nombre: ".$this->getNombre()."\n".
-                    "+ Viajes: ".$this->mostrarViajes();
+            $cadena = "| ID: ".$this->getId()."\n".
+                    "| Nombre: ".$this->getNombre()."\n".
+                    "| Viajes: \n".$this->mostrarViajes();
             return $cadena;
         }
     }
