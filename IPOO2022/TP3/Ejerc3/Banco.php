@@ -121,7 +121,7 @@
             $cantCuentasCorrientes = count($arrayCuentaCorriente);
             $cantCajaAhorro = count($arrayCajaAhorro);
             while ($cuentaEncontrada && $i<$cantCuentasCorrientes) {
-                if ($arrayCuentaCorriente[$i]->getCbu() == $nroCuenta) {
+                if ($arrayCuentaCorriente[$i]->getNroCliente() == $nroCuenta) {
                     $cuentaEncontrada = $arrayCuentaCorriente[$i];
                 }
                 $i++;
@@ -130,7 +130,7 @@
                 //Se reinicia el contador:
                 $i = 0;
                 while ($cuentaEncontrada && $i<$cantCajaAhorro) {
-                    if ($arrayCajaAhorro[$i]->getCbu() == $nroCuenta) {
+                    if ($arrayCajaAhorro[$i]->getNroCliente() == $nroCuenta) {
                         $cuentaEncontrada = $arrayCajaAhorro[$i];
                     }
                     $i++;
@@ -143,7 +143,24 @@
          * Método 6: realizarDeposito - 
          * Dado un número de Cuenta y un monto, realiza un depósito.
          */
-        public function realizarDeposito($nroCuenta, $monto) {
+        /*public function realizarDeposito($nroCuenta, $monto) {
+            //Se verifica que el nro de cuenta esté en la colección:
+            $esCuenta = $this->buscarCuenta($nroCuenta);
+            if ($esCuenta == null) {
+                $deposito = $this->depositar($esCuenta, $monto);
+            } else {
+                $deposito = ">>> ERROR. Cuenta inexistente. No se pudo realizar el depósito.\n";
+            }
+            return $deposito;
+        }*/
+
+        /**
+         * Método 7: depositar - 
+         * Realiza el depósito de cierto monto.
+         */
+        public function depositar($nroCuenta, $monto) {
+            /*$deposito = $nroCuenta->realizarDeposito($monto);
+		    return $deposito;*/
             //Se verifica que el nro de cuenta esté en la colección:
             $esCuenta = $this->buscarCuenta($nroCuenta);
             if ($esCuenta == null) {
@@ -155,19 +172,10 @@
         }
 
         /**
-         * Método 7: depositar - 
-         * Realiza el depósito de cierto monto.
-         */
-        public function depositar($nroCuenta, $monto) {
-            $deposito = $nroCuenta->realizarDeposito($monto);
-		    return $deposito;
-        }
-
-        /**
          * Método 8: realizarRetiro - 
          * Dado un número de Cuenta y un monto, realiza un retiro.
          */
-        public function realizarRetiro($nroCuenta, $monto) {
+        /*public function realizarRetiro($nroCuenta, $monto) {
             //Se verifica que el nro de cuenta esté en la colección:
             $esCuenta = $this->buscarCuenta($nroCuenta);
             if ($esCuenta == null) {
@@ -176,15 +184,22 @@
                 $retiro = ">>> ERROR. Cuenta inexistente. No se pudo realizar el retiro.\n";
             }
             return $retiro;
-        }
+        }*/
 
         /**
          * Método 9: retirar - 
          * Realiza el retiro de cierto monto.
          */
         public function retirar($nroCuenta, $monto) {
-            $retirar = $nroCuenta->realizarRetiro($monto);
-		    return $retirar;
+            /*$retirar = $nroCuenta->realizarRetiro($monto);
+		    return $retirar;*/
+            $esCuenta = $this->buscarCuenta($nroCuenta);
+            if ($esCuenta == null) {
+                $retiro = $nroCuenta->realizarRetiro($monto);
+            } else {
+                $retiro = ">>> ERROR. Cuenta inexistente. No se pudo realizar el retiro.\n";
+            }
+            return $retiro;
         }
 
         /**
@@ -257,13 +272,23 @@
             return $cadena;
         }
 
+        /**
+         * Método 14: ultimoValorCuentaAsignado - 
+         * Retorna el último número de cuenta asignado.
+         */
+        private function ultimoValorCuentaAsignado() {
+            $asigCuenta = $this->getUltimoValorCuenta() + 1;
+            $this->setUltimoValorCuenta($asigCuenta);
+            return $asigCuenta;
+        }
+
         public function __toString() {
             $cadena =
                     "1) CLIENTES\n".$this->mostrarClientes()."\n".
                     "2) CUENTAS CAJA DE AHORRO\n".$this->mostrarCajaAhorro()."\n".
                     "3) CUENTAS CORRIENTES\n".$this->mostrarCuentaCorriente().
                     "+| Último valor de cuenta asignado: \n".
-                    "  >> ".$this->getUltimoValorCuenta()."\n";
+                    "  >> ".$this->ultimoValorCuentaAsignado()."\n";
             return $cadena;
         }
     }

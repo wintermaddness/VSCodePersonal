@@ -53,7 +53,7 @@
         }
 
         public function __toString() {
-            return "+| Nro: ".$this->getNroCliente()
+            return "+| Nro Cliente: ".$this->getNroCliente()
                     ."\n+| Saldo Actual: $".$this->getSaldoCuenta()."\n";
         }
     }

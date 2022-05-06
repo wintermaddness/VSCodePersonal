@@ -16,11 +16,15 @@
     $coleccionClientes = [$objCliente1, $objCliente2];
 
     //Se crean los objCajaDeAhorro:
-    $objCajaDeAhorro1 = new CajaAhorro($objCliente1, 10000);
-    $objCajaDeAhorro2 = new CajaAhorro($objCliente2, 20000);
+    //$objCajaDeAhorro1 = new CajaAhorro($objCliente1, 10000);
+    //$objCajaDeAhorro2 = new CajaAhorro($objCliente2, 20000);
+    $objCajaDeAhorro1 = new CajaAhorro(3, 10000);
+    $objCajaDeAhorro2 = new CajaAhorro(4, 20000);
     $coleccionCajaAhorro = [$objCajaDeAhorro1, $objCajaDeAhorro2];
 
     //Se crean los objCuentaCorriente:
+    //$objCuentaCorriente1 = new CuentaCorriente($objCliente1, 15000, 10000);
+    //$objCuentaCorriente2 = new CuentaCorriente($objCliente2, 25000, 20000);
     $objCuentaCorriente1 = new CuentaCorriente($objCliente1, 15000, 10000);
     $objCuentaCorriente2 = new CuentaCorriente($objCliente2, 25000, 20000);
     $coleccionCuentasCorrientes = [$objCuentaCorriente1, $objCuentaCorriente2];
@@ -71,9 +75,12 @@
     }
 
     //Se deposita un monto a cada caja de ahorro:
-    $objBanco->realizarDeposito($nuevaCajaAhorro1, 300);
-    $objBanco->realizarDeposito($nuevaCajaAhorro2, 300);
-    $objBanco->realizarDeposito($nuevaCajaAhorro3, 300);
+    //$objBanco->realizarDeposito($nuevaCajaAhorro1, 300);
+    //$objBanco->realizarDeposito($nuevaCajaAhorro2, 300);
+    //$objBanco->realizarDeposito($nuevaCajaAhorro3, 300);
+    $objBanco->depositar($nuevaCajaAhorro1, 300);
+    $objBanco->depositar($nuevaCajaAhorro2, 300);
+    $objBanco->depositar($nuevaCajaAhorro3, 300);
 
     //Se transfieren $150 de la Cuenta Corriente de Cliente1 a la Caja de Ahorro de Cliente2
     $transaccion = $objBanco->realizarTransferencia($nuevaCuentaCorriente1, $nuevaCuentaCorriente2, 150);
