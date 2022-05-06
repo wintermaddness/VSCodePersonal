@@ -1,5 +1,6 @@
 <?php
     include "Persona.php";
+    include "Cliente.php";
     include "Cuenta.php";
     include "CuentaCorriente.php";
     include "CajaDeAhorro.php";
@@ -10,17 +11,21 @@
     $persona2 = new Persona("Chuck", "Hansen", "92476572");
     echo "1)".$persona2."\n";
 
+    //Se crean los objCliente:
+    $objCliente1 = new Cliente("Raleigh", "Becket", "44014172", 1);
+    $objCliente2 = new Cliente("Chuck", "Hansen", "92476572", 2);
+
     //Se crean los objCajaDeAhorro:
     $objCajaDeAhorro1 = new CajaDeAhorro(1, 10000, "12345678909876554321");
-    echo "2)".$objCajaDeAhorro1."\n";
+    echo "2)\n".$objCajaDeAhorro1."\n";
     $objCajaDeAhorro2 = new CajaDeAhorro(2, 20000, "09876543211234567890");
-    echo "2)".$objCajaDeAhorro2."\n";
+    echo "2)\n".$objCajaDeAhorro2."\n";
 
     //Se crean los objCuentaCorriente:
-    $objCuentaCorriente1 = new CuentaCorriente(1, 15000, "12345678909876554321", 10000);
-    echo "3)".$objCuentaCorriente1."\n";
-    $objCuentaCorriente2 = new CuentaCorriente(2, 25000, "09876543211234567890", 20000);
-    echo "3)".$objCuentaCorriente2."\n";
+    $objCuentaCorriente1 = new CuentaCorriente(1, 15000, 10000);
+    echo "3)\n".$objCuentaCorriente1."\n";
+    $objCuentaCorriente2 = new CuentaCorriente(2, 25000, 20000);
+    echo "3)\n".$objCuentaCorriente2."\n";
 
     //Se crean los objCuenta:
     $objCuenta1 = new Cuenta(1, 10000);

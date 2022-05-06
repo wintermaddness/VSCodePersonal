@@ -46,8 +46,10 @@
          * Método 3: realizarRetiro - 
          * Permite realizar un retiro de la cuenta.
          */
-        public function realizarRetiro() {
-            return $this->getSaldoCuenta();
+        public function realizarRetiro($monto) {
+            $this->setSaldoCuenta($this->getSaldoCuenta() - $monto);
+            return "\nSe retiró correctamente el monto de $".$monto
+                    ."\n    >> Monto actualizado: ".$this->getSaldoCuenta();
         }
 
         public function __toString() {
