@@ -21,7 +21,7 @@
          * Método 1: realizarRetiro - 
          * Permite realizar un retiro de la cuenta.
          */
-        public function realizarRetiro($monto) {
+        /*public function realizarRetiro($monto) {
             $saldoCuenta = $this->getSaldoCuenta();
             //Si el saldo de la cuenta es mayor o igual al del monto a retirar:
             if ($saldoCuenta >= $monto) {
@@ -31,7 +31,7 @@
                 $nuevoSaldo = null;
             }
             return $nuevoSaldo;
-        }
+        }*/
 
         public function __toString() {
             return "\n+| CBU Caja Ahorro: ".$this->getCbu()."\n".parent::__toString();

@@ -188,7 +188,35 @@
         }
 
         /**
-         * Método 10: mostrarClientes - 
+         * Método 10: realizarTransferencia - 
+         * Realiza la transferencia de determinado monto de una cuenta a otra.
+         * Son necesarios: cuenta1, cuenta2 y un monto a transferir.
+         */
+        public function realizarTransferencia($nroCuenta1, $nroCuenta2, $monto) {
+            //Se verifica que la cuenta que transfiere dinero esté dentro de la colección:
+            $cuenta1Existe = $this->buscarCuenta($nroCuenta1);
+            if ($cuenta1Existe == null) {
+                $transferencia = ">>> ERROR. La cuenta a debitar no existe.\n";
+            } else {
+                //Se verifica que la cuenta que recibe el dinero esté dentro de la colección:
+                $cuenta2Existe = $this->buscarCuenta($nroCuenta2);
+                if ($cuenta2Existe == null) {
+                    $transferencia = ">>> ERROR. La cuenta a acreditar no existe.\n";
+                } else {
+                    //Se retira el monto de la cuenta que transfiere:
+                    $transferencia = $this->retirar($cuenta1Existe, $monto);
+                    if ($transferencia == null) {
+                        $transferencia = ">> ERROR. Saldo insuficiente. No es posible realizar la extracción.\n";
+                    } else {
+                        $transferencia = $this->depositar($nroCuenta2, $monto);
+                    }
+                }
+            }
+            return $transferencia;
+        }
+
+        /**
+         * Método 11: mostrarClientes - 
          * Retorna cada uno de los clientes almacenados en la colección.
          * @return string
          */
@@ -202,7 +230,7 @@
         }
 
         /**
-         * Método 11: mostrarCajaAhorro - 
+         * Método 12: mostrarCajaAhorro - 
          * Retorna cada uno de las caja ahorro almacenadas en la colección.
          * @return string
          */
@@ -216,7 +244,7 @@
         }
 
         /**
-         * Método 12: mostrarCuentaCorriente - 
+         * Método 13: mostrarCuentaCorriente - 
          * Retorna cada uno de las caja ahorro almacenadas en la colección.
          * @return string
          */

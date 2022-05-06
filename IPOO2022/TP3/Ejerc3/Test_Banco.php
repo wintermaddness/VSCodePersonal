@@ -76,6 +76,8 @@
     $objBanco->realizarDeposito($nuevaCajaAhorro3, 300);
 
     //Se transfieren $150 de la Cuenta Corriente de Cliente1 a la Caja de Ahorro de Cliente2
+    $transaccion = $objBanco->realizarTransferencia($nuevaCuentaCorriente1, $nuevaCuentaCorriente2, 150);
+    echo "--> TRANSACCIÓN\n".$transaccion;
 
     //Se muestran los datos de todas las cuentas:
     echo $objBanco;

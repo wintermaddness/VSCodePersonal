@@ -29,24 +29,24 @@
          * Método 1: realizarRetiro - 
          * Permite realizar un retiro de la cuenta.
          */
-        public function realizarRetiro($monto) {
+        /*public function realizarRetiro($monto) {
             $saldoCuenta = $this->getSaldoCuenta();
             //Si el saldo de la cuenta es mayor o igual al del monto a retirar:
             if ($saldoCuenta >= $monto) {
                 $this->setSaldoCuenta($saldoCuenta - $monto);
                 $nuevoSaldo = "\nSe retiró correctamente el monto de $".$monto." de la cuenta corriente.";
             } else {
-                $montoRevision = $monto-parent::getSaldoCuenta();
+                $montoRevision = $monto->parent::getSaldoCuenta();
                 //Si el giro al descubierto no supera el máximo:
                 if ($montoRevision <= $this->getMontoMaxDescubierto()) {
-                    parent::setSaldoCuenta(parent::getSaldoCuenta() - $monto); /*!!!*/
+                    parent::setSaldoCuenta(parent::getSaldoCuenta() - $monto);
                     $nuevoSaldo = "\nSe realizó correctamente el giro al descubierto (Saldo de la cuenta corriente en negativo).";
                 } else {
                     $nuevoSaldo = null; //fondo insuficiente
                 }
             }
             return $nuevoSaldo;
-        }
+        }*/
 
         public function __toString() {
             return "\n+| CBU Cuenta Corriente: ".$this->getCbu()."\n"
