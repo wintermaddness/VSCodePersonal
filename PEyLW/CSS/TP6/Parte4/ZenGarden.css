@@ -1,0 +1,87 @@
+/*Etiquetas simples*/
+html {
+	margin: 0;
+	padding: 0;
+}
+body {
+    font-family: sans, "Lucida Grande", Tahoma, Verdana, sans-serif;
+    font-size: 11px;
+    background-color: #fff;
+    color: black;
+    text-align: justify;
+}
+/*Encabezado*/
+#intro {
+    float: right;
+    width: 78%;
+    /*border: rgb(255, 0, 195) solid 1px;*/
+    position: relative;
+    padding: 5px;
+}
+#pageHeader h1 {
+    padding: 10px;
+    border: 1px solid rgb(30,104,184);
+    background-color: #ddd;
+    width: 70%;
+    height: 2em;
+    text-align: left;
+    position: relative;
+    z-index: 15;
+    background-image: url("css_zen_garden.gif");
+    background-repeat: no-repeat;
+    background-position: top 10px left 10px;
+}
+#pageHeader h2 {
+    border: 1px dashed rgb(30,104,184);
+    /*background-color: rgb(204, 202, 202);*/
+    background-color: #489AED;
+    background-image: url("zen_h2_back.gif");
+    background-position: top;
+    background-repeat: repeat-x;
+    padding: 15px;
+    position: relative;
+    z-index: 10;
+    bottom: 1.5em;
+    left: 5em;
+    width: 70%;
+    height: 1.5em;
+    text-align: right;
+    color: #ddd;
+}
+/*Lateral*/
+#linkList {
+    padding-left: 5px;
+    text-align: left;
+    /*float: left;*/
+    position: relative;
+    width: 20%;
+    /*border: red solid 1px;*/
+}
+#linkList #lresources ul {
+    list-style-image: url("blue_bullet.gif");
+    background-color: #9cf;
+    box-shadow: none;
+    margin-right: 5px;
+}
+#lresources ul a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: #036;
+    font-weight: bold;
+}
+#lresources ul > li > a:hover {
+    background-color: #036;
+    color: #9cf;
+}
+#larchives .accesskey {
+}
+#linkList #lselect {
+    list-style-image: url("blue_bullet.gif");
+}
+/*Contenido*/
+#supportingText {
+    width: 78%;
+    float: right;
+    /*border: rgb(25, 0, 255) solid 1px;*/
+    position: relative;
+    padding: 5px;
+}
