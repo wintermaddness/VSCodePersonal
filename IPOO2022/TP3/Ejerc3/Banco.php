@@ -47,12 +47,14 @@
         public function incorporarCliente($nuevoCliente) {
             $arrayCliente = $this->getArrayCliente();
             $cantClientes = count($arrayCliente);
-            if ($cantClientes == 0) {
-                $arrayCliente[0] = $nuevoCliente;
-            } else {
-                $arrayCliente[$cantClientes] = $nuevoCliente;
-            }
+            $cliente = new Cliente($nuevoCliente->getNombre(),
+                                $nuevoCliente->getApellido(),
+                                $nuevoCliente->getDocumento(),
+                                $cantClientes);
+            array_push($arrayCliente, $cliente);
             $this->setArrayCliente($arrayCliente);
+            $nroClientes = count($arrayCliente);
+            return $nroClientes;
         }
 
         /**
@@ -79,12 +81,14 @@
          * Se verifica que el cliente dueño de la cuenta es cliente del Banco.
          */
         public function incorporarCuentaCorriente($nroCliente) {
+            $ultimoValorCuenta = null;
             $arrayCuentaCorriente = $this->getArrayCuentaCorriente();
             $esCliente = $this->buscarCliente($nroCliente);
             if ($esCliente == null) {
                 //Si no se encuentra el cliente, se le asigna una cuenta corriente:
-                $ultimoValorCuenta = $this->setUltimoValorCuenta($this->getUltimoValorCuenta() + 1);
-                $nuevaCuentaCorriente = new CuentaCorriente(0, $esCliente, $ultimoValorCuenta, 5000);
+                /*$ultimoValorCuenta = $this->setUltimoValorCuenta($this->getUltimoValorCuenta() + 1);*/
+                $ultimoValorCuenta = $this->ultimoValorCuentaAsignado();
+                $nuevaCuentaCorriente = new CuentaCorriente($ultimoValorCuenta, $esCliente, 5000);
                 array_push($arrayCuentaCorriente, $nuevaCuentaCorriente);
                 $this->setArrayCuentaCorriente($arrayCuentaCorriente);
             }
@@ -96,13 +100,15 @@
          * Agregar una nueva Caja de Ahorro a la colección de cajas de ahorro.
          * Se verifica que el cliente dueño de la cuenta es cliente del Banco.
          */
-        public function incorporarCajaAhorro($nroCliente) {
+        public function incorporarCajaAhorro($objCliente) {
+            $ultimoValorCuenta = null;
             $arrayCajaAhorro = $this->getArrayCajaAhorro();
-            $esCliente = $this->buscarCliente($nroCliente);
+            $esCliente = $this->buscarCliente($objCliente);
             if ($esCliente == null) {
                 //Si no se encuentra el cliente, se le asigna una cuenta caja de ahorro:
-                $ultimoValorCuenta = $this->setUltimoValorCuenta($this->getUltimoValorCuenta() + 1);
-                $nuevaCajaAhorro = new CajaAhorro(0, $esCliente, $ultimoValorCuenta);
+                /*$ultimoValorCuenta = $this->setUltimoValorCuenta($this->getUltimoValorCuenta() + 1);*/
+                $ultimoValorCuenta = $this->ultimoValorCuentaAsignado();
+                $nuevaCajaAhorro = new CajaAhorro($ultimoValorCuenta, $objCliente);
                 array_push($arrayCajaAhorro, $nuevaCajaAhorro);
                 $this->setArrayCajaAhorro($arrayCajaAhorro);
             }
@@ -143,27 +149,10 @@
          * Método 6: realizarDeposito - 
          * Dado un número de Cuenta y un monto, realiza un depósito.
          */
-        /*public function realizarDeposito($nroCuenta, $monto) {
+        public function realizarDeposito($nroCuenta, $monto) {
             //Se verifica que el nro de cuenta esté en la colección:
             $esCuenta = $this->buscarCuenta($nroCuenta);
-            if ($esCuenta == null) {
-                $deposito = $this->depositar($esCuenta, $monto);
-            } else {
-                $deposito = ">>> ERROR. Cuenta inexistente. No se pudo realizar el depósito.\n";
-            }
-            return $deposito;
-        }*/
-
-        /**
-         * Método 7: depositar - 
-         * Realiza el depósito de cierto monto.
-         */
-        public function depositar($nroCuenta, $monto) {
-            /*$deposito = $nroCuenta->realizarDeposito($monto);
-		    return $deposito;*/
-            //Se verifica que el nro de cuenta esté en la colección:
-            $esCuenta = $this->buscarCuenta($nroCuenta);
-            if ($esCuenta == null) {
+            if ($esCuenta != null) {
                 $deposito = $this->depositar($esCuenta, $monto);
             } else {
                 $deposito = ">>> ERROR. Cuenta inexistente. No se pudo realizar el depósito.\n";
@@ -172,34 +161,51 @@
         }
 
         /**
+         * Método 7: depositar - 
+         * Realiza el depósito de cierto monto.
+         */
+        public function depositar($nroCuenta, $monto) {
+            $deposito = $nroCuenta->realizarDeposito($monto);
+		    return $deposito;
+            //Se verifica que el nro de cuenta esté en la colección:
+            /*$esCuenta = $this->buscarCuenta($nroCuenta);
+            if ($esCuenta == null) {
+                $deposito = $this->depositar($esCuenta, $monto);
+            } else {
+                $deposito = ">>> ERROR. Cuenta inexistente. No se pudo realizar el depósito.\n";
+            }
+            return $deposito;*/
+        }
+
+        /**
          * Método 8: realizarRetiro - 
          * Dado un número de Cuenta y un monto, realiza un retiro.
          */
-        /*public function realizarRetiro($nroCuenta, $monto) {
+        public function realizarRetiro($nroCuenta, $monto) {
             //Se verifica que el nro de cuenta esté en la colección:
             $esCuenta = $this->buscarCuenta($nroCuenta);
-            if ($esCuenta == null) {
+            if ($esCuenta != null) {
                 $retiro = $this->retirar($esCuenta, $monto);
             } else {
                 $retiro = ">>> ERROR. Cuenta inexistente. No se pudo realizar el retiro.\n";
             }
             return $retiro;
-        }*/
+        }
 
         /**
          * Método 9: retirar - 
          * Realiza el retiro de cierto monto.
          */
         public function retirar($nroCuenta, $monto) {
-            /*$retirar = $nroCuenta->realizarRetiro($monto);
-		    return $retirar;*/
-            $esCuenta = $this->buscarCuenta($nroCuenta);
+            $retirar = $nroCuenta->realizarRetiro($monto);
+		    return $retirar;
+            /*$esCuenta = $this->buscarCuenta($nroCuenta);
             if ($esCuenta == null) {
                 $retiro = $nroCuenta->realizarRetiro($monto);
             } else {
                 $retiro = ">>> ERROR. Cuenta inexistente. No se pudo realizar el retiro.\n";
             }
-            return $retiro;
+            return $retiro;*/
         }
 
         /**

@@ -33,9 +33,10 @@
         }
 
         public function __toString() {
-            $cadena = "+ Nombre: ".$this->getNombre()."\n".
-                    "+ Apellido: ".$this->getApellido()."\n".
-                    "+ N° de Documento: ".$this->getDocumento()."\n";
+            $cadena =
+                    "   + Nombre: ".$this->getNombre()."\n".
+                    "   + Apellido: ".$this->getApellido()."\n".
+                    "   + N° de Documento: ".$this->getDocumento();
             return $cadena;
         }
     }
