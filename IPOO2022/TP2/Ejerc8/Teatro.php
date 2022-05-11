@@ -37,58 +37,147 @@
         public function set_FuncionesTeatro($funcionesTeatro) {
             $this->funcionesTeatro = $funcionesTeatro;
         }
-        
-        private function armarCadenaArrayFunciones() {
-            $aFunciones = $this->get_FuncionesTeatro();
-            $cFunciones = "";
-            for ($i=0; $i<count($aFunciones); $i++){
-                $nroFuncion = $i + 1; 
-                $cFunciones = $cFunciones." ".$nroFuncion.
-                ") Nombre: ". $aFunciones[$i]["nombre"].
-                " - Precio: $".$aFunciones[$i]["precio"]."\n";   
+
+        /**
+         * Método 1: buscarFuncion - 
+         * Busca un nombre de Función determinado y retorna su posición.
+         */
+        public function buscarFuncion($nombreFuncion) {
+            $i = 0;
+            $bandera = false;
+            $funcionEncontrada = null;
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            $cantFunciones = count($arrayFunciones);
+            while ($bandera && $i<$cantFunciones) {
+                $unaFuncion = $arrayFunciones[$i];
+                $nombreUnaFuncion = $unaFuncion->getNombreFuncion();
+                if ($nombreUnaFuncion == $nombreFuncion) {
+                    $funcionEncontrada = $i;
+                    $bandera = true;
+                }
+                $i++;
             }
-            return $cFunciones;
+            return $funcionEncontrada;
+        }
+
+        /**
+         * Método 1: validarFuncion - 
+         * Valida el nombre de una Función ingresada por parámetro.
+         * Retorna TRUE si se encuentra dentro del arreglo de Funciones.
+         * @return boolean
+         */
+        public function validarFuncion($nombreFuncion) {
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            $indMaximo = count($arrayFunciones);
+            //Valido que el nombre ingresado esté en el arreglo del Teatro:
+            $funcionRepetida = false;
+            $i = 0;
+            if ($indMaximo > 0) {
+                do {
+                    $nombreUnaFuncion = $arrayFunciones[$i]->getNombreFuncion();
+                    if ($nombreUnaFuncion == $nombreFuncion) {
+                        $funcionRepetida = true;
+                    }
+                    $i++;
+                } while($funcionRepetida == false && $i<$indMaximo);
+            }
+            if ($funcionRepetida == true) {
+                $validacion = true;
+            } else {
+                $validacion = false;
+            }
+            return $validacion;
+        }
+
+        /**
+         * Módulo 2: modificar_NombrePrecioFuncion - 
+         * Dado el nombre de una funcion, modifica el nombre/precio por uno nuevo.
+         */
+        public function modificar_NombrePrecioFuncion($nombreFuncion, $nombreNuevo, $precioNuevo) {
+            $i = 0;
+            $bandera = false;
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            while ($bandera && $i < count($arrayFunciones)) {
+                $unaFuncion = $arrayFunciones[$i];
+                if ($unaFuncion->getNombreFuncion() == $nombreFuncion) {
+                    $unaFuncion->setNombreFuncion($nombreNuevo);
+                    $unaFuncion->setPrecio($precioNuevo);
+                    $arrayFunciones[$i] = $unaFuncion;
+                    $bandera = true;
+                }
+                $i++;
+            }
+            $this->set_FuncionesTeatro($arrayFunciones);
+            return $bandera;
+        }
+
+        public function modificar_NombrePrecioFuncionconId($nombreFuncion, $nombreNuevo, $precioNuevo) {
+            $i = 0;
+            $modificacion = false;
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            /*$esFuncion = $this->buscarFuncion($nombreFuncion);
+            if ($esFuncion == null) {
+                $modificacion = false;
+            } else {
+                $esFuncion->setNombreFuncion($nombreNuevo);
+                $esFuncion->setPrecio($precioNuevo);
+                $arrayFunciones = $esFuncion;
+                $this->set_FuncionesTeatro($arrayFunciones);
+            }*/
+            while (!$modificacion && $i<count($arrayFunciones)) {
+                $unaFuncion = $arrayFunciones[$i];
+                if ($unaFuncion->getNombreFuncion() == $nombreFuncion) {
+                    $unaFuncion->setNombreFuncion($nombreNuevo);
+                    $unaFuncion->setPrecio($precioNuevo);
+                    $arrayFunciones = $unaFuncion;
+                    $this->set_FuncionesTeatro($arrayFunciones);
+                    $modificacion = true;
+                }
+                $i++;
+            }
+            return $modificacion;
+        }
+
+        /**
+         * Método X: mostrarFuncionesTeatro - 
+         * Muestra por pantalla una función determiada.
+         */
+        public function mostrarFuncionesTeatro($nombreFuncion) {
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            $cantFunciones = count($arrayFunciones);
+            $mostrarFuncion = "";
+            $encontrada = false;
+            $i = 0;
+            while (!$encontrada && $i<$cantFunciones) {
+                $unaFuncion = $arrayFunciones[$i];
+                if ($unaFuncion->getNombreFuncion() == $nombreFuncion) {
+                    $mostrarFuncion = $unaFuncion->__toString();
+                    $encontrada = true;
+                }
+                $i++;
+            }
+            return $mostrarFuncion;
+        }
+
+        /**
+         * Método 3: armarCadenaArrayFunciones - 
+         * Retorna una cadena de strings con las funciones de un Teatro.
+         */
+        private function armarCadenaArrayFunciones() {
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            $funciones = "";
+            foreach ($arrayFunciones as $unaFuncion) {
+                $funciones .= $unaFuncion."\n";
+            }
+            return $funciones;
         }
         
         public function __toString() {
             $cadena = $this->armarCadenaArrayFunciones();
             $datoTeatro = "| Teatro: ".$this->get_NombreTeatro().
                         "\n| Dirección: ".$this->get_DireccionTeatro().
-                        "\n".($cadena==""?"No hay funciones. ": "Funciones\n".$cadena); 
+                        "\n".($cadena==""?"| No hay funciones. ": "| Funciones:\n".$cadena); 
             return $datoTeatro;
-        }
-
-        //Dado el nombre de una funcion, modifica el nombre/precio por uno nuevo
-        public function modificar_NombrePrecioFuncion($nombreFuncion, $nombreNuevo, $precioNuevo) {
-            $i = 0;
-            $bandera = false;
-            $eltosArreglo = $this->get_FuncionesTeatro();
-            while($i<count($eltosArreglo) && !$bandera) {
-                $unaFuncion = $eltosArreglo[$i];
-                if($unaFuncion["nombre"] == $nombreFuncion) {
-                    $unaFuncion["nombre"] = $nombreNuevo;
-                    $unaFuncion["precio"] = $precioNuevo;
-                    $eltosArreglo[$i] = $unaFuncion;
-                    $bandera = true;
-                }
-                $i++;
-            }
-            $this->set_FuncionesTeatro($eltosArreglo);
-            return $bandera;
-        }
-
-        public function modificar_NombrePrecioFuncionconId($nroFuncion, $nombreNuevo, $precioNuevo) {
-            $eltosArreglo = $this->get_FuncionesTeatro();
-            $bandera = false;
-            if ($nroFuncion >= 0 && $nroFuncion < count($eltosArreglo)) {
-                $unaFuncion = $eltosArreglo[$nroFuncion];
-                $unaFuncion["nombre"]=$nombreNuevo;
-                $unaFuncion["precio"]=$precioNuevo;
-                $eltosArreglo[$nroFuncion] = $unaFuncion;
-                $bandera = true;
-            }
-            $this->set_FuncionesTeatro($eltosArreglo);
-            return $bandera;
         }
     }
 ?>

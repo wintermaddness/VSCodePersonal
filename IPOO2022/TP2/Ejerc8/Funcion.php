@@ -42,10 +42,10 @@
         }
 
         public function __toString() {
-            $cadena = "Nombre de la función: ".$this->getNombreFuncion()."\n"
-                    ."Horario de inicio: ".$this->getHorarioInicio()."\n"
-                    ."Duración: ".$this->getDuracion()."\n"
-                    ."Precio: ".$this->getPrecio()."\n";
+            $cadena = "+ Nombre de la función: ".$this->getNombreFuncion()."\n"
+                    ."+ Horario de inicio: ".$this->getHorarioInicio()."\n"
+                    ."+ Duración: ".$this->getDuracion()."\n"
+                    ."+ Precio: $".$this->getPrecio()."\n";
             return $cadena;
         }
     }
