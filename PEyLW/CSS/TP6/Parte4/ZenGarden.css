@@ -9,6 +9,7 @@ body {
     background-color: #fff;
     color: black;
     text-align: justify;
+    max-height: 200vh;
 }
 /*Encabezado*/
 #intro {
@@ -48,6 +49,32 @@ body {
     text-align: right;
     color: #ddd;
 }
+#intro h3 {
+    background-color: #9cf;
+    background-image: url("zen_h2_back.gif");
+    color: #ddd;
+    padding: 0.5em;
+    margin-left: 0em;
+    text-align: right;
+}
+
+/*Contenido*/
+#supportingText {
+    width: 78%;
+    float: right;
+    /*border: rgb(25, 0, 255) solid 1px;*/
+    position: relative;
+    padding: 5px;
+}
+#supportingText h3 {
+    background-color: #9cf;
+    background-image: url("zen_h2_back.gif");
+    color: #ddd;
+    padding: 0.5em;
+    margin-left: 0em;
+    text-align: right;
+}
+
 /*Lateral*/
 #linkList {
     padding-left: 5px;
@@ -58,10 +85,13 @@ body {
     /*border: red solid 1px;*/
 }
 #linkList #lresources ul {
-    list-style-image: url("blue_bullet.gif");
+    list-style-type: none;
     background-color: #9cf;
     box-shadow: none;
     margin-right: 5px;
+    /*border: 1px blue solid;*/
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 #lresources ul a:link, a:visited, a:hover, a:active {
     text-decoration: none;
@@ -72,16 +102,103 @@ body {
     background-color: #036;
     color: #9cf;
 }
-#larchives .accesskey {
-}
-#linkList #lselect {
+#linkList #lselect ul {
     list-style-image: url("blue_bullet.gif");
+    /*border: 1px blue solid;*/
+    background-color: #9cf;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 5px;
 }
-/*Contenido*/
-#supportingText {
-    width: 78%;
+
+/*REVISAR*/
+/*
+#larchives ul {
+    list-style-type: none;
+}
+#larchives ul li:first-child {
     float: right;
-    /*border: rgb(25, 0, 255) solid 1px;*/
+}
+#larchives ul li:nth-child(2n) {
+    float: left;
+}
+#larchives ul li:last-child {
+    float: both;
+    text-align: center;
+}*/
+
+/*
+#larchives a[accesskey="n"] {
+    float: right;
     position: relative;
-    padding: 5px;
+    bottom: 15em;
+}
+#larchives a[accesskey="p"] {
+    float: left;
+    position: relative;
+    bottom: 15em;
+}
+#larchives a[accesskey="w"] {
+    float: both;
+    text-align: center;
+}*/
+
+/*Estilos de listas raros*/
+#larchives ul {
+    list-style: none;
+    background-color: #9cf;
+    /*border: 1px blue solid;*/
+    margin-right: 5px;
+    height: 15em;
+}
+#larchives ul li {
+    font-family: Georgia, serif, Times; 
+    font-size: 11px;
+}
+#larchives ul li a { 
+    display: block; 
+    /*width: 225px;*/
+    height: 20px; 
+    background-color: #9cf;
+    border-left: 5px solid rgb(125, 183, 241);
+    border-right: 5px solid rgb(125, 183, 241);
+    padding: 5px 0 15px 5px;
+    text-decoration: none; 
+    color: #161718;
+    font-weight: bold;
+    position: relative;
+    right: 2em;
+    top: 2em;
+}
+#larchives ul li a:hover { 
+    -moz-transform: rotate(-5deg); 
+    -moz-box-shadow: 10px 10px 20px #000000;
+    -webkit-transform: rotate(-5deg); 
+    -webkit-box-shadow: 10px 10px 20px #000000;
+    transform: rotate(4deg);
+    box-shadow: 10px 10px 20px #000000; 
+    margin-left: 10px;
+}
+
+/*Footer*/
+#footer {
+    bottom: 0; left: 0; right: 0;
+    position: absolute;
+    background: #489AED;
+    height: 10vh;
+    text-align: center;
+}
+#footer::before {
+    content: '';
+    background-color: #489AED;
+    background-image: url("zen_h2_back.gif");
+    background-size: cover;
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    top: 500%;
+    transform: translateX(-50%);
+    height: 100%;
+    border-radius: 100% 100% 0 0;
+    z-index: -1;
 }
