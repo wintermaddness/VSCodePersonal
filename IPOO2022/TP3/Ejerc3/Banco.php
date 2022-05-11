@@ -108,7 +108,7 @@
                 //Si no se encuentra el cliente, se le asigna una cuenta caja de ahorro:
                 /*$ultimoValorCuenta = $this->setUltimoValorCuenta($this->getUltimoValorCuenta() + 1);*/
                 $ultimoValorCuenta = $this->ultimoValorCuentaAsignado();
-                $nuevaCajaAhorro = new CajaAhorro($ultimoValorCuenta, $objCliente);
+                $nuevaCajaAhorro = new CajaAhorro($ultimoValorCuenta, 0);
                 array_push($arrayCajaAhorro, $nuevaCajaAhorro);
                 $this->setArrayCajaAhorro($arrayCajaAhorro);
             }
@@ -127,8 +127,9 @@
             $cantCuentasCorrientes = count($arrayCuentaCorriente);
             $cantCajaAhorro = count($arrayCajaAhorro);
             while ($cuentaEncontrada && $i<$cantCuentasCorrientes) {
-                if ($arrayCuentaCorriente[$i]->getNroCliente() == $nroCuenta) {
-                    $cuentaEncontrada = $arrayCuentaCorriente[$i];
+                $unaCuentaCorriente = $arrayCuentaCorriente[$i];
+                if ($unaCuentaCorriente->getNroCliente() == $nroCuenta) {
+                    $cuentaEncontrada = $unaCuentaCorriente;
                 }
                 $i++;
             }
@@ -136,8 +137,9 @@
                 //Se reinicia el contador:
                 $i = 0;
                 while ($cuentaEncontrada && $i<$cantCajaAhorro) {
-                    if ($arrayCajaAhorro[$i]->getNroCliente() == $nroCuenta) {
-                        $cuentaEncontrada = $arrayCajaAhorro[$i];
+                    $unaCajaAhorro = $arrayCajaAhorro[$i];
+                    if ($unaCajaAhorro->getNroCliente() == $nroCuenta) {
+                        $cuentaEncontrada = $unaCajaAhorro;
                     }
                     $i++;
                 }

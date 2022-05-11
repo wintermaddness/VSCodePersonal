@@ -1,7 +1,7 @@
 <?php
     class Cuenta {
         private $nroCliente;
-        private $saldoCuenta;
+        private $saldoCuenta = 0;
 
         //Métodos de acceso
         public function getNroCliente() {
