@@ -13,20 +13,35 @@
     $objTeatro = new Teatro("Teatro FaI", "Buenos Aires 1400", $arrayFunciones);
     //echo $objTeatro;
 
-    /*
     //Modificar el nombre del teatro
-    echo "| Ingrese el nuevo nombre del teatro:\n";
+    echo "--(1)-- Modificar datos del teatro ----\n";
+    echo "| Ingrese el nuevo nombre del teatro: ";
     $nuevoNombre = trim(fgets(STDIN));
     $objTeatro->set_NombreTeatro($nuevoNombre);
     //Modificar dirección del teatro
-    echo "| Ingrese la nueva dirección del teatro:\n";
+    echo "| Ingrese la nueva dirección del teatro: ";
     $nuevaDireccion = trim(fgets(STDIN));
     $objTeatro->set_DireccionTeatro($nuevaDireccion);
-    $cadena=$objTeatro->__toString();
-    echo $cadena."\n";*/
+    $DatosTeatro = $objTeatro->__toString();
+    echo "\n".$DatosTeatro;
+
+    //agregar una función
+    echo "\n--(2)-- Agregar una función ----\n";
+    echo "| Ingrese el nombre de la función: ";
+    $nombre_funcion = strtolower(trim(fgets(STDIN)));
+    echo "| Horario de inicio: ";
+    $horario_inicio = strtolower(trim(fgets(STDIN)));
+    echo "| Duración (en hs): ";
+    $obra_duracion = strtolower(trim(fgets(STDIN)));
+    echo "| Precio: ";
+    $obra_precio = strtolower(trim(fgets(STDIN)));
+    $objFuncion = new Funcion($nombre_funcion, $horario_inicio, $obra_duracion, $obra_precio);
+    $crearFuncion1 = $objTeatro->crearFuncion($objFuncion, $horario_inicio);
+    echo $crearFuncion1;
 
     //Modificar nombre/precio del arreglo función
-    echo "2| Ingrese el nombre de la función que desea modificar: ";
+    echo "\n--(3)-- Modificar datos de una función ----\n";
+    echo "| Ingrese el nombre de la función que desea modificar: ";
     $nombreFuncion = trim(fgets(STDIN));
     $validacion = $objTeatro->validarFuncion($nombreFuncion);
     if ($validacion == null) {
@@ -41,7 +56,9 @@
         echo $resultado."\n";
     }
 
-    echo "3| Ingrese el nombre de la función que desea ver: ";
+    //mostrar los datos de una función
+    echo "\n--(4)-- Mostrar los datos de una función ----\n";
+    echo "| Ingrese el nombre de la función que desea ver: ";
 	$nombreFuncion = trim(fgets(STDIN));
 	$validacion = $objTeatro->validarFuncion($nombreFuncion);
 	if ($validacion == false) {

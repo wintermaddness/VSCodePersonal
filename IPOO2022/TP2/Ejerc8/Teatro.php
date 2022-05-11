@@ -61,25 +61,32 @@
         }
 
         /**
-         * Método 1: validarFuncion - 
+         * Método 2: validarFuncion - 
          * Valida el nombre de una Función ingresada por parámetro.
          * Retorna TRUE si se encuentra dentro del arreglo de Funciones.
          * @return boolean
          */
         public function validarFuncion($nombreFuncion) {
             $arrayFunciones = $this->get_FuncionesTeatro();
-            $indMaximo = count($arrayFunciones);
+            $cantFunciones = count($arrayFunciones);
             //Valido que el nombre ingresado esté en el arreglo del Teatro:
             $funcionRepetida = false;
             $i = 0;
-            if ($indMaximo > 0) {
-                do {
+            if ($cantFunciones > 0) {
+                /*do {
                     $nombreUnaFuncion = $arrayFunciones[$i]->getNombreFuncion();
                     if ($nombreUnaFuncion == $nombreFuncion) {
                         $funcionRepetida = true;
                     }
                     $i++;
-                } while($funcionRepetida == false && $i<$indMaximo);
+                } while($funcionRepetida == false && $i<$cantFunciones);*/
+                while (!$funcionRepetida && $i<$cantFunciones) {
+                    $nombreUnaFuncion = $arrayFunciones[$i]->getNombreFuncion();
+                    if ($nombreUnaFuncion == $nombreFuncion) {
+                        $funcionRepetida = true;
+                    }
+                    $i++;
+                }
             }
             if ($funcionRepetida == true) {
                 $validacion = true;
@@ -90,7 +97,7 @@
         }
 
         /**
-         * Módulo 2: modificar_NombrePrecioFuncion - 
+         * Módulo 3: modificar_NombrePrecioFuncion - 
          * Dado el nombre de una funcion, modifica el nombre/precio por uno nuevo.
          */
         public function modificar_NombrePrecioFuncion($nombreFuncion, $nombreNuevo, $precioNuevo) {
@@ -139,7 +146,33 @@
         }
 
         /**
-         * Método X: mostrarFuncionesTeatro - 
+         * Método X: crearFuncion - 
+         * Crea una Función y la agrega al teatro.
+         * Verifica que su horario no se solape con ninguna otra función.
+         * @return boolean
+         */
+        public function crearFuncion($funcion, $horainicio) {
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            if (empty($arrayFunciones)) {
+                $arrayFunciones[] = $funcion;
+                $this->set_FuncionesTeatro($arrayFunciones);
+                $creacion = "    >> Función añadida correctamente.\n";
+            } elseif (!empty($arrayFunciones)) {
+                foreach ($arrayFunciones as $funcion) {
+                    if ($funcion->getHorarioInicio() != $horainicio) {
+                        $arrayFunciones[] = $funcion;
+                        $this->set_FuncionesTeatro($arrayFunciones);
+                        $creacion = "    >> Función añadida correctamente.\n";
+                    } else {
+                        $creacion = "   >> ERROR. No se ha añadido la función.\n";
+                    }
+                }
+            }
+            return $creacion;
+        }
+
+        /**
+         * Método 4: mostrarFuncionesTeatro - 
          * Muestra por pantalla una función determiada.
          */
         public function mostrarFuncionesTeatro($nombreFuncion) {
@@ -160,7 +193,7 @@
         }
 
         /**
-         * Método 3: armarCadenaArrayFunciones - 
+         * Método 5: armarCadenaArrayFunciones - 
          * Retorna una cadena de strings con las funciones de un Teatro.
          */
         private function armarCadenaArrayFunciones() {
@@ -176,6 +209,7 @@
             $cadena = $this->armarCadenaArrayFunciones();
             $datoTeatro = "| Teatro: ".$this->get_NombreTeatro().
                         "\n| Dirección: ".$this->get_DireccionTeatro().
+                        "\n| Cantidad de funciones: ".count($this->get_FuncionesTeatro()).
                         "\n".($cadena==""?"| No hay funciones. ": "| Funciones:\n".$cadena); 
             return $datoTeatro;
         }
