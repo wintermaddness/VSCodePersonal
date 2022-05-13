@@ -54,8 +54,9 @@
                 if ($nombreUnaFuncion == $nombreFuncion) {
                     $funcionEncontrada = $i;
                     $bandera = true;
+                } else {
+                    $i++;
                 }
-                $i++;
             }
             return $funcionEncontrada;
         }
@@ -173,7 +174,7 @@
 
         /**
          * Método 4: mostrarFuncionesTeatro - 
-         * Muestra por pantalla una función determiada.
+         * Muestra por pantalla una función determinada.
          */
         public function mostrarFuncionesTeatro($nombreFuncion) {
             $arrayFunciones = $this->get_FuncionesTeatro();
