@@ -74,7 +74,7 @@
                 $importeViaje = $importeAereo * 1.6;
             }
             //Si el tipo de viaje es de ida y vuelta:
-            if ($trayectoViaje == "Ida y Vuelta") {
+            if ($trayectoViaje == 3) {
                 $importeViaje = $importeAereo * 1.5;
             }
             return $importeViaje;

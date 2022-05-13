@@ -15,7 +15,8 @@
 		"\n| Opción 5: Modificar datos del responsable".
 		"\n| Opción 6: Ver datos del viaje".
 		"\n| Opción 7: Ver datos del pasajero".
-		"\n| Opción 8: Salir del programa\n";
+		"\n| Opción 8: Agregar un viaje".
+		"\n| Opción 9: Salir del programa\n";
 		return $menu;
 	}
 
@@ -131,7 +132,7 @@
 				echo $cadena;
 				break;
 			case 7:
-				echo "----- Mostrar pasajero -----\n" ;
+				echo "----- Mostrar pasajero -----\n";
 				echo "| Ingrese el número de documento del pasajero que desea ver: ";
 				$documentoPasajero = trim(fgets(STDIN));
 				$validacion = $objViaje->validarDocumento($documentoPasajero);
@@ -143,8 +144,111 @@
 				}
 				break;
 			case 8:
+				echo "----- Agregar un viaje -----\n" ;
+				echo "| Ingrese el tipo de viaje (terrestre o aereo): ";
+				$tipoViaje = strtoupper(trim(fgets(STDIN)));
+				do {
+					if ($tipoViaje == "TERRESTRE") {
+						//Se piden los datos del viaje:
+						echo ">>> Por favor, ingrese los datos del viaje terrestre <<<\n";
+						echo "| Ingrese el código de viaje: ";
+						$codViaje = trim(fgets(STDIN));
+						echo "| Ingrese el destino: ";
+						$destino = trim(fgets(STDIN));
+						echo "| Ingrese la capacidad máxima de pasajeros: ";
+						$capacidadMaxima = trim(fgets(STDIN));
+						//Se piden los datos del responsable del viaje:
+						echo ">>> Ingrese Los datos del responsable del viaje <<\n";
+						echo "| Ingrese el nombre: ";
+						$nombreResponsable = trim(fgets(STDIN));
+						echo "| Ingrese el apellido: ";
+						$apellidoResponsable = trim(fgets(STDIN));
+						echo "| Ingrese el N° de empleado: ";
+						$nroEmpleado = trim(fgets(STDIN));
+						echo "| Ingrese el N° de licencia: ";
+						$nroLicencia = trim(fgets(STDIN));
+						//Se especifican las características del viaje:
+						echo ">>> Ingrese las características del viaje <<\n";
+						echo "| Seleccione el tipo de asiento (Semicama-Cama): ";
+						$tipoAsiento = trim(fgets(STDIN));
+						echo "| Ingrese el precio: ";
+						$precioTerrestre = trim(fgets(STDIN));
+						echo "| Seleccione la trayectoria:\n";
+							echo "1. Ida\n";
+							echo "2. Vuelta\n";
+							echo "3. Ida y Vuelta\n";
+						$trayectoriaViaje = trim(fgets(STDIN));
+						do {
+							echo "| Seleccione la trayectoria:\n";
+							echo "1. Ida\n";
+							echo "2. Vuelta\n";
+							echo "3. Ida y Vuelta\n";
+							$trayectoriaViaje = trim(fgets(STDIN));
+						} while($trayectoriaViaje <> 1 || $trayectoriaViaje <> 2 || $trayectoriaViaje <> 3);
+
+						//Se crean los objetos:
+						$objResponsable = new ResponsableV($nombreResponsable, $apellidoResponsable, $nroEmpleado, $nroLicencia);
+						//$objViaje = new Viaje($codViaje, $destino, $capacidadMaxima, $objResponsable);
+						$objViajeTerrestre = new ViajesTerrestres($codViaje, $destino, $capacidadMaxima, $objResponsable, $tipoAsiento, $precioTerrestre, $trayectoriaViaje);
+						echo $objViajeTerrestre;
+					} elseif ($tipoViaje == "AEREO") {
+						//Se piden los datos del viaje:
+						echo ">>> Por favor, ingrese los datos del viaje terrestre <<<\n";
+						echo "| Ingrese el código de viaje: ";
+						$codViaje = trim(fgets(STDIN));
+						echo "| Ingrese el destino: ";
+						$destino = trim(fgets(STDIN));
+						echo "| Ingrese la capacidad máxima de pasajeros: ";
+						$capacidadMaxima = trim(fgets(STDIN));
+						//Se piden los datos del responsable del viaje:
+						echo ">>> Ingrese Los datos del responsable del viaje <<\n";
+						echo "| Ingrese el nombre: ";
+						$nombreResponsable = trim(fgets(STDIN));
+						echo "| Ingrese el apellido: ";
+						$apellidoResponsable = trim(fgets(STDIN));
+						echo "| Ingrese el N° de empleado: ";
+						$nroEmpleado = trim(fgets(STDIN));
+						echo "| Ingrese el N° de licencia: ";
+						$nroLicencia = trim(fgets(STDIN));
+						//Se especifican las características del viaje:
+						echo ">>> Ingrese las características del viaje <<\n";
+						//$nroVuelo, $categoriaAsiento, $nombreAerolinea, $cantEscalas, $importeAereo, $idaVuelta
+						echo "| Ingrese el N° de vuelo: ";
+						$nroVuelo = trim(fgets(STDIN));
+						echo "| Seleccione la categoría de asiento (Común-Primera clase): ";
+						$categoriaAsiento = trim(fgets(STDIN));
+						echo "| Ingrese el nombre de la aerolínea: ";
+						$nombreAerolinea = trim(fgets(STDIN));
+						echo "| Ingrese la cantidad de escalas: ";
+						$cantEscalas = trim(fgets(STDIN));
+						echo "| Ingrese el precio: ";
+						$precioAereo = trim(fgets(STDIN));
+						echo "| Seleccione la trayectoria:\n";
+							echo "1. Ida\n";
+							echo "2. Vuelta\n";
+							echo "3. Ida y Vuelta\n";
+						$trayectoriaViaje = trim(fgets(STDIN));
+						do {
+							echo "| Seleccione la trayectoria:\n";
+							echo "1. Ida\n";
+							echo "2. Vuelta\n";
+							echo "3. Ida y Vuelta\n";
+							$trayectoriaViaje = trim(fgets(STDIN));
+						} while($trayectoriaViaje <> 1 || $trayectoriaViaje <> 2 || $trayectoriaViaje <> 3);
+
+						//Se crean los objetos:
+						$objResponsable = new ResponsableV($nombreResponsable, $apellidoResponsable, $nroEmpleado, $nroLicencia);
+						//$objViaje = new Viaje($codViaje, $destino, $capacidadMaxima, $objResponsable);
+						$objViajeAereo = new ViajesAereos($codViaje, $destino, $capacidadMaxima, $objResponsable, $nroVuelo, $categoriaAsiento, $nombreAerolinea, $cantEscalas, $precioAereo, $trayectoriaViaje);
+						echo $objViajeAereo;
+					} else {
+						echo "	>>> ERROR. Ingrese una opción válida (terrestre o aereo).\n";
+					}
+				} while($tipoViaje <> "TERRESTRE" || $tipoViaje <> "AEREO");
+				break;
+			case 9:
 				echo ">>> Ha salido del programa.";
 				break;
 			}
-	} while($opcion != 8);
+	} while($opcion != 9);
 ?>

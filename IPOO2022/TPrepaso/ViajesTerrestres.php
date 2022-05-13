@@ -47,7 +47,7 @@
                 $importeViaje = $importeTerrestre * 1.25;
             }
             //Si el tipo de viaje es de ida y vuelta:
-            if ($trayectoViaje == "Ida y Vuelta") {
+            if ($trayectoViaje == 3) {
                 $importeViaje = $importeTerrestre * 1.5;
             }
             return $importeViaje;
