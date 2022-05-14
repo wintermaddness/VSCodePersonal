@@ -117,10 +117,14 @@ body {
     list-style-type: none;
 }
 #larchives ul li:first-child {
-    float: right;
+    position: relative;
+    left: 100px;
+    display: inline;
 }
-#larchives ul li:nth-child(2n) {
-    float: left;
+#larchives ul li:nth-child(2) {
+    position: relative;
+    left: -100px;
+    display: inline;
 }
 #larchives ul li:last-child {
     float: both;

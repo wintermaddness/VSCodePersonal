@@ -190,3 +190,149 @@ li:nth-child(6) .slide-circulo {
 			 	-1px 0px 2px rgba(255, 255, 255, 0);
 }
 /*/Estilo del slider*/
+
+#buscador {
+	position: relative;
+	float: right;
+}
+#buscador form {
+	width: 500px;
+	margin: 50px auto;
+}
+.search {
+	padding: 8.5px 15px;
+	background: #333;
+	border: 1.5px solid #e4881d;
+	width: 300px;
+	color: #fff;
+}
+.button {
+	position: relative;
+	padding: 8px 15px;
+	border: 2px solid #dd8017;
+	background-color: #dd8017;
+	color: #fafafa;
+	border-radius: 0 20px 20px 0;
+}
+.button:hover  {
+	background-color: #e4881d;
+	color: #ffffff;
+}
+.arrow {
+	position: relative;
+	background: #e4881d;
+	/*padding:;*/
+	margin-left: -5px;
+}
+.arrow:after {
+	right: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	border-color: rbga(32, 124, 202, 0);
+	border-right-color: #dd8017;
+	border-width: 10px;
+	margin-top: -9px;
+}
+
+/*
+.form {
+	float: right;
+	margin: 0 5px 5px 5px;
+	display: flex;
+	border: 1px solid #dd8017;
+	border-radius: 50px;
+	max-width: 700px;
+}
+.input {
+	flex: 1;
+	display: flex;
+	padding: 7px;
+}
+.input2 {
+	background-color: transparent;
+	border: none;
+	margin: 0; 
+	font-size: 15px;
+	word-wrap: break-word;
+	outline: none;
+	display: flex;
+	flex: 1;
+	-webkit-tap-highlight-color: transparent;
+	width: 100%;
+	padding: 6px;
+	padding-left: 14px;
+	overflow-y: hidden;
+	height: 15px;
+}
+.input2:focus {
+	font-size: 15px;
+}
+.boton {
+	display: flex;
+	border-radius: 0 50px 50px 0;
+	padding-left: 8px;
+	padding-right: 8px;
+	background-color: #dd8017;
+	border: 1px solid #dd8017;
+	margin: -1px;
+	outline: none;
+	flex: 0 0 auto;
+	fill: rgba(255, 255, 255, 0);
+	cursor: pointer;
+}
+.svg {
+	background: none;
+	height: 20px;
+	width: 20px;
+	margin: auto;
+}
+@media screen and (min-width:300px) and (max-width:796px) {
+	.form {
+		border-radius: 20px;
+		width: 70%;
+	}
+	.input2 {
+		font-size: 15px;
+		padding: 0;
+		height: 15px;
+	}
+	.input2:focus {
+		font-size: 15px;
+	}
+	.boton {
+		border-radius: 0 20px 20px 0;
+	}
+	.svg {
+		height: 20px;
+		width: 20px;
+	}
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	input:focus {
+		font-size: 15px;
+	}
+}
+
+H T M L
+
+<li>
+                <form class="form" action="https://www.google.com/search" method="GET" target="_blank"> <!-- Revisar el "action" -->
+                    <div class="input">
+                        <input class="input2" name="q" type="search" aria-label="Buscar" placeholder="Buscar" autofocus>
+                        <input type="hidden" name="as_sitesearch" value="norfipc.com">
+                    </div> 
+                    <button class="boton" aria-label="Buscar" type="submit">
+                        <span class="svg"> 
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">                                
+                                </path>
+                            </svg>
+                        </span> 
+                    </button> 
+				</form>
+</li>
+*/

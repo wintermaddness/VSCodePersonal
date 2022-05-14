@@ -1,0 +1,115 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: "lucida grande", tahoma, verdana, sans-serif;
+    font-size: 11px;
+}
+#supportingText {
+    width: 45%;
+    float: right;
+    margin-right: 10px;
+    text-align: justify;
+}
+#supportingText h3 {
+    background-color: #9cf;
+    background-image: url("zen_h2_back.gif");
+    color: #ddd;
+    padding: 0.5em;
+    margin-left: 0em;
+    text-align: right;
+}
+#intro {
+    width: 30%;
+    float: right;
+    margin-right: 10px;
+    text-align: justify;
+}
+#pageHeader h1 {
+    border: 1px solid rgb(30,104,184);
+    background-color: #ddd;
+    position: relative;
+    z-index: 15;
+    background-image: url("css_zen_garden.gif");
+    background-repeat: no-repeat;
+    background-position: top 10px left 10px;
+    background-size: 80%;
+    padding: 10px;
+    height: 2em;
+    text-align: left;
+}
+#pageHeader h2 {
+    border: 1px solid grey;
+    padding: 15px;
+    position: relative;
+    z-index: 10;
+    bottom: 1.5em;
+    left: 0.5em;
+    border: 1px dashed rgb(30,104,184);
+    background-color: #489AED;
+    background-image: url("zen_h2_back.gif");
+    background-position: top;
+    background-repeat: repeat-x;
+    height: 1.5em;
+    text-align: right;
+    color: #ddd;
+}
+a {
+    text-decoration: none;
+}
+
+/* LATERAL */
+#linkList {
+    width: 20%;
+    float: left;
+    margin-left: 5px;
+    margin-top: 12px;
+    background-color: #489AED;
+    padding-left: 5px;
+}
+#lselect ul {
+    list-style-image: url("blue_bullet.gif");
+    /*border: 1px blue solid;*/
+    background-color: #9cf;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    text-align: left;
+}
+#lresources ul {
+    list-style-type: none;
+    background-color: #9cf;
+    margin-right: 5px;
+    /*border: 1px blue solid;*/
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#lresources ul a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: #036;
+    font-weight: bold;
+}
+#lresources ul li a:hover {
+    background-color: #036;
+    color: #9cf;
+}
+#larchives ul {
+    list-style-type: none;
+    background-color: #9cf;
+    /*border: 1px blue solid;*/
+    padding: 10px;
+    margin-right: 5px;
+    height: 6em;
+}
+#larchives ul li:first-child {
+    float: left;
+    padding-bottom: 10px;
+}
+#larchives ul li:last-child {
+    float: right;
+}
+#larchives ul li:nth-child(2n) {
+    float: both;
+    clear: left;
+    text-align: center;
+    padding-bottom: 10px;
+}

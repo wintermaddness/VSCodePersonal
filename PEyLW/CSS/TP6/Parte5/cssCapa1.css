@@ -1,11 +1,11 @@
-body {
+/*body {
     margin: 2em auto;
     font: .9em/1.2 Arial, Helvetica, sans-serif;
     text-align: justify;
     font-weight: bold;
-}
+}*/
 /*Contenido*/
-#container {
+/*#container {
     text-align: center;
 }
 #container hr {
@@ -13,47 +13,79 @@ body {
     text-align: center;
     border-color: white;
     margin-top: 10px;
-}
+}*/
 /*Cabecera*/
-#top {
+/*#top {
     background-color: rgb(31, 238, 13);
     margin: 5px 5px;
     height: 5em;
-}
+}*/
 /*Izquierda*/
-#izq {
+/*#izq {
     width: 20%;
     background-color: rgb(235, 19, 19);
     border: 2px solid rgb(81, 84, 86);
     float: left;
     margin: 0 1px 5px 5px;
     height: 37em;
-}
+}*/
 /*Centro*/
-#center {
+/*#center {
     width: 58%;
     background-color: rgb(15, 26, 232);
     border: 2px solid rgb(81, 84, 86);
     /*float: left;*/
-    position: absolute;
+    /*position: absolute;
     left: 20.5%;
     margin: 0 1px 5px 5px;
     height: 37em;
-}
+}*/
 /*Derecha*/
-#der {
+/*#der {
     width: 20%;
     background-color: rgb(227, 235, 11);
     border: 2px solid rgb(81, 84, 86);
     /*float: left;*/
-    position: absolute;
+    /*position: absolute;
     left: 79%;
     margin: 0 1px 5px 5px;
     height: 37em;
-}
+}*/
 /*Pie*/
 hr {
-    width: 99%;
+    width: 100%;
     text-align: center;
     border-color: black;
+}
+#top, #izq, #der, #center {
+    background-color: gray;
+    border: 1px solid gainsboro;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    padding-top: 10px;
+}
+#top {
+    margin: 0;
+    height: 5em;
+}
+#izq {
+    margin: 0;
+    height: 5em;
+    width: 24.5%;
+    height: 500px;
+    float: left;
+}
+#der {
+    margin: 0;
+    height: 5em;
+    width: 24.5%;
+    height: 500px;
+    float: left;
+}
+#center {
+    margin: 0;
+    height: 5em;
+    width: 50%;
+    height: 500px;
+    float: left;
 }
