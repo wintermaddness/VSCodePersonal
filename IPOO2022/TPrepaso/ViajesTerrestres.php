@@ -57,6 +57,21 @@
             return $importeViaje;
         }
 
+        /**
+         * Método 2: venderPasaje - 
+         * Registra la venta de un viaje al pasajero que es recibido por parámetro.
+         * Retorna el importe del pasaje si se pudo realizar la venta.
+         * NOTA: La venta se realiza solo si hayPasajesDisponible.
+         * @return float
+         */
+        public function venderPasaje($pasajero) {
+            if ($this->hayPasajesDisponibles() == true) {
+                $importeViajeFinal = $this->calcularImporte();
+                $this->agregarPasajeros($pasajero);
+            }
+            return $importeViajeFinal;
+        }
+
         private function tipoAsiento() {
             $tipoAsiento = $this->getTipoAsiento();
             if ($tipoAsiento == 2) {

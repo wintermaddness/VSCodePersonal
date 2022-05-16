@@ -161,6 +161,21 @@
 		return $objPasajero;
 	}
 
+	function buscarViaje($arrayViajes, $codigoViaje) {
+		$cantViajes = count($arrayViajes);
+		$codigoEncontrado = true;
+		$viajeEncontrado = null;
+		$i = 0;
+		while ($viajeEncontrado && $i<$cantViajes) {
+			if ($arrayViajes[$i]->getCodigoViaje() == $codigoViaje) {
+				$codigoEncontrado = false;
+				$viajeEncontrado = $arrayViajes[$i];
+			}
+			$i++;
+		}
+		return $viajeEncontrado;
+	}
+
 	//Se inicializa el menú de opciones:
 	do {
 		$menu = menuDeOpciones();
@@ -241,16 +256,25 @@
 				break;
 			case 5:
 				echo "----- Modificar viaje -----\n";
-				echo "  + Ingrese el nuevo código del viaje: ";
-				$nuevoCodigo = trim(fgets(STDIN));
-				echo "  + Ingrese el nuevo destino del viaje: ";
-				$nuevoDestino = trim(fgets(STDIN));
-				echo "  + Ingrese la nueva capacidad máxima de pasajeros del viaje: ";
-				$nuevaCapacidad = trim(fgets(STDIN));
-				$modificacion = $objViaje->modificarDatosViaje($nuevoCodigo, $nuevoDestino, $nuevaCapacidad);
-				//Se muestra un msj según el resultado de las modificaciones:
-				$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se pudieron modificar.");
-				echo "\n    >>> ".$resultado."\n";
+				echo "| Viajes de la empresa: ".$objEmpresaTransportes->mostrarViajes();
+				echo "|+ Ingrese el código del viaje a modificar: ";
+				$codigoViajeAModificar = trim(fgets(STDIN));
+				$encontrarViaje = buscarViaje($arrayViajes, $codigoViajeAModificar);
+				if ($encontrarViaje == null) {
+					echo "	>>> ERROR. El código ingresado no se corresponde con ningún viaje almacenado.";
+				} else {
+					$posicionViajeEncontrado = $encontrarViaje;
+					echo "  + Ingrese el nuevo código del viaje: ";
+					$nuevoCodigo = trim(fgets(STDIN));
+					echo "  + Ingrese el nuevo destino del viaje: ";
+					$nuevoDestino = trim(fgets(STDIN));
+					echo "  + Ingrese la nueva capacidad máxima de pasajeros del viaje: ";
+					$nuevaCapacidad = trim(fgets(STDIN));
+					$modificacion = $objViaje->modificarDatosViaje($posicionViajeEncontrado, $nuevoCodigo, $nuevoDestino, $nuevaCapacidad);
+					//Se muestra un msj según el resultado de las modificaciones:
+					$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se pudieron modificar.");
+					echo "\n    >>> ".$resultado."\n";
+				}
 				break;
 			case 6:
 				echo "----- Modificar responsable -----\n";
