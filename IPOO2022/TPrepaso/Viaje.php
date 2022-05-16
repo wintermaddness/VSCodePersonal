@@ -165,12 +165,12 @@
          * Método 5: modificarPasajeros - 
          * Modifica los datos de un pasajero determinado.
          */
-        public function modificarPasajeros($arrayViajes, $posViaje, $posPasajero, $documentoPasajero, $nombre, $apellido, $telefono) {
+        public function modificarPasajeros($arrayViajes, $posPasajero, $nombre, $apellido, $telefono) {
             $cantViajes = count($arrayViajes);
             $bandera = false;
             $i = 0;
             while ($bandera && $i<$cantViajes) {
-                if ($arrayViajes[$i] == $posViaje) {
+                if ($arrayViajes[$i] == $posPasajero) {
                     $unViaje = $arrayViajes[$i];
                     $arrayPasajeros = $unViaje->getObjArrayPasajeros();
                     $cantPasajeros = count($arrayPasajeros);
@@ -220,25 +220,18 @@
          * Modifica los datos del viaje.
          * @return boolean
          */
-        public function modificarDatosViaje($arrayViajes, $posViaje, $codViaje, $destino, $capacidadMaxima) {
-            $cantViajes = count($arrayViajes);
+        public function modificarDatosViaje($codViaje, $destino, $capacidadMaxima) {
             $bandera = false;
-            $i = 0;
-            while ($bandera && $i<$cantViajes) {
-                if ($arrayViajes[$i] == $posViaje) {
-                    if ($codViaje != "*") {
-                        $this->setCodigoViaje($codViaje);
-                    }
-                    if ($destino != "*") {
-                        $this->setDestino($destino);
-                    }
-                    if ($capacidadMaxima != "*") {
-                        $this->setCapacidadPasajeros($capacidadMaxima);
-                    }
-                    $bandera = true;
-                }
-                $i++;
+            if ($codViaje != "*") {
+                $this->setCodigoViaje($codViaje);
             }
+            if ($destino != "*") {
+                $this->setDestino($destino);
+            }
+            if ($capacidadMaxima != "*") {
+                $this->setCapacidadPasajeros($capacidadMaxima);
+            }
+            $bandera = true;
             return $bandera;
         }
 
@@ -247,29 +240,22 @@
          * Modifica los datos del responsable del viaje.
          * @return boolean
          */
-        public function modificarDatosResponsable($arrayViajes, $posViaje, $nombre, $apellido, $empleado, $licencia) {
-            $cantViajes = count($arrayViajes);
+        public function modificarDatosResponsable($arrayViajes, $posResponsable, $nombre, $apellido, $empleado, $licencia) {
             $bandera = false;
-            $i = 0;
-            while ($bandera && $i<$cantViajes) {
-                if ($arrayViajes[$i] == $posViaje) {
-                    $objResponsableViaje = $arrayViajes[$i]->getObjResponsable();
-                    if ($nombre != "*") {
-                        $objResponsableViaje->setNombre($nombre);
-                    }
-                    if ($apellido != "*") {
-                        $objResponsableViaje->setApellido($apellido);
-                    }
-                    if ($empleado != "*") {
-                        $objResponsableViaje->setNroEmpleado($empleado);
-                    }
-                    if ($licencia != "*") {
-                        $objResponsableViaje->setNroLicencia($licencia);
-                    }
-                    $bandera = true;
-                }
-                $i++;
+            $objResponsableViaje = $arrayViajes[$posResponsable]->getObjResponsable();
+            if ($nombre != "*") {
+                $objResponsableViaje->setNombre($nombre);
             }
+            if ($apellido != "*") {
+                $objResponsableViaje->setApellido($apellido);
+            }
+            if ($empleado != "*") {
+                $objResponsableViaje->setNroEmpleado($empleado);
+            }
+            if ($licencia != "*") {
+                $objResponsableViaje->setNroLicencia($licencia);
+            }
+            $bandera = true;
             return $bandera;
         }
 
@@ -299,9 +285,10 @@
             if (count($this->getObjArrayPasajeros()) == 0) {
                 $cadenaPasajeros = "   >>> Aún no se han agregado pasajeros.";
             } else {
+                $i = 0;
                 foreach ($this->getObjArrayPasajeros() as $unPasajero) {
                     $pasajero = $unPasajero->__toString();
-                    $cadenaPasajeros .= $pasajero; 
+                    $cadenaPasajeros .= $i+1 .")\n".$pasajero; 
                 }
             }
             return $cadenaPasajeros;

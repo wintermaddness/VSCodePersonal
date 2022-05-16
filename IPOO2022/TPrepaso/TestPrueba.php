@@ -228,13 +228,14 @@
                 $nuevoDestino = trim(fgets(STDIN));
                 echo "  + Ingrese la nueva capacidad máxima de pasajeros del viaje: ";
                 $nuevaCapacidad = trim(fgets(STDIN));
-                $modificacion = $arrayViajes[$posicionViaje]->modificarDatosViaje($arrayViajes, $posicionViaje, $nuevoCodigo, $nuevoDestino, $nuevaCapacidad);
+                //$modificacion = $arrayViajes[$posicionViaje]->modificarDatosViaje($arrayViajes, $posicionViaje, $nuevoCodigo, $nuevoDestino, $nuevaCapacidad);
+                $modificacion = $arrayViajes[$posicionViaje]->modificarDatosViaje($nuevoCodigo, $nuevoDestino, $nuevaCapacidad);
                 //Se muestra un msj según el resultado de las modificaciones:
-                $resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se pudieron modificar.");
+                $resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"ERROR. Los datos no se pudieron modificar.");
                 echo "\n    >>> ".$resultado."\n";
 			break;
             case 3:
-                echo "----- Modificar lista de pasajeros -----\n";
+                echo "\n----- Modificar lista de pasajeros -----\n";
                 //Se elige un viaje a modificar:
                 do {
                     echo "| ¿Cuál viaje desea modificar?:\n";
@@ -251,91 +252,86 @@
                 } while($viajeAModificar > count($arrayViajes) || $viajeAModificar < 1);
 
                 $posicionViajeElegido = $viajeAModificar - 1;
-                $posicionViaje = buscarViaje($arrayViajes, $posicionViajeElegido);
-                if ($posicionViaje == null) {
-                    echo "  >>> ERROR. El viaje elegido no existe.\n";
-                } else {
-                    do {
-                        echo "| Seleccione una opción (1-3):\n";
-                        echo "1. Agregar pasajeros\n";
-                        echo "2. Modificar pasajeros\n";
-                        echo "3. Eliminar pasajeros\n";
-                        echo ">>> ";
-                        $opcionPasajero = trim(fgets(STDIN));
-                        if ($opcionPasajero < 1 || $opcionPasajero > 3) {
-                            echo "  >>> ERROR. Ingrese una opción válida (1-3).\n";
-                        }
-                    } while($opcionPasajero < 1 || $opcionPasajero > 3);
+                do {
+                    echo "| Seleccione una opción (1-3):\n";
+                    echo "1. Agregar pasajeros\n";
+                    echo "2. Modificar pasajeros\n";
+                    echo "3. Eliminar pasajeros\n";
+                    echo ">>> ";
+                    $opcionPasajero = trim(fgets(STDIN));
+                    if ($opcionPasajero < 1 || $opcionPasajero > 3) {
+                        echo "  >>> ERROR. Ingrese una opción válida (1-3).\n";
+                    }
+                } while($opcionPasajero < 1 || $opcionPasajero > 3);
                     
-                    if ($opcionPasajero == 1) {
-                        //Agregar un pasajero:
-                        if ($arrayViajes[$posicionViaje]->hayPasajesDisponibles() == true) {
-                            do {
-                                $nuevoPasajero = datosPasajero();
-                                //Se verifica que el pasajero no se repita:
-                                $pasajeroRepetido = $arrayViajes[$posicionViaje]->validarDocumento($nuevoPasajero->getDni());
-                                if ($pasajeroRepetido == true) {
-                                    echo "  >>> ERROR. El pasajero ya se encuentra en el viaje.\n";
-                                }
-                            } while ($pasajeroRepetido == true);
-
-                            $nuevoPasajero = new Pasajero($datosPasajeroNuevo->getNombre(), $datosPasajeroNuevo->getApellido(), $datosPasajeroNuevo->getDni(), $datosPasajeroNuevo->getTelefono());
-                            $arrayViajes[$posicionViaje]->venderPasaje($nuevoPasajero);
-                            echo "+| Pasajero agregado: \n".$nuevoPasajero;
-                        } else {
-                            echo "  >>> ERROR. El viaje elegido ya no tiene asientos disponibles.\n";
-                        }
-                    } elseif ($opcionPasajero == 2) {
-                        //Modificar un pasajero:
+                if ($opcionPasajero == 1) {
+                    //Agregar un pasajero:
+                    if ($arrayViajes[$posicionViajeElegido]->hayPasajesDisponibles() == true) {
                         do {
-                            echo "| ¿Cuál pasajero desea modificar?: ";
-                            echo $arrayViajes[$posicionViaje]->mostrarListaPasajeros();
-                            $cantPasajerosViaje = count($arrayViajes[$posicionViaje]->getObjArrayPasajeros());
-                            echo ">>> ";
-                            $pasajeroAModificar = trim(fgets(STDIN));
-                            //Se verifica que el usuario ingrese una opción válida:
-                            if ($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje) {
-                                echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
+                            $nuevoPasajero = datosPasajero();
+                            //Se verifica que el pasajero no se repita:
+                            $pasajeroRepetido = $arrayViajes[$posicionViajeElegido]->validarDocumento($nuevoPasajero->getDni());
+                            if ($pasajeroRepetido == true) {
+                                echo "  >>> ERROR. El pasajero ya se encuentra en el viaje.\n";
                             }
-                        } while($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje);
+                        } while ($pasajeroRepetido == true);
 
-                        $pasajeroElegido = $pasajeroAModificar - 1;
-                        echo "\n	+ Ingrese el nuevo nombre del pasajero: ";
-                        $nuevoNombre = trim(fgets(STDIN));
-                        echo "	+ Ingrese el nuevo apellido del pasajero: ";
-                        $nuevoApellido = trim(fgets(STDIN));
-                        echo "	+ Ingrese el nuevo número de telefono del pasajero: ";
-                        $nuevoTelefono = trim(fgets(STDIN));
-                        $modificacion = $objViaje->modificarPasajeros($arrayViajes, $posicionViaje, $pasajeroElegido, $dniPasajero, $nuevoNombre, $nuevoApellido, $nuevoTelefono);
-                        echo "\n>>> Pasajero modificado exitosamente.\n";
-                    } elseif ($opcionPasajero == 3) {
-                        //Eliminar un pasajero:
-                        do {
-                            echo "| ¿Cuál pasajero desea eliminar?: ";
-                            echo $arrayViajes[$posicionViaje]->mostrarListaPasajeros();
-                            $cantPasajerosViaje = count($arrayViajes[$posicionViaje]->getObjArrayPasajeros());
-                            echo ">>> ";
-                            $pasajeroAEliminar = trim(fgets(STDIN));
-                            //Se verifica que el usuario ingrese una opción válida:
-                            if ($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje) {
-                                echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
-                            }
-                        } while($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje);
-
-                        $pasajeroElegido = $pasajeroAEliminar - 1;
-                        $eliminarPasajero = $arrayViajes[$posicionViaje]->eliminarPasajeros($pasajeroElegido);
-                        if ($eliminarPasajero == false) {
-                            echo "  >>> ERROR. No se ha podido eliminar el pasajero.\n";
-                        } else {
-                            echo "  >>> Pasajero eliminado exitosamente.\n";
+                        $nuevoPasajero = new Pasajero($nuevoPasajero->getNombre(), $nuevoPasajero->getApellido(), $nuevoPasajero->getDni(), $nuevoPasajero->getTelefono());
+                        $arrayViajes[$posicionViajeElegido]->venderPasaje($nuevoPasajero);
+                        echo "+| Pasajero agregado: \n".$nuevoPasajero;
+                    } else {
+                        echo "  >>> ERROR. El viaje elegido ya no tiene asientos disponibles.\n";
+                    }
+                } elseif ($opcionPasajero == 2) {
+                    //Modificar un pasajero:
+                    do {
+                        echo "| ¿Cuál pasajero desea modificar?:\n";
+                        echo $arrayViajes[$posicionViajeElegido]->mostrarListaPasajeros();
+                        $cantPasajerosViaje = count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros());
+                        echo ">>> ";
+                        $pasajeroAModificar = trim(fgets(STDIN));
+                        //Se verifica que el usuario ingrese una opción válida:
+                        if ($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje) {
+                            echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
                         }
+                    } while($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje);
+
+                    $pasajeroElegido = $pasajeroAModificar - 1;
+                    echo "\n	+ Ingrese el nuevo nombre del pasajero: ";
+                    $nuevoNombre = trim(fgets(STDIN));
+                    echo "	+ Ingrese el nuevo apellido del pasajero: ";
+                    $nuevoApellido = trim(fgets(STDIN));
+                    echo "	+ Ingrese el nuevo número de telefono del pasajero: ";
+                    $nuevoTelefono = trim(fgets(STDIN));
+                    $modificacion = $arrayViajes[$posicionViajeElegido]->modificarPasajeros($arrayViajes, $pasajeroElegido, $nuevoNombre, $nuevoApellido, $nuevoTelefono);
+                    echo "\n>>> Pasajero modificado exitosamente.\n";
+                } elseif ($opcionPasajero == 3) {
+                    //Eliminar un pasajero:
+                    do {
+                        echo "| ¿Cuál pasajero desea eliminar?:\n";
+                        echo $arrayViajes[$posicionViajeElegido]->mostrarListaPasajeros();
+                        $cantPasajerosViaje = count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros());
+                        echo ">>> ";
+                        $pasajeroAEliminar = trim(fgets(STDIN));
+                        //Se verifica que el usuario ingrese una opción válida:
+                        if ($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje) {
+                            echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
+                        }
+                    } while($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje);
+
+                    $pasajeroElegido = $pasajeroAEliminar - 1;
+                    $eliminarPasajero = $arrayViajes[$posicionViajeElegido]->eliminarPasajeros($pasajeroElegido);
+                    if ($eliminarPasajero == false) {
+                        echo "  >>> ERROR. No se ha podido eliminar el pasajero.\n";
+                    } else {
+                        echo "  >>> Pasajero eliminado exitosamente.\n";
                     }
                 }
             break;
             case 4:
-                echo "----- Modificar lista de responsables -----\n";
+                echo "\n----- Modificar lista de responsables -----\n";
                 do {
-                    echo "| ¿Cuál responsable desea modificar?: ";
+                    echo "| ¿Cuál responsable desea modificar?:\n";
                     for ($i=0; $i<count($arrayViajes); $i++) {
                         $unViaje = $arrayViajes[$i];
                         $responsableViaje = $unViaje->getObjResponsable();
@@ -358,13 +354,13 @@
 				$nroEmpleado = trim(fgets(STDIN));
 				echo "  + Ingrese el nuevo N° de licencia: ";
 				$nroLicencia = trim(fgets(STDIN));
-				$modificacion = $objViaje->modificarDatosResponsable($arrayViajes, $posicionResponsable, $nuevoNombre, $nuevoApellido, $nroEmpleado, $nroLicencia);
+				$modificacion = $arrayViajes[$posicionResponsable]->modificarDatosResponsable($arrayViajes, $posicionResponsable, $nuevoNombre, $nuevoApellido, $nroEmpleado, $nroLicencia);
 				//Se muestra un msj según el resultado de las modificaciones:
-				$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"Los datos no se pudieron modificar.");
+				$resultado = ($modificacion?"Se modificaron los datos exitosamente. ":"ERROR. Los datos no se pudieron modificar.");
 				echo "\n    >>> ".$resultado."\n";
             break;
             case 5:
-                echo "----- Ver datos de la empresa -----\n";
+                echo "\n----- Ver datos de la empresa -----\n";
                 $objEmpresaTransportes->setArrayViajes($arrayViajes);
                 $cadena = $objEmpresaTransportes->__toString(); // es igual a: echo $objViaje;
                 echo $cadena;
