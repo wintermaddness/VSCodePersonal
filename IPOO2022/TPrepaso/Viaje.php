@@ -137,27 +137,18 @@
             $arrayPasajeros = $this->getObjArrayPasajeros();
             $indMaximo = count($arrayPasajeros);
             $modificacion = false;
-            $i = 0;
             $arrayModificado = [];
-            while (($i<$indMaximo) && ($arrayPasajeros[$i] != $posPasajero)) {
-                $i++;
-            }
-            if ($arrayPasajeros[$i] == $posPasajero) {
-                $j = 0;
-                while ($j<($indMaximo-1) && ($j != $i)) {
-                    $arrayModificado[$j] = $arrayPasajeros[$j];
-                    $j++;
+            for ($i=0; $i<$indMaximo; $i++) {
+                $j = $i;
+                if ($i >= $posPasajero) {
+                    $j = $i - 1;
                 }
-                if ($j == $i) {
-                    for ($k=$j; $k<($indMaximo-1); $k++) {
-                        $arrayModificado[$k] = $arrayPasajeros[$k+1];
-                    }
+                if ($i <> $posPasajero) {
+                    $arrayModificado[$j] = $arrayPasajeros[$i];
                 }
-                $this->setObjArrayPasajeros($arrayModificado);
-                $modificacion = true;
-            } else {
-                $modificacion = false;
             }
+            $this->setObjArrayPasajeros($arrayModificado);
+            $modificacion = true;
             return $modificacion;
         }
 

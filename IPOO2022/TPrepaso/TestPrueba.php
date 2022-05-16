@@ -283,48 +283,56 @@
                         echo "  >>> ERROR. El viaje elegido ya no tiene asientos disponibles.\n";
                     }
                 } elseif ($opcionPasajero == 2) {
-                    //Modificar un pasajero:
-                    do {
-                        echo "| ¿Cuál pasajero desea modificar?:\n";
-                        echo $arrayViajes[$posicionViajeElegido]->mostrarListaPasajeros();
-                        $cantPasajerosViaje = count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros());
-                        echo ">>> ";
-                        $pasajeroAModificar = trim(fgets(STDIN));
-                        //Se verifica que el usuario ingrese una opción válida:
-                        if ($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje) {
-                            echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
-                        }
-                    } while($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje);
+                    if (count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros()) > 0) {
+                        //Modificar un pasajero:
+                        do {
+                            echo "| ¿Cuál pasajero desea modificar?:\n";
+                            echo $arrayViajes[$posicionViajeElegido]->mostrarListaPasajeros();
+                            $cantPasajerosViaje = count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros());
+                            echo ">>> ";
+                            $pasajeroAModificar = trim(fgets(STDIN));
+                            //Se verifica que el usuario ingrese una opción válida:
+                            if ($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje) {
+                                echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
+                            }
+                        } while($pasajeroAModificar < 1 || $pasajeroAModificar > $cantPasajerosViaje);
 
-                    $pasajeroElegido = $pasajeroAModificar - 1;
-                    echo "\n	+ Ingrese el nuevo nombre del pasajero: ";
-                    $nuevoNombre = trim(fgets(STDIN));
-                    echo "	+ Ingrese el nuevo apellido del pasajero: ";
-                    $nuevoApellido = trim(fgets(STDIN));
-                    echo "	+ Ingrese el nuevo número de telefono del pasajero: ";
-                    $nuevoTelefono = trim(fgets(STDIN));
-                    $modificacion = $arrayViajes[$posicionViajeElegido]->modificarPasajeros($arrayViajes, $pasajeroElegido, $nuevoNombre, $nuevoApellido, $nuevoTelefono);
-                    echo "\n>>> Pasajero modificado exitosamente.\n";
-                } elseif ($opcionPasajero == 3) {
-                    //Eliminar un pasajero:
-                    do {
-                        echo "| ¿Cuál pasajero desea eliminar?:\n";
-                        echo $arrayViajes[$posicionViajeElegido]->mostrarListaPasajeros();
-                        $cantPasajerosViaje = count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros());
-                        echo ">>> ";
-                        $pasajeroAEliminar = trim(fgets(STDIN));
-                        //Se verifica que el usuario ingrese una opción válida:
-                        if ($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje) {
-                            echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
-                        }
-                    } while($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje);
-
-                    $pasajeroElegido = $pasajeroAEliminar - 1;
-                    $eliminarPasajero = $arrayViajes[$posicionViajeElegido]->eliminarPasajeros($pasajeroElegido);
-                    if ($eliminarPasajero == false) {
-                        echo "  >>> ERROR. No se ha podido eliminar el pasajero.\n";
+                        $pasajeroElegido = $pasajeroAModificar - 1;
+                        echo "\n	+ Ingrese el nuevo nombre del pasajero: ";
+                        $nuevoNombre = trim(fgets(STDIN));
+                        echo "	+ Ingrese el nuevo apellido del pasajero: ";
+                        $nuevoApellido = trim(fgets(STDIN));
+                        echo "	+ Ingrese el nuevo número de telefono del pasajero: ";
+                        $nuevoTelefono = trim(fgets(STDIN));
+                        $modificacion = $arrayViajes[$posicionViajeElegido]->modificarPasajeros($arrayViajes, $pasajeroElegido, $nuevoNombre, $nuevoApellido, $nuevoTelefono);
+                        echo "\n>>> Pasajero modificado exitosamente.\n";
                     } else {
-                        echo "  >>> Pasajero eliminado exitosamente.\n";
+                        echo "  >>> ERROR. El viaje elegido no tiene pasajeros.\n";
+                    }
+                } elseif ($opcionPasajero == 3) {
+                    if (count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros()) > 0) {
+                        //Eliminar un pasajero:
+                        do {
+                            echo "| ¿Cuál pasajero desea eliminar?:\n";
+                            echo $arrayViajes[$posicionViajeElegido]->mostrarListaPasajeros();
+                            $cantPasajerosViaje = count($arrayViajes[$posicionViajeElegido]->getObjArrayPasajeros());
+                            echo ">>> ";
+                            $pasajeroAEliminar = trim(fgets(STDIN));
+                            //Se verifica que el usuario ingrese una opción válida:
+                            if ($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje) {
+                                echo "  >>> ERROR. El número ingresado no se corresponde con ningún pasajero.\n";
+                            }
+                        } while($pasajeroAEliminar < 1 || $pasajeroAEliminar > $cantPasajerosViaje);
+
+                        $pasajeroElegido = $pasajeroAEliminar - 1;
+                        $eliminarPasajero = $arrayViajes[$posicionViajeElegido]->eliminarPasajeros($pasajeroElegido);
+                        if ($eliminarPasajero == false) {
+                            echo "  >>> ERROR. No se ha podido eliminar el pasajero.\n";
+                        } else {
+                            echo "  >>> Pasajero eliminado exitosamente.\n";
+                        }
+                    } else {
+                        echo "  >>> ERROR. El viaje elegido no tiene pasajeros.\n";
                     }
                 }
             break;
