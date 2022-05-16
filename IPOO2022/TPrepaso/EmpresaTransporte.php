@@ -80,23 +80,38 @@
         }
 
         /**
-         * Método 2: mostrarViajes - 
+         * Método 2: agregarViaje - 
+         * Dado un viaje ingresado por parámetro, lo agrega al arreglo de viajes de la empresa.
+         */
+        public function agregarViaje($nuevoViaje) {
+            $arrayViajes = $this->getArrayViajes();
+            array_push($arrayViajes, $nuevoViaje);
+            $this->setArrayViajes($arrayViajes);
+        }
+
+        /**
+         * Método 3: mostrarViajes - 
          * Retorna una cadena de strings con todos los viajes de la empresa.
          * @return string
          */
         public function mostrarViajes() {
             $arrayViajes = $this->getArrayViajes();
             $cadenaViajes = "";
-            foreach ($arrayViajes as $unViaje) {
-                $viaje = $unViaje->__toString();
-                $cadenaViajes .= $viaje; 
+            if (count($arrayViajes) == 0) {
+                $cadenaViajes = "   >>> Aún no se han agregado viajes.";
+            } else {
+                foreach ($arrayViajes as $unViaje) {
+                    $viaje = $unViaje->__toString();
+                    $cadenaViajes .= $viaje; 
+                }
             }
             return $cadenaViajes;
         } 
 
         public function __toString() {
-            $cadena = "--- E M P R E S A  de  T R A N S P O R T E S ---\n"
+            $cadena = "\nE M P R E S A  de  T R A N S P O R T E S\n"
                     ."| Nombre de la empresa: ".$this->getNombreEmpresa()."\n"
+                    ."| Cantidad de viajes: ".count($this->getArrayViajes())."\n"
                     ."| Viajes:\n".$this->mostrarViajes()."\n";
             return $cadena;
         }

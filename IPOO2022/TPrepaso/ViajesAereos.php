@@ -68,16 +68,42 @@
             $importeAereo = $this->getImporteAereo();
             $trayectoViaje = $this->getIdaVuelta();
             //Si el tipo de asiento es de primera clase y el viaje no tiene escalas:
-            if ($categoriaAsiento == "Primera clase" && $cantEscalas == 0) {
+            if ($categoriaAsiento == 2 && $cantEscalas == 0) {
                 $importeViaje = $importeAereo * 1.40;
-            } elseif ($categoriaAsiento == "Primera clase" && $cantEscalas > 0) {
+            } elseif ($categoriaAsiento == 2 && $cantEscalas > 0) {
                 $importeViaje = $importeAereo * 1.6;
+            } else {
+                $importeViaje = $importeAereo;
             }
             //Si el tipo de viaje es de ida y vuelta:
             if ($trayectoViaje == 3) {
                 $importeViaje = $importeAereo * 1.5;
+            } else {
+                $importeViaje = $importeAereo;
             }
             return $importeViaje;
+        }
+
+        private function categoriaAsiento() {
+            $categoriaAsiento = $this->getCategoriaAsiento();
+            if ($categoriaAsiento == 2) {
+                $asiento = "Primera clase";
+            } else {
+                $asiento = "Común";
+            }
+            return $asiento;
+        }
+
+        private function tipoTrayectoria() {
+            $trayectoViaje = $this->getIdaVuelta();
+            if ($trayectoViaje == 3) {
+                $trayecto = "Ida y Vuelta";
+            } elseif ($trayectoViaje == 2) {
+                $trayecto = "Vuelta";
+            } else {
+                $trayecto = "Ida";
+            }
+            return $trayecto;
         }
 
         public function __toString() {
@@ -85,11 +111,11 @@
             $cadena = $viajes."\n" 
                     ."--- VIAJE AÉREO ---\n" 
                     ." + N° de Vuelo: ".$this->getNroVuelo()."\n"
-                    ." + Categoría de Asiento: ".$this->getCategoriaAsiento()."\n"
+                    ." + Categoría de Asiento: ".$this->categoriaAsiento()."\n"
                     ." + Nombre Aerolínea: ".$this->getNombreAerolinea()."\n"
                     ." + Cantidad de Escalas: ".$this->getCantEscalas()."\n"
-                    ." + Importe del viaje: ".$this->getImporteAereo()."\n"
-                    ." + Itinerario: ".$this->getIdaVuelta()."\n"; 
+                    ." + Importe del viaje: $".$this->calcularImporte()."\n"
+                    ." + Trayectoria: ".$this->tipoTrayectoria()."\n"; 
             return $cadena;
         }
     }

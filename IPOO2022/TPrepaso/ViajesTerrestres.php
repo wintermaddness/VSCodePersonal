@@ -43,23 +43,49 @@
             $importeTerrestre = $this->getImporteTerrestre();
             $trayectoViaje = $this->getIdaVuelta();
             //Si el tipo de asiento es cama:
-            if ($tipoAsiento == "Cama") {
+            if ($tipoAsiento == 1) {
                 $importeViaje = $importeTerrestre * 1.25;
+            } else {
+                $importeViaje = $importeTerrestre;
             }
             //Si el tipo de viaje es de ida y vuelta:
             if ($trayectoViaje == 3) {
                 $importeViaje = $importeTerrestre * 1.5;
+            } else {
+                $importeViaje = $importeTerrestre;
             }
             return $importeViaje;
+        }
+
+        private function tipoAsiento() {
+            $tipoAsiento = $this->getTipoAsiento();
+            if ($tipoAsiento == 2) {
+                $asiento = "Semi-cama";
+            } else {
+                $asiento = "Cama";
+            }
+            return $asiento;
+        }
+
+        private function tipoTrayectoria() {
+            $trayectoViaje = $this->getIdaVuelta();
+            if ($trayectoViaje == 3) {
+                $trayecto = "Ida y Vuelta";
+            } elseif ($trayectoViaje == 2) {
+                $trayecto = "Vuelta";
+            } else {
+                $trayecto = "Ida";
+            }
+            return $trayecto;
         }
 
         public function __toString() {
             $viajes = parent::__toString();
             $cadena = $viajes."\n" 
                     ."--- VIAJE TERRESTRE ---\n"
-                    ." + Tipo de Asiento: ".$this->getTipoAsiento()."\n"
-                    ." + Importe del viaje: ".$this->getImporteTerrestre()."\n"
-                    ." + Itinerario: ".$this->getIdaVuelta()."\n";
+                    ." + Tipo de Asiento: ".$this->tipoAsiento()."\n"
+                    ." + Importe del viaje: $".$this->calcularImporte()."\n"
+                    ." + Trayectoria: ".$this->tipoTrayectoria()."\n";
             return $cadena;
         }
     }

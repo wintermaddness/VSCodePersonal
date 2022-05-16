@@ -45,7 +45,7 @@
             $cadena = "+ Nombre: ".$this->getNombre()."\n".
                     "+ Apellido: ".$this->getApellido()."\n".
                     "+ N° de empleado: ".$this->getNroEmpleado()."\n".
-                    "+ N° de licencia: ".$this->getNroLicencia()."\n";
+                    "+ N° de licencia: ".$this->getNroLicencia();
             return $cadena;
         }
     }
