@@ -104,9 +104,9 @@ code {
 	display: block;
 	overflow: auto;  
 	font: 500 1em/1.5em 'Lucida Console', 'courier new', monospace;
-	/*border-left: 4px solid #FF9966;*/
 	background: #FAFAFA;
-	border: 1px solid #f2f2f2;    
+	border-left: 1px solid #f2f2f2;
+	border-left: 4px solid #FF9966;
 }
 acronym {
 	cursor: help;
