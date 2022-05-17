@@ -194,6 +194,8 @@ form.search input.button {
 	padding: 0; 
 	width: 850px;
 	text-align: left;
+	/*position: relative;
+	float: left;*/
 }
 
 /* header */
@@ -328,7 +330,9 @@ span {
 	color: #666666; 	
 	padding: 0;	 
 	background: #FFF url(footerbg.gif) repeat-x;
-	height: 60px
+	height: 60px;
+	/*position: relative;
+	float: left;*/
 }
 #footer a { 
 	text-decoration: none; 
