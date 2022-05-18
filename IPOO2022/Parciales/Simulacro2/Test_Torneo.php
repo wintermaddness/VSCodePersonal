@@ -57,26 +57,20 @@
     //5. Invocación del método calcularPremioPartido($objPartido):
     echo "5) Calcular el importe de los partidos:\n";
     $importePartido1 = $objTorneo->calcularPremioPartido($objPartido1);
-    //echo "  Partido 1: ".$importePartido1."\n";
     echo "  Partido 1:\n".$objTorneo->mostrarImportePartido($importePartido1)."\n";
 
     $importePartido2 = $objTorneo->calcularPremioPartido($objPartido2);
-    //echo "  Partido 2: ".$importePartido2."\n";
     echo "  Partido 2:\n".$objTorneo->mostrarImportePartido($importePartido2)."\n";
 
     $importePartido3 = $objTorneo->calcularPremioPartido($objPartido3);
-    //echo "  Partido 3: ".$importePartido3."\n";
     echo "  Partido 3:\n".$objTorneo->mostrarImportePartido($importePartido3)."\n";
 
     $importePartido4 = $objTorneo->calcularPremioPartido($objPartido4);
-    //echo "  Partido 4: ".$importePartido4."\n";
     echo "  Partido 4:\n".$objTorneo->mostrarImportePartido($importePartido4)."\n";
 
     $importePartido5 = $objTorneo->calcularPremioPartido($objPartido5);
-    //echo "  Partido 5: ".$importePartido5."\n";
     echo "  Partido 5:\n".$objTorneo->mostrarImportePartido($importePartido5)."\n";
 
     $importePartido6 = $objTorneo->calcularPremioPartido($objPartido6);
-    //echo "  Partido 6: ".$importePartido6."\n";
     echo "  Partido 6:\n".$objTorneo->mostrarImportePartido($importePartido6)."\n";
 ?>
