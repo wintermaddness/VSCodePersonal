@@ -41,7 +41,7 @@
         }
 
         public function __toString() {
-            $cadena = " + Nombre del equipo: ".$this->getNombreEquipo()."\n"
+            $cadena = "  + Nombre del equipo: ".$this->getNombreEquipo()."\n"
                     ."  + Nombre del capitán: ".$this->getNombreCapitan()."\n"
                     ."  + Cantidad de jugadores: ".$this->getCantJugadores()."\n"
                     ."  + Categoria: ".$this->getCategoria()."\n";

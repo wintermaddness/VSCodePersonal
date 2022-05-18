@@ -27,8 +27,8 @@
         }
 
         public function __toString() {
-            return parent::__toString() . "\n" .
-            "   + Cantidad de infracciones: " . $this->getCantInfrecciones();
+            return parent::__toString().
+            "  + Cantidad de infracciones: " . $this->getCantInfrecciones()."\n";
         }
     }
 ?>

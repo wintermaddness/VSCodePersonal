@@ -52,8 +52,8 @@
             $this->fecha = $fecha;
             $this->objEquipo1 = $objEquipo1;
             $this->objEquipo2 = $objEquipo2;
-            $this->cantGolesE1 = 0;
-            $this->cantGolesE2 = 0;
+            $this->cantGolesE1 = $cantGolesE1;
+            $this->cantGolesE2 = $cantGolesE2;
         }
 
         /**
@@ -69,7 +69,7 @@
         }
 
         public function __toString() {
-            $cadena = " + ID Partido: ".$this->getIdPartido()."\n"
+            $cadena = "  + ID Partido: ".$this->getIdPartido()."\n"
                     ."  + Fecha del partido: ".$this->getFecha()."\n"
                     ."  + Cantidad de goles EQUIPO 1: ".$this->getCantGolesE1()."\n"
                     ."  + Cantidad de goles EQUIPO 2: ".$this->getCantGolesE2()."\n";

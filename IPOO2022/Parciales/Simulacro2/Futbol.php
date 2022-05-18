@@ -11,16 +11,14 @@
          */
         public function coeficientePartido() {
             $coeficiente = parent::coeficienteBase();
-            switch ($this->getObjEquipo1()->getCategoria()->getIdCategoria()) {
-                case "Menores":
-                    $coeficiente += $coeficiente * 0.11;
-                    break;
-                case "Juveniles";
-                    $coeficiente += $coeficiente * 0.17;
-                    break;
-                case "Mayores";
-                    $coeficiente += $coeficiente * 0.23;
-                    break;
+            //Sólo se toma la categoría del primer equipo porque ambos tienen que ser de la misma categoría para poder jugar:
+            $categoriaEquipo = $this->getObjEquipo1()->getCategoria();
+            if ($categoriaEquipo == "Menores") {
+                $coeficiente += $coeficiente * 0.11;
+            } elseif ($categoriaEquipo == "Juveniles") {
+                $coeficiente += $coeficiente * 0.17;
+            } elseif ($categoriaEquipo == "Mayores") {
+                $coeficiente += $coeficiente * 0.23;
             }
             return $coeficiente;
         }

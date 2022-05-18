@@ -76,10 +76,12 @@
             $arrayGanadores = [];
             foreach ($arrayPartidos as $unPartido) {
                 if (get_class($unPartido) == $deporte) {
-                    $unGanador = $unPartido->ganador();
-                    if (!is_null($unGanador)) {
-                        array_push($arrayGanadores, $unGanador);
+                    if ($unPartido->getCantGolesE1() < $unPartido->getCantGolesE2()) {
+                        $unGanador = $unPartido->getObjEquipo1();
+                    } elseif ($unPartido->getCantGolesE1() > $unPartido->getCantGolesE2()) {
+                        $unGanador = $unPartido->getObjEquipo2();
                     }
+                    array_push($arrayGanadores, $unGanador);
                 }
             }
             return $arrayGanadores;
@@ -91,7 +93,11 @@
          * @return array;
          */
         public function calcularPremioPartido($objPartido) {
-            $unGanador = $objPartido->ganador();
+            if ($objPartido->getCantGolesE1() < $objPartido->getCantGolesE2()) {
+                $unGanador = $objPartido->getObjEquipo1();
+            } elseif ($objPartido->getCantGolesE1() > $objPartido->getCantGolesE2()) {
+                $unGanador = $objPartido->getObjEquipo2();
+            }
             $importePremio = $this->getImportePremio();
             $datosPartido = ["equipoGanador" => null, "premioPartido" => 0];
             if ($unGanador != null) {
@@ -109,15 +115,28 @@
             $cantElementos = count($unArreglo);
             $cadena = "";
             for ($i=0; $i<$cantElementos; $i++) {
-                $cadena .= $unArreglo[$i] ."\n"
-                        ."<<---------------------------->>\n";
+                $cadena .= $unArreglo[$i]."<<---------------------------->>\n";
             }
             return $cadena;
         }
 
+        /**
+         * Método 4: mostrarImportePartido - 
+         * Retorna una cadena de strings de un objPartido recibido por parámetro.
+         * @return string
+         */
+        public function mostrarImportePartido($objPartido) {
+            $cadena = "";
+            $equipoGanador = $objPartido["equipoGanador"];
+            $premioPartido = $objPartido["premioPartido"];
+            $cadena .= "| Equipo Ganador:\n".$equipoGanador
+                    ."| Premio del Partido: $".$premioPartido."\n<<---------------------------->>\n";
+            return $cadena;
+        }
+
         public function __toString() {
-            $cadena = " + Partidos: ".$this->mostrarDatosArreglos($this->getArrayPartidos())."\n"
-                    ."  + Premio: ".$this->getImportePremio()."\n";
+            $cadena = "|+ Partidos:\n".$this->mostrarDatosArreglos($this->getArrayPartidos())
+                    ."|+ Premio: $".$this->getImportePremio()."\n";
             return $cadena;
         }
     }
