@@ -41,7 +41,7 @@
             $cantJugEquipo1 = $objEquipo1->getCantJugadores();
             $cantJugEquipo2 = $objEquipo2->getCantJugadores();
             if (($categoriaEquipo1 == $categoriaEquipo2) && ($cantJugEquipo1 == $cantJugEquipo2)) {
-                if ($tipo == "Fútbol") {
+                if ($tipo == "Futbol") {
                     if ($cantPartidos == 0) {
                         $idPartidoNuevo = 0;
                     } else {
@@ -51,7 +51,7 @@
                     array_push($arrayPartidos, $nuevoPartido);
                     $this->setArrayPartidos($arrayPartidos);
                     $partidoAgregado = true;
-                } elseif ($tipo == "Basketbol") {
+                } elseif ($tipo == "Basket") {
                     if ($cantPartidos == 0) {
                         $idPartidoNuevo = 0;
                     } else {
@@ -116,7 +116,7 @@
         }
 
         public function __toString() {
-            $cadena = " + Partidos: ".$this->getArrayPartidos()."\n"
+            $cadena = " + Partidos: ".$this->mostrarDatosArreglos($this->getArrayPartidos())."\n"
                     ."  + Premio: ".$this->getImportePremio()."\n";
             return $cadena;
         }
