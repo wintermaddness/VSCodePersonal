@@ -43,7 +43,7 @@
          * Busca un nombre de Función determinado y retorna su posición.
          */
         public function buscarFuncion($nombreFuncion) {
-            $i = 0;
+            /*$i = 0;
             $bandera = false;
             $funcionEncontrada = null;
             $arrayFunciones = $this->get_FuncionesTeatro();
@@ -58,7 +58,19 @@
                     $i++;
                 }
             }
-            return $funcionEncontrada;
+            return $funcionEncontrada;*/
+            $arrayFunciones = $this->get_FuncionesTeatro();
+            $cantFunciones = count($arrayFunciones);
+            $indiceFuncion = -1;
+            $i = 0;
+
+            while ($i < $cantFunciones && $indiceFuncion == -1) {
+                if ($this->funcionesTeatro[$i]->getNombreFuncion() == $nombreFuncion) {
+                    $indiceFuncion = $i;
+                }
+                $i++;
+            }
+            return $indiceFuncion;
         }
 
         /**
@@ -170,6 +182,28 @@
                 }
             }
             return $creacion;
+        }
+
+        /**
+         * Verifica si dos funciones se solapan con sus horarios
+         * @param $nuevaFuncion
+         */
+        public function verificarSolapamiento($nuevaFuncion) {
+            $funcionSolapada = false;
+            $i = 0;
+            $cantFunciones = count($this->funciones);
+            while (!$funcionSolapada && $i < $cantFunciones) {
+                $duracionFuncion = $this->funciones[$i]->getDuracion();
+                $horaFuncion = $this->funciones[$i]->convertirHorasAMinutos();
+                $totalMinutos = $duracionFuncion + $horaFuncion;
+
+                if ($nuevaFuncion->convertirHorasAMinutos() > $totalMinutos || $horaFuncion > ($nuevaFuncion->convertirHorasAMinutos() + $nuevaFuncion->getDuracion())) {
+                    $i++;
+                } else {
+                    $funcionSolapada = true;
+                }
+                return $funcionSolapada;
+            }
         }
 
         /**

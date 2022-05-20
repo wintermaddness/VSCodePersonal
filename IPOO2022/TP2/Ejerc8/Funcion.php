@@ -41,6 +41,42 @@
             $this->precio = $precio;
         }
 
+        /**
+         * Método 1: convertirHorasAMinutos - 
+         * Convierte una hora en formato hh:mm a un total de n minutos.
+         * @return int
+         */
+        public function convertirHorasAMinutos() {
+            $hora = $this->getHorarioInicio();
+            $minutos = 0;
+
+            if (strpos($hora, ':') !== false) {
+                // Se separan las horas de los minutos:
+                list($horas, $minutos) = explode(':', $hora);
+            }
+            $totalMinutos = $horas * 60 + $minutos;
+
+            return $totalMinutos;
+        }
+
+        /**
+         * Método 2: buscarFuncion - 
+         * Retorna la posición de una función determinada.
+         */
+        public function buscarFuncion($funcion, $arrayFunciones) {
+            $cantFunciones = count($arrayFunciones);
+            $indiceFuncion = -1;
+            $i = 0;
+
+            while ($i < $cantFunciones && $indiceFuncion == -1) {
+                if ($this->funcionesTeatro[$i]->getNombreFuncion() == $funcion) {
+                    $indiceFuncion = $i;
+                }
+                $i++;
+            }
+            return $indiceFuncion;
+        }
+        
         public function __toString() {
             $cadena = "\n+ Nombre de la función: ".$this->getNombreFuncion()."\n"
                     ."+ Horario de inicio: ".$this->getHorarioInicio()."\n"
