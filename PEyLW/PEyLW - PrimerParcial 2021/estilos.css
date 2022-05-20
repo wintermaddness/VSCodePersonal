@@ -352,6 +352,7 @@ span {
 #footer-content #footer-right {
 	padding: 10px;
 	width: 33%;
+	position: relative;
 	float: right;
 	text-align: right;
 }

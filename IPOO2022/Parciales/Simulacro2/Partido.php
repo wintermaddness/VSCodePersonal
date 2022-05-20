@@ -62,9 +62,12 @@
          */
         public function coeficienteBase() {
             $coefBase = 0.5;
-            $cantidadGoles = $this->getCantGolesE1() + $this->getCantGolesE2();
+            /*$cantidadGoles = $this->getCantGolesE1() + $this->getCantGolesE2();
             $cantidadJugadores = $this->getObjEquipo1()->getCantJugadores() + $this->getObjEquipo2()->getCantJugadores();
-            $coeficienteFinal = $coefBase * $cantidadGoles * $cantidadJugadores;
+            $coeficienteFinal = $coefBase * $cantidadGoles * $cantidadJugadores;*/
+            $coefEquipo1 = $coefBase * $this->getObjEquipo1()->getCantJugadores() * $this->getCantGolesE1();
+            $coefEquipo2 = $coefBase * $this->getObjEquipo2()->getCantJugadores() * $this->getCantGolesE2();
+            $coeficienteFinal = $coefEquipo1 * $coefEquipo2;
             return $coeficienteFinal;
         }
 
