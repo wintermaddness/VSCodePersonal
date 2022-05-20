@@ -3,7 +3,7 @@
         private $cantInfracciones;
 
         //Métodos de acceso
-        public function getCantInfrecciones() {
+        public function getCantInfracciones() {
             return $this->cantInfracciones;
         }
         public function setCantInfracciones($cantInfracciones) {
@@ -18,17 +18,17 @@
 
         /**
          * Método 1: coeficientePartido - 
-         * Retorna el valor del coeficiente base * cant. goles * cant. jugadores.
+         * Retorna el valor del coeficiente base - cant. infracciones.
          */
         public function coeficientePartido() {
             $coeficiente = parent::coeficienteBase();
-            $coeficiente -= 0.75 * $this->getCantInfrecciones();
+            $coeficiente -= 0.75 * $this->getCantInfracciones();
             return $coeficiente;
         }
 
         public function __toString() {
             return parent::__toString().
-            "  + Cantidad de infracciones: " . $this->getCantInfrecciones()."\n";
+            "  + Cantidad de infracciones: " . $this->getCantInfracciones()."\n";
         }
     }
 ?>

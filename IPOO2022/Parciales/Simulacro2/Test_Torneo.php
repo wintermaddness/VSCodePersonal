@@ -73,4 +73,13 @@
 
     $importePartido6 = $objTorneo->calcularPremioPartido($objPartido6);
     echo "  Partido 6:\n".$objTorneo->mostrarImportePartido($importePartido6)."\n";
+
+    /*X. Invocación al método ingresarPartidos con datos válidos para probar que se ingresen los partidos correctamente:
+    $ingresarPartido = $objTorneo->ingresarPartidos($objEquipo11, $objEquipo12, "10/11/2020", "Basket");
+    if ($ingresarPartido == false) {
+        echo "\n2)  >>> ERROR. El partido no pudo agregarse.\n";
+    } else {
+        echo "\n2)  >>> El partido se agregó con éxito.\n";
+        echo $objTorneo;
+    }*/
 ?>

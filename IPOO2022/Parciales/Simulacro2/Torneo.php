@@ -40,6 +40,7 @@
             $categoriaEquipo2 = $objEquipo2->getCategoria();
             $cantJugEquipo1 = $objEquipo1->getCantJugadores();
             $cantJugEquipo2 = $objEquipo2->getCantJugadores();
+            
             if (($categoriaEquipo1 == $categoriaEquipo2) && ($cantJugEquipo1 == $cantJugEquipo2)) {
                 if ($tipo == "Futbol") {
                     if ($cantPartidos == 0) {
