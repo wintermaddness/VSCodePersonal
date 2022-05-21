@@ -1,0 +1,41 @@
+#formContacto {
+    font-weight: bold;
+    box-sizing: border-box;
+}
+.FormContacto {
+    /*border: 1px solid blue;*/
+    max-width: max-content;
+    padding: 5px;
+    max-height: max-content;
+    font-family: "Varela Round", sans-serif;
+    font-size: small;
+    background-color: #e1ab16;
+}
+.table {
+    /*border: 1px solid red;*/
+    max-width: 500px;
+    padding: 5px;
+    background-color: #e0b84b;
+}
+.table td {
+    /*border: 1px solid violet;*/
+    padding: 2px 2px;
+    margin: 5px;
+}
+.Nombre, .Apellido, .Mail {
+    width: 95.5%;
+}
+/* Estilos de botones */
+.Enviar {
+    border: 2px solid #e1ab16;
+    background-color: #dcb03b;
+    border-radius: 5em;
+    padding: 5px 3em;
+    font-weight: bold;
+    color: rgb(255, 251, 251);
+    column-span: 1;
+}
+.Enviar:hover {
+    background-color: #e0b84b;
+    color: rgb(247, 247, 247);
+}

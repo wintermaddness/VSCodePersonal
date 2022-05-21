@@ -1,0 +1,81 @@
+* {
+    font-family: "Varela Round", sans-serif;
+    font-size: medium;
+    text-decoration: none;
+}
+/* INICIO Estilo del footer */
+footer {
+	border: 1px solid blue;
+	position: relative;
+    box-sizing: border-box;
+}
+footer #footer1 {
+	background: #dcb03b;
+	padding-right: 20px;
+    padding-left: 20px;
+    text-align: center;
+	padding: 30px 0 54px;
+	list-style-type: none;
+	border: 1px solid rgb(255, 230, 0);
+}
+.container {
+    max-width: 1350px;
+	border: 1px solid rgb(255, 0, 225);
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+	border: 1px solid rgb(17, 255, 0);
+}
+.columna1, .columna2, .columna3 {
+	position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+	border: 1px solid rgb(255, 25, 0);
+}
+footer #footer1 .infoarea {
+    padding: 24px 0 0;
+}
+footer #footer1 .infoarea .footerLogo {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 200px;
+    margin: 0 0 18px;
+}
+footer .footerLogo img {
+    vertical-align: middle;
+    border-style: none;
+	border: 1px solid #333;
+	border-radius: 50px 50px;
+    position: relative;
+}
+footer #footer1 .links {
+    padding: 24px 0 0;
+}
+footer #footer1 .links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+footer .medios {
+    padding: 5px 0 0;
+}
+footer .medios ul li {
+    float: left;
+	list-style: none;
+	margin: 0 5px;
+}
+.medios .social img {
+	vertical-align: middle;
+    border-style: none;
+	border: 1px solid #333;
+}
+footer .footer-bottom {
+    padding-right: 20px;
+    padding-left: 20px;
+    background: #e0b84b;
+    padding: 21px 0;
+    text-align: center;
+}
+/* FIN Estilo del footer */
