@@ -1,0 +1,42 @@
+<!-- :TODO
+- Modificar los mensajes de alert en head, body y externo
+- Modificar el mensaje en caso de no estar habilitado el c�digo javascript
+-->
+<html>
+  <head>
+    <title>Ejerc. 2 - (A)</title>
+    <style>
+      #button {
+          border: 1px dashed gray;
+          background-color: black;
+          color: white;
+          padding: 10px;
+          border-radius: 5em;
+          text-align: center;
+      }
+      #button:hover {
+          background-color: rgb(62, 61, 61);
+          color: aliceblue;
+      }
+  </style>
+    <script type="text/javascript">
+    //Funciones que son llamadas desde el body.
+    function enHead() {
+      alert("en Head")
+    }
+    </script>
+    <script type="text/javascript" src="EjemploJS002HeadBodyExterno.js">
+    //Librería de funciones que son utilizadas en varias páginas.
+    </script>
+  </head>
+  <body>
+    <script>
+    function enBody() {
+      alert("en Body");
+    }
+    </script>
+    <button type="button" onclick="enHead()" id="button">Probar en HEAD</button>
+    <button type="button" onclick="enBody()" id="button">Probar en BODY</button>
+    <h1 style="font-style: italic;">Contenido HTML</h1>
+  </body>
+</html>

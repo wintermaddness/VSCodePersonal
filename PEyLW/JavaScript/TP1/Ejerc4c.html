@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc. 4 - (C)</title>
+    <style>
+        #container {
+            width: auto;
+            border: 1px dashed black;
+            background-color: gray;
+            padding: 10px;
+            text-align: center;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <script type="text/javascript">
+            function pedirDatos() {
+                var nombre = prompt("Dime tu nombre:");
+                //document.write("Nombre: "+nombre+"<br>");
+                var apellido = prompt("Dime tu apellido:");
+                //document.write("Apellido: "+apellido+"<br>");
+                var estadoCivil = prompt("Dime tu estado civil:");
+                //document.write("Estado Civil: "+estadoCivil+"<br>");
+                var edad = prompt("Dime tu edad:");
+                //document.write("Edad: "+edad+"<br>");
+                var fechaNac = prompt("¿En qué fecha naciste?:");
+                //document.write("Fecha de Nacimiento: "+fechaNac+"<br>");
+                var dni = prompt("Dime tu N° de Documento:");
+                //document.write("DNI: "+dni+"<br>");
+                $arrayDatos = [nombre, apellido, estadoCivil, edad, fechaNac, dni];
+            }
+        </script>
+        <button type="button" onclick="pedirDatos()" class="button">Probar Pedido de Datos</button>
+        <script>
+            function mostrarDatos() {
+                document.write("--- Datos Personales ---<br>");
+                document.write("Nombre: "+$arrayDatos[0]+"<br>");
+                document.write("Apellido: "+$arrayDatos[1]+"<br>");
+                document.write("Estado Civil: "+$arrayDatos[2]+"<br>");
+                document.write("Edad: "+$arrayDatos[3]+"<br>");
+                document.write("Fecha de Nacimiento: "+$arrayDatos[4]+"<br>");
+                document.write("DNI: "+$arrayDatos[5]+"<br>");
+                confirm("¿Desea imprimir sus datos?");
+            }
+        </script>
+        <button type="button" onclick="mostrarDatos()" class="button">Mostrar Datos</button>
+    </div>
+</body>
+</html>

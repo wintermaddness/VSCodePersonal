@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Ejerc. 4 - (B)</title>
+        <style>
+            h1 {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                border: 1px dashed black;
+                text-align: center;
+                color: white;
+            }
+            .container {
+                width: auto;
+                border: 1px dashed black;
+                background-color: gray;
+                padding: 0 10px 5px 10px;
+                text-align: center;
+                width: 500px;
+            }
+            .button {
+                border: 1px dashed gray;
+                background-color: black;
+                color: white;
+                padding: 10px;
+                border-radius: 5em;
+                text-align: center;
+                margin: 10px;
+                width: 140px;
+            }
+            .button:hover {
+                background-color: rgb(62, 61, 61);
+                color: aliceblue;
+            }
+            #arg1, #arg2 {
+                padding: 10px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>CALCULADORA</h1>
+            <input type="text" id="arg1" size="1"> X <input type="text" id="arg2" size="1">
+            <br>
+            <input type="button" value="Calcular" class="button" onclick="calc()"> 
+            <div id="result"></div>
+            <script type="text/javascript">
+                function calc() {
+                    var argOne=document.getElementById('arg1').value; 
+                    var argTwo=document.getElementById('arg2').value;
+                    var ans=(argOne*argTwo); 
+                    document.getElementById('result').innerHTML = argOne + ' multiplicado por ' + argTwo + ' es igual a ' + ans;
+                }
+            </script>
+        </div>
+        <br>
+        <div class="container">
+            <h1>CALCULADORA</h1>
+            <input type="button" value="SUMA" class="button" onclick="suma()">
+            <input type="button" value="RESTA" class="button" onclick="resta()">
+            <br>
+            <input type="button" value="MULTIPLICACIÓN" class="button" onclick="multiplicacion()">
+            <input type="button" value="DIVISIÓN" class="button" onclick="division()">
+            <div id="result"></div>
+            <script type="text/javascript">
+                function suma() {
+                    var nro1 = prompt("Dime un número:");
+                    var nro2 = prompt("Dime otro número:");
+                    var ans = (parseInt(nro1) + parseInt(nro2)); 
+                    //document.write(nro1 + " más " + nro2 + " es igual a " + ans);
+                    alert(nro1 + " más " + nro2 + " es igual a " + ans);
+                }
+            </script>
+            <script type="text/javascript">
+                function resta() {
+                    var nro1 = prompt("Dime un número:");
+                    var nro2 = prompt("Dime otro número:");
+                    var ans = (nro1 - nro2); 
+                    //document.write(nro1 + " menos " + nro2 + " es igual a " + ans);
+                    alert(nro1 + " menos " + nro2 + " es igual a " + ans);
+                }
+            </script>
+            <script type="text/javascript">
+                function multiplicacion() {
+                    var nro1 = prompt("Dime un número:");
+                    var nro2 = prompt("Dime otro número:");
+                    var ans = (nro1 * nro2); 
+                    //document.write(nro1 + " multiplicado por " + nro2 + " es igual a " + ans);
+                    alert(nro1 + " multiplicado por " + nro2 + " es igual a " + ans);
+                }
+            </script>
+            <script type="text/javascript">
+                function division() {
+                    var nro1 = prompt("Dime un número:");
+                    var nro2 = prompt("Dime otro número:");
+                    var ans = (nro1 / nro2); 
+                    //document.write(nro1 + " dividido por " + nro2 + " es igual a " + ans);
+                    alert(nro1 + " dividido por " + nro2 + " es igual a " + ans);
+                }
+            </script>
+        </div>
+    </body>
+</html> 
