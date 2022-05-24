@@ -121,120 +121,10 @@ body {
 }
 /* fin CABECERA */
 
-/* SLIDER */
-#slider {
-    position: relative;
-	/*box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);*/
-	/*margin-top: 15px;*/
-	display: block;
-}
-.slide-inner {
-	position: absolute;
-	overflow: hidden;
-	width: 100%;
-	/*height: calc(350px + 0.5em);*/
-    border-top: solid #dcb03b;
-	border-bottom: solid #dcb03b;
-	margin-top: -650px;
-}
-.slide-open:checked + .slide-item {
-	position: static;
-	opacity: 100;
-}
-.slide-item {
-	position: absolute;
-	opacity: 0;
-	-webkit-transition: opacity 0.5s ease-out;
-	transition: opacity 0.5s ease-out;
-}
-.slide-item img {
-	display: block;
-	height: max-content;
-	max-width: 100%;
-    image-resolution: 1080px;
-}
-.slide-control {
-	background: rgba(0, 0, 0, 0.28);
-	border-radius: 50%;
-	color: #fff;
-	cursor: pointer;
-	display: none;
-	font-size: 40px;
-	height: 40px;
-	line-height: 35px;
-	position: absolute;
-	top: 50%;
-	-webkit-transform: translate(0, -50%);
-	cursor: pointer;
-	-ms-transform: translate(0, -50%);
-	transform: translate(0, -50%);
-	text-align: center;
-	width: 40px;
-	z-index: 10;
-}
-.slide-control.prev {
-	left: 2%;
-}
-.slide-control.next {
-	right: 2%;
-}
-.slide-control:hover {
-	background: rgba(0, 0, 0, 0.8);
-	color: #aaaaaa;
-}
-#slide-1:checked ~ .control-1,
-#slide-2:checked ~ .control-2,
-#slide-3:checked ~ .control-3,
-#slide-4:checked ~ .control-4,
-#slide-5:checked ~ .control-5,
-#slide-6:checked ~ .control-6 {
-	display: block;
-}
-.slide-indicador {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-    bottom: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	z-index: 10;
-}
-.slide-indicador li {
-	display: inline-block;
-	margin: 0 2px;
-}
-.slide-circulo {
-	color: #828282;
-	cursor: pointer;
-	display: block;
-	font-size: 35px;
-}
-.slide-circulo:hover {
-	color: #aaaaaa;
-}
-#slide-1:checked ~ .control-1 ~ .slide-indicador 
-li:nth-child(1) .slide-circulo,
-#slide-2:checked ~ .control-2 ~ .slide-indicador 
-li:nth-child(2) .slide-circulo,
-#slide-3:checked ~ .control-3 ~ .slide-indicador 
-li:nth-child(3) .slide-circulo,
-#slide-4:checked ~ .control-4 ~ .slide-indicador 
-li:nth-child(4) .slide-circulo,
-#slide-5:checked ~ .control-5 ~ .slide-indicador 
-li:nth-child(5) .slide-circulo,
-#slide-6:checked ~ .control-6 ~ .slide-indicador 
-li:nth-child(6) .slide-circulo {
-	color: #dcb03b;
-}
-/* fin SLIDER */
-
 #cuerpo {
     position: relative;
-	box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
 	display: block;
-    margin-top: -278px;
+    margin-top: -648px;
     border-top: 4px solid #dcb03b;
     border-bottom: solid #dcb03b;
 }
@@ -246,7 +136,7 @@ li:nth-child(6) .slide-circulo {
 	/*display: block;*/
     float: left;
 	width: 20%;
-	height: 64.45em;
+	height: 32.45em;
 	padding: 0 1em 17px 0;
 	background-color: #dcb03b;
 	border-right: 5px solid #e0b84b;
@@ -306,7 +196,7 @@ li:nth-child(6) .slide-circulo {
 	border: 2px solid rgb(81, 84, 86);
 	padding: 10px;
 	margin: 0 0 1.5em 0;
-	height: 455px;
+	height: 425px;
 }
 .card h2 {
 	padding: 5px;
@@ -333,24 +223,60 @@ li:nth-child(6) .slide-circulo {
 	height: 340px;
 }
 
-#buttons {
-	width: 80%;
-	position: relative;
-    float: right;
-	/*background: #dcb03b;*/
-    text-align: center;
+#card-info {
+    width: 788px;
+    height: 455px;
+    /*border: 2px solid rgb(81, 84, 86);*/
 }
-#buttons li {
-    list-style: none;
-	position: relative;
-	/*border: 2px solid #dc3b3b;*/
-	/*background-color: #dcb03b;*/
-	background-color: #fefefe;
+#card-info #info-libro {
+    /*border: 1px solid blue;*/
+    height: 295px;
+    margin-bottom: 5px;
+    padding: 10px;
+    background-color: #dcb03b;
+}
+#info-libro p {
+    font-size: 14px;
+    letter-spacing: normal;
+}
+
+#card-info #info-autor {
+    /*border: 1px solid green;*/
+    margin-bottom: 5px;
+    border-top: solid #dcb03b;
+    border-bottom: solid #dcb03b;
+    font-size: 14px;
+    letter-spacing: normal;
+}
+.img-autor {
+    height: 70px;
+    width: 70px;
+    margin: 5px 0 0 5px;
+}
+.img-autor img {
+    height: 60px;
+    width: 60px;
+    border: 3px groove rgba(51, 51, 51, 0.663);
+	border-radius: 5% 5%;
+    margin: 5px 0 0 5px;
+}
+.img-autor #autor {
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+#card-info #buy {
+    /*border: 1px solid red;*/
+    margin-bottom: 5px;
+}
+#buy li {
+    list-style-type: none;
+    text-align: right;
+    padding: 5px 0 0;
 }
 .botones {
     position: relative;
 	padding: 8px 15px;
-	margin-bottom: 30px;
 	border: 1px solid #dcb03b;
 	background-color: #dcb03b;
 	color: #000000;
@@ -360,6 +286,39 @@ li:nth-child(6) .slide-circulo {
 .botones:hover  {
 	background-color: #e8c051;
 	color: #000000;
+}
+
+#tags {
+    /*border-top: 1px solid green;*/
+    width: 80%;
+	position: relative;
+    float: right;
+	background: #fff;
+}
+#tittle {
+    /*border: 1px solid cyan;*/
+    border-top: solid #dcb03b;
+    background-color: #dcb03b;
+    font: .7em/1.2 Arial, Helvetica, sans-serif;
+    padding: 10px;
+}
+.etiquetas {
+    /*border: 1px solid red;*/
+    position: relative;
+    float: right;
+    margin-left: 5em;
+    width: 100%;
+}
+.etiquetas ul li {
+    list-style-type: none;
+    padding: 5px;
+}
+.etiquetas li a {
+    text-decoration: none;
+    color: #000000;
+}
+.etiquetas li a:hover {
+    color: #dcb03b;
 }
 /* fin CONTENIDO PRINCIPAL */
 
