@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc2 - IfElseSwitch</title>
+    <style>
+        #button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px 65px;
+            border-radius: 5em;
+            text-align: center;
+        }
+        #button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            width: 20%;
+            background-color: rgb(85, 83, 83);
+            border: 1px dashed black;
+            text-align: center;
+            color: white;
+        }
+        #salida {
+            padding: 5px;
+            border: 1px dashed black;
+        }
+    </style>
+    <script type="text/javascript">
+        contrasenia = prompt("Ingrese su contraseña: ", "minombre");
+		if (contrasenia != "minombre") {
+			document.write("Contraseña incorrecta.<br>"); //No logro que sólo se imprima el msj de error.
+		} else {
+            function pedirDatos() {
+            //document.write("--- Datos Personales ---<br>");
+            var nombre = prompt("Dime tu nombre:");
+            //document.write("Nombre: "+nombre+"<br>");
+            var apellido = prompt("Dime tu apellido:");
+            //document.write("Apellido: "+apellido+"<br>");
+            var estadoCivil = prompt("Dime tu estado civil:");
+            //document.write("Estado Civil: "+estadoCivil+"<br>");
+            var edad = prompt("Dime tu edad:");
+            //document.write("Edad: "+edad+"<br>");
+            var fechaNac = prompt("¿En qué fecha naciste?:");
+            //document.write("Fecha de Nacimiento: "+fechaNac+"<br>");
+            var dni = prompt("Dime tu N° de Documento:");
+            //document.write("DNI: "+dni+"<br>");
+            salida = document.getElementById("salida");
+            salida.value += "----- Datos Personales -----\n" 
+                        +"Nombre: "+nombre+"\n"
+                        +"Apellido: "+apellido+"\n"
+                        +"Estado Civil: "+estadoCivil+"\n"
+                        +"Edad: "+edad+"\n"
+                        +"Fecha de Nacimiento: "+fechaNac+"\n"
+                        +"DNI: "+dni+"\n";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="pedirDatos()" id="button">Probar Pedido de Datos</button>
+    <h2>RESULTADOS</h2>
+    <textarea id="salida" name="salida" rows="10" cols="33"></textarea>
+</body>
+</html>
