@@ -178,8 +178,9 @@ p {
 #separador {
     /*border: 1px solid royalblue;*/
     border-top: solid #dcb03b;
-    background-color: #dcb03b;
-    margin: 10px 0;
+    background-color: #333;
+	color: white;
+    margin: 5em 0 0;
     width: 100%;
     text-align: center;
     padding: 10px 0;
