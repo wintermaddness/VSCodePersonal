@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc3 - Repetitivas</title>
+    <style>
+        * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h1, h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(85, 83, 83);
+            border: 1px dashed black;
+            text-align: center;
+            color: white;
+        }
+        .container, #listado {
+            width: auto;
+            border: 1px dashed black;
+            background-color: gray;
+            padding: 10px;
+            text-align: center;
+            width: 540px;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 10px;
+            width: 140px;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        #salida {
+            margin: 10px;
+            padding: 5px;
+            border: 1px dashed black;
+        }
+        #contRecorrido {
+            margin: 10px;
+            padding: 5px;
+            border: 1px dashed black;
+            background-color: azure;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RECORRIDO DE NROS PARES</h1>
+    </div>
+    <div id="listado"></div>
+
+    <script type="text/javascript">
+        let nrosPares = [];
+        let listar = document.getElementById("listado"); 
+        function recorrido() {
+            for (i=0; i<500; i++) {
+                if (i / 2 == 0) {
+                    nrosPares.push(i);
+                }
+            }
+            nrosPares.forEach(function(elemento) {
+                listar.innerHTML += elemento + " ";
+            })
+        }
+        nrosPares.forEach(recorrido());
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc3 - Repetitivas</title>
+    <style>
+        * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        h1, h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(85, 83, 83);
+            border: 1px dashed black;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            width: auto;
+            border: 1px dashed black;
+            background-color: gray;
+            padding: 10px;
+            text-align: center;
+            width: 540px;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 10px;
+            width: 140px;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        #salida {
+            margin: 10px;
+            padding: 5px;
+            border: 1px dashed black;
+        }
+        #contRecorrido {
+            margin: 10px;
+            padding: 5px;
+            border: 1px dashed black;
+            background-color: azure;
+        }
+    </style>
+    <script type="text/javascript">
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        var arrayNrosPares;
+        var i;
+
+        function fFor() {
+            for (i=0; i<12; i++) {
+                document.write(meses[i]+"-");
+            }
+        }
+        
+        function fWhile() {
+            i = 0;
+            while (i < 12) {
+                document.write(meses[i]+"-");
+                i++;
+            }
+        }
+
+        function fDoWhile() {
+            i = 0;
+            do {
+                document.write(meses[i]+"-");
+                i++;
+            } while(i < 12);
+        }
+
+        function fForIn() {
+            for (i in meses){
+                document.write(meses[i]+"-");
+            }
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li type="square"><b>a) Repetitiva: for</b>
+            <li>
+                <script type="text/javascript">
+                    fFor();
+                </script>
+            </li>
+        </li>
+        <li type="square"><b>b) Repetitiva: while</b>
+            <li>
+                <script type="text/javascript">
+                    fWhile();
+                </script>
+            </li>
+        </li>
+        <li type="square"><b>c) Repetitiva: do while</b>
+            <li>
+                <script type="text/javascript">
+                    fDoWhile();
+                </script>
+            </li>
+        </li>
+        <li type="square"><b>d) Repetitiva: for in</b>
+            <li>
+                <script type="text/javascript">
+                    fForIn();
+                </script>
+            </li>
+        </li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Buscar Elemento - Array</title>
+    </head>
+    <body>
+        <h1>Ingreso de Animales</h1>
+        <input type="text" name="txtAnimal" id="animal">
+        <button type="button" id="btnAgregar">Agregar</button>
+        <div id="listado"></div>
+
+        <script>
+          let animales = []; 
+          let animal = document.getElementById("animal"); 
+          let btnAgregar = document.getElementById("btnAgregar"); 
+          let listar = document.getElementById("listado"); 
+          
+          function agregaElemento() {
+            animales.push(animal)
+            btnAgregar.addEventListener("click", () => {
+              animales.forEach((elemento) => {
+                listar.innerHTML += `<p>${elemento.value}</p>`
+              })
+            })
+          }    
+          agregaElemento()
+        </script>
+  </body>
+</html>

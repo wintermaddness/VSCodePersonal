@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc2 (B)- Funciones y condicionales</title>
+    <style>
+        h1, h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(85, 83, 83);
+            border: 1px dashed black;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            width: auto;
+            border: 1px dashed black;
+            background-color: gray;
+            padding: 0 10px 5px 10px;
+            text-align: center;
+            width: 500px;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 10px;
+            width: 140px;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        #arg1, #arg2 {
+            padding: 10px;
+            text-align: center;
+        }
+        #salida #salida2 {
+            padding: 5px;
+            border: 1px dashed black;
+        }
+    </style>
+    <script type="text/javascript">
+        function valorSeleccionado(Valor) {
+            var rta;
+            if (Valor < 0) {
+                rta = -1;
+            } else if (Valor >= 0 && Valor < 10) {
+                rta = 0;
+            } else if (Valor >= 10 && Valor < 50) {
+                rta = 1;
+            } else if (Valor >= 50 && Valor < 100) {
+                rta = 2;
+            } else if (Valor >= 100) {
+                rta = 3;
+            }
+            return rta;
+        }
+
+        function suma() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (parseInt(nro1) + parseInt(nro2));
+            var valorAns = valorSeleccionado(ans); //La verificación se realiza sobre el resultado de la operación.
+            if (valorAns == -1) {
+                rta = "1) El valor ingresado es negativo (menor a 0).";
+            } else if (valorAns == 0) {
+                rta = "2) El valor ingresado es mayor/igual a 0 y menor a 10 (entre 0 y 9).";
+            } else if (valorAns == 1) {
+                rta = "3) El valor ingresado es mayor/igual a 10 y menor a 50 (entre 10 y 49).";
+            } else if (valorAns == 2) {
+                rta = "4) El valor ingresado es mayor/igual a 50 y menor a 100 (entre 50 y 99).";
+            } else if (valorAns == 3) {
+                rta = "5) El valor ingresado es mayor que 100.";
+            }
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " más " + nro2 + " es igual a " + ans + "\n"
+                            + rta + "\n";
+        }
+
+        function resta() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (nro1 - nro2); 
+            var valorAns = valorSeleccionado(ans);
+            if (valorAns == -1) {
+                rta = "1) El valor ingresado es negativo (menor a 0).";
+            } else if (valorAns == 0) {
+                rta = "2) El valor ingresado es mayor/igual a 0 y menor a 10 (entre 0 y 9).";
+            } else if (valorAns == 1) {
+                rta = "3) El valor ingresado es mayor/igual a 10 y menor a 50 (entre 10 y 49).";
+            } else if (valorAns == 2) {
+                rta = "4) El valor ingresado es mayor/igual a 50 y menor a 100 (entre 50 y 99).";
+            } else if (valorAns == 3) {
+                rta = "5) El valor ingresado es mayor que 100.";
+            }
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " menos " + nro2 + " es igual a " + ans + "\n"
+                            + rta + "\n";
+        }
+
+        function multiplicacion() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (nro1 * nro2);
+            var valorAns = valorSeleccionado(ans);
+            if (valorAns == -1) {
+                rta = "1) El valor ingresado es negativo (menor a 0).";
+            } else if (valorAns == 0) {
+                rta = "2) El valor ingresado es mayor/igual a 0 y menor a 10 (entre 0 y 9).";
+            } else if (valorAns == 1) {
+                rta = "3) El valor ingresado es mayor/igual a 10 y menor a 50 (entre 10 y 49).";
+            } else if (valorAns == 2) {
+                rta = "4) El valor ingresado es mayor/igual a 50 y menor a 100 (entre 50 y 99).";
+            } else if (valorAns == 3) {
+                rta = "5) El valor ingresado es mayor que 100.";
+            }
+            salida = document.getElementById("salida"); 
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " por " + nro2 + " es igual a " + ans + "\n"
+                            + rta + "\n";
+        }
+
+        function division() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (nro1 / nro2);
+            var valorAns = valorSeleccionado(ans);
+            if (valorAns == -1) {
+                rta = "1) El valor ingresado es negativo (menor a 0).";
+            } else if (valorAns == 0) {
+                rta = "2) El valor ingresado es mayor/igual a 0 y menor a 10 (entre 0 y 9).";
+            } else if (valorAns == 1) {
+                rta = "3) El valor ingresado es mayor/igual a 10 y menor a 50 (entre 10 y 49).";
+            } else if (valorAns == 2) {
+                rta = "4) El valor ingresado es mayor/igual a 50 y menor a 100 (entre 50 y 99).";
+            } else if (valorAns == 3) {
+                rta = "5) El valor ingresado es mayor que 100.";
+            }
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " dividido " + nro2 + " es igual a " + ans + "\n"
+                            + rta + "\n";
+        }
+
+        function potencia() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            let p = 1;
+            for (i=0; i<nro2; i++){
+                p = p * nro1;
+            }
+            var ans = p;
+            var valorAns = valorSeleccionado(ans);
+            if (valorAns == -1) {
+                rta = "1) El valor ingresado es negativo (menor a 0).";
+            } else if (valorAns == 0) {
+                rta = "2) El valor ingresado es mayor/igual a 0 y menor a 10 (entre 0 y 9).";
+            } else if (valorAns == 1) {
+                rta = "3) El valor ingresado es mayor/igual a 10 y menor a 50 (entre 10 y 49).";
+            } else if (valorAns == 2) {
+                rta = "4) El valor ingresado es mayor/igual a 50 y menor a 100 (entre 50 y 99).";
+            } else if (valorAns == 3) {
+                rta = "5) El valor ingresado es mayor que 100.";
+            }
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " potencia de " + nro2 + " es igual a " + ans + "\n"
+                            + rta + "\n";
+        }
+
+        function cuadrado() {
+            var nro1 = prompt("Dime un número:");
+            p = nro1 * nro1;
+            var ans = p;
+            var valorAns = valorSeleccionado(ans);
+            if (valorAns == -1) {
+                rta = "1) El valor ingresado es negativo (menor a 0).";
+            } else if (valorAns == 0) {
+                rta = "2) El valor ingresado es mayor/igual a 0 y menor a 10 (entre 0 y 9).";
+            } else if (valorAns == 1) {
+                rta = "3) El valor ingresado es mayor/igual a 10 y menor a 50 (entre 10 y 49).";
+            } else if (valorAns == 2) {
+                rta = "4) El valor ingresado es mayor/igual a 50 y menor a 100 (entre 50 y 99).";
+            } else if (valorAns == 3) {
+                rta = "5) El valor ingresado es mayor que 100.";
+            }
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " al cuadrado es igual a " + ans + "\n"
+                            + rta + "\n";
+        }
+    </script>
+    <script type="text/javascript">
+        function euros() {
+            var nro1 = prompt("Dime un número:");
+            pesos = nro1;
+            euro = 0.0079;
+            var ans = pesos * euro;
+            salida = document.getElementById("salida2");
+            salida.value += nro1 + " pesos es igual a " + ans + " EUR\n";
+        }
+        function EaPesos() {
+            var nro1 = prompt("Dime un número:");
+            euro = nro1;
+            pesos = 127.06;
+            var ans = euro * pesos;
+            salida = document.getElementById("salida2");
+            salida.value += nro1 + " EUR es igual a " + ans + " pesos\n";
+        }
+
+        function dolares() {
+            var nro1 = prompt("Dime un número:");
+            pesos = nro1;
+            dolar = 0.0084;
+            var ans = pesos * dolar;
+            salida = document.getElementById("salida2");
+            salida.value += nro1 + " pesos es igual a " + ans + " USD\n";
+        }
+        function DaPesos() {
+            var nro1 = prompt("Dime un número:");
+            dolar = nro1;
+            pesos = 119.08;
+            var ans = dolar * pesos;
+            salida = document.getElementById("salida2");
+            salida.value += nro1 + " USD es igual a " + ans + " pesos\n";
+        }
+        
+        function reales() {
+            var nro1 = prompt("Dime un número:");
+            pesos = nro1;
+            real = 0.041;
+            var ans = pesos * real;
+            salida = document.getElementById("salida2");
+            salida.value += nro1 + " pesos es igual a " + ans + " BRL\n";
+        }
+        function RaPesos() {
+            var nro1 = prompt("Dime un número:");
+            real = nro1;
+            pesos = 24.63;
+            var ans = real * pesos;
+            salida = document.getElementById("salida2");
+            salida.value += nro1 + " BRL es igual a " + ans + " pesos\n";
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="float: left;">
+        <h1>CALCULADORA</h1>
+        <input type="button" value="SUMA" class="button" onclick="suma()">
+        <input type="button" value="RESTA" class="button" onclick="resta()">
+        <input type="button" value="MULTIPLICACIÓN" class="button" onclick="multiplicacion()">
+        <br>
+        <input type="button" value="DIVISIÓN" class="button" onclick="division()">
+        <input type="button" value="POTENCIA" class="button" onclick="potencia()">
+        <input type="button" value="CUADRADO" class="button" onclick="cuadrado()">
+        <div id="result"></div>
+        <h2>RESULTADOS</h2>
+        <textarea id="salida" name="salida" rows="5" cols="65"></textarea>
+    </div>
+    <br>
+    <div class="container" style="position:relative; float:left; top:-18px">
+        <h1>CONVERSOR DE MONEDA</h1>
+        <input type="button" value="Pesos a EUROS" class="button" onclick="euros()">
+        <input type="button" value="Pesos a DÓLARES" class="button" onclick="dolares()">
+        <input type="button" value="Pesos a REALES" class="button" onclick="reales()">
+        <br>
+        <input type="button" value="Euros a PESOS" class="button" onclick="EaPesos()">
+        <input type="button" value="Dólares a PESOS" class="button" onclick="DaPesos()">
+        <input type="button" value="Reales a PESOS" class="button" onclick="RaPesos()">
+        <div id="result"></div>
+        <h2>RESULTADOS</h2>
+        <textarea id="salida2" name="salida2" rows="5" cols="65"></textarea>
+    </div>
+</body>
+</html>
