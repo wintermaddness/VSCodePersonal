@@ -198,6 +198,13 @@ body {
 	height: 340px;
 }
 
+.card:hover {
+    box-shadow: 0 0 0 5px rgba(136, 136, 136, 0.283); 
+    transform: scale(1) translateY(-3px); 
+    z-index: 1; 
+    border-bottom: 0 none;
+}
+
 #buy {
     /*border: 1px solid green;*/
 	margin: 0 20px 0 0;
@@ -228,6 +235,7 @@ body {
 	height: 5em;
 	width: 100%;
 	background-color: rgba(62,62,61,255);
+	box-shadow: 10px 10px 200px #000000; 
 }
 /* fin CONTENIDO PRINCIPAL */
 
