@@ -192,6 +192,7 @@ body {
 .card {
 	break-inside: avoid;
 	page-break-inside: avoid;
+	border-radius: 10px;
 	background-color: rgb(208, 203, 203);
 	border: 2px solid rgb(81, 84, 86);
 	padding: 10px;
