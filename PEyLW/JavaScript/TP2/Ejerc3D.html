@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc7 (D) - Repetitivas</title>
+    <style>
+        h1, h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgb(85, 83, 83);
+            border: 1px dashed black;
+            text-align: center;
+            color: white;
+        }
+        .container {
+            width: auto;
+            border: 1px dashed black;
+            background-color: gray;
+            padding: 0 10px 5px 10px;
+            text-align: center;
+            width: 500px;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 10px;
+            width: 140px;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        #salida {
+            padding: 5px;
+            border: 1px dashed black;
+        }
+        #primos {
+            margin: 0;
+            padding: 5px;
+            width: 488px;
+            height: 170px;
+            border: 1px dashed black;
+            background-color: azure;
+        }
+    </style>
+    <script type="text/javascript">
+        function suma() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (parseInt(nro1) + parseInt(nro2)); 
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " más " + nro2 + " es igual a " + ans + "\n";
+        }
+
+        function resta() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (nro1 - nro2); 
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " menos " + nro2 + " es igual a " + ans + "\n";
+        }
+
+        function multiplicacion() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (nro1 * nro2); 
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " por " + nro2 + " es igual a " + ans + "\n";
+        }
+
+        function division() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            var ans = (nro1 / nro2); 
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " dividido " + nro2 + " es igual a " + ans + "\n";
+        }
+
+        function potencia() {
+            var nro1 = prompt("Dime un número:");
+            var nro2 = prompt("Dime otro número:");
+            let p = 1;
+            for (i=0; i<nro2; i++){
+                p = p * nro1;
+            }
+            var ans = p;
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " potencia de " + nro2 + " es igual a " + ans + "\n";
+        }
+
+        function cuadrado() {
+            var nro1 = prompt("Dime un número:");
+            p = nro1 * nro1;
+            var ans = p;
+            salida = document.getElementById("salida");
+            salida.value += nro1 + " al cuadrado es igual a " + ans + "\n";
+        }
+
+        function factorial() {
+            var nro = prompt("Dime un número:");
+            var factorial = 1;
+            /*while (nro > 0) {
+                resultado = factorial * nro;
+                salida = document.getElementById("salida");
+                salida.value += resultado + " - ";
+                nro--;
+            }*/
+            var total = 1; 
+            for (i=1; i<=nro; i++) {
+                total = total * i;
+                salida = document.getElementById("salida");
+                salida.value += total + " - ";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container" style="float: left;">
+        <h1>CALCULADORA</h1>
+        <input type="button" value="SUMA" class="button" onclick="suma()">
+        <input type="button" value="RESTA" class="button" onclick="resta()">
+        <input type="button" value="MULTIPLICACIÓN" class="button" onclick="multiplicacion()">
+        <br>
+        <input type="button" value="DIVISIÓN" class="button" onclick="division()">
+        <input type="button" value="POTENCIA" class="button" onclick="potencia()">
+        <input type="button" value="CUADRADO" class="button" onclick="cuadrado()">
+        <br>
+        <input type="button" value="FACTORIAL" class="button" onclick="factorial()">
+        <h2>RESULTADOS</h2>
+        <textarea id="salida" name="salida" rows="5" cols="64"></textarea>
+    </div>
+
+    <div class="container" style="position:relative; float:left;">
+        <h1>RECORRIDO DE NÚMEROS PRIMOS</h1>
+        <h4 style="color: rgb(48, 48, 48);"><code>Nros. Primos Menores a 100</code></h4>
+        <div id="content">
+            <textarea name="primos" id="primos" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+
+    <script>
+        function primos() {
+            var c = 100;
+            var numerosPrimos = [];
+            for (var j=2; j<c; j++) {
+                if (primo(j)) {
+                    numerosPrimos.push(j);
+                }
+            }
+            document.getElementById("primos").innerHTML = numerosPrimos;
+            function primo(numero) {
+                for (var i=2; i<numero; i++) {
+                    if (numero % i === 0) {
+                        return false;
+                    }
+                }
+                return numero !== 1;
+            }
+        }
+        primos();
+    </script>
+</body>
+</html>
