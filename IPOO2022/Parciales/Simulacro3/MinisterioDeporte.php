@@ -23,15 +23,24 @@
             $this->anioTorneo = $anioTorneo;
             $this->arrayTorneos = $arrayTorneos;
         }
-
+        
         /**
-         * Método 1: mostrarTorneos - 
-         * Retorna la lista de torneos almacenados en la colección de torneos.
+         * Método 1: mostrarDatosArreglos - 
+         * Retorna una cadena de strings de un arreglo recibido por parámetro.
+         * @return string
          */
+        public function mostrarDatosArreglos($unArreglo) {
+            $cantElementos = count($unArreglo);
+            $cadena = "";
+            for ($i=0; $i<$cantElementos; $i++) {
+                $cadena .= $unArreglo[$i]."<<---------------------------->>\n";
+            }
+            return $cadena;
+        }
 
         public function __toString() {
             $cadena = "| AÑO TORNEO: ".$this->getAnioTorneo()."\n"
-                    ."| TORNEOS: ".$this->mostrarTorneos()."\n";
+                    ."| TORNEOS: ".$this->mostrarDatosArreglos($this->getarrayTorneos())."\n";
             return $cadena;
         }
     }
