@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc4 (A, B) - Eventos y objetos</title>
+    <style>
+		* {
+			color: black;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+		}
+        .contenedor {
+            margin: 40px;
+            padding: 10px;
+            width: auto;
+            border: 1px dashed black;
+            border-radius: 20px;
+            background-color: lightgray;
+            position: relative;
+            float: left;
+        }
+        #lista li {
+            list-style-type: none;
+            border-radius: 20px;
+            padding: 5px 10px;
+            text-align: center;
+        }
+
+        #lista2 .level {
+            margin-right: 40px;
+            list-style-type: none;
+            border-radius: 20px;
+            padding: 5px 10px;
+            text-align: left;
+        }
+        #menu input:checked ~ label:before {
+            content: "\025be";
+        }
+        .interior {/* oculta las listas anidadas */
+            display: none;
+        }
+        input:checked ~ ul {
+            display: block;
+        }
+
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 10px 0;
+            width: 180px;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+	</style>
+    <script type="text/javascript">
+        function alert1(texto) {
+            i++;
+            salida.value+=i+" "+texto+"\n";
+        }
+        function color(nro) {
+            if (nro == 1) {
+                document.getElementById('li1').style.backgroundColor = 'white';
+            } else if (nro == 2) {
+                document.getElementById('li2').style.backgroundColor = 'black';
+            } else if (nro == 3) {
+                document.getElementById('li3').style.backgroundColor = 'blue';
+            } else if (nro == 4) {
+                document.getElementById('li4').style.backgroundColor = 'red';
+            } else if (nro == 5) {
+                document.getElementById('li5').style.backgroundColor = 'yellow';
+            }
+        }
+        function colorOff(nro) {
+            if (nro == 1) {
+                document.getElementById('li1').style.backgroundColor = 'lightgrey';
+            } else if (nro == 2) {
+                document.getElementById('li2').style.backgroundColor = 'lightgrey';
+            } else if (nro == 3) {
+                document.getElementById('li3').style.backgroundColor = 'lightgrey';
+            } else if (nro == 4) {
+                document.getElementById('li4').style.backgroundColor = 'lightgrey';
+            } else if (nro == 5) {
+                document.getElementById('li5').style.backgroundColor = 'lightgrey';
+            }
+        }
+        function browser() {
+            var txt = "Browser CodeName: " + navigator.appCodeName + "\n";
+            txt+= "Browser Name: " + navigator.appName + "\n";
+            txt+= "Browser Version: " + navigator.appVersion + "\n";
+            txt+= "Cookies Enabled: " + navigator.cookieEnabled + "\n";
+            txt+= "Browser Language: " + navigator.language + "\n";
+            txt+= "Browser Online: " + navigator.onLine + "\n";
+            txt+= "Platform: " + navigator.platform + "\n";
+            txt+= "User-agent header: " + navigator.userAgent + "\n";
+            txt+= "User-agent language: " + navigator.systemLanguage + "\n";
+            salida.value += txt+"\n";
+        }
+        function buscador() {
+            if (navigator.appCodeName == "Microsoft Internet Explorer") {
+                open("https://www.microsoft.com/es-ar/");
+            } else if (navigator.appCodeName == "Firefox") {
+                open("https://www.mozilla.org/es-ES/firefox/new/?redirect_source=firefox-com");
+            } else if (navigator.appCodeName == "Konkeror") {
+                open("http://www.konkeror.com/");
+            } else if (navigator.appCodeName == "Mozilla") {
+                open("https://www.mozilla.org/es-ES/firefox/");
+            } else {
+                document.write('Browser Desconocido.<br>');
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Contador de eventos -->
+    <script type="text/javascript">
+        var i=0;
+    </script>
+    <!-- Contenedor de lista -->
+    <div class="contenedor">
+        <div id="lista" style="position:relative;float:left;">
+            <ul>
+                <li onmouseover="color(1)" onmouseout="colorOff(1)" id="li1">Blanco</li>
+                <li onmouseover="color(2)" onmouseout="colorOff(2)" id="li2">Negro</li>
+                <li onmouseover="color(3)" onmouseout="colorOff(3)" id="li3">Azul</li>
+                <li onmouseover="color(4)" onmouseout="colorOff(4)" id="li4">Rojo</li>
+                <li onmouseover="color(5)" onmouseout="colorOff(5)" id="li5">Amarillo</li>
+            </ul>
+        </div>
+
+        <!--<div id="textarea" style="position:relative;float:right;">
+            <textarea rows="20" cols="20" id="salida"></textarea>
+        </div>-->
+
+        <div id="lista2" style="position:relative;float:left;">
+            <ul>
+                <li class="level"><input type="checkbox" name="list" id="nivel1"><label for="nivel1">Neuquén</label>
+                    <ul class="interior">
+                        <li>Neuquén</li>
+                        <li>Zapala</li>
+                        <li>San Martín</li>
+                        <li>Junin</li>
+                    </ul>
+                </li>
+                <li class="level"><input type="checkbox" name="list" id="nivel1"><label for="nivel2">Rio Negro</label>
+                    <ul class="interior">
+                        <li>Cipolletti</li>
+                        <li>Fernandez Oro</li>
+                        <li>Roca</li>
+                        <li>Cinco Saltos</li>
+                        <li>Allen</li>
+                    </ul>
+                </li>
+                <li class="level"><input type="checkbox" name="list" id="nivel1"><label for="nivel3">Buenos Aires</label>
+                    <ul class="interior">
+                        <li>La Plata</li>
+                        <li>Mar del Plata</li>
+                        <li>Necochea</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div id="lista3" style="position:relative;float:left;">
+            <button onclick="browser()" class="button">DATOS DEL BUSCADOR</button>
+            <div id="textarea" style="position:relative;float:both;">
+                <textarea rows="20" cols="50" id="salida"></textarea>
+            </div>
+            <button onclick="buscador()" class="button">BUSCADOR</button>
+        </div>
+    </div>
+</body>
+</html>
