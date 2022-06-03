@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc1 - String</title>
+    <style>
+        * {
+            color: black;
+        }
+        .contenedor {
+            margin: 40px;
+            padding: 10px;
+            width: auto;
+            border: 1px dashed black;
+            border-radius: 20px;
+            background-color: lightgray;
+            position: relative;
+            float: left;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 10px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 0 10px 0 0;
+            width: 180px;
+            position: relative;
+            float: left;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        #salida, #salida2 {
+            padding: 5px;
+            border: 1px dashed black;
+            background-color: rgb(224, 226, 226);
+            color: black;
+        }
+        #time {
+            padding: 10px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            text-align: center;
+        }
+        #fechaIni, #fechaFin {
+            width: 210px;
+        }
+    </style>
+    <script type="text/javascript">
+		/*var cadena='Esta cadena es un objeto string';
+		var enMayuscula=cadena.toUpperCase();
+		document.write(cadena+'<br/>');
+		document.write(enMayuscula+'<br/>');
+		for(i in cadena){
+			document.write(cadena[i]+enMayuscula[i]);
+		}
+		document.write('<br/>');
+		document.write(cadena.replace('o','[ccccaaaammmbbbiiiooo]'));*/
+
+        function mostrarDatos() {
+            var escrito = prompt("Escribe algo:");
+            var enMayuscula = escrito.toUpperCase();
+            var enMinuscula = escrito.toLowerCase();
+            var cadena = "";
+            for (i in escrito){
+                cadena += escrito[i] + enMayuscula[i];
+            }
+            var str = escrito.replace("hola", "Hola, que tal ");
+
+            salida = document.getElementById("salida");
+            salida.value += "Lo que escribiste: " + escrito + "\n";
+            salida.value += "Lo que escribiste (en mayúscula): " + enMayuscula + "\n";
+            salida.value += "Lo que escribiste (en minúscula): " + enMinuscula + "\n";
+            salida.value += "Lo que escribiste (en sub-mensaje): " + cadena + "\n";
+            salida.value += "Lo que escribiste (en HOLA): " + str + "\n"; //No funciona reemplazar los strings
+        }
+
+        function mostrarFecha() {
+            var fecha = new Date();
+            var dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            salida = document.getElementById("salida2");
+            salida.value += 'Hoy es '+ dias[fecha.getDay()] + "\n";
+
+            var horas, minutos, segundos;
+            horas = fecha.getHours();
+            minutos = fecha.getMinutes();
+            segundos = fecha.getSeconds();
+            salida.value += 'Tiempo actual: '+ horas + "hs:" + minutos + "min:" + segundos + "seg\n";
+
+            salida.value += "Reloj: " + fecha.toLocaleTimeString() + "\n";
+
+            //Sólo funciona si el usuario modifica todos los datos del Value:
+            function calcularDiasFaltantes(fechaIni, fechaFin) {
+                    var diaEnMils = 1000 * 60 * 60 * 24,
+                    desde = new Date(fechaIni.substr(0, 10)),
+                    hasta = new Date(fechaFin.substr(0, 10)),
+                    diff = hasta.getTime() - desde.getTime() + diaEnMils;// +1 incluir el dia de ini
+                    return diff / diaEnMils;
+            }
+
+            document.getElementById('calcular').addEventListener('click', function() {
+                document.getElementById('dias').innerText = calcularDiasFaltantes (
+                    document.getElementById('fechaIni').value,
+                    document.getElementById('fechaFin').value
+                );
+            });
+        }
+	</script>
+</head>
+<body>
+    <!-- STRING -->
+    <div class="contenedor">
+        <input type="button" value="PROBAR" class="button" onclick="mostrarDatos()">
+        <textarea id="salida" name="salida" cols="60" rows="20"></textarea>
+    </div>
+    <!-- DATE -->
+    <div class="contenedor">
+        <input type="button" value="PROBAR" class="button" onclick="mostrarFecha()">
+        <textarea id="salida2" name="salida2" cols="60" rows="20"></textarea>
+    </div>
+    <!-- HS:MIN:SEG -->
+    <div class="contenedor">
+        <div id="time">
+            Desde: <br><input id="fechaIni" placeholder="yyy-mm-dd HH:MM:SS" value="2022-06-01 12:08:00" style="margin:5px 0;"/><br>
+            Hasta: <br><input id="fechaFin" placeholder="yyy-mm-dd HH:MM:SS" value="2022-06-21 17:00:00" style="margin:5px 0;"/><br>
+            <button type="button" class="button" id="calcular" style="width:220px;margin:5px 0;">CALCULAR</button>
+            <p align="left">Total días faltantes: <span id="dias"></span></p>
+        </div>
+    </div>
+    <!-- EDAD -->
+    <div class="contenedor">
+        <div id="time">
+            Ingrese su fecha de nacimiento: <br><input id="fechaNac" placeholder="yyy-mm-dd" value="2002-04-03" style="margin:5px 0;"/><br>
+            <button type="button" class="button" id="calcular" style="width:240px;margin:5px 0;">CALCULAR</button><br><br>
+            <p align="left">Su edad es: <span id="edad"></span></p>
+        </div>
+    </div>
+</body>
+</html>
