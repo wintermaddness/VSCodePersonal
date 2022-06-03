@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc2 - Form</title>
+    <style>
+        * {
+            color: black;
+        }
+        form {
+            margin: 10px;
+            background-color: rgb(174, 173, 173);
+            border: 1px dashed black;
+            width: max-content;
+        }
+        caption {
+            background-color: lightgray;
+            font-weight: bold;
+        }
+        table {
+            border: 0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif; font-size:small;
+        }
+        #post {
+            margin: 5px;
+            background-color: white;
+            border: 1px dashed black;
+            padding: 5px;
+            height: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        function enviarComentarios() {
+            var fecha = new Date();
+            var comentario = document.getElementById("comentario");
+            //Se visualiza el comentario
+            var salida = document.getElementById("post");
+            salida.innerHTML += fecha.toLocaleTimeString() + "\n";
+            salida.innerHTML += comentario.value + "\n";
+            //se elimina el contenido de comentario
+            comentario.value = "";
+            //se posiciona el cursor sobre comentario
+            comentario.focus();
+        }
+    </script>
+</head>
+<body>
+    <form action="">
+        <table>
+            <tr>
+                <caption>COMENTARIOS</caption>
+            </tr>
+            <tr>
+                <td>
+                    Ingrese su nombre:
+                </td>
+                <td colspan="2">
+                    <input type="text" maxlength="40" size="21px"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <textarea name="comentario" id="comentario" cols="40" rows="10">
+                        Deje su comentario...
+                    </textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" align="right">
+                    <input type="submit" onclick="enviarComentarios();"/>
+                    <input type="reset"/>
+                </td>
+            </tr>
+        </table>
+        <div id="post"></div>
+    </form>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejerc1 - String</title>
+    <title>Ejerc1 - String & Date</title>
     <style>
         * {
             color: black;
@@ -110,6 +110,14 @@
                 );
             });
         }
+
+        function mostrarEdad() {
+            var fechaNac = prompt("Ingrese su año de nacimiento:");
+            var fechaActual = new Date();
+            var anioActual = fechaActual.getYear();
+            var edad = (anioActual + 1900) - fechaNac;
+            document.getElementById('edad').innerHTML = "Usted tiene " + edad + " años.";
+        }
 	</script>
 </head>
 <body>
@@ -135,9 +143,9 @@
     <!-- EDAD -->
     <div class="contenedor">
         <div id="time">
-            Ingrese su fecha de nacimiento: <br><input id="fechaNac" placeholder="yyy-mm-dd" value="2002-04-03" style="margin:5px 0;"/><br>
-            <button type="button" class="button" id="calcular" style="width:240px;margin:5px 0;">CALCULAR</button><br><br>
-            <p align="left">Su edad es: <span id="edad"></span></p>
+            <!--Ingrese su año de nacimiento: <br><input id="fechaNac" placeholder="año" value="2002" style="margin:5px 0;"/><br>-->
+            <button type="button" class="button" id="calcular" style="width:240px;margin:0 0 5px 0;" onclick="mostrarEdad()">CALCULAR LA EDAD</button><br><br>
+            <span id="edad"></span>
         </div>
     </div>
 </body>
