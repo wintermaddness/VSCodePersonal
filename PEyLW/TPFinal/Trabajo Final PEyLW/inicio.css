@@ -437,6 +437,9 @@ li:nth-child(6) .slide-circulo {
 	border-radius: 5px;
 	margin-top: 5px;
 }
+.columna4 a:hover {
+    opacity: .70;
+}
 #footer .footer-bottom {
     background: #e0b84b;
     padding: 21px 0;
