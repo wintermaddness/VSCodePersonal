@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+    <style>
+        * {
+            color: #000;
+        }
+    </style>
+  </head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="https://compubinario.com">CompuBinario</a>
+        </div>
+    </nav>
+    <div class="col-md-3"></div>
+    <div class="col-md-6 well">
+        <h3 class="text-primary">Validando Contraseña de Usuario en Javascript</h3>
+        <hr style="border-top:1px dotted #ccc;"/>
+        <div class="col-md-5">
+            <form>
+                <div class="form-group">
+                <label>Ingrese una Contraseña</label>
+                <input type="password" onkeyup="CheckPassword(this);" class="form-control"/>
+                </div>
+                <span id="chk_capital" class="alert-danger">X Una mayúscula en primera letra</span>
+                <br />
+                <span id="chk_number" class="alert-danger">X Tener un número numérico</span>
+                <br />
+                <br />
+                <center><button type="button" id="btn_check" class="btn btn-primary" disabled="disabled">Enviar</button></center>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    function CheckPassword(password){
+        var chk_capital = document.getElementById('chk_capital');
+        var chk_number = document.getElementById('chk_number');
+        var bool_capital;
+        var bool_number;
+            
+        if(password.value.search(/[0-9]/) > 0){
+            chk_number.removeAttribute('class');
+            chk_number.setAttribute('class', 'alert-success');
+            chk_number.innerHTML = "&#10004; Validado";
+            bool_number = true;
+        }else{
+            chk_number.removeAttribute('class');
+            chk_number.setAttribute('class', 'alert-danger');
+            chk_number.innerHTML = "X Tener un número numérico";
+            bool_number = false;
+        }
+        
+        if(password.value.match(/[A-Z]/)){
+            chk_capital.removeAttribute('class');
+            chk_capital.setAttribute('class', 'alert-success');
+            chk_capital.innerHTML = "&#10004; Validado";
+            bool_capital = true;
+        }else{
+            chk_capital.removeAttribute('class');
+            chk_capital.setAttribute('class', 'alert-danger');
+            chk_capital.innerHTML = "X Una mayúscula en primera letra";
+            bool_capital = false;
+        }
+        
+        if (bool_capital && bool_number){
+            document.getElementById('btn_check').removeAttribute('disabled');
+        }else{
+            document.getElementById('btn_check').setAttribute('disabled', 'disabled');
+        }
+    }
+</script>
+</html>

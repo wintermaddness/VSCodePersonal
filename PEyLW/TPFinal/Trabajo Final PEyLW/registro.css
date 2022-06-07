@@ -254,7 +254,7 @@ body {
         color: #ffffff;
         position: relative;
         width: 50%;
-        height: max-content;
+        height: 425px;
     }
     #formulario {
         display: flex;
@@ -263,7 +263,7 @@ body {
         /*max-width: 400px;*/
         height: auto;
         box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-        padding: 50px;
+        padding: 40px;
         /*border: 1px solid red;*/
         width: auto;
     }
@@ -285,16 +285,15 @@ body {
         height: 40px;
         border-radius: 20px;
         outline: none;
-        border: 2px solid #dcb03b;
+        /*border: 2px solid #dcb03b;*/
         padding: 0 10px 0 30px;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     }
     #formulario div {
         position: relative;
         margin-bottom: 15px;
     }
     input:focus {
-        border: 2px solid #f2796e;
+        border: 2px solid #dcb03b;
     }
 
     /* Estilos de los iconos del formulario */
@@ -305,21 +304,11 @@ body {
     /* fin Estilos de los iconos del formulario */
 
     /* Estilos de los msj de error */
-    .failure-icon, .error {
-        color: red;
-    }
-    .success-icon {
-        color: green;
-    }
-    .error {
-        font-size: 14.5px;
-        margin-top: 5px;
-    }
-
-    /* Evita que los iconos se superpongan */
-    .success-icon, .failure-icon {
-        right: 0;
-        opacity: 0;
+    .warnings {
+        text-align: center;
+        margin: auto;
+        color: #dcb03b;
+        padding-top: 20px;
     }
     /* fin Estilos de los msj de error */
 
@@ -334,12 +323,12 @@ body {
         color: #fff;
         font-size: 20px;
         cursor: pointer;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         transition: all 0.1s ease;
     }
     button:hover {
         /*opacity: 0.8;*/
         background-color: #e0b84b;
+        box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.305);
 	    color: #ffffff;
     }
     /* fin Estilos del botón de envío */
