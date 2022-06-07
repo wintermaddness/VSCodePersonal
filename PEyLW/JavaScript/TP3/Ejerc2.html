@@ -34,10 +34,12 @@
     <script type="text/javascript">
         function enviarComentarios() {
             var fecha = new Date();
+            var usuario = document.getElementById("usuario");
             var comentario = document.getElementById("comentario");
             //Se visualiza el comentario
             var salida = document.getElementById("post");
             salida.innerHTML += fecha.toLocaleTimeString() + "\n";
+            salida.innerHTML += usuario.value + ": \n";
             salida.innerHTML += comentario.value + "\n";
             //se elimina el contenido de comentario
             comentario.value = "";
@@ -57,7 +59,7 @@
                     Ingrese su nombre:
                 </td>
                 <td colspan="2">
-                    <input type="text" maxlength="40" size="21px"/>
+                    <input type="text" id="usuario" maxlength="40" size="21px"/>
                 </td>
             </tr>
             <tr>
@@ -76,5 +78,25 @@
         </table>
         <div id="post"></div>
     </form>
+
+    <script>
+        function StartVideo(Video) {
+            /*var Video;
+            Video= document.getElementById("vid");*/
+            Video.muted = true;
+            Video.currentTime = 1;
+            Video.playbackRate = 0.5;
+            Video.play();
+        }
+        function StopVideo(Video) {
+            /*var Video;
+            Video= document.getElementById("vid");*/
+            Video.currentTime = 0;
+            Video.pause();
+        }
+    </script>
+    <video controls width="1300" onmouseover="StartVideo(this)" onmouseout="StopVideo(this)" id="vid">
+        <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"/>
+    </video>
 </body>
 </html>
