@@ -5,6 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM - ul</title>
+    <style>
+        * {color: black;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+        #listar {color:white;background-color:black;border-radius:10px;padding:10px;width:190px;}
+        #listar:hover {opacity: 0.95;}
+    </style>
+    <script>
+        function DOM(objeto) {
+            switch (objeto.nodeType) {
+                case 1: //Si es un elemento
+                    objeto.style.backgroundColor = 'silver';
+                    var a = objeto.childNodes;
+                    for (i in a) {
+                        DOM(a[i]);
+                    }
+                break;
+            }
+        }
+    </script>
 </head>
 <body>
     <ul>
@@ -29,5 +47,6 @@
             </ul>
         </li>
     </ul>
+    <button id="listar" onclick="DOM(document.ul)">LISTAR</button>
 </body>
 </html>
