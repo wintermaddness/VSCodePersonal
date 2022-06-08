@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="cssEstilos.css" title="style" />
-        <title>Página Principal</title>
-    </head>
-    <body>
-        <div id="prueba">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Dorada - Inicio</title>
+    <link rel="stylesheet" href="PagPrincipal.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
+</head>
+<body>
+    <div id="contenedor">
+        <div id="nav">
             <ul>
                 <li>
                     <img src="Images/klipartz.com.png" id="logo1" alt="Logo Lectura Dorada">
@@ -16,218 +18,245 @@
                         Lectura Dorada
                     </h1>
                 </li>
-                <li><a href="#inicio" class="active">Inicio</a></li>
-                <li><a href="#promociones" class="active">Promociones</a></li>
-                <li><a href="#noticias">Noticias</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-                <li><a href="#sobrenosotros" class="active">Sobre Nosotros</a></li>
-                <li><a href="#registro">Registro</a></li>
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="Promociones.html">Promociones</a></li>
+                <li><a href="Noticias.html">Noticias</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
+                <li><a href="Registro.html">Registro</a></li>
                 <li>
                     <form id="buscador">
-                        <input type="text" placeholder="Buscar..." class= "search"  required>
-                        <span class="arrow"></span><input type="button" value="Búsqueda" class= "button">
+                        <input type="text" placeholder="Buscar..." class="search" required>
+                        <span class="arrow"></span><input type="button" value="Búsqueda" class="button">
                     </form>
                 </li>
             </ul>
         </div>
 
-        <div class="contenedor">
-            <!-- Slider -->
-            <div class="slide">
-                <div class="slide-inner">
-                    <input class="slide-open" type="radio" id="slide-1" 
-                        name="slide" aria-hidden="true" hidden="" checked="checked">
-                    <div class="slide-item">
-                        <img src="Images2/Galería Lectura Dorada.png">
-                    </div>
-
-                    <input class="slide-open" type="radio" id="slide-2" 
-                        name="slide" aria-hidden="true" hidden="">
-                    <div class="slide-item">
-                        <img src="Images2/Galería Lectura Dorada P (1).png">
-                    </div>
-
-                    <input class="slide-open" type="radio" id="slide-3" 
-                        name="slide" aria-hidden="true" hidden="">
-                    <div class="slide-item">
-                        <img src="Images2/Galería Lectura Dorada P (2).png">
-                    </div>
-
-                    <input class="slide-open" type="radio" id="slide-4" 
-                        name="slide" aria-hidden="true" hidden="">
-                    <div class="slide-item">
-                        <img src="Images2/Galería Lectura Dorada P (3).png">
-                    </div>
-
-                    <input class="slide-open" type="radio" id="slide-5" 
-                        name="slide" aria-hidden="true" hidden="">
-                    <div class="slide-item">
-                        <img src="Images2/Galería Lectura Dorada P (4).png">
-                    </div>
-
-                    <input class="slide-open" type="radio" id="slide-6" 
-                        name="slide" aria-hidden="true" hidden="">
-                    <div class="slide-item">
-                        <img src="Images2/Galería Lectura Dorada P (5).png">
-                    </div>
-                    <label for="slide-6" class="slide-control prev control-1">‹</label>
-                    <label for="slide-2" class="slide-control next control-1">›</label>
-                    <label for="slide-1" class="slide-control prev control-2">‹</label>
-                    <label for="slide-3" class="slide-control next control-2">›</label>
-                    <label for="slide-2" class="slide-control prev control-3">‹</label>
-                    <label for="slide-4" class="slide-control next control-3">›</label>
-                    <label for="slide-3" class="slide-control prev control-4">‹</label>
-                    <label for="slide-5" class="slide-control next control-4">›</label>
-                    <label for="slide-4" class="slide-control prev control-5">‹</label>
-                    <label for="slide-6" class="slide-control next control-5">›</label>
-                    <label for="slide-5" class="slide-control prev control-6">‹</label>
-                    <label for="slide-1" class="slide-control next control-6">›</label>
-                    <ol class="slide-indicador">
-                        <li>
-                            <label for="slide-1" class="slide-circulo">•</label>
-                        </li>
-                        <li>
-                            <label for="slide-2" class="slide-circulo">•</label>
-                        </li>
-                        <li>
-                            <label for="slide-3" class="slide-circulo">•</label>
-                        </li>
-                        <li>
-                            <label for="slide-4" class="slide-circulo">•</label>
-                        </li>
-                        <li>
-                            <label for="slide-5" class="slide-circulo">•</label>
-                        </li>
-                        <li>
-                            <label for="slide-6" class="slide-circulo">•</label>
-                        </li>
-                    </ol>
+        <div id="slider">
+            <div class="slide-inner">
+                <input class="slide-open" type="radio" id="slide-1" 
+                    name="slide" aria-hidden="true" hidden="" checked="checked">
+                <div class="slide-item">
+                    <img src="Images2/Galería Lectura Dorada.png">
                 </div>
+
+                <input class="slide-open" type="radio" id="slide-2" 
+                    name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="Images2/Galería Lectura Dorada P (1).png">
+                </div>
+
+                <input class="slide-open" type="radio" id="slide-3" 
+                    name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="Images2/Galería Lectura Dorada P (2).png">
+                </div>
+
+                <input class="slide-open" type="radio" id="slide-4" 
+                    name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="Images2/Galería Lectura Dorada P (3).png">
+                </div>
+
+                <input class="slide-open" type="radio" id="slide-5" 
+                    name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="Images2/Galería Lectura Dorada P (4).png">
+                </div>
+
+                <input class="slide-open" type="radio" id="slide-6" 
+                    name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="Images2/Galería Lectura Dorada P (5).png">
+                </div>
+                <label for="slide-6" class="slide-control prev control-1">‹</label>
+                <label for="slide-2" class="slide-control next control-1">›</label>
+                <label for="slide-1" class="slide-control prev control-2">‹</label>
+                <label for="slide-3" class="slide-control next control-2">›</label>
+                <label for="slide-2" class="slide-control prev control-3">‹</label>
+                <label for="slide-4" class="slide-control next control-3">›</label>
+                <label for="slide-3" class="slide-control prev control-4">‹</label>
+                <label for="slide-5" class="slide-control next control-4">›</label>
+                <label for="slide-4" class="slide-control prev control-5">‹</label>
+                <label for="slide-6" class="slide-control next control-5">›</label>
+                <label for="slide-5" class="slide-control prev control-6">‹</label>
+                <label for="slide-1" class="slide-control next control-6">›</label>
+                <ol class="slide-indicador">
+                    <li>
+                        <label for="slide-1" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-2" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-3" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-4" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-5" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-6" class="slide-circulo">•</label>
+                    </li>
+                </ol>
             </div>
         </div>
 
-        <div id="contenido">
-            <div class="principal">
-                <div class="card">
-                    <h2>Harry Potter y la Piedra Filosofal</h2>
-                    <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal">
-                </div>
-                <div class="card">
-                    <h2>Juego de Tronos</h2>
-                    <img src="Images2/2.png" alt="Juego De Tronos">
-                </div>
-                <div class="card">
-                    <h2>El Despertar de los Dragones</h2>
-                    <img src="Images2/3.png" alt="El Despertar de los Dragones">
-                </div>
-                <div class="card">
-                    <h2>La Odisea</h2>
-                    <img src="Images2/4.png" alt="La Odisea">
-                </div>
-                <div class="card">
-                    <h2>Estudio en Escarlata</h2>
-                    <img src="Images2/5.png" alt="Estudio en Escarlata">
-                </div>
-                <div class="card">
-                    <h2>Harry Potter y el prisionero de Azkaban</h2>
-                    <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
-                </div>
-                <div class="card">
-                    <h2>Estudio en Escarlata</h2>
-                    <img src="Images2/5.png" alt="Estudio en Escarlata">
-                </div>
-                <div class="card">
-                    <h2>Harry Potter y el prisionero de Azkaban</h2>
-                    <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
-                </div>
-            </div>
-
-            <!-- Buttons -->
-            <div id="buttons">
-                <ul class="botones">
-                    <li><a href="#!">Anterior</a></li>
-                    <li><a href="#!">Arriba</a></li>
-                    <li><a href="#!">Siguiente</a></li>
-                </ul>
-            </div>
-            <!-- /Buttons -->
-
+        <div id="cuerpo">
             <div id="lateral">
                 <ul>
                     <li>
-                        <a href="/" title="Ver categorías. AccessKey: c" accesskey="c">
-                            Categorías
-                        </a>
+                        <a href="#" title="Ver categorías" accesskey="c">Categorías</a>
                     </li>
                     <li>
-                        <a href="/" title="Ver autores. AccessKey: a" accesskey="a">
-                            Autores
-                        </a>
+                        <a href="#" title="Ver autores" accesskey="a">Autores</a>
                     </li>
                     <li>
-                        <a href="/" title="Ver packs. AccessKey: p" accesskey="p">
-                            Packs
-                        </a>
+                        <a href="#" title="Ver packs" accesskey="p">Packs</a>
                     </li>
                     <li>
-                        <a href="/" title="Ver sagas. AccessKey: s" accesskey="s">
-                            Sagas
-                        </a>
+                        <a href="#" title="Ver sagas" accesskey="s">Sagas</a>
                     </li>
                 </ul>
             </div>
+    
+            <div id="principal">
+                <div id="contenido">
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>Harry Potter y el prisionero de Azkaban</h2>
+                        </div>
+                        <div class="card-image">
+                            <a href="Ebook.html">
+                                <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>Juego de Tronos</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images2/2.png" alt="Juego De Tronos">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>El Despertar de los Dragones</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images2/3.png" alt="El Despertar de los Dragones">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>La Odisea</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images2/4.png" alt="La Odisea">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>Estudio en Escarlata</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images2/5.png" alt="Estudio en Escarlata">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>Las Memorias de Sherlock Holmes</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images/SH3.jpg" alt="Las Memorias de Sherlock Holmes">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>El Despertar del Valiente</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images/MR1.jpg" alt="El Despertar del Valiente">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>Harry Potter y la Piedra Filosofal</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal">
+                        </div>
+                    </div>
+                </div>
+                <div id="buttons">
+                    <ul>
+                        <li>
+                            <a href="#!"><input type="button" value="Anterior" class="botones"></a>
+                            <a href="#!"><input type="button" value="Siguiente" class="botones"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <footer>
-            <div id="footer1">
-                <div class="container">
-                    <div class="row">
-                        <div class="columna1">
-                            <div class="infoarea">
-                                <div class="footerLogo">
-                                    <a href="#">
-                                        <img src="Images/klipartz.com.png" alt="Logo Lectura Dorada" height="100" width="100">
-                                    </a>
-                                </div>
-                                <div>
-                                    <i>Tu biblioteca en línea</i>
-                                </div>
+        <div id="vistas">
+            <div id="content">
+
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="columna1">
+                        <div class="infoarea">
+                            <div class="footerLogo">
+                                <a href="#">
+                                    <img src="Images/klipartz.com.png" alt="Logo Lectura Dorada" height="60" width="60">
+                                </a>
+                            </div>
+                            <div>
+                                <i>Tu biblioteca en línea</i>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="columna2">
-                            <div class="links">
-                                <h2>Info</h2>
-                                <ul>
-                                    <li>
-                                        <a href="#">Sobre Nosotros</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="columna3">
-                            <h2>Ubicación</h2>
-                            <p>11 de Marzo 1883, Villa Regina, Provincia de Río Negro</p>
-                            <p>República Argentina</p>
-                        </div>
-
-                        <div class="columna4">
-                            <h5>Redes Sociales</h5>
+                    <div class="columna2">
+                        <div class="links">
+                            <h4>Info</h4>
                             <ul>
                                 <li>
-                                    <a href="#">
-                                        <img src="Images/1.png" height="30" width="30" alt="Facebook" class="social">
-                                    </a>
-                                    <a href="#">
-                                        <img src="Images/3.png" height="30" width="30" alt="Instagram" class="social">
-                                    </a>
-                                    <a href="#">
-                                        <img src="Images/2.png" height="30" width="30" alt="Pinterest" class="social">
-                                    </a>
+                                    <a href="SobreNosotros.html">Sobre Nosotros</a>
                                 </li>
                             </ul>
                         </div>
+                    </div>
+
+                    <div class="columna3">
+                        <h4>Ubicación</h4>
+                        <p>11 de Marzo 1883, Villa Regina</p>
+                        <p>Provincia de Río Negro, República Argentina</p>
+                    </div>
+
+                    <div class="columna4">
+                        <h4>Redes Sociales</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="Images/1.png" height="30" width="30" alt="Facebook" class="social">
+                                </a>
+                                <a href="#">
+                                    <img src="Images/2.png" height="30" width="30" alt="Instagram" class="social">
+                                </a>
+                                <a href="#">
+                                    <img src="Images/3.png" height="30" width="30" alt="Pinterest" class="social">
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -237,6 +266,8 @@
                     © 2022 | Diseño por: Aliaga Vidal, Celeste Belén | FAI-3757
                 </p>
             </div>
-        </footer>
-    </body>
+        </div>
+
+    </div>
+</body>
 </html>
