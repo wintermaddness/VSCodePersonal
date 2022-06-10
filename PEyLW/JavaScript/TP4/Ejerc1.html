@@ -11,22 +11,17 @@
         #listar:hover {opacity: 0.95;}
     </style>
     <script>
-        function DOM(objeto) {
-            switch (objeto.nodeType) {
-                case 1: //Si es un elemento
-                    objeto.style.backgroundColor = 'silver';
-                    var a = objeto.childNodes;
-                    for (i in a) {
-                        DOM(a[i]);
-                    }
-                break;
-            }
+        function DOM() {
+        const elems = document.querySelectorAll('ul, li');
+        let cantElements = elems.length;
+        for (var i=0; i<cantElements; i++) {
+            allNodes[i].style.backgroundColor = 'silver';
         }
     </script>
 </head>
 <body>
     <ul>
-        <li>
+        <li id="id1">
             Menú 1
             <ul>
                 <li>
@@ -47,6 +42,6 @@
             </ul>
         </li>
     </ul>
-    <button id="listar" onclick="DOM(document.ul)">LISTAR</button>
+    <button id="listar" onclick="DOM()">LISTAR</button>
 </body>
 </html>
