@@ -7,6 +7,7 @@
     <title>Lectura Dorada - Inicio</title>
     <link rel="stylesheet" href="PagPrincipal.css">
     <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 </head>
 <body>
     <div id="contenedor">
@@ -204,8 +205,114 @@
         </div>
 
         <div id="vistas">
+            <script>
+                var current = 0;
+                var imagenes = new Array();
+                $(document).ready(function() {
+                    var numImages = 6;
+                    if (numImages <= 3) {
+                        $('.right-arrow').css('display', 'none');
+                        $('.left-arrow').css('display', 'none');
+                    }
+                    $('.left-arrow').on('click',function() {
+                        if (current > 0) {
+                            current = current - 1;
+                        } else {
+                            current = numImages - 3;
+                        }
+                        $(".carrusel").animate({"left": -($('#product_'+current).position().left)}, 600);
+                        return false;
+                    });
+                
+                    $('.left-arrow').on('hover', function() {
+                        $(this).css('opacity','0.5');
+                    }, function() {
+                        $(this).css('opacity','1');
+                    });
+                
+                    $('.right-arrow').on('hover', function() {
+                        $(this).css('opacity','0.5');
+                    }, function() {
+                        $(this).css('opacity','1');
+                    });
+                
+                    $('.right-arrow').on('click', function() {
+                        if (numImages > current + 3) {
+                            current = current+1;
+                        } else {
+                            current = 0;
+                        }
+                        $(".carrusel").animate({"left": -($('#product_'+current).position().left)}, 600);
+                        return false;
+                    });
+                });
+            </script>
             <div id="content">
+                <div id="carrusel">
+                    <a href="#" class="left-arrow"><label>‹</label></a>
+                    <a href="#" class="right-arrow"><label>›</label></a>
+                    <div class="carrusel">
+                        <div class="product" id="product_0">
+                            <img src="https://th.bing.com/th/id/R.7f43066dd9c0c5a3cecd23eb32bf4eef?rik=DiErvWaEKQGkJQ&pid=ImgRaw&r=0" alt="J.K Rowling" width="210" height="230" />
+                            <h4>J.K Rowling</h4>
+                            <p>Escritora, productora y guionista británica</p>
+                        </div>
+                        <div class="product" id="product_1">
+                            <img src="https://th.bing.com/th/id/R.8362bffe35279697caa8c8a6725ebe17?rik=uTdbDm25B55ncA&pid=ImgRaw&r=0" alt="Stephen King" width="210" height="230" />
+                            <h4>Stephen King</h4>
+                            <p>Novelista y escritor estadounidense</p>
+                        </div>
+                        <div class="product" id="product_2">
+                            <img src="https://irepo.primecp.com/2016/03/271272/profile-179_Category-CategoryPageDefault_ID-1547953.jpg?v=1547953"  alt="Morgan Rice" width="210" height="230" />
+                            <h4>Morgan Rice</h4>
+                            <p>Novelista y escritora estadounidense</p>
+                        </div>
+                        <div class="product" id="product_3">
+                            <img src="https://media.fstatic.com/mORiPCrVg43jikSkyh73E9_Y-p4=/full-fit-in/290x478/media/artists/avatar/2014/01/clive-staples-lewis_a144299_3.jpg" alt="C.S Lewis" width="210" height="230" />
+                            <h4>C.S Lewis</h4>
+                            <p>Medievalista y escritor británico</p>
+                        </div>
+                        <div class="product" id="product_4">
+                            <img src="https://th.bing.com/th/id/R.d37077bb9407bbafa5a82d969b113888?rik=rh39EpiJOIzUJg&pid=ImgRaw&r=0" alt="Agatha Christie" width="210" height="230" />
+                            <h4>Agatha Christie</h4>
+                            <p>Escritora y dramaturga británica</p>
+                        </div>
+                        <div class="product" id="product_5">
+                            <img src="https://th.bing.com/th/id/R.8efaae41eb02cb4a7f9d501f0ba714dd?rik=EvGYOrlv1NtcLg&pid=ImgRaw&r=0" alt="Scott Fitzgerald" width="210" height="230" />
+                            <h4>Scott Fitzgerald</h4>
+                            <p>Novelista y escritor estadounidense</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="mv">
+                    <span class="autores">Autores</span><br>
+                    <span class="masVistos">MÁS LEÍDOS</span>
+                </div>
+            </div>
+        </div>
 
+        <div id="vistas2">
+            <div id="content2">
+                <div id="carrusel2">
+                    <div class="carrusel2">
+                        <div class="gen">
+                            <img src="Images2/fantasia.png" alt="Dragón Fantasía" width="210" height="230" />
+                            <h4>Fantasía</h4>
+                        </div>
+                        <div class="gen">
+                            <img src="Images2/ghost.png" alt="Sobrenatural" width="210" height="230" />
+                            <h4>Sobrenatural</h4>
+                        </div>
+                        <div class="gen">
+                            <img src="Images2/police.png"  alt="Policiales" width="210" height="230" />
+                            <h4>Policiales</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="mv">
+                    <span class="generos">Géneros</span><br>
+                    <span class="masVistos">MÁS LEÍDOS</span>
+                </div>
             </div>
         </div>
 
