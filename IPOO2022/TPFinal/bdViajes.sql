@@ -5,7 +5,7 @@ CREATE TABLE empresa (
         enombre varchar(150),
         edireccion varchar(150),
         PRIMARY KEY (idempresa)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 1;
 
 CREATE TABLE responsable (
         rnumeroempleado bigint AUTO_INCREMENT,
@@ -13,7 +13,7 @@ CREATE TABLE responsable (
         rnombre varchar(150), 
         rapellido  varchar(150), 
         PRIMARY KEY (rnumeroempleado)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT = 1;
 	
 CREATE TABLE viaje (
         idviaje bigint AUTO_INCREMENT,
