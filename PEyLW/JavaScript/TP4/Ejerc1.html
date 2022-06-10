@@ -11,37 +11,187 @@
         #listar:hover {opacity: 0.95;}
     </style>
     <script>
-        function DOM() {
-        const elems = document.querySelectorAll('ul, li');
-        let cantElements = elems.length;
-        for (var i=0; i<cantElements; i++) {
-            allNodes[i].style.backgroundColor = 'silver';
+        function DOM(objeto) {
+            switch (objeto.nodeType) {
+                case 1:
+                    objeto.style.backgroundColor = 'green';
+                break;
+                case 2:
+                    objeto.style.backgroundColor = 'grey';
+                break;
+                case 3:
+                    objeto.style.backgroundColor = 'blue';
+                break;
+            }
+
+            //var li = document.getElementsByTagName('li');
+            //var ul = document.getElementsByTagName('ul');
+            //document.getElementById('li').style.backgroundColor = 'green';
+            //document.getElementById('ul').style.backgroundColor = 'grey';
+        }
+
+        function DOM2() {
+            const div = document.getElementById("lista");
+            const nodes = div.getElementsByTagName("*");
+            //for (let i = 0; i < nodes.length; i++) {
+            //    nodes[i].style.backgroundColor = "red";
+            //}
+            for (i in nodes) {
+                nodes[i].style.backgroundColor = "red";
+            }
+            nodes.style.backgroundColor="";
+            var a = nodes[i].childNodes;
+            for (i in a) {
+				DOM2(a[i]);
+            }
+        }
+
+        function bgChange(bg) {
+            document.body.style.background = bg;
         }
     </script>
 </head>
-<body>
-    <ul>
-        <li id="id1">
-            Menú 1
-            <ul>
-                <li>
-                    Item 1
-                    <ul>
-                        <li>Item a</li>
-                        <li>Item b</li>
-                    </ul>
-                </li>
-                <li>Item 2</li>
-            </ul>
-        </li>
-        <li>
-            Menú 2
-            <ul>
-                <li>Item 3</li>
-                <li>Item 4</li>
-            </ul>
-        </li>
-    </ul>
-    <button id="listar" onclick="DOM()">LISTAR</button>
+<body onload="startTime()">
+    <!-- Última modificación del documento -->
+    <p>This document was last modified <b><span id="demo0"></span></b></p>
+    <script>
+        document.getElementById("demo0").innerHTML = document.lastModified;
+    </script>
+
+    <!-- Reemplazar contenido -->
+    <p id="demo">Click the button to replace this document with new content.</p>
+    <button onclick="myFunction()">Try it</button>
+    <script>
+        function myFunction() {
+            document.open("text/html","replace");
+            document.write("<h2>Learning about the HTML DOM is fun!</h2>");
+            document.close();
+        }
+    </script>
+
+    <div id="lista">
+        <ul>
+            <li>
+                Menú 1
+                <ul>
+                    <li>
+                        Item 1
+                        <ul>
+                            <li>Item a</li>
+                            <li>Item b</li>
+                        </ul>
+                    </li>
+                    <li>Item 2</li>
+                </ul>
+            </li>
+            <li>
+                Menú 2
+                <ul>
+                    <li>Item 3</li>
+                    <li>Item 4</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <button id="listar" onclick="DOM(document.getElementById('lista'))">LISTAR</button>
+    <button id="listar" onclick="DOM2()">LISTAR</button>
+
+    <!-- Reducir/aumentar texto -->
+    <h2>What Can JavaScript Do?</h2>
+    <p id="demo">JavaScript can change the style of an HTML element.</p>
+    <button type="button" onclick="document.getElementById('demo').style.fontSize='10px'">Reducir</button>
+    <button type="button" onclick="document.getElementById('demo').style.fontSize='35px'">Aumentar</button>
+    <button type="button" onclick="document.getElementById('demo').style.fontSize='16px'">Restablecer</button>
+
+    <!-- Mostrar/demostrar un elemento -->
+    <h2>JavaScript HTML Events</h2>
+    <p>Click the button to display the date.</p>
+    <button onclick="displayDate()">The time is?</button>
+    <script>
+        function displayDate() {
+            document.getElementById("demo1").innerHTML = Date();
+        }
+    </script>
+    <p id="demo1"></p>
+
+    <!-- Reloj -->
+    <h2>JavaScript Clock</h2>
+    <div id="txt"></div>
+    <script>
+        function startTime() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+            setTimeout(startTime, 1000);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+    </script>
+
+    <!-- For In -->
+    <h2>JavaScript For In Loop</h2>
+    <p>The for in statement loops through the properties of an object:</p>
+    <p id="demo2"></p>
+    <script>
+        const person = {fname:"John", lname:"Doe", age:25}; 
+        let txt = "";
+        for (let x in person) {
+            txt += person[x] + " ";
+        }
+        document.getElementById("demo2").innerHTML = txt;
+    </script>
+
+    <!-- Cambiar el color de los elementos -->
+    <h2>Change background color</h2>
+    <p>Mouse over the squares!</p>
+    <table style="width:300px;height:100px">
+        <tr>
+            <td onmouseover="bgChange(this.style.backgroundColor)" 
+                onmouseout="bgChange('transparent')"
+                style="background-color:Khaki">
+            </td>
+            <td onmouseover="bgChange(this.style.backgroundColor)" 
+                onmouseout="bgChange('transparent')"
+                style="background-color:PaleGreen">
+            </td>
+            <td onmouseover="bgChange(this.style.backgroundColor)" 
+                onmouseout="bgChange('transparent')"
+                style="background-color:Silver">
+            </td>
+        </tr>
+    </table>
+
+    <!-- Visibilidad de un elemento -->
+    <p id="p1">
+        This is a text.
+        This is a text.
+        This is a text.
+    </p>
+    <input type="button" value="Hide text" onclick="document.getElementById('p1').style.visibility='hidden'">
+    <input type="button" value="Show text" onclick="document.getElementById('p1').style.visibility='visible'">
+
+    <!-- Tipos de NODOS -->
+    <h1>The Element Object</h1>
+    <h2>The nodeName, nodetype, and nodeValue Properties</h2>
+    <div id="myDIV">This is "myDIV".</div>
+    <p>Node name, type and value of "myDIV"s first child is:</p>
+    <p id="demo3"></p>
+    <script>
+        const x = document.getElementById("myDIV").firstChild;
+        let text = "";
+        text += "Name: " + x.nodeName + "<br>";
+        text += "Value: " + x.nodeValue + "<br>";
+        text += "Type: " + x.nodeType;
+        document.getElementById("demo3").innerHTML = text;
+        if (x.nodeType == 3) {
+            x.style.backgroundColor = "green";
+        }
+    </script>
 </body>
 </html>
