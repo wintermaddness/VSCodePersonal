@@ -10,26 +10,29 @@ class BaseDatos {
     private $QUERY;
     private $RESULT;
     private $ERROR;
+
     /**
      * Constructor de la clase que inicia ls variables instancias de la clase
      * vinculadas a la coneccion con el Servidor de BD
      */
-    public function __construct(){
+    public function __construct() {
         $this->HOSTNAME = "127.0.0.1";
-        $this->BASEDATOS = "bd_prueba";
+        //$this->BASEDATOS = "bd_prueba";
+        $this->BASEDATOS = "test";
         $this->USUARIO = "root";
-        $this->CLAVE="";
-        $this->RESULT=0;
-        $this->QUERY="";
-        $this->ERROR="";
+        $this->CLAVE = "";
+        $this->RESULT = 0;
+        $this->QUERY = "";
+        $this->ERROR = "";
     }
+
     /**
      * Funcion que retorna una cadena
      * con una peque�a descripcion del error si lo hubiera
      *
      * @return string
      */
-    public function getError(){
+    public function getError() {
         return "\n".$this->ERROR;
     }
     
@@ -39,20 +42,20 @@ class BaseDatos {
      *
      * @return boolean
      */
-    public  function Iniciar(){
+    public  function Iniciar() {
         $resp  = false;
-        $conexion = mysqli_connect($this->HOSTNAME,$this->USUARIO,$this->CLAVE,$this->BASEDATOS);
-        if ($conexion){
-            if (mysqli_select_db($conexion,$this->BASEDATOS)){
+        $conexion = mysqli_connect($this->HOSTNAME, $this->USUARIO, $this->CLAVE, $this->BASEDATOS);
+        if ($conexion) {
+            if (mysqli_select_db($conexion,$this->BASEDATOS)) {
                 $this->CONEXION = $conexion;
                 unset($this->QUERY);
                 unset($this->ERROR);
                 $resp = true;
-            }  else {
-                $this->ERROR = mysqli_errno($conexion) . ": " .mysqli_error($conexion);
+            } else {
+                $this->ERROR = mysqli_errno($conexion).": ".mysqli_error($conexion);
             }
-        }else{
-            $this->ERROR =  mysqli_errno($conexion) . ": " .mysqli_error($conexion);
+        } else {
+            $this->ERROR =  mysqli_errno($conexion).": ".mysqli_error($conexion);
         }
         return $resp;
     }
@@ -64,14 +67,14 @@ class BaseDatos {
      * @param string $consulta
      * @return boolean
      */
-    public function Ejecutar($consulta){
+    public function Ejecutar($consulta) {
         $resp  = false;
         unset($this->ERROR);
         $this->QUERY = $consulta;
-        if(  $this->RESULT = mysqli_query( $this->CONEXION,$consulta)){
+        if ($this->RESULT = mysqli_query($this->CONEXION, $consulta)) {
             $resp = true;
         } else {
-            $this->ERROR =mysqli_errno( $this->CONEXION).": ". mysqli_error( $this->CONEXION);
+            $this->ERROR = mysqli_errno($this->CONEXION).": ".mysqli_error($this->CONEXION);
         }
         return $resp;
     }
@@ -84,17 +87,17 @@ class BaseDatos {
      */
     public function Registro() {
         $resp = null;
-        if ($this->RESULT){
+        if ($this->RESULT) {
             unset($this->ERROR);
-            if($temp = mysqli_fetch_assoc($this->RESULT)){
+            if ($temp = mysqli_fetch_assoc($this->RESULT)) {
                 $resp = $temp;
-            }else{
+            } else {
                 mysqli_free_result($this->RESULT);
             }
-        }else{
-            $this->ERROR = mysqli_errno($this->CONEXION) . ": " . mysqli_error($this->CONEXION);
+        } else {
+            $this->ERROR = mysqli_errno($this->CONEXION).": ".mysqli_error($this->CONEXION);
         }
-        return $resp ;
+        return $resp;
     }
     
     /**
@@ -104,19 +107,17 @@ class BaseDatos {
      * @param string $consulta
      * @return int id de la tupla insertada
      */
-    public function devuelveIDInsercion($consulta){
+    public function devuelveIDInsercion($consulta) {
         $resp = null;
         unset($this->ERROR);
         $this->QUERY = $consulta;
-        if ($this->RESULT = mysqli_query($this->CONEXION,$consulta)){
+        if ($this->RESULT = mysqli_query($this->CONEXION, $consulta)) {
             $id = mysqli_insert_id();
-            $resp =  $id;
+            $resp = $id;
         } else {
-            $this->ERROR =mysqli_errno( $this->CONEXION) . ": " . mysqli_error( $this->CONEXION);
-           
+            $this->ERROR = mysqli_errno($this->CONEXION).": " .mysqli_error($this->CONEXION);
         }
-    return $resp;
+        return $resp;
     }
-    
 }
 ?>

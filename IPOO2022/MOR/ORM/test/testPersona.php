@@ -16,7 +16,7 @@ include_once '../datos/Persona.php';
 	$respuesta=$obj_Persona->insertar();
 	// Inserto el OBj Persona en la base de datos
 	if ($respuesta == true) {
-		echo "\nOP INSERCION: La persona fue ingresada en la BD";
+		echo "\nOP INSERCION: La persona fue ingresada en la BD:";
 		$colPersonas =$obj_Persona->listar("");
 		foreach ($colPersonas as $unaPersona) {
 			echo $unaPersona;
@@ -32,7 +32,7 @@ include_once '../datos/Persona.php';
 	if ($respuesta == true) {
 		//Busco todas las personas almacenadas en la BD y veo la modificacion realizada
 		$colPersonas =$obj_Persona->listar();
-		echo " \nOP MODIFICACION: Los datos fueron actualizados correctamente";
+		echo " \nOP MODIFICACION: Los datos fueron actualizados correctamente:";
 		foreach ($colPersonas as $unaPersona) {
 			echo $unaPersona;
 			echo "-------------------------------------------------------";

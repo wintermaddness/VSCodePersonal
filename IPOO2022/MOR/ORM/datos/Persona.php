@@ -16,11 +16,11 @@ class Persona{
 		$this->email = "";
 	}
 
-	public function cargar($NroD,$Nom,$Ape,$mail) {		
+	public function cargar($NroD, $Nom, $Ape, $email) {		
 		$this->setNrodoc($NroD);
 		$this->setNombre($Nom);
 		$this->setApellido($Ape);
-		$this->setEmail($mail);
+		$this->setEmail($email);
     }
 	
 	
@@ -33,8 +33,8 @@ class Persona{
 	public function setApellido($Ape){
 		$this->apellido=$Ape;
 	}
-	public function setEmail($mail){
-		$this->email=$mail;
+	public function setEmail($email){
+		$this->email=$email;
 	}
 	
 	public function setmensajeoperacion($mensajeoperacion){
@@ -122,7 +122,11 @@ class Persona{
 	public function insertar() {
 		$base=new BaseDatos();
 		$resp= false;
-		$consultaInsertar="INSERT INTO persona(nrodoc, apellido, nombre,  email) VALUES (".$this->getNrodoc()."','".$this->getApellido()."','".$this->getNombre()."','".$this->getEmail()."')";
+		$consultaInsertar="INSERT INTO persona(nrodoc, apellido, nombre, email) 
+						VALUES ('".$this->getNrodoc()."', 
+								'".$this->getApellido()."',
+								'".$this->getNombre()."',
+								'".$this->getEmail()."')"; //Falta una bendita comilla simple en getNrodoc()
 		if ($base->Iniciar()) {
 			if ($base->Ejecutar($consultaInsertar)) {
 			    $resp=  true;
@@ -138,10 +142,13 @@ class Persona{
 	public function modificar() {
 	    $resp =false; 
 	    $base=new BaseDatos();
-		$consultaModifica="UPDATE persona SET apellido='".$this->getApellido()."',nombre='".$this->getNombre()."',email='".$this->getEmail()."' WHERE nrodoc=". $this->getNrodoc();
+		$consultaModifica="UPDATE persona SET apellido = '".$this->getApellido()."',
+											nombre = '".$this->getNombre()."',
+											email = '".$this->getEmail()."' 
+											WHERE nrodoc = ". $this->getNrodoc();
 		if ($base->Iniciar()) {
 			if($base->Ejecutar($consultaModifica)) {
-			    $resp=  true;
+			    $resp = true;
 			} else {
 				$this->setmensajeoperacion($base->getError());
 			}
@@ -155,9 +162,9 @@ class Persona{
 		$base=new BaseDatos();
 		$resp=false;
 		if ($base->Iniciar()) {
-			$consultaBorra="DELETE FROM persona WHERE nrodoc=".$this->getNrodoc();
+			$consultaBorra="DELETE FROM persona WHERE nrodoc = ".$this->getNrodoc();
 			if($base->Ejecutar($consultaBorra)){
-				$resp=  true;
+				$resp = true;
 			} else {
 				$this->setmensajeoperacion($base->getError());	
 			}
@@ -168,7 +175,9 @@ class Persona{
 	}
 
 	public function __toString() {
-	    return "\nNombre: ".$this->getNombre(). "\n Apellido:".$this->getApellido()."\n DNI: ".$this->getNrodoc()."\n";	
+	    return "\n+ Nombre: ".$this->getNombre()
+				."\n+ Apellido: ".$this->getApellido()
+				."\n+ DNI: ".$this->getNrodoc()."\n";	
 	}
 }
 ?>
