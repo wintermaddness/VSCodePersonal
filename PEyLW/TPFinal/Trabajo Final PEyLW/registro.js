@@ -18,17 +18,26 @@ form.addEventListener("submit", e => {
     /* Validación del usuario */
     if (nombre.value.length < 6) {
         warnings += `El nombre no es válido <br>`
+        nombre.style.borderColor = 'red';
         entrar = true
+    } else {
+        nombre.style.borderColor = 'green';
     }
     /* Validación del email */
     if (!regexEmail.test(email.value)) {
         warnings += `El email no es válido <br>`
+        email.style.borderColor = 'red';
         entrar = true
+    } else {
+        email.style.borderColor = 'green';
     }
     /* Validación de la contraseña */
     if (pass.value.length < 8) {
         warnings += `La contraseña no es válida <br>`
+        pass.style.borderColor = 'red';
         entrar = true
+    } else {
+        pass.style.borderColor = 'green';
     }
     
     /* Validación del formulario */
@@ -36,6 +45,9 @@ form.addEventListener("submit", e => {
         parrafo.innerHTML = warnings /* Msj de error */
     } else {
         parrafo.innerHTML = "Registro exitoso"
+        nombre.style.borderColor = '';
+        email.style.borderColor = '';
+        pass.style.borderColor = '';
     }
 })
 /**

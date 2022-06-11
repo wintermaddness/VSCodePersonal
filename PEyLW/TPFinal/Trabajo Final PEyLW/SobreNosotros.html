@@ -36,20 +36,21 @@
         </div>
 
         <div id="cuerpo">
-            <!-- First Parallax Image with Logo Text -->
+            <!-- Cabecera + texto -->
             <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
                 <div class="w3-display-middle" style="white-space:nowrap;">
                     <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">LECTURA DORADA</span>
                 </div>
             </div>
 
+            <!-- SOBRE NOSOTROS -->
             <div class="bgimg-3 w3-display-container w3-opacity-min">
                 <div class="w3-display-middle">
                     <span class="w3-xxlarge w3-text-white w3-wide">SOBRE NOSOTROS</span>
                 </div>
             </div>
 
-            <!-- Container (About Section) -->
+            <!-- Sección sobre nosotros -->
             <div class="w3-content w3-container w3-padding-64 w3-margin-top w3-margin-bottom" id="sobreNosotros">
                 <h3 class="w3-center">SOBRE NOSOTROS</h3>
                 <p class="w3-center"><em>Amamos las buenas historias</em></p>
@@ -105,16 +106,16 @@
                 </div>
             </div>-->
 
-            <!-- Second Parallax Image with Portfolio Text -->
+            <!-- POLÍTICAS -->
             <div class="bgimg-2 w3-display-container w3-opacity-min">
                 <div class="w3-display-middle">
                     <span class="w3-xxlarge w3-text-white w3-wide">POLÍTICAS</span>
                 </div>
             </div>
 
-            <!-- Container (Politics Section) -->
+            <!-- Sección de políticas -->
             <div class="w3-content w3-container w3-padding-64" id="politicas">
-                <h3 class="w3-center">NUESTRA POLÍTICA</h3>
+                <h3 class="w3-center">NUESTRAS POLÍTICAS</h3>
                 <p class="w3-center">
                     Como una librería online al servicio del cliente, hacemos todo lo posible
                     para compartir abiertamente nuestras políticas con los clientes a fin de que
@@ -155,23 +156,14 @@
                 </div>
             </div>
 
-            <!-- Modal for full size images on click-->
-            <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-                <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
-                <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-                    <img id="img01" class="w3-image">
-                    <p id="caption" class="w3-opacity w3-large"></p>
-                </div>
-            </div>
-
-            <!-- Third Parallax Image with Portfolio Text -->
+            <!-- CONTACTO -->
             <div class="bgimg-3 w3-display-container w3-padding-64 w3-opacity-min">
                 <div class="w3-display-middle">
                     <span class="w3-xxlarge w3-text-white w3-wide">CONTACTO</span>
                 </div>
             </div>
 
-            <!-- Container (Contact Section) -->
+            <!-- Sección de contacto -->
             <div class="w3-content w3-container w3-padding-64 w3-margin-bottom" id="contacto">
                 <h3 class="w3-center">
                     <a href="Contacto.html" style="text-decoration:none;">CONTACTO</a>
@@ -192,14 +184,14 @@
                     <form action="/action_page.php" style="margin-top: 10px;" target="_blank">
                         <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
                         <div class="w3-half">
-                            <input class="w3-input w3-border" type="text" placeholder="Nombre" required name="Name">
+                            <input class="w3-input w3-border" type="text" maxlength="20" placeholder="Nombre" required name="Name">
                         </div>
                         <div class="w3-half">
-                            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+                            <input class="w3-input w3-border" type="text" maxlength="40" placeholder="Email" required name="Email">
                         </div>
                         </div>
                         <input class="w3-input w3-border" type="text" placeholder="Mensaje" required name="Message">
-                        <button class="w3-button w3-black w3-right w3-section" type="submit">
+                        <button class="w3-button w3-right w3-section" type="submit">
                             <i class="fa fa-paper-plane"></i> ENVIAR
                         </button>
                     </form>

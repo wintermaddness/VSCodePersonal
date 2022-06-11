@@ -11,6 +11,9 @@ body {
     background: rgba(62,62,61,255);
 	font-family: "Varela Round", sans-serif;
 }
+::-webkit-scrollbar {
+	display: none;
+}
 /* fin ETIQUETAS SIMPLES */
 
 /* CABECERA */
@@ -86,7 +89,7 @@ body {
 	padding: 8.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 430px;
+	width: 445px;
 	color: #fff;
 }
 .button {
@@ -125,8 +128,8 @@ body {
     position: relative;
 	display: block;
     margin-top: -648px;
-    border-top: 4px solid #dcb03b;
-    border-bottom: solid #dcb03b;
+    border-top: 1px solid #dcb03b;
+    border-bottom: 1px solid #dcb03b;
 }
 
 /* LATERAL */
@@ -136,37 +139,43 @@ body {
 	/*display: block;*/
     float: left;
 	width: 20%;
-	height: 32.45em;
+	/*height: 64.45em;*/
+	margin-top: 100px;
 	padding: 0 1em 17px 0;
-	background-color: #dcb03b;
-	border-right: 5px solid #e0b84b;
+	/*background-color: #dcb03b;
+	border-right: 5px solid #e0b84b;*/
 }
 #lateral ul {
     list-style: none;
-    background-color: #dcb03b;
+    /*background-color: #dcb03b;*/
     /*border: 1px blue solid;*/
-    height: border-box;
-	width: 270px;
+    height: 50em;
+	width: 35px;
 }
 #lateral ul li a {
+    transform: rotate(-90deg);
+    transform-origin: left top 0;
     font-size: 16.5px;
-	text-align: left;
+	text-align: center;
     display: block;
-    /*width: 225px;*/
+    width: 200px;
     height: 40px;
     background-color: #dcb03b;
+	border-radius: 0 0 20px 20px;
     border-left: 5px solid #e0b84b;
     border-right: 5px solid #e0b84b;
     padding: 10px 0 10px 5px;
+	margin-top: 160px;
     text-decoration: none; 
     color: #161718;
     position: relative;
-    right:0;
-    top:0px;
+    right: 0;
+    top: 45px;
 }
 #lateral ul li a:hover {
-    box-shadow: 5px 5px 10px #000000; 
-    margin-left: 5px;
+    box-shadow: 5px 5px 10px #000000;
+	border-radius: 0 0 20px 20px;
+    margin-left: 1px;
     font-weight: bold;
 }
 /* fin LATERAL */
@@ -183,9 +192,13 @@ body {
 	float: right;
 	width: 80%;
 	padding: 1em 1em 1em 1em;
+	border-radius: 20px 0 0 0;
+	border-top: 4px solid #dcb03b;
+	border-left: 4px solid #dcb03b;
 	background-color: #fcfcfc;
     /*margin: 2em auto;*/
 	margin: 0;
+	margin-top: 100px;
     font: .7em/1.2 Arial, Helvetica, sans-serif;
     text-align: justify;
 }
@@ -312,7 +325,7 @@ body {
 }
 .etiquetas ul li {
     list-style-type: none;
-    padding: 5px;
+    padding: 10px;
 }
 .etiquetas li a {
     text-decoration: none;
@@ -320,6 +333,90 @@ body {
 }
 .etiquetas li a:hover {
     color: #dcb03b;
+}
+
+#similares {
+	/*border: 1px solid red;*/
+	background-color: #dcb03b;
+	box-shadow: 0 0 10px 0 #000000;
+	border-radius: 0 0 0 20px;
+	border-bottom: 4px solid #dcb03b;
+	border-left: 4px solid #dcb03b;
+	position: relative;
+	float: right;
+	width: 80%;
+	margin: 0 0 100px;
+}
+#content2 {
+	/*border: 1px solid blue;*/
+	position: relative;
+	width: 100%;
+	height: 355px;
+	text-align: center;
+	margin: 5px 0;
+	padding: 5px;
+}
+.ts {
+	margin-top: 155px;
+	/*position: relative;
+	float: right;*/
+}
+.titulos {
+	color: #000000;
+	padding: 10px;
+	letter-spacing: 10px;
+	font-size: 15px;
+	text-align: right;
+}
+.masVistos {
+	/*border: 1px solid blue;*/
+    color: #000000;
+	padding: 10px;
+	letter-spacing: 10px;
+	font-size: xx-large;
+	text-align: right;
+}
+#carrusel2 {
+	/*border: 1px solid blue;*/
+	position: relative;
+    float: right;
+    width: 673px;
+    overflow: hidden;
+    height: 310px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.carrusel2 {
+	/*border: 1px solid yellow;*/
+    width: 4000px;
+    left: 0px;
+    position: absolute;
+    z-index: 0;
+}
+.carrusel2>div {
+	background-color: #e8c051;
+	border-radius: 20px;
+    float: left;
+    height: 295px;
+    margin-right: 5px;
+    width: 220px;
+    text-align: center;
+}
+.carrusel2>div:hover {
+    box-shadow: 5px 8px 10px #000000;
+    transform: scale(1) translateY(1px); 
+    z-index: 1; 
+    border-bottom: 0 none;
+}
+.carrusel2 img {
+    cursor: pointer;
+	margin: 4px 0;
+	background-color: #fff;
+	border-radius: 20px;
+}
+.gen {
+    border: #dcb03b 1px solid;
 }
 /* fin CONTENIDO PRINCIPAL */
 
@@ -331,7 +428,7 @@ body {
 	display: inline-block;
 	color: white;
 	background-color: rgb(47, 47, 47);
-	border-top: 4px solid #dcb03b;
+	border-top: 2px solid #dcb03b;
 }
 #footer .container {
 	background: #333;

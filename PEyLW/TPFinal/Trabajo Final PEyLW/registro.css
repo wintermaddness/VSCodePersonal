@@ -14,7 +14,9 @@ body {
     margin: 0;
     padding: 20px;*/
 }
-
+::-webkit-scrollbar {
+	display: none;
+}
 /* CABECERA */
 #nav {
 	display: block;
@@ -88,7 +90,7 @@ body {
 	padding: 8.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 430px;
+	width: 445px;
 	color: #fff;
 }
 .button {
@@ -244,6 +246,13 @@ body {
         line-height: 1.5;
         margin: 43px;
         text-align: justify;
+    }
+    .eula a {
+        text-decoration: none;
+        color: #000000;
+    }
+    .eula a:hover {
+        font-style: italic;
     }
 
     .right {
