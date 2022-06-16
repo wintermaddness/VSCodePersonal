@@ -399,7 +399,8 @@ body {
 	border-radius: 20px;
     float: left;
     height: 295px;
-    padding-right: 5px;
+	/*border: 1px solid red;*/
+    padding: 1px;
     width: 220px;
     text-align: center;
 }

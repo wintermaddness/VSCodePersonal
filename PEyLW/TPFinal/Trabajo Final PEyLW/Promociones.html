@@ -7,8 +7,128 @@
     <title>Lectura Dorada - Promociones</title>
     <link rel="stylesheet" href="promociones.css">
     <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
+    <style>
+        a {
+            cursor:pointer;
+        }
+        #fondo {
+            width: 100%;
+            height: 100%;
+            position: fixed; 
+            top: 0px; left: 0px;
+            z-index: 990;
+            opacity: 0.8;
+            background:rgba(0, 0, 0, 0.538);
+        }
+        #flotante {
+            z-index: 999;
+            border: 4px solid #dcb03b;
+            margin-top: -z300px;
+            margin-left: -320px;
+            top: 50%; left: 50%;
+            padding: 12px;
+            position: fixed;
+            width: 650px;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+        #tabla {
+            position: relative;
+            display: block;
+            /*border: 1px solid red;*/
+            width: 100%;
+            height: max-content;
+        }
+        #botonCierre {
+            position: relative;
+            display: block;
+            float: right;
+            top: -40px;
+            color: #fff;
+        }
+        #botonCierre a {
+            background-color: #333;
+            border-radius: 5px;
+            border: 1px solid #dcb03b;
+            padding: 5px 10px;
+        }
+        #botonCierre a:hover {
+            background-color: #dcb03b;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function flotante(tipo){
+            if (tipo == 1) {
+                //Si hacemos clic en abrir mostramos el fondo negro y el flotante
+                $('#contenedor').show();
+                $('#flotante').animate( {
+                    marginTop: "-200px"
+                });
+            }
+            if (tipo == 2) {
+                //Si hacemos clic en cerrar, deslizamos el flotante hacia arriba
+                $('#flotante').animate( {
+                marginTop: "-756px"
+            });
+            //Una vez ocultado el flotante cerramos el fondo negro
+            setTimeout(function() {
+                $('#contenedor').hide();
+                }, 500)
+            }    
+        }
+    </script>
 </head>
-<body>
+<body onload="flotante(1)">
+    <!-- Tabla de precios -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <div id="contenedor" style="display:none">
+        <div id="flotante">
+            <h1>Seleccione su Plan</h1><span id="botonCierre"><a onClick="flotante(2)">X</a></span>
+            <div id="tabla">
+                <ul class="pricing_table">
+                    <li class="price_block">
+                        <h3>Gratis</h3>
+                        <div class="price">
+                            <div class="price_figure">
+                                <span class="price_number">$0.00</span>
+                                <span class="price_tenure">por mes</span>
+                            </div>
+                        </div>
+                        <ul class="features">
+                            <li>Cuenta Única de Usuario</li>
+                            <li>10% de Descuento</li>
+                            <li>Primera Descarga Gratis</li>
+                            <li>5 Bonos Diarios</li>
+                        </ul>
+                        <div class="footer">
+                            <a href="#" class="action_button" onClick="flotante(2)">Continuar</a>
+                        </div>
+                    </li>
+                    <li class="price_block">
+                        <h3>Premium</h3>
+                        <div class="price">
+                            <div class="price_figure">
+                                <span class="price_number">$9.99</span>
+                                <span class="price_tenure">por mes</span>
+                            </div>
+                        </div>
+                        <ul class="features">
+                            <li>Cuenta Única de Usuario</li>
+                            <li>40% de Descuento</li>
+                            <li>Primera Descarga Gratis</li>
+                            <li>15 Bonos Diarios</li>
+                        </ul>
+                        <div class="footer">
+                            <a href="#" class="action_button" onClick="flotante(2)">Continuar</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="fondo"></div>
+    </div>
+
     <div id="contenedor">
         <div id="nav">
             <ul>
@@ -89,7 +209,7 @@
                         </li>
                     </ul>
                 </div>
-
+                
                 <div class="separador"></div>
             </div>
 
