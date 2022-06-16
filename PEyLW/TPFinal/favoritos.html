@@ -5,6 +5,80 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favoritos - Borrador</title>
+    <link rel="stylesheet" href="favoritos.css">
+    <style>
+        #m {background-color: white; width: 200px; height: 200px;}
+        body {background-color: gray;}
+        body {
+            background:#CCC; font-family: 'Open Sans', sans-serif;
+        }
+        h1, h3 {
+            text-align: center;
+            margin: 10px;
+        }
+        a {
+            cursor:pointer;
+        }
+        #fondo {
+            width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 990;opacity: 0.8;background:#000;
+        }
+        #flotante {
+            z-index: 999;
+            border: 4px solid #dcb03b;
+            margin-top: -300px;
+            margin-left: -350px;
+            top: 50%; left: 50%;
+            padding: 12px;
+            position: fixed;
+            width: 650px;
+            background-color: #fff;
+            border-radius: 20px;
+        }
+        #tabla {
+            position: relative;
+            display: block;
+            /*border: 1px solid red;*/
+            width: 100%;
+            height: max-content;
+        }
+        #botonCierre {
+            position: relative;
+            display: block;
+            float: right;
+            top: -40px;
+            color: #fff;
+        }
+        #botonCierre a {
+            background-color: #333;
+            border: 1px solid #dcb03b;
+            padding: 5px 10px;
+        }
+        #botonCierre a:hover {
+            background-color: #DB7224;
+            color: #fff;
+        }
+    </style>
+    <script>
+        function flotante(tipo){
+            if (tipo == 1) {
+                //Si hacemos clic en abrir mostramos el fondo negro y el flotante
+                $('#contenedor').show();
+                $('#flotante').animate( {
+                    marginTop: "-220px"
+                });
+            }
+            if (tipo == 2) {
+                //Si hacemos clic en cerrar, deslizamos el flotante hacia arriba
+                $('#flotante').animate( {
+                marginTop: "-756px"
+            });
+            //Una vez ocultado el flotante cerramos el fondo negro
+            setTimeout(function() {
+                $('#contenedor').hide();
+                }, 500)
+            }    
+        }
+    </script>
 </head>
 <body>
     <h1 id="producto-nombre">Nombre del producto</h1>
@@ -45,18 +119,170 @@
             var ul = document.createElement("ul");
             // para cada producto en favoritos
             for (var x = 0; x < favoritos.length; x++) {
-            // creamos un elemento de lista
-            var li = document.createElement("li");
-            // con un enlace al producto
-            var a = document.createElement("a");
-            a.href = favoritos[x].url;
-            a.textContent = favoritos[x].nombre;
-            li.appendChild(a);
-            ul.appendChild(li);
+                // creamos un elemento de lista
+                var li = document.createElement("li");
+                // con un enlace al producto
+                var a = document.createElement("a");
+                a.href = favoritos[x].url;
+                a.textContent = favoritos[x].nombre;
+                li.appendChild(a);
+                ul.appendChild(li);
             }
             // agregamos el producto donde correspona
             document.querySelector("#favoritos").appendChild(ul);
         });
     </script>
+
+    <div id=m></div>
+    <script>
+        window.addEventListener("DOMContentLoaded" , () => {
+            var d = document.getElementById("m");
+            document.addEventListener("scroll", () => {
+                d.setAttribute("style","background-color: rgba(255,255,255,0.1)");
+            });
+        });
+
+        for(var i = 0; i<50; i++) { // Es solo para rellenar el body y tener la barra para hacer scroll, NO TOMAR EN CUENTA.
+            document.body.appendChild(document.createElement("br"));
+        }
+    </script>
+
+    <!--<label>Introduzca nuevo usuario: <input type="text" value="" onblur = "validaUsuario(this)"/></label>
+    <script>
+        function validaUsuario(inpute) {
+            var texto = inpute.value;
+            var mensaje = "";
+            var titulo = "error";
+            if (texto == "") {
+                mensaje = "con error: <big>cadena de texto vacía</big>.";
+            } else if (texto.length > 8) {
+                mensaje = "con error: <big>cadena mayor de 8 caracteres</big>.";
+            } else if (texto.length < 4) {
+                mensaje = "con error: <big>cadena menor de 4 caracteres</big>.";
+            } else {
+                mensaje = "correcto";
+                titulo = "usuario validado";
+            }
+            mensaje = "Nombre de usuario " + mensaje;
+            var izquierda = inpute.offsetLeft;
+            var arriba = inpute.offsetTop + inpute.offsetHeight;
+            emerge6.abrir(mensaje, titulo, izquierda, arriba, "12em");
+            //A continuación debería ejecutarse algo si la entrada 
+            //fue correcta como dar de alta al usuario en un registro.
+        }
+    </script>-->
+
+    <figure id="photo" title="¿Qué hay, bro?" tooltip-dir="left">
+        <img src="https://s-media-cache-ak0.pinimg.com/564x/c0/f0/9f/c0f09f6c4d59f94f60f27ba6a05b8f57.jpg"/>
+    </figure>
+    
+    <select id="directions">
+        <option value="left" selected>Left</option>
+        <option value="right">Right</option>
+        <option value="bottom">Bottom</option>
+        <option value="top">Top</option>
+    </select>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let figure = document.getElementById('photo');
+            let directions = document.getElementById('directions');
+
+            directions.addEventListener('change', function () {
+                figure.setAttribute('tooltip-dir', this.value);
+            });
+        });
+    </script>
+
+    <!-- Tabloide de precios 
+    <ul class="pricing_table">
+        <li class="price_block">
+            <h3>Gratis</h3>
+            <div class="price">
+                <div class="price_figure">
+                    <span class="price_number">$0.00</span>
+                    <span class="price_tenure">por mes</span>
+                </div>
+            </div>
+            <ul class="features">
+                <li>Cuenta Única de Usuario</li>
+                <li>10% de Descuento</li>
+                <li>Primera Descarga Gratis</li>
+                <li>5 Bonos Diarios</li>
+            </ul>
+            <div class="footer">
+                <a href="#" class="action_button">Continuar</a>
+            </div>
+        </li>
+        <li class="price_block">
+            <h3>Premium</h3>
+            <div class="price">
+                <div class="price_figure">
+                    <span class="price_number">$9.99</span>
+                    <span class="price_tenure">por mes</span>
+                </div>
+            </div>
+            <ul class="features">
+                <li>Cuenta Única de Usuario</li>
+                <li>40% de Descuento</li>
+                <li>Primera Descarga Gratis</li>
+                <li>15 Bonos Diarios</li>
+            </ul>
+            <div class="footer">
+                <a href="#" class="action_button">Continuar</a>
+            </div>
+        </li>
+    </ul>-->
+    <!-- <script src="prefixfree.min.js" type="text/javascript"></script> prefixfree: permite usar propiedades CSS sin prefijo en todas partes -->
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <h1>Ventana flotante animada con javascript y jquery</h1>
+    <h3><a onClick="flotante(1)">Abrir ventana</a></h3>
+    <div id="contenedor" style="display:none">
+        <div id="flotante">
+            <h1>Seleccione su Plan</h1><span id="botonCierre"><a onClick="flotante(2)">X</a></span>
+            <div id="tabla">
+                <ul class="pricing_table">
+                    <li class="price_block">
+                        <h3>Gratis</h3>
+                        <div class="price">
+                            <div class="price_figure">
+                                <span class="price_number">$0.00</span>
+                                <span class="price_tenure">por mes</span>
+                            </div>
+                        </div>
+                        <ul class="features">
+                            <li>Cuenta Única de Usuario</li>
+                            <li>10% de Descuento</li>
+                            <li>Primera Descarga Gratis</li>
+                            <li>5 Bonos Diarios</li>
+                        </ul>
+                        <div class="footer">
+                            <a href="#" class="action_button">Continuar</a>
+                        </div>
+                    </li>
+                    <li class="price_block">
+                        <h3>Premium</h3>
+                        <div class="price">
+                            <div class="price_figure">
+                                <span class="price_number">$9.99</span>
+                                <span class="price_tenure">por mes</span>
+                            </div>
+                        </div>
+                        <ul class="features">
+                            <li>Cuenta Única de Usuario</li>
+                            <li>40% de Descuento</li>
+                            <li>Primera Descarga Gratis</li>
+                            <li>15 Bonos Diarios</li>
+                        </ul>
+                        <div class="footer">
+                            <a href="#" class="action_button">Continuar</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="fondo"></div>
+    </div>
 </body>
 </html>

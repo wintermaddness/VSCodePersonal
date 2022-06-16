@@ -1,0 +1,194 @@
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Ubuntu, arial, verdana;
+}
+
+/* Tablas de precios y loques de precios */
+.pricing_table {
+    position: relative;
+    left: 155px;
+    line-height: 150%; 
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+    list-style-type: none;
+    margin: 0 auto; 
+    width: 100%; 
+    max-width: 800px; 
+    padding-top: 10px;
+    /*margin-top: 100px;*/
+}
+.price_block {
+    width: 100%; 
+    color: #fff;
+    border-radius: 20px;
+    list-style-type: none; 
+    transition: all 0.25s; 
+    position: relative; 
+    float: left;
+    box-sizing: border-box;
+    margin-bottom: 10px; 
+    border-bottom: 1px solid transparent; 
+}
+
+/* Cabezas de precios */
+.pricing_table h3 {
+    text-transform: uppercase;
+    padding: 5px 0; 
+    background: #333; 
+    margin: -10px 0 1px 0;
+}
+
+/* Etiquetas de precios */
+.price {
+    display: table; 
+    background: #444; 
+    width: 100%; 
+    height: 70px; 
+}
+.price_figure { /* .price_figure actúa como un contenedor para .price_number y .price_tenure para que puedan alinearse verticalmente en el centro como una sola unidad */
+    font-size: 24px; 
+    text-transform: uppercase; 
+    vertical-align: middle; 
+    display: table-cell;
+}
+.price_number {
+    font-weight: bold; 
+    display: block;
+}
+.price_tenure {
+    font-size: 11px; 
+}
+
+/* Características */
+.features {
+    background: #dbe2e4; 
+    color: #000;
+}
+.features li {
+    padding: 8px 15px;
+    border-bottom: 1px solid #ccc; 
+    font-size: 11px; 
+    list-style-type: none;
+}
+
+/* Pie de página y botón de acción */
+.footer {
+    padding: 15px; 
+    background: #DEF0F4;
+}
+.action_button {
+    text-decoration: none; 
+    color: #fff; 
+    font-weight: bold; 
+    border-radius: 5px; 
+    background: linear-gradient(#666, #333); 
+    padding: 5px 20px; 
+    font-size: 11px; 
+    text-transform: uppercase;
+}
+
+/* Efecto de desplazamiento */
+.price_block:hover {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5); 
+    transform: scale(1.04) translateY(-5px); 
+    z-index: 1; 
+    border-bottom: 0 none;
+}
+.price_block:hover .price {
+    background:linear-gradient(#DB7224, #F9B84A); 
+    box-shadow: inset 0 0 45px 1px #DB7224;
+}
+.price_block:hover h3 {
+    background: #222;
+}
+.price_block:hover .action_button {
+    background: linear-gradient(#F9B84A, #DB7224); 
+}
+
+/* Consultas responsive */
+@media only screen and (min-width : 480px) and (max-width : 768px) {
+    .price_block {width: 50%;}
+    .price_block:nth-child(odd) {border-right: 1px solid transparent;}
+    .price_block:nth-child(3) {clear: both;}
+     
+    .price_block:nth-child(odd):hover {border: 0 none;}
+}
+@media only screen and (min-width : 768px){
+    .price_block {width: 25%;}
+    .price_block {border-right: 1px solid transparent; border-bottom: 0 none;}
+    .price_block:last-child {border-right: 0 none;}
+     
+    .price_block:hover {border: 0 none;}
+}
+
+/* Texto Flotante */
+body {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100vh;
+    justify-content: center;
+} 
+figure {
+    border-radius: 100%;
+    display: block;
+    height: 150px;
+    position: relative;
+    width: 150px;
+}
+img {
+    border-radius: inherit;
+    border: 1px solid #dcb03b;
+    height: inherit;
+    width: inherit;
+}
+  
+figure:after {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 5px;
+    color: #fff;
+    content: attr(title);
+    opacity: 0;
+    padding: 6px 12px;
+    position: absolute;
+    left: 110%;
+    top: 30px;
+    transition: all .25s ease;
+    visibility: hidden;
+    white-space: nowrap;
+}  
+figure[tooltip-dir="left"]:after {
+    left: auto;
+    right: 110%;
+}  
+figure[tooltip-dir="bottom"]:after,
+figure[tooltip-dir="top"]:after {
+    left: 50%;
+    right: auto;  
+    transform: translateX(-50%);
+}  
+figure[tooltip-dir="bottom"]:after {
+    bottom: auto;
+    top: 105%;
+}  
+figure[tooltip-dir="top"]:after {
+    bottom: 105%;
+    top: auto;
+}
+figure:hover:after {
+    opacity: 1;
+    visibility: visible;
+}
+  
+select {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 6px 12px;
+    margin-top: 45px;
+}
