@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <Style type="text/css">
+            .colores{    
+                font-weight:bold;
+                color:#339900;
+                filter:blur();    
+            }
+            .ventana_flotante {
+                background: none repeat scroll 0 0 #FFFFFF;
+                border: 1px solid #DDDDDD;
+                border-radius: 6px 6px 6px 6px;
+                bottom: 50px;
+                left: auto;
+                margin-left: -120px;
+                padding: 10px 0 0;
+                position: fixed;
+                text-align: center;
+                width: 90px;
+                z-index: 15;
+            }
+        </Style>    
+        <Script>
+            var ph=0;
+            var dr=new Array(0,45,90,135,180,225,270,315);
+            function animar(){
+                bt2.filters[0].add=Math.round(1*Math.random());
+                bt2.filters[0].direction=Math.round(dr[ph]*Math.random());
+                var tm=window.setTimeout("animar()",1000);
+                ph++;
+                if(ph>=8){ph=0;}    
+                
+            }
+        </Script>
+    </head>
+    <body onload="animar()">
+        <Input type="button" id="bt2" name="bt2" class="colores" value="Pasa el raton sobre mi">
+            <div style="background: none repeat scroll 0 0 #FFFFFF;
+                border: 1px solid #DDDDDD;
+                border-radius: 6px 6px 6px 6px;
+                bottom: 50px;
+                left: auto;
+                margin-left: -120px;
+                padding: 10px 0 0;
+                position: fixed;
+                text-align: center;
+                width: 90px;
+                z-index: 15;"> 
+                <!--Aqui el Codigo-->
+                <div class="ventana_flotante">
+                    <!--Aquí el Código-->
+                </div>
+            </div>
+    </body>
+</html>

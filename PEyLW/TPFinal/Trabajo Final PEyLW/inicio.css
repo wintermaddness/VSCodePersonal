@@ -610,8 +610,9 @@ li:nth-child(6) .slide-circulo {
 	/*border: 1px solid rgb(255, 230, 0);*/
 }
 .container {
-    max-width: 1350px;
-	/*border: 1px solid rgb(255, 0, 225);*/
+	width: 100%;
+    /*max-width: 1350px;
+	border: 1px solid rgb(255, 0, 225);*/
 }
 .row {
     display: flex;
@@ -662,6 +663,9 @@ li:nth-child(6) .slide-circulo {
 	border: 1px solid #333;
 	border-radius: 5px;
 	margin-top: 5px;
+}
+.columna4 a {
+	text-decoration: none;
 }
 .columna4 a:hover {
     opacity: .70;

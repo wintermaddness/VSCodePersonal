@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function changeImage() {
+            if (document.getElementById("imgClickAndChange").src == "https://th.bing.com/th/id/OIP.qgkyJSVkUGZbkStWy9CPnQHaEK?w=285&h=180&c=7&r=0&o=5&pid=1.7") {
+                document.getElementById("imgClickAndChange").src = "https://th.bing.com/th/id/OIP.IGFhBY2qyFZDHa9LhKsMiwHaEK?w=300&h=180&c=7&r=0&o=5&pid=1.7";
+            } else {
+                document.getElementById("imgClickAndChange").src = "https://th.bing.com/th/id/OIP.qgkyJSVkUGZbkStWy9CPnQHaEK?w=285&h=180&c=7&r=0&o=5&pid=1.7";
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>
+        <img alt="" src="https://th.bing.com/th/id/OIP.qgkyJSVkUGZbkStWy9CPnQHaEK?w=285&h=180&c=7&r=0&o=5&pid=1.7" style="height: 85px; width: 198px" id="imgClickAndChange" onclick="changeImage()" />
+    </p> 
+</body>
+</html>

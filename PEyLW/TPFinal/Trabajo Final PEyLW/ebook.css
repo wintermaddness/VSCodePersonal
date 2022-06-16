@@ -399,7 +399,7 @@ body {
 	border-radius: 20px;
     float: left;
     height: 295px;
-    margin-right: 5px;
+    padding-right: 5px;
     width: 220px;
     text-align: center;
 }
@@ -439,7 +439,7 @@ body {
 	/*border: 1px solid rgb(255, 230, 0);*/
 }
 .container {
-    max-width: 1350px;
+    width: 100%;
 	/*border: 1px solid rgb(255, 0, 225);*/
 }
 .row {
@@ -491,6 +491,9 @@ body {
 	border: 1px solid #333;
 	border-radius: 5px;
 	margin-top: 5px;
+}
+.columna4 a {
+	text-decoration: none;
 }
 .columna4 a:hover {
     opacity: .70;

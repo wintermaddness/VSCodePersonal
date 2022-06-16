@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejerc. 1 - Validar CUIT</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css"> <!-- FontAwesome 4-->
+    <script src="https://kit.fontawesome.com/f09689b89n.js" crossorigin="anonymous"></script> <!--FontAwesome 5-->
+    <style>
+        .contenedor {
+            margin: 40px;
+            padding: 10px;
+            width: 543px;
+            border: 1px dashed black;
+            border-radius: 20px;
+            background-color: lightgray;
+            position: relative;
+            float: left;
+        }
+        .button {
+            border: 1px dashed gray;
+            background-color: black;
+            color: white;
+            padding: 5px;
+            border-radius: 5em;
+            text-align: center;
+            margin: 0 10px 10px 0;
+            width: 180px;
+            position: relative;
+            float: left;
+        }
+        .button:hover {
+            background-color: rgb(62, 61, 61);
+            color: aliceblue;
+        }
+        #salida, #salida2 {
+            padding: 5px;
+            border: 1px dashed black;
+            background-color: rgb(224, 226, 226);
+            color: black;
+        }
+
+        .darkModeSwitch{
+            background: #3494b1;
+            display:flex;
+            position: relative;
+            cursor: pointer;
+            outline: none;
+            border: none;
+            border-radius: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .darkModeSwitch span{
+            width:30px;
+            height:30px;
+            line-height:30px;
+            display:block;
+            color:#fff;
+            background: none;
+        }
+        .darkModeSwitch::after {
+            display:block;
+            background: #fffbf5;
+            width: 2.4rem;
+            height: 2.4rem;
+            position: absolute;
+            top:0;
+            left:0;
+            right:unset;
+            border-radius: 3rem;
+            transition: all .5s ease;
+            box-shadow: 0 0 2px 2px rgba(0, 0, 0, .5);
+            content: "";
+        }
+        .darkModeSwitch.active{
+            background: #fdd384;
+        }
+        .darkModeSwitch.active::after{
+            left:unset;
+            right:0;
+        }
+        body {
+            background: #f2f2f2;
+            font-family: "Lato", Helvetica, sans-serif;
+        }
+        body.dark {
+            background:  #5436;
+        }
+    </style>
+    <script>
+        const switchButton = document.getElementById('switch');
+        switchButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark'); //toggle the HTML body the class 'dark'
+            switchButton.classList.toggle('active');//toggle the HTML button with the id='switch' with the class 'active'
+        });
+    </script>
+</head>
+<body>
+    <nav class="menu">
+        <a href="#about">About</a>              <!--ES> Acerca de-->
+        <a href="#work">My work</a>             <!--ES> Trabajos-->
+        <a href="#contact">Contact</a>          <!--ES> Contacto-->
+     
+        <button class="darkModeSwitch" id="switch">Dark mode switch
+          <span><i class="fa fa-sun-o"></i></span>   
+          <span><i class="fa fa-moon-o"></i></span>
+    </nav>    
+
+    <!-- VALIDAR CUIT -->
+    <script>
+        function ValidarCuit2(cuit) {
+            var vec = new Array(10);
+            var cuit = form.cuit.value;
+            esCuit = false;
+            cuit_rearmado = "";
+            errors = ''
+            salida = document.getElementById("salida2");
+
+            for (i=0; i<cuit.length; i++) {   
+                caracter = cuit.charAt(i);
+                if (caracter.charCodeAt(0) >= 48 && caracter.charCodeAt(0) <= 57 ) {
+                    cuit_rearmado += caracter;
+                }
+            }
+            cuit = cuit_rearmado;
+            if (cuit.length != 11) { // si no estan todos los digitos
+                esCuit = false;
+                errors = 'Cuit < 11';
+                alert("CUIT Menor a 11 Caracteres.");
+                //salida.value += "ERROR. CUIT Menor a 11 Caracteres.\n";
+            } else {
+                x = i = dv = 0;
+                //Se multiplican todos los dígitos:
+                vec[0] = cuit.charAt(0) * 5;
+                vec[1] = cuit.charAt(1) * 4;
+                vec[2] = cuit.charAt(2) * 3;
+                vec[3] = cuit.charAt(3) * 2;
+                vec[4] = cuit.charAt(4) * 7;
+                vec[5] = cuit.charAt(5) * 6;
+                vec[6] = cuit.charAt(6) * 5;
+                vec[7] = cuit.charAt(7) * 4;
+                vec[8] = cuit.charAt(8) * 3;
+                vec[9] = cuit.charAt(9) * 2;
+                            
+                //Suma cada uno de los resultados:
+                for(i=0; i<=9; i++) {
+                    x += vec[i];
+                }
+                dv = (11 - (x % 11)) % 11;
+                if (dv == cuit.charAt(10)) {
+                    esCuit = true;
+                }
+            }
+
+            if (!esCuit) {
+                //alert( "CUIT Invalido" );
+                salida.value += "CUIT invalido.\n";
+                document.form.cuit.focus();
+                errors = 'Cuit Invalido ';
+            } else {
+                //alert( "CUIT validado" );
+                salida.value += "CUIT validado.\n";
+                document.form.cuit.focus();
+            }
+            document.MM_returnValue1 = (errors == '');
+        }
+    </script>
+    <!--<form name="form">
+        <input type="text" name="cuit" id="cuit"/>
+        <input type="button" class="button" value="VALIDAR" onclick="ValidarCuit2()"/>
+
+        // este es bueno alert(validarCuit('20172543597')); 
+        // este es bueno alert(validarCuit('20131048131')); 
+        // este NO alert(validarCuit('20131048133'));
+    </form>-->
+    <div class="contenedor">
+        <form name="form">
+            <input type="text" name="cuit" id="cuit" maxlength="11" style="width:63.5%; margin-top:3px;"/>
+            <input type="button" class="button" value="VALIDAR" onclick="ValidarCuit2()">
+        </form>
+        <textarea id="salida2" name="salida2" cols="70" rows="10"></textarea>
+    </div>
+</body>
+</html>
