@@ -20,6 +20,7 @@
         private $tipoAsiento;
         private $idayvuelta;
         private $objArrayPasajeros;
+        private $mensajeoperacion;
 
         //Métodos de acceso:
         public function getCodigoViaje() {
@@ -49,6 +50,9 @@
         public function getObjArrayPasajeros() {
             return $this->objArrayPasajeros;
         }
+        public function getmensajeoperacion() {
+            return $this->mensajeoperacion;
+        }
 
         public function setCodigoViaje($codigoViaje) {
             $this->codigoViaje = $codigoViaje;
@@ -76,6 +80,9 @@
         }
         public function setObjArrayPasajeros($objArrayPasajeros) {
             $this->objArrayPasajeros = $objArrayPasajeros;
+        }
+        public function setmensajeoperacion($mensajeoperacion){
+            $this->mensajeoperacion = $mensajeoperacion;
         }
         
         //Métodos varios:
@@ -290,6 +297,30 @@
             }
             $bandera = true;
             return $bandera;
+        }
+
+        /**
+         * Método 4: modificar - 
+         * Modifica los valores de una tupla en la tabla "viaje".
+         * @return boolean $resp
+         */
+        public function modificar() {
+            $resp = false; 
+            $baseDatos = new BaseDatos();
+            $consultaModifica = "UPDATE viaje SET idviaje = '".$this->getCodigoViaje()."',
+                                                vdestino = '".$this->getDestino()."',
+                                                vcantmaxpasajeros = '".$this->getCapacidadPasajeros()."' 
+                                                WHERE idviaje = ". $this->getCodigoViaje();
+            if ($baseDatos->Iniciar()) {
+                if ($baseDatos->Ejecutar($consultaModifica)) {
+                    $resp = true;
+                } else {
+                    $this->setmensajeoperacion($baseDatos->getError());
+                }
+            } else {
+                $this->setmensajeoperacion($baseDatos->getError());
+            }
+            return $resp;
         }
 
         /**
