@@ -41,7 +41,7 @@
             $resp = false;
             $conexion = mysqli_connect($this->HOSTNAME, $this->USUARIO, $this->CLAVE, $this->BASEDATOS);
             if ($conexion) {
-                if (mysqli_select_db($conexion,$this->BASEDATOS)) {
+                if (mysqli_select_db($conexion, $this->BASEDATOS)) {
                     $this->CONEXION = $conexion;
                     unset($this->QUERY);
                     unset($this->ERROR);
@@ -103,7 +103,8 @@
             unset($this->ERROR);
             $this->QUERY = $consulta;
             if ($this->RESULT = mysqli_query($this->CONEXION, $consulta)) {
-                $id = mysqli_insert_id($this->CONEXION);
+                //$id = mysqli_insert_id($this->CONEXION);
+                $id = mysqli_insert_id();
                 $resp = $id;
             } else {
                 $this->ERROR = mysqli_errno($this->CONEXION).": ".mysqli_error($this->CONEXION);

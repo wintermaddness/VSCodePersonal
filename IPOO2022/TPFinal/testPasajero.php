@@ -13,7 +13,7 @@ include_once 'Pasajero.php';
 		echo "-------------------------------------------------------";
 	}
 	
-	$objPasajero->cargar(27091730, "Pepe", "Suarez", "123456789");
+	$objPasajero->cargar(27091730, "Pepe", "Suarez", "123456789", "0160");
 	$respuesta = $objPasajero->insertar();
 	//Inserto el OBj Pasajero en la base de datos:
 	if ($respuesta == true) {

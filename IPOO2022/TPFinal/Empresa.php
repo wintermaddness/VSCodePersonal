@@ -98,7 +98,7 @@
                 $consultaEmpresa = $consultaEmpresa.' where '.$condicion;
             }
 
-            $consultaEmpresa .= " order by idempresa ";
+            $consultaEmpresa .= " order by enombre ";
             //echo $consultaEmpresa;
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaEmpresa)) {				
@@ -153,8 +153,8 @@
         public function modificar() {
             $resp = false; 
             $baseDatos = new BaseDatos();
-            $consultaModifica = "UPDATE empresa SET edireccion = '".$this->getEdireccion()."',
-                                                enombre = '".$this->getEnombre()."' 
+            $consultaModifica = "UPDATE empresa SET enombre = '".$this->getEnombre()."',
+                                                edireccion = '".$this->getEdireccion()."'
                                                 WHERE idempresa = ". $this->getIdEmpresa();
             if ($baseDatos->Iniciar()) {
                 if ($baseDatos->Ejecutar($consultaModifica)) {

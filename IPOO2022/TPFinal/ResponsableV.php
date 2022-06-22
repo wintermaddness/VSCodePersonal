@@ -48,10 +48,10 @@
             $this->nroLicencia = $nroLicencia;
         }*/
         public function __construct() {
+            $this->nroEmpleado = "";
+            $this->nroLicencia = "";
             $this->nombre = "";
             $this->apellido = "";
-            $this->nroEmpleado = null;
-            $this->nroLicencia = "";
         }
 
         public function cargar($nroEmpleado, $nroLicencia, $nombre, $apellido) {
@@ -85,9 +85,9 @@
                 if ($baseDatos->ejecutar($consulta)) {
                     if ($row2 = $baseDatos->registro()) {
                         $this->setNroEmpleado($nroEmpleado);
+                        $this->setNroLicencia($row2['rnumerolicencia']);
                         $this->setNombre($row2['rnombre']);
                         $this->setApellido($row2['rapellido']);
-                        $this->setNroLicencia($row2['rnumerolicencia']);
                         $resp= true;
                     }
                 } else {
@@ -115,7 +115,7 @@
                 $consultaResponsable = $consultaResponsable.' where '.$condicion;
             }
 
-            $consultaResponsable .= " order by rnumeroempleado ";
+            $consultaResponsable .= " order by rapellido ";
             //echo $consultaResponsable;
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaResponsable)) {				
@@ -149,10 +149,10 @@
             $base = new BaseDatos();
             $resp = false;
             $consultaInsertar = "INSERT INTO responsable(rnumeroempleado, rnumerolicencia, rnombre, rapellido) 
-                                VALUES ('".$this->getNroEmpleado()."', 
+                                VALUES ('".$this->getNroEmpleado()."',
+                                        '".$this->getNroLicencia()."', 
                                         '".$this->getNombre()."',
-                                        '".$this->getApellido()."',
-                                        '".$this->getNroLicencia()."')";
+                                        '".$this->getApellido()."')";
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaInsertar)) {
                     $resp = true;
@@ -173,9 +173,9 @@
         public function modificar() {
             $resp = false; 
             $baseDatos = new BaseDatos();
-            $consultaModifica = "UPDATE responsable SET rapellido = '".$this->getApellido()."',
+            $consultaModifica = "UPDATE responsable SET rnumerolicencia = '".$this->getNroLicencia()."',
                                                 rnombre = '".$this->getNombre()."',
-                                                rnumerolicencia = '".$this->getNroLicencia()."' 
+                                                rapellido = '".$this->getApellido()."'
                                                 WHERE rnumeroempleado = ". $this->getNroEmpleado();
             if ($baseDatos->Iniciar()) {
                 if ($baseDatos->Ejecutar($consultaModifica)) {
