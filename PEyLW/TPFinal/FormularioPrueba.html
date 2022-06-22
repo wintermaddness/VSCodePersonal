@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+    <head>
+        <title>Formulario Reclamos</title>
+        <script>
+            function enviar_formulario(){
+                document.formulario1.submit()
+            }
+
+            function deshabilita(form) {
+                if ((form.nombre.value != "") && (form.apellido.value != "")) {
+                    form.enviar.disabled = false;
+                }
+                else {
+                    form.enviar.disabled = true;
+                }
+            }
+
+            function validarCampo5(form) {
+                c = 12; // cant. máxima de caracteres
+                L = form.campo.value.length;
+                // e es el excedido
+                // f es el faltante
+                if (L > c) { e = (L-c); error = 1; }
+                if (L < c) { f = (c-L); error = -1; }
+                if ((L != c) && (error == -1)) {
+                    alert("El campo contiene " + f + " caracteres menos a los solicitados");
+                    form.campo.focus(); return true;
+                }
+                if ((L != c) && (error == 1)) {
+                    alert("El campo contiene " + e + " caracteres más a los solicitados");
+                    form.campo.focus(); return true;
+                }
+            }
+        </script>
+    </head>
+    <body bgcolor="black" text="#fff">
+        <form action="mailto:caliaga1917@gmail.com" method="post" enctype="text/plain">
+            <table border="0" style="font-family:Verdana, Geneva, Tahoma, sans-serif; font-size:small;">
+                <tr>
+                    <caption>REGISTRO DE RECLAMOS</caption>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su nombre:
+                    </td>
+                    <td colspan="2">
+                        <input type="text" maxlength="20"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su correo:
+                    </td>
+                    <td>
+                        <input type="text" value="@gmail.com.ar"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Ingrese su sexo:
+                    </td>
+                    <td>
+                        <select name="sexo" id="selectSexo">
+                            <option value="fem">Femenino</option>
+                            <option value="mas">Masculino</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Elija un tema:
+                    </td>
+                    <td>
+                        <select name="sexo" id="selectSexo">
+                            <optgroup label="Alquiler">
+                                <option value="casa">Casas</option>
+                                <option value="departamento">Departamentos</option>
+                                <option value="cabania">Cabañas</option>
+                            </optgroup>
+                            <optgroup label="Compra">
+                                <option value="casas">Casas</option>
+                                <option value="departamentos">Departamentos</option>
+                            </optgroup>
+                            <optgroup label="Otros">
+                                <option value="Otro">Otros...</option>
+                            </optgroup>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        * Si elije otro tema, no olvide especificarlo dentro<br>
+                        del cuadro de comentarios.
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <textarea name="comentario" id="" cols="40" rows="10">
+                            Cuéntenos sobre su problema...
+                        </textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="right">
+                        <input type="submit"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- Marcar y desmarcar checkbox -->
+        <form name="f1" id="formElement">
+            <p>
+                Nombre: <input type="text" name="nombre" />
+                <br>
+                <input type="checkbox" name="ch1" /> Opcion 1
+                <br>
+                <input type="checkbox" name="ch2" /> Opcion 2
+                <br>
+                <input type="checkbox" name="ch3" /> Opcion 3
+                <br>
+                <input type="checkbox" name="ch4" /> Opcion 4
+                <br>
+                <select name="otro">
+                    <option value="1">Seleccion 1</option>
+                    <option value="2">Seleccion 2</option>
+                </select>
+                <br>
+                <input type="submit" value="Enviar" />
+            </p>
+            <p>
+                <a href="#" id="marcarTodo">Marcar todos los checkbox</a> |
+                <a href="#" id="desmarcarTodo">Desmarcar todos los checkbox</a>
+            </p>
+        </form>
+        
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById('marcarTodo').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    //seleccionarTodo();
+                    checkAll();
+                });
+                document.getElementById('desmarcarTodo').addEventListener('click', function(e) {
+                    e.preventDefault();
+                    //desmarcarTodo();
+                    uncheckAll();
+                });
+            });
+        
+            function seleccionarTodo() {
+                for (let i=0; i < document.f1.elements.length; i++) {
+                    if(document.f1.elements[i].type === "checkbox") {
+                        document.f1.elements[i].checked = true;
+                    }
+                }
+            }
+        
+            function desmarcarTodo() {
+                for (let i=0; i<document.f1.elements.length; i++) {
+                    if(document.f1.elements[i].type == "checkbox") {
+                        document.f1.elements[i].checked = false
+                    }
+                }
+            }
+        
+            function checkAll() {
+                document.querySelectorAll('#formElement input[type=checkbox]').forEach(function(checkElement) {
+                    checkElement.checked = true;
+                });
+            }
+        
+            function uncheckAll() {
+                document.querySelectorAll('#formElement input[type=checkbox]').forEach(function(checkElement) {
+                    checkElement.checked = false;
+                });
+            }
+        </script>
+
+        <!-- Enviar formulario a una página/enlace especificada/o -->
+        <form action="pagina_destino.php" method=post name="formulario1">
+            <input type="hidden" name="campo1" value="valor">
+            <input type="hidden" name="campo2" value="otroValor">
+        </form>
+        <a href="javascript:enviar_formulario()">Enviar formulario</a>
+
+        <!-- Botón de envío deshabilitado si los campos están vacíos -->
+        <form name="ejemplo18" method="POST" action="pagina.htm" target="_blank">
+            Nombre:
+            <input type="text" name="nombre" size="20" onKeyUp="deshabilita(this.form)"><br>
+            Apellido: 
+            <input type="text" name="apellido" size="20" onKeyUp="deshabilita(this.form)"><br>
+            <input type="submit" name="enviar" value="Enviar" disabled>
+        </form>
+
+        <!-- Contador de caracteres faltantes -->
+        <form name="form6" method="POST">
+            Escribir solo 12 caracteres: <input type="text" name="campo" size="12"><br>
+            <input type="button" value="Enviar" onClick="validarCampo5(this.form)">    
+        </form>
+
+        <!-- Required(ErrorMessage = "Este campo es requerido.")]
+        [StringLength(15, ErrorMessage = "Longitud entre 6 y 15 caracteres.", 
+                      MinimumLength = 6) -->
+    </body>
+</html>

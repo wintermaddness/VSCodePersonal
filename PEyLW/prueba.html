@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+    <head>
+        <!-- Boxicons -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <link rel="stylesheet" href="trabajoFinal.css">
+        <link rel="shortcut icon" href="/img/channels4_profile.jpg" type="image/x-icon">
+        <title>Lepen</title>
+        <script type="text/javascript">
+            window.addEventListener("scroll", function(){
+                var header = document.querySelector("header");
+                header.classList.toggle("abajo",window.scrollY>0)
+            })
+        </script>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Charis+SIL&display=swap');
+            *{
+                box-sizing: border-box;
+                padding: 0;
+                margin: 0;
+                text-decoration: none;
+                list-style: none;
+                font-family: inherit;
+            }
+
+            body {
+                border: 1px solid red;
+            }
+            .logoheader img{
+                width: 75px;
+                padding-left: 10px;
+                transition: 1s;
+            }
+            header{
+                background-color: #222;
+                display: flex;
+                justify-content:space-between; 
+                align-items: center;
+                padding: 10px ; 
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 10;
+                width: 100%;
+                transition: 1s;
+            }
+            header.abajo{
+                padding: 5px;
+                height: 50px;
+            }
+            header.abajo .logoheader{
+                border: 1px solid fuchsia;
+                height: 10px;
+                margin-bottom: 50px; 
+            }
+            nav a {
+                color: antiquewhite;
+                text-align: left;
+                padding-right: 100px;
+                font-size: 20px;
+                transition: 1s;
+            }
+            nav a:hover {
+                text-decoration: underline;
+            }
+            /* Div contenedor del video */
+            .fotofondo {
+                border: 1px solid orange;
+                background-image: url(/img/f3e488fa8461e2683055eaaca8c29978.jpg);
+                width: 100%;
+                height: 100vh;
+                position: relative;  
+            }
+            .container-video {
+                border: 1px solid cyan;
+                width: max-content;
+                margin-left: 30px;
+                margin-top: 300px;
+            }
+            video {
+                width: 800px;
+                height: 400px;
+                border-color: rgb(20, 5, 5);
+                border-radius: 10px  
+            }
+
+            /* Divs del footer */
+            .textosini {
+                width: 100%;
+                border: 1px solid green;
+            }
+            .imgmuestra{
+                border: 1px solid red;
+                width: 70%;
+                padding: 5px;
+                display: flex;
+                float: right;  
+                background-color: #222;
+                height: 200px;
+                justify-content: right;
+                color: aliceblue;
+                font-family: 'Charis SIL', serif; 
+            }
+            .nosotrosinicio{
+                border: 1px solid blue;
+                position: flex;
+                float: left;
+                width: 30%;
+                background-color: #222;
+                height: 200px;
+                color: aliceblue;
+                font-family: 'Charis SIL', serif;
+            }
+            .imgcalefaini{
+                height: 200px;
+                width: auto;
+                /*padding-top: 10px;*/
+                padding: 10px;
+            }
+            /* Supongo que este es un div separador */
+            .bordecolor{
+                border: 1px solid yellow;
+                background-color: #0c0c09c7;
+                height: 10px;
+            }
+
+            /* Estilos de los links de Redes Sociales */
+            .bxl-facebook-square{
+                color: darkblue;
+            }
+            .bxl-instagram{
+                color: white;
+            }
+            .bxl-youtube{
+                color: red;
+            }
+            .textosini .nosotrosinicio a {
+                text-decoration: none;
+                color: inherit
+            }
+            /* Prueba de alineación de los párrafos
+            * -> Se puede declarar el text-align:left; dentro de la clase .imgmuestra
+            */
+            .imgmuestra p {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logoheader">
+            <a href="#"> <img src="/img/images.png"></a>
+            </div>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Informacion General</a>
+                <a href="#">Productos</a>
+                <a href="#">Contacto</a>
+            </nav>
+        </header>
+        <main>
+            <div class="fotofondo">
+                <div class="container-video">
+                    <video autoplay loop plays-inline controls muted>
+                        <source src="/img/y2mate.com - Lepen  Proceso de Fabricación 2022 HQ_1080pFHR.mp4">
+                    </video>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="bordecolor">.</div>
+            <div class="textosini">
+                <div class="nosotrosinicio">
+                    <pre>
+                        <big>CONTACTENOS:</big>
+                        <a href="https://www.facebook.com/calefactoreslepen/"> 
+                            Facebook <i class='bx bxl-facebook-square'></i>
+                        </a>
+                        <a href="https://www.instagram.com/lepencalefactores/">
+                            Instagram <i class='bx bxl-instagram'></i>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCEoawBLHtus7wZfZIx9ptlg">
+                            Youtube <i class='bx bxl-youtube'></i>
+                        </a>
+                        Email: lepentuhogar@gmail.com <i class='bx bxl-gmail' ></i>
+                    </pre>
+                </div>
+                <div class="imgmuestra">
+                    <p>         
+                        Somos la empresa n° 1 dentro del mercado industrial de calefactores a leña. LEPEN busca la conformidad 
+                        y satisfacion del cliente ante todo y ofrece los mejores precios posibles.
+                        Conforme a los avances, nuestras tecnologias, son las indicas para dar 100% de fidelidad a nuestros
+                        consumidores.
+                        © 2022 CALEFACTORES A LEÑA LEPEN - Calefactores a leña de alto rendimiento - LEPEN Calefactores 
+                        - Estufas - Parrillas a leña LEPEN. Desarrollado por. Digito Uno.
+                    </p>  
+                    <img class="imgcalefaini" src="/img/CALEFACTOR-CON-HORNO-12000-CALORIAS.png">
+                </div>
+            </div>
+            <div class="bordecolor">.</div>    
+        </footer>
+    </body>
+</html>
