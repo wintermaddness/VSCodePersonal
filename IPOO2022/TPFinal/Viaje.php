@@ -278,5 +278,40 @@
             }
             return $resp;
         }
+
+        /**
+         * Método 6: obtenerUltimoId - 
+         * Método que retorna el valor del ID de la última inserción.
+         * @return mixed
+         */
+        public function obtenerUltimoId() {
+            $base = new BaseDatos();
+            $resp = null;
+            /**
+             * Para obtener todos los datos de la tabla mediante una consulta:
+             * SELECT `AUTO_INCREMENT`
+             * FROM  INFORMATION_SCHEMA.TABLES
+             * WHERE TABLE_SCHEMA = 'DatabaseName'
+             * AND   TABLE_NAME   = 'TableName';
+             */
+            $consulta = "SELECT 'AUTO_INCREMENT'
+                        FROM  INFORMATION_SCHEMA.TABLES
+                        WHERE TABLE_SCHEMA = 'bdviajes'
+                        AND   TABLE_NAME   = 'viaje'";
+            if ($base->Iniciar()) {
+                if ($base->Ejecutar($consulta)) {
+                    if ($row2 = $base->Registro()) {
+                        $resp = $row2['AUTO_INCREMENT'];
+                        //$lastid = mysqli_insert_id($con);
+                        //$resp = $row2->lastInsertId();
+                    }
+                }   else {
+                    $this->setMensajeOperacion($base->getError());
+                }
+            } else {
+                $this->setMensajeOperacion($base->getError());
+            }
+            return $resp;
+        }
     }
 ?>

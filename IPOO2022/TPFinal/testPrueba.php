@@ -5,20 +5,7 @@
 	include "Pasajero.php";
     include "Empresa.php";
 
-	$objEmpresaTransportes = new Empresa();
-	$objEmpresaTransportes->cargar(1, "Shatterdome", "Tsing Yi, Hong Kong");
-	$respEmpresa = $objEmpresaTransportes->insertar();
-	//Se inserta el objEmpresaTransportes en la BD:
-	if ($respEmpresa == true) {
-		echo "\nOP INSERCIÓN: La Empresa fue ingresada en la BD:\n";
-		$coleccionEmpresa = $objEmpresaTransportes->listar("");
-		foreach ($coleccionEmpresa as $unaEmpresa) {
-			echo $unaEmpresa;
-			echo "------------------------------------------------------\n";
-		}
-	} else {
-		echo $unaEmpresa->getmensajeoperacion();
-	}
+	//$objEmpresaTransportes->cargar(1, "Shatterdome", "Tsing Yi, Hong Kong");
 
 	/*
 	\n1. Agregar viaje
@@ -84,180 +71,6 @@
 		echo $viaje->listar();
 	}
 
-	function datosPasajero() {
-		echo  "| Ingrese los datos de un pasajero: ";
-		echo "\n	+ Ingrese el nombre del pasajero: ";
-		$nombre = trim(fgets(STDIN));
-		echo "	+ Ingrese el apellido del pasajero: ";
-		$apellido = trim(fgets(STDIN));
-		echo "	+ Ingrese el número de documento del pasajero: ";
-		$dni = trim(fgets(STDIN));
-		echo "	+ Ingrese el número de teléfono del pasajero: ";
-		$telefono = trim(fgets(STDIN));
-		$objPasajero = new Pasajero();
-		$objPasajero->cargar($nombre, $apellido, $dni, $telefono);
-		return $objPasajero;
-	}
-
-	function agregarEmpresa($idEmpresa, $nombreEmpresa, $direccionEmpresa) {
-		$empresaAgregada = false;
-        $empresa = new Empresa();
-		$empresa->cargar($idEmpresa, $nombreEmpresa, $direccionEmpresa);
-		if ($empresa->insertar()) {
-			$empresaAgregada = $empresa->listar();
-		}
-		return $empresaAgregada;
-	}
-
-	function agregarViaje($codViaje, $destino, $capacidadMaxima, $idEmpresa, $objResponsable, $precio, $tipoAsiento, $trayectoriaViaje) {
-		$viajeAgregado = false;
-        $viaje = new Viaje();
-		$viaje->cargar($codViaje, $destino, $capacidadMaxima, $idEmpresa, $objResponsable, $precio, $tipoAsiento, $trayectoriaViaje);
-		if ($viaje->insertar()) {
-			//$viajeAgregado = true;
-			$viajeAgregado = $viaje->listar();
-		}
-		return $viajeAgregado;
-	}
-
-	function crearViaje() {
-		//Se piden los datos del viaje:
-		echo "\n>>> Por favor, ingrese los datos del viaje <<<\n";
-		echo "| Ingrese el destino: ";
-		$destino = trim(fgets(STDIN));
-		echo "| Ingrese la capacidad máxima de pasajeros: ";
-		$capacidadMaxima = trim(fgets(STDIN));
-
-		//Se pide que el usuario seleccione una empresa:
-		//Se listan en pantalla todas las empresas almacenadas:
-		echo "\n".mostrar($empresa->listar());
-		do {
-			echo "| Seleccione una empresa: ";
-			$nroEmpresa = trim(fgets(STDIN));
-			$empresaEncontrada = $empresa->buscar($nroEmpresa);
-			if ($empresaEncontrada == false) {
-				echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
-			}
-		} while($empresaEncontrada != true);
-		$viaje->setIdEmpresa($empresa->getIdEmpresa());
-
-		//Se piden los datos del responsable del viaje:
-		echo ">>> Ingrese Los datos del responsable del viaje <<\n";
-		echo "| Ingrese el nombre: ";
-		$nombreResponsable = trim(fgets(STDIN));
-		echo "| Ingrese el apellido: ";
-		$apellidoResponsable = trim(fgets(STDIN));
-		echo "| Ingrese el N° de licencia: ";
-		$nroLicencia = trim(fgets(STDIN));
-		//Se setean los datos del Responsable:
-		$responsable->setNombre($nombreResponsable);
-		$responsable->setApellido($apellidoResponsable);
-		$responsable->setNroLicencia($nroLicencia);
-		$insercionResponsable = $responsable->insertar();
-		if ($insercionResponsable) {
-			echo "	\n>>> Responsable agregado con éxito.\n";
-			$viaje->setObjResponsable($responsable->getNroEmpleado());
-		} else {
-			echo $responsable->getMensajeOperacion();
-		}
-		//Se pide el precio del viaje:
-		echo "| Ingrese el precio: ";
-		$precio = trim(fgets(STDIN));
-		
-		//Parámetros del viaje:
-		//$codViaje, $destino, $capacidadMaxima, $idEmpresa,
-		//$objResponsable, $precio, $tipoAsiento, $trayectoriaViaje
-
-		//Se especifican las características del viaje:
-		$tipoViajeCorrecto = false;
-		$tipoAsientoCorrecto = false;
-		do {
-			do {
-				echo "| Seleccione el tipo de viaje (1 ó 2):\n";
-				echo "1. Primera Clase\n";
-				echo "2. Común\n";
-				echo ">> ";
-				$tipoViaje = trim(fgets(STDIN));
-				if ($tipoViaje > 2 || $tipoViaje < 1) {
-					echo "	>>> ERROR. Ingrese una opción válida (1 ó 2).\n";
-				} else {
-					$tipoViajeCorrecto = true;
-				}
-			} while($tipoViaje > 2 || $tipoViaje < 1);
-			do {
-				echo "| Seleccione el tipo de asiento (1 ó 2):\n";
-				echo "1. Cama\n";
-				echo "2. Semi-Cama\n";
-				echo ">> ";
-				$tipoAsiento = trim(fgets(STDIN));
-				if ($tipoAsiento > 2 || $tipoAsiento < 1) {
-					echo "	>>> ERROR. Ingrese una opción válida (1 ó 2).\n";
-				} else {
-					$tipoAsientoCorrecto = true;
-				}
-			} while($tipoAsiento > 2 || $tipoAsiento < 1);
-		} while($tipoViajeCorrecto && $tipoAsientoCorrecto);
-
-		if ($tipoViaje == 1) {
-			$tipoViajeString = "Primera Clase";
-		} elseif ($tipoViaje == 2) {
-			$tipoViajeString = "Común";
-		} elseif ($tipoAsiento == 1) {
-			$tipoAsientoString = "Cama";
-		} elseif ($tipoAsiento == 2) {
-			$tipoAsientoString = "Semi-Cama";
-		}
-		$viaje->setTipoAsiento($tipoViajeString.", ".$tipoAsientoString);
-
-		//Se especifica la trayectoria del viaje:
-		do {
-			echo "| Seleccione la trayectoria (1, 2 ó 3):\n";
-			echo "1. Ida\n";
-			echo "2. Vuelta\n";
-			echo "3. Ida y Vuelta\n";
-			echo ">> ";
-			$trayectoriaViaje = trim(fgets(STDIN));
-			if ($trayectoriaViaje > 3 || $trayectoriaViaje < 1) {
-				echo "	>>> ERROR. Ingrese una opción válida (1, 2 ó 3).\n";
-			}
-		} while($trayectoriaViaje > 3 || $trayectoriaViaje < 1);
-		if ($trayectoriaViaje == 1) {
-			$trayecto = "Ida";
-		} elseif ($trayectoriaViaje == 2) {
-			$trayecto = "Vuelta";
-		} elseif ($trayectoriaViaje == 3) {
-			$trayecto = "Ida y Vuelta";
-		}
-		$viaje->setIdayvuelta($trayecto);
-
-		//Se ingresan pasajeros al viaje:
-		do {
-			echo "| Ingrese la cantidad de pasajeros a agregar: ";
-			$cantPasajerosIngresados = trim(fgets(STDIN));
-			//Se verifica que la cant. de pasajeros ingresada no supere la capacidad del viaje o sea negativa:
-			if ($cantPasajerosIngresados > $capacidadMaxima) {
-				echo "  >>> ERROR. La cantidad de pasajeros supera la capacidad máxima del viaje.\n";
-			} elseif ($cantPasajerosIngresados < 0) {
-				echo "  >>> ERROR. La cantidad de pasajeros agregados no puede ser negativa.\n";
-			}
-		} while($cantPasajerosIngresados > $capacidadMaxima || $cantPasajerosIngresados < 0);
-		//Se toman los datos de los pasajeros, verificando que no se repitan:
-		for ($i=0; $i<$cantPasajerosIngresados; $i++) {
-			$datosPasajeroNuevo = datosPasajero();
-			$pasajeroRepetido = $viajeCreado->validarDocumento($datosPasajeroNuevo->getDni());
-			if ($pasajeroRepetido == true) {
-				echo "  >>> El pasajero ingresado ya se encuentra en el viaje.\n";
-				$i = $i - 1;
-			} else {
-				$nuevoPasajero = new Pasajero();
-				$nuevoPasajero->cargar($datosPasajeroNuevo->getNombre(), $datosPasajeroNuevo->getApellido(), $datosPasajeroNuevo->getDni(), $datosPasajeroNuevo->getTelefono());
-				$viajeCreado->agregarPasajeros($nuevoPasajero);
-				//$respuesta = $objPasajero->insertar();
-				echo "+| Pasajero agregado: \n".$nuevoPasajero;
-			}
-		}
-	}
-
 	/**
 	 * Parámetros del viaje: cargar($codigoViaje, $destino, $capacidadPasajeros, $idEmpresa, $objResponsable, $importe, $tipoAsiento, $idayvuelta)
 	 */
@@ -269,9 +82,167 @@
 		switch ($opcion) {
 			case 1:
 				echo "\n--------- Crear un viaje ---------\n";
-				$nuevoViaje = crearViaje();
-				echo $nuevoViaje."\n";
-				echo ">>> Se creó el viaje con éxito.\n";
+				//Se piden los datos del viaje:
+				echo "\n>>> Por favor, ingrese los datos del viaje <<<\n";
+				echo "| Ingrese el destino: ";
+				$destino = trim(fgets(STDIN));
+				$viaje->setDestino($destino);
+
+				echo "| Ingrese la capacidad máxima de pasajeros: ";
+				$capacidadMaxima = trim(fgets(STDIN));
+				$viaje->setCapacidadPasajeros($capacidadMaxima);
+
+				//Se pide que el usuario seleccione una empresa:
+				//Se listan en pantalla todas las empresas almacenadas:
+				echo "\n".mostrar($empresa->listar());
+				do {
+					echo "| Seleccione una empresa: ";
+					$nroEmpresa = trim(fgets(STDIN));
+					$empresaEncontrada = $empresa->buscar($nroEmpresa);
+					if ($empresaEncontrada == false) {
+						echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
+					}
+				} while($empresaEncontrada != true);
+				$viaje->setIdEmpresa($empresa->getIdEmpresa());
+
+				//Se piden los datos del responsable del viaje:
+				echo ">>> Ingrese Los datos del responsable del viaje <<\n";
+				echo "| Ingrese el nombre: ";
+				$nombreResponsable = trim(fgets(STDIN));
+				echo "| Ingrese el apellido: ";
+				$apellidoResponsable = trim(fgets(STDIN));
+				echo "| Ingrese el N° de licencia: ";
+				$nroLicencia = trim(fgets(STDIN));
+				//Se setean los datos del Responsable:
+				$responsable->setNombre($nombreResponsable);
+				$responsable->setApellido($apellidoResponsable);
+				$responsable->setNroLicencia($nroLicencia);
+				$insercionResponsable = $responsable->insertar();
+				if ($insercionResponsable) {
+					echo "	\n>>> Responsable agregado con éxito.\n";
+					$viaje->setObjResponsable($responsable->getNroEmpleado());
+				} else {
+					echo $responsable->getMensajeOperacion();
+				}
+				//Se pide el precio del viaje:
+				echo "| Ingrese el precio: ";
+				$precio = trim(fgets(STDIN));
+				$viaje->setImporte($precio);
+				
+				//Parámetros del viaje:
+				//$codViaje, $destino, $capacidadMaxima, $idEmpresa,
+				//$objResponsable, $precio, $tipoAsiento, $trayectoriaViaje
+
+				//Se especifican las características del viaje:
+				$tipoViajeCorrecto = false;
+				$tipoAsientoCorrecto = false;
+				do {
+					do {
+						echo "| Seleccione el tipo de viaje (1 ó 2):\n";
+						echo "1. Primera Clase\n";
+						echo "2. Común\n";
+						echo ">> ";
+						$tipoViaje = trim(fgets(STDIN));
+						if ($tipoViaje > 2 || $tipoViaje < 1) {
+							echo "	>>> ERROR. Ingrese una opción válida (1 ó 2).\n";
+						} else {
+							$tipoViajeCorrecto = true;
+						}
+					} while($tipoViaje > 2 || $tipoViaje < 1);
+					do {
+						echo "| Seleccione el tipo de asiento (1 ó 2):\n";
+						echo "1. Cama\n";
+						echo "2. Semi-Cama\n";
+						echo ">> ";
+						$tipoAsiento = trim(fgets(STDIN));
+						if ($tipoAsiento > 2 || $tipoAsiento < 1) {
+							echo "	>>> ERROR. Ingrese una opción válida (1 ó 2).\n";
+						} else {
+							$tipoAsientoCorrecto = true;
+						}
+					} while($tipoAsiento > 2 || $tipoAsiento < 1);
+				} while($tipoViajeCorrecto && $tipoAsientoCorrecto);
+
+				if ($tipoViaje == 1) {
+					$tipoViajeString = "Primera Clase";
+				} elseif ($tipoViaje == 2) {
+					$tipoViajeString = "Común";
+				} elseif ($tipoAsiento == 1) {
+					$tipoAsientoString = "Cama";
+				} elseif ($tipoAsiento == 2) {
+					$tipoAsientoString = "Semi-Cama";
+				}
+				$viaje->setTipoAsiento($tipoViajeString.", ".$tipoAsientoString);
+
+				//Se especifica la trayectoria del viaje:
+				do {
+					echo "| Seleccione la trayectoria (1, 2 ó 3):\n";
+					echo "1. Ida\n";
+					echo "2. Vuelta\n";
+					echo "3. Ida y Vuelta\n";
+					echo ">> ";
+					$trayectoriaViaje = trim(fgets(STDIN));
+					if ($trayectoriaViaje > 3 || $trayectoriaViaje < 1) {
+						echo "	>>> ERROR. Ingrese una opción válida (1, 2 ó 3).\n";
+					}
+				} while($trayectoriaViaje > 3 || $trayectoriaViaje < 1);
+				if ($trayectoriaViaje == 1) {
+					$trayecto = "Ida";
+				} elseif ($trayectoriaViaje == 2) {
+					$trayecto = "Vuelta";
+				} elseif ($trayectoriaViaje == 3) {
+					$trayecto = "Ida y Vuelta";
+				}
+				$viaje->setIdayvuelta($trayecto);
+
+				//Se ingresan pasajeros al viaje:
+				do {
+					echo "| Ingrese la cantidad de pasajeros a agregar: ";
+					$cantPasajerosIngresados = trim(fgets(STDIN));
+					//Se verifica que la cant. de pasajeros ingresada no supere la capacidad del viaje o sea negativa:
+					if ($cantPasajerosIngresados > $capacidadMaxima) {
+						echo "  >>> ERROR. La cantidad de pasajeros supera la capacidad máxima del viaje.\n";
+					} elseif ($cantPasajerosIngresados < 0) {
+						echo "  >>> ERROR. La cantidad de pasajeros agregados no puede ser negativa.\n";
+					}
+				} while($cantPasajerosIngresados > $capacidadMaxima || $cantPasajerosIngresados < 0);
+				//Se toman los datos de los pasajeros, verificando que no se repitan:
+				for ($i=0; $i<$cantPasajerosAgregar; $i++) {
+					echo  "| Ingrese los datos de un pasajero: ";
+					echo "	+ Ingrese el número de documento del pasajero: ";
+					$dni = trim(fgets(STDIN));
+					$pasajeroRepetido = $pasajero->buscar($dni);
+					if ($pasajeroRepetido == true) {
+						echo "  >>> El pasajero ingresado ya se encuentra en el viaje.\n";
+						$i = $i - 1;
+					} else {
+						echo "	\n+ Ingrese el nombre del pasajero: ";
+						$nombre = trim(fgets(STDIN));
+						echo "	+ Ingrese el apellido del pasajero: ";
+						$apellido = trim(fgets(STDIN));
+						echo "	+ Ingrese el número de teléfono del pasajero: ";
+						$telefono = trim(fgets(STDIN));
+						//Se obtiene el último ID asignado a un viaje:
+						$ultimoIdAsignado = $viaje->obtenerUltimoId();
+						$nuevoPasajero = new Pasajero();
+						$nuevoPasajero->cargar($dni, $nombre, $apellido, $telefono, $ultimoIdAsignado);
+						array_push($coleccionPasajeros, $nuevoPasajero);
+						//$respuesta = $objPasajero->insertar();
+						echo "+| Pasajero agregado: \n".$nuevoPasajero;
+					}
+				}
+				//Se inserta el viaje y los pasajeros en la BD:
+				//$insercionViaje = $viaje->insertar();
+				//$resultado = ($insercionViaje?"Se agregó el viaje con éxito.":"ERROR. El viaje no se pudo agregar.");
+				echo $viaje->Insertar()?"":$viaje->getMensajeOperacion();
+				foreach ($coleccionPasajeros as $unPasajero) {
+					if ($unPasajero->insertar()) {
+						echo "	\n>>> Pasajero agregado con éxito\n";
+					} else {
+						echo $unPasajero->getmensajeoperacion();
+					}
+				}
+				echo "	\n>>> Viaje agregado con éxito.\n";
 			break;
 			case 2:
 				echo "----- Modificar el viaje -----\n";
