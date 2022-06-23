@@ -39,6 +39,8 @@
          */
         public function Iniciar() {
             $resp = false;
+            //Manual mySql: $conexion = @mysqli_connect($this->HOSTNAME, $this->USUARIO, $this->CLAVE, $this->BASEDATOS);
+            //if (!$link) {die('Connect Error: ' . mysqli_connect_errno());}
             $conexion = mysqli_connect($this->HOSTNAME, $this->USUARIO, $this->CLAVE, $this->BASEDATOS);
             if ($conexion) {
                 if (mysqli_select_db($conexion, $this->BASEDATOS)) {
@@ -50,7 +52,7 @@
                     $this->ERROR = mysqli_errno($conexion).": ".mysqli_error($conexion);
                 }
             } else {
-                $this->ERROR =  mysqli_errno($conexion).": ".mysqli_error($conexion);
+                $this->ERROR = mysqli_errno($conexion).": ".mysqli_error($conexion);
             }
             return $resp;
         }
