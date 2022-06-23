@@ -188,5 +188,53 @@
             }
             return $resp;
         }
+
+        public function listarViajesEmpresa() {
+            $arrayViajes = null;
+            $base = new BaseDatos();
+            $consulta = "SELECT * FROM viaje WHERE idempresa = ".$this->getIdEmpresa();    
+            if ($base->Iniciar()) {
+                if ($base->Ejecutar($consulta)) {
+                    $arrayViajes = array();
+                    while ($row2=$base->Registro()) {
+                        $codigoViaje = $row2['idviaje'];
+                        $destino = $row2['vdestino'];
+                        $capacidadPasajeros = $row2['vcantmaxpasajeros'];
+                        $idEmpresa = $row2['idempresa'];
+                        $objResponsable = $row2['rnumeroempleado'];
+                        $importe = $row2['vimporte'];
+                        $tipoAsiento = $row2['tipoAsiento'];
+                        $idayvuelta = $row2['idayvuelta'];
+                        $viaje = new Viaje();
+                        $viaje->cargar($codigoViaje, $destino, $capacidadPasajeros, $idEmpresa, $objResponsable, $importe, $tipoAsiento, $idayvuelta);
+                        $arrayViajes[] = $viaje;
+                    }
+                } else {
+                    $this->setmensajeoperacion($base->getError());
+                }
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+            return $arrayViajes;
+        }
+
+        /**
+         * Método 3: eliminarViajesEmpresa - 
+         * Función que elimina todos los viajes asociados a una empresa específica.
+         * @return boolean
+         */
+        function EliminarViajesEmpresa()
+        {
+            $resp = false;
+            $listaDeViajes = $this->listarViajesEmpresa();
+            foreach ($listaDeViajes as $unViaje) {
+                $listaDePasajeros = $unViaje->listarPasajeros();
+                foreach ($listaDePasajeros as $unPasajero) {
+                    $unPasajero->Eliminar();
+                }
+                $unViaje->Eliminar();
+            }
+            return $resp;
+        }
     }
 ?>
