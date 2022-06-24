@@ -1,4 +1,7 @@
-CREATE DATABASE bdviajes; 
+/**
+ * FOREIGN KEY: Una CLAVE EXTERNA es un campo (o colección de campos) en una tabla que hace referencia a la CLAVE PRINCIPAL en otra tabla.
+ */
+CREATE DATABASE bdviajes;
 
 CREATE TABLE empresa (
         idempresa bigint AUTO_INCREMENT,

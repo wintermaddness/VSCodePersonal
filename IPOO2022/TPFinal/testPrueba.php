@@ -245,7 +245,6 @@
 						$nuevoPasajero = new Pasajero();
 						$nuevoPasajero->cargar($dni, $nombre, $apellido, $telefono, $ultimoIdAsignado);
 						array_push($coleccionPasajeros, $nuevoPasajero);
-						//$respuesta = $objPasajero->insertar();
 						echo "+| Pasajero agregado: \n".$nuevoPasajero;
 
 						//Se inserta el viaje y los pasajeros en la BD:
