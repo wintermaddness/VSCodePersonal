@@ -87,11 +87,11 @@
         
         //Métodos varios:
         public function __construct() {
-            $this->codigoViaje = "";
+            $this->codigoViaje = 0;
             $this->destino = "";
             $this->capacidadPasajeros = "";
-            $this->idEmpresa = "";
-            $this->objResponsable = "";
+            $this->idEmpresa = null;
+            $this->objResponsable = null;
             $this->importe = "";
             $this->tipoAsiento = "";
             $this->idayvuelta = "";

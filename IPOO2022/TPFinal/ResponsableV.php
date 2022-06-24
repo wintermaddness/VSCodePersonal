@@ -48,7 +48,7 @@
             $this->nroLicencia = $nroLicencia;
         }*/
         public function __construct() {
-            $this->nroEmpleado = "";
+            $this->nroEmpleado = 0;
             $this->nroLicencia = "";
             $this->nombre = "";
             $this->apellido = "";

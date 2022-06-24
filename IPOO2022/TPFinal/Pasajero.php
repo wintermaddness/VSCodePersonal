@@ -53,7 +53,7 @@
             $this->apellido = "";
             $this->dni = "";
             $this->telefono = "";
-            $this->idViaje = "";
+            $this->idViaje = null;
         }
 
         public function cargar($dni, $nombre, $apellido, $telefono, $idViaje) {		

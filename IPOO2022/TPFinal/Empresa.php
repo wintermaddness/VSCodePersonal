@@ -33,8 +33,7 @@
         }
 
         //Métodos varios:
-        public function __construct()
-        {
+        public function __construct() {
             $this->idEmpresa = 0;
             $this->enombre = "";
             $this->edireccion = "";

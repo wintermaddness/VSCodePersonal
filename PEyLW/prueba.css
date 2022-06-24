@@ -1,0 +1,35 @@
+* {
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+/* Estilos del div contenedor */
+#capaRoja {
+    position: relative;
+    border: 1px solid red;
+    color: rgb(62, 61, 61);
+    border-radius: 10px;
+    width: 70%;
+    height: 200px;
+    margin-top: 35px;
+}
+/* Estilos del botón de acción */
+.button {
+    border: 1px dashed gray;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5em;
+    text-align: center;
+    margin: 0 10px 0 0;
+    width: 180px;
+    position: relative;
+    float: left;
+}
+.button:hover {
+    background-color: rgb(62, 61, 61);
+    color: aliceblue;
+}
+/* Estilos de los input */
+input {
+    margin-bottom: 5px;
+}
