@@ -219,7 +219,7 @@
         }
 
         /**
-         * Método 3: eliminarViajesEmpresa - 
+         * Método 7: eliminarViajesEmpresa - 
          * Función que elimina todos los viajes asociados a una empresa específica.
          * @return boolean
          */
@@ -235,6 +235,21 @@
                 $unViaje->Eliminar();
             }
             return $resp;
+        }
+
+        /**
+         * Método 8: traerEmpresa - 
+         * Trae una empresa de la BD a partir del id recibido.
+         * @param int $id
+         * @return object $empresaEncontrada
+         */
+        public function traerEmpresa($id) {
+            $empresa = new Empresa();
+            $empresaEncontrada = $empresa->buscar($id);
+            if (!$empresaEncontrada) {
+                $empresa = null;
+            }
+            return $empresa;
         }
     }
 ?>

@@ -301,7 +301,7 @@
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consulta)) {
                     if ($row2 = $base->Registro()) {
-                        $resp = $this->getCodigoViaje($row2['idviaje']);
+                        $resp = $row2[$this->getCodigoViaje()];
                         //$resp = $row2['AUTO_INCREMENT'];
                         //$lastid = mysqli_insert_id($con);
                         //$resp = $row2->lastInsertId();
@@ -313,6 +313,21 @@
                 $this->setMensajeOperacion($base->getError());
             }
             return $resp;
+        }
+
+        /**
+         * Método 7: traerViaje - 
+         * Trae un viaje de la BD a partir del id recibido.
+         * @param int $id
+         * @return object $funcionEncontrada
+         */
+        public function traerViaje($id) {
+            $viaje = new Viaje();
+            $viajeEncontrado = $viaje->buscar($id);
+            if (!$viajeEncontrado) {
+                $viaje = null;
+            }
+            return $viaje;
         }
     }
 ?>

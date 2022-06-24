@@ -209,5 +209,53 @@
             }
             return $resp;
         }
+
+        public function listarViajesResponsable() {
+            $arrayViajes = null;
+            $base = new BaseDatos();
+            $consulta = "SELECT * FROM viaje WHERE rnumeroempleado = ".$this->getNroEmpleado();    
+            if ($base->Iniciar()) {
+                if ($base->Ejecutar($consulta)) {
+                    $arrayViajes = array();
+                    while ($row2=$base->Registro()) {
+                        $codigoViaje = $row2['idviaje'];
+                        $destino = $row2['vdestino'];
+                        $capacidadPasajeros = $row2['vcantmaxpasajeros'];
+                        $idEmpresa = $row2['idempresa'];
+                        $objResponsable = $row2['rnumeroempleado'];
+                        $importe = $row2['vimporte'];
+                        $tipoAsiento = $row2['tipoAsiento'];
+                        $idayvuelta = $row2['idayvuelta'];
+                        $viaje = new Viaje();
+                        $viaje->cargar($codigoViaje, $destino, $capacidadPasajeros, $idEmpresa, $objResponsable, $importe, $tipoAsiento, $idayvuelta);
+                        $arrayViajes[] = $viaje;
+                    }
+                } else {
+                    $this->setmensajeoperacion($base->getError());
+                }
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+            return $arrayViajes;
+        }
+
+        /**
+         * Método 7: eliminarViajesResponsable - 
+         * Función que elimina todos los viajes asociados a un responsable específico.
+         * @return boolean
+         */
+        function eliminarViajesResponsable()
+        {
+            $resp = false;
+            $listaDeViajes = $this->listarViajesResponsable();
+            foreach ($listaDeViajes as $unViaje) {
+                $listaDePasajeros = $unViaje->listarPasajeros();
+                foreach ($listaDePasajeros as $unPasajero) {
+                    $unPasajero->Eliminar();
+                }
+                $unViaje->Eliminar();
+            }
+            return $resp;
+        }
     }
 ?>
