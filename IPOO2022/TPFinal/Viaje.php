@@ -297,15 +297,16 @@
             $consulta = "SELECT 'AUTO_INCREMENT'
                         FROM  INFORMATION_SCHEMA.TABLES
                         WHERE TABLE_SCHEMA = 'bdviajes'
-                        AND   TABLE_NAME   = 'viaje'";
+                        AND TABLE_NAME = 'viaje'";
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consulta)) {
                     if ($row2 = $base->Registro()) {
-                        $resp = $row2['AUTO_INCREMENT'];
+                        $resp = $this->getCodigoViaje($row2['idviaje']);
+                        //$resp = $row2['AUTO_INCREMENT'];
                         //$lastid = mysqli_insert_id($con);
                         //$resp = $row2->lastInsertId();
                     }
-                }   else {
+                } else {
                     $this->setMensajeOperacion($base->getError());
                 }
             } else {

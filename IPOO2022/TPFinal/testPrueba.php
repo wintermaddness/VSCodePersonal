@@ -31,16 +31,16 @@
 	 * @return string
 	 */
 	function menuDeOpciones() {
-		$menu = "\n---------------Menú de opciones---------------";
-		echo "\n1) Crear Viaje";
-		echo "\n2) Modificar datos del viaje";
-		echo "\n3) Eliminar viaje";
-		echo "\n4) Mostrar datos del viaje";
-		echo "\n5) Agregar empresa";
-		echo "\n6) Modificar datos de la empresa";
-		echo "\n7) Eliminar empresa";
-		echo "\n8) Mostrar datos de la empresa";
-		echo "\n9) Salir del programa";
+		$menu = "\n---------------Menú de opciones---------------".
+		"\n1) Crear viaje".
+		"\n2) Modificar datos del viaje".
+		"\n3) Eliminar viaje".
+		"\n4) Mostrar datos del viaje".
+		"\n5) Agregar empresa".
+		"\n6) Modificar datos de la empresa".
+		"\n7) Eliminar empresa".
+		"\n8) Mostrar datos de la empresa".
+		"\n9) Salir del programa";
 		return $menu;
 	}
 
@@ -77,7 +77,8 @@
 
 	do {
 		$menu = menuDeOpciones();
-		echo $menu;
+		echo $menu."\n";
+		echo ">> ";
 		$opcion = trim(fgets(STDIN));
 		switch ($opcion) {
 			case 1:
@@ -92,21 +93,44 @@
 				$capacidadMaxima = trim(fgets(STDIN));
 				$viaje->setCapacidadPasajeros($capacidadMaxima);
 
-				//Se pide que el usuario seleccione una empresa:
-				//Se listan en pantalla todas las empresas almacenadas:
-				echo "\n".mostrar($empresa->listar());
-				do {
-					echo "| Seleccione una empresa: ";
-					$nroEmpresa = trim(fgets(STDIN));
-					$empresaEncontrada = $empresa->buscar($nroEmpresa);
-					if ($empresaEncontrada == false) {
-						echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
+				//Se piden los datos de la empresa de transporte:
+				//Se verifica que hayan empresas creadas:
+				$cantEmpresas = count($empresa->listar());
+				if ($cantEmpresas == 0) {
+					echo "	\n>>> ERROR. Aún no se han agregado empresas.\n";
+					echo ">>> Ingrese los datos de la empresa <<\n";
+					echo "| Ingrese el nombre de la empresa: ";
+					$nombreEmpresa = trim(fgets(STDIN));
+					echo "| Ingrese la dirección de la empresa: ";
+					$direccionEmpresa = trim(fgets(STDIN));
+					//Se setean los datos ingresados:
+					$empresa->setEnombre($nombreEmpresa);
+					$empresa->setEdireccion($direccionEmpresa);
+					$insercionEmpresa = $empresa->insertar();
+					if ($insercionEmpresa) {
+						$viaje->setIdEmpresa($empresa->getIdEmpresa());
+						echo "	>>> Empresa agregada con éxito.\n";
+					} else {
+						echo $empresa->getMensajeOperacion();
 					}
-				} while($empresaEncontrada != true);
-				$viaje->setIdEmpresa($empresa->getIdEmpresa());
+				} else {
+					//Se listan en pantalla todas los viajes almacenados:
+					echo "\n".mostrar($empresa->listar());
+					do {
+						echo "| Seleccione una empresa: ";
+						$nroEmpresa = trim(fgets(STDIN));
+						$empresaEncontrada = $empresa->buscar($nroEmpresa);
+						if ($empresaEncontrada == false) {
+							echo "	>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
+						} else {
+							$viaje->setIdEmpresa($empresa->getIdEmpresa());
+							echo "	>>> Empresa agregada con éxito.\n";
+						}
+					} while($empresaEncontrada != true);
+				}
 
 				//Se piden los datos del responsable del viaje:
-				echo ">>> Ingrese Los datos del responsable del viaje <<\n";
+				echo ">>> Ingrese los datos del responsable del viaje <<\n";
 				echo "| Ingrese el nombre: ";
 				$nombreResponsable = trim(fgets(STDIN));
 				echo "| Ingrese el apellido: ";
@@ -119,11 +143,12 @@
 				$responsable->setNroLicencia($nroLicencia);
 				$insercionResponsable = $responsable->insertar();
 				if ($insercionResponsable) {
-					echo "	\n>>> Responsable agregado con éxito.\n";
+					echo "	>>> Responsable agregado con éxito.\n";
 					$viaje->setObjResponsable($responsable->getNroEmpleado());
 				} else {
 					echo $responsable->getMensajeOperacion();
 				}
+
 				//Se pide el precio del viaje:
 				echo "| Ingrese el precio: ";
 				$precio = trim(fgets(STDIN));
@@ -134,9 +159,6 @@
 				//$objResponsable, $precio, $tipoAsiento, $trayectoriaViaje
 
 				//Se especifican las características del viaje:
-				$tipoViajeCorrecto = false;
-				$tipoAsientoCorrecto = false;
-				do {
 					do {
 						echo "| Seleccione el tipo de viaje (1 ó 2):\n";
 						echo "1. Primera Clase\n";
@@ -161,13 +183,13 @@
 							$tipoAsientoCorrecto = true;
 						}
 					} while($tipoAsiento > 2 || $tipoAsiento < 1);
-				} while($tipoViajeCorrecto && $tipoAsientoCorrecto);
 
 				if ($tipoViaje == 1) {
 					$tipoViajeString = "Primera Clase";
 				} elseif ($tipoViaje == 2) {
 					$tipoViajeString = "Común";
-				} elseif ($tipoAsiento == 1) {
+				}
+				if ($tipoAsiento == 1) {
 					$tipoAsientoString = "Cama";
 				} elseif ($tipoAsiento == 2) {
 					$tipoAsientoString = "Semi-Cama";
@@ -204,23 +226,25 @@
 						echo "  >>> ERROR. La cantidad de pasajeros supera la capacidad máxima del viaje.\n";
 					} elseif ($cantPasajerosIngresados < 0) {
 						echo "  >>> ERROR. La cantidad de pasajeros agregados no puede ser negativa.\n";
+					} elseif ($cantPasajerosIngresados == 0) {
+						echo "	>>> ERROR. La cantidad de pasajeros agregados no puede ser igual a cero (0).\n";
 					}
-				} while($cantPasajerosIngresados > $capacidadMaxima || $cantPasajerosIngresados < 0);
+				} while($cantPasajerosIngresados > $capacidadMaxima || $cantPasajerosIngresados < 0 || $cantPasajerosIngresados == 0);
 				//Se toman los datos de los pasajeros, verificando que no se repitan:
-				for ($i=0; $i<$cantPasajerosAgregar; $i++) {
-					echo  "| Ingrese los datos de un pasajero: ";
-					echo "	+ Ingrese el número de documento del pasajero: ";
+				for ($i=0; $i<$cantPasajerosIngresados; $i++) {
+					echo  ">>> Ingrese los datos de un pasajero <<<";
+					echo "\n+ Ingrese el número de documento del pasajero: ";
 					$dni = trim(fgets(STDIN));
 					$pasajeroRepetido = $pasajero->buscar($dni);
 					if ($pasajeroRepetido == true) {
 						echo "  >>> El pasajero ingresado ya se encuentra en el viaje.\n";
 						$i = $i - 1;
 					} else {
-						echo "	\n+ Ingrese el nombre del pasajero: ";
+						echo "+ Ingrese el nombre del pasajero: ";
 						$nombre = trim(fgets(STDIN));
-						echo "	+ Ingrese el apellido del pasajero: ";
+						echo "+ Ingrese el apellido del pasajero: ";
 						$apellido = trim(fgets(STDIN));
-						echo "	+ Ingrese el número de teléfono del pasajero: ";
+						echo "+ Ingrese el número de teléfono del pasajero: ";
 						$telefono = trim(fgets(STDIN));
 						//Se obtiene el último ID asignado a un viaje:
 						$ultimoIdAsignado = $viaje->obtenerUltimoId();
@@ -229,23 +253,41 @@
 						array_push($coleccionPasajeros, $nuevoPasajero);
 						//$respuesta = $objPasajero->insertar();
 						echo "+| Pasajero agregado: \n".$nuevoPasajero;
-					}
-				}
-				//Se inserta el viaje y los pasajeros en la BD:
-				//$insercionViaje = $viaje->insertar();
-				//$resultado = ($insercionViaje?"Se agregó el viaje con éxito.":"ERROR. El viaje no se pudo agregar.");
-				echo $viaje->Insertar()?"":$viaje->getMensajeOperacion();
-				foreach ($coleccionPasajeros as $unPasajero) {
-					if ($unPasajero->insertar()) {
-						echo "	\n>>> Pasajero agregado con éxito\n";
-					} else {
-						echo $unPasajero->getmensajeoperacion();
+
+						//Se inserta el viaje y los pasajeros en la BD:
+						//$insercionViaje = $viaje->insertar();
+						//$resultado = ($insercionViaje?"Se agregó el viaje con éxito.":"ERROR. El viaje no se pudo agregar.");
+						echo $viaje->Insertar()?"":$viaje->getMensajeOperacion();
+						foreach ($coleccionPasajeros as $unPasajero) {
+							if ($unPasajero->insertar()) {
+								echo "	\n>>> Pasajero agregado con éxito\n";
+							} else {
+								echo $unPasajero->getmensajeoperacion();
+							}
+						}
 					}
 				}
 				echo "	\n>>> Viaje agregado con éxito.\n";
 			break;
 			case 2:
-				echo "----- Modificar el viaje -----\n";
+				echo "\n----- Modificar el viaje -----\n";
+				//Se verifica que hayan viajes creados:
+				$cantViajes = count($viaje->listar());
+				if ($cantViajes == 0) {
+					echo "	\n>>> ERROR. Aún no se han creado viajes.\n";
+				} else {
+					//Se listan en pantalla todas los viajes almacenados:
+					echo "\n".mostrar($viaje->listar());
+					do {
+						echo "| Seleccione un viaje: ";
+						$nroViaje = trim(fgets(STDIN));
+						$viajeEncontrado = $viaje->buscar($nroViaje);
+						if ($viajeEncontrado == false) {
+							echo "	\n>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
+						}
+					} while($viajeEncontrado != true);
+				}
+
 				echo "  + Ingrese el nuevo código del viaje: ";
                 $nuevoCodigo = trim(fgets(STDIN));
                 echo "  + Ingrese el nuevo destino del viaje: ";
@@ -259,44 +301,56 @@
 			break;
 			case 3:
 				echo "\n----- Eliminar viaje -----\n";
-				//Se listan en pantalla todas los viajes almacenados:
-				echo "\n".mostrar($viaje->listar());
-				do {
-					echo "| Seleccione un viaje: ";
-					$nroViaje = trim(fgets(STDIN));
-					$viajeEncontrado = $viaje->buscar($nroViaje);
-					if ($viajeEncontrado == false) {
-						echo "	\n>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
+				//Se verifica que hayan viajes creados:
+				$cantViajes = count($viaje->listar());
+				if ($cantViajes == 0) {
+					echo "	\n>>> ERROR. Aún no se han creado viajes.\n";
+				} else {
+					//Se listan en pantalla todas los viajes almacenados:
+					echo "\n".mostrar($viaje->listar());
+					do {
+						echo "| Seleccione un viaje: ";
+						$nroViaje = trim(fgets(STDIN));
+						$viajeEncontrado = $viaje->buscar($nroViaje);
+						if ($viajeEncontrado == false) {
+							echo "	\n>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
+						}
+					} while($viajeEncontrado != true);
+					//Si el arreglo de pasajeros no está vacío, se elimina c/u de los pasajeros del viaje elegido:
+					if ($viaje->getobjArrayPasajeros() != []) {
+						$arrayPasajerosViaje = $viaje->getobjArrayPasajeros();
+						foreach ($arrayPasajerosViaje as $unPasajero) {
+							$unPasajero->eliminar();
+						}
 					}
-				} while($viajeEncontrado != true);
-				//Si el arreglo de pasajeros no está vacío, se elimina c/u de los pasajeros del viaje elegido:
-				if ($viaje->getobjArrayPasajeros() != []) {
-					$arrayPasajerosViaje = $viaje->getobjArrayPasajeros();
-					foreach ($arrayPasajerosViaje as $unPasajero) {
-						$unPasajero->eliminar();
-					}
+					//Finalmente, se elimina el viaje:
+					$viaje->eliminar();
+					echo "	\n>>> Viaje eliminado exitosamente.\n";
 				}
-				//Finalmente, se elimina el viaje:
-				$viaje->eliminar();
-				echo "	\n>>> Viaje eliminado exitosamente.\n";
 			break;
 			case 4:
-				echo "----- Mostrar datos del viaje -----\n";
-				//Se listan en pantalla todas los viajes almacenados:
-				echo "\n".mostrar($viaje->listar());
-				do {
-					echo "| Seleccione un viaje: ";
-					$nroViaje = trim(fgets(STDIN));
-					$viajeEncontrado = $viaje->buscar($nroViaje);
-					if ($viajeEncontrado == false) {
-						echo "	\n>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
-					}
-				} while($viajeEncontrado != true);
-				$cadena = $viaje->__toString(); // es igual a: echo $viaje;
-                echo $cadena;
+				echo "\n----- Mostrar datos del viaje -----\n";
+				//Se verifica que hayan viajes creados:
+				$cantViajes = count($viaje->listar());
+				if ($cantViajes == 0) {
+					echo "	\n>>> ERROR. Aún no se han creado viajes.\n";
+				} else {
+					//Se listan en pantalla todas los viajes almacenados:
+					echo "\n".mostrar($viaje->listar());
+					do {
+						echo "| Seleccione un viaje: ";
+						$nroViaje = trim(fgets(STDIN));
+						$viajeEncontrado = $viaje->buscar($nroViaje);
+						if ($viajeEncontrado == false) {
+							echo "	\n>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
+						}
+					} while($viajeEncontrado != true);
+					$cadena = $viaje->__toString(); // es igual a: echo $viaje;
+					echo $cadena;
+				}
 			break;
 			case 5:
-				echo "----- Agregar empresa -----\n";
+				echo "\n----- Agregar empresa -----\n";
 				//Se piden los datos de la empresa:
 				echo "\n>>> Por favor, ingrese los datos de la Empresa <<<\n";
 				echo "| Ingrese el nombre de la empresa: ";
@@ -314,66 +368,85 @@
 				}
 			break;
 			case 6:
-				echo "----- Modificar datos de la empresa -----\n";
-				//Se listan en pantalla todas las empresas almacenadas:
-				echo "\n".mostrar($empresa->listar());
-				do {
-					echo "| Seleccione una empresa: ";
-					$nroEmpresa = trim(fgets(STDIN));
-					$empresaEncontrada = $empresa->buscar($nroEmpresa);
-					if ($empresaEncontrada == false) {
-						echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
-					}
-				} while($empresaEncontrada != true);
-				//Se piden los nuevos datos de la empresa:
-				echo "| Ingrese el nuevo nombre de la empresa: ";
-				$nuevoNombreEmpresa = trim(fgets(STDIN));
-				echo "| Ingrese la nueva dirección de la empresa: ";
-				$nuevaDireccionEmpresa = trim(fgets(STDIN));
-				//Se setean los nuevos datos de la empresa:
-				$empresa->setEnombre($nombreEmpresa);
-				$empresa->setEdireccion($direccionEmpresa);
-				$modificacionEmpresa = $empresa->modificar();
-				if ($modificacionEmpresa) {
-					echo "	\n>>> Empresa modificada con éxito.\n";
+				echo "\n----- Modificar datos de la empresa -----\n";
+				//Se verifica que hayan empresas agregadas:
+				$cantEmpresas = count($empresa->listar());
+				if ($cantEmpresas == 0) {
+					echo "	\n>>> ERROR. Aún no se han agregado empresas.\n";
 				} else {
-					echo $empresa->getMensajeOperacion();
+					//Se listan en pantalla todas las empresas almacenadas:
+					echo mostrar($empresa->listar());
+					do {
+						echo "| Seleccione una empresa: ";
+						$nroEmpresa = trim(fgets(STDIN));
+						$empresaEncontrada = $empresa->buscar($nroEmpresa);
+						if ($empresaEncontrada == false) {
+							echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
+						}
+					} while($empresaEncontrada != true);
+					//Se piden los nuevos datos de la empresa:
+					echo "| Ingrese el nuevo nombre de la empresa: ";
+					$nuevoNombreEmpresa = trim(fgets(STDIN));
+					echo "| Ingrese la nueva dirección de la empresa: ";
+					$nuevaDireccionEmpresa = trim(fgets(STDIN));
+					//Se setean los nuevos datos de la empresa:
+					$empresa->setEnombre($nuevoNombreEmpresa);
+					$empresa->setEdireccion($nuevaDireccionEmpresa);
+					$modificacionEmpresa = $empresa->modificar();
+					if ($modificacionEmpresa) {
+						echo "	\n>>> Empresa modificada con éxito.\n";
+					} else {
+						echo $empresa->getMensajeOperacion();
+					}
 				}
 			break;
 			case 7:
-				echo "----- Eliminar empresa -----\n" ;
-				//Se listan en pantalla todas las empresas almacenadas:
-				echo "\n".mostrar($empresa->listar());
-				do {
-					echo "| Seleccione una empresa: ";
-					$nroEmpresa = trim(fgets(STDIN));
-					$empresaEncontrada = $empresa->buscar($nroEmpresa);
-					if ($empresaEncontrada == false) {
-						echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
-					}
-				} while($empresaEncontrada != true);
-				//Se eliminan todos los viajes relacionados a la empresa elegida y la empresa:
-				$eliminarViajesEmpresa = $empresa->EliminarViajesEmpresa();
-				if ($eliminarViajesEmpresa) {
-					echo "	\n>>> Empresa eliminada con éxito.\n";
+				echo "\n----- Eliminar empresa -----\n" ;
+				//Se verifica que hayan empresas agregadas:
+				$cantEmpresas = count($empresa->listar());
+				if ($cantEmpresas == 0) {
+					echo "	\n>>> ERROR. Aún no se han agregado empresas.\n";
 				} else {
-					echo $empresa->getMensajeOperacion();
+					//Se listan en pantalla todas las empresas almacenadas:
+					echo mostrar($empresa->listar());
+					do {
+						echo "| Seleccione una empresa: ";
+						$nroEmpresa = trim(fgets(STDIN));
+						$empresaEncontrada = $empresa->buscar($nroEmpresa);
+						if ($empresaEncontrada == false) {
+							echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
+						}
+					} while($empresaEncontrada != true);
+					//Se eliminan todos los viajes relacionados a la empresa elegida y la empresa:
+					$eliminarViajesEmpresa = $empresa->EliminarViajesEmpresa();
+					$eliminarEmpresa = $empresa->eliminar();
+					if ($eliminarEmpresa == false) {
+						echo "	\n>>> Empresa eliminada con éxito.\n";
+					} else {
+						echo $empresa->getMensajeOperacion();
+					}
 				}
 			break;
 			case 8:
-				echo "----- Mostrar datos de la empresa -----\n" ;
-				//Se listan en pantalla todas las empresas almacenadas:
-				echo "\n".mostrar($empresa->listar());
-				do {
-					echo "| Seleccione una empresa: ";
-					$nroEmpresa = trim(fgets(STDIN));
-					$empresaEncontrada = $empresa->buscar($nroEmpresa);
-					if ($empresaEncontrada == false) {
-						echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
-					}
-				} while($empresaEncontrada != true);
-				$cadena = $empresa->__toString(); // es igual a: echo $empresa;
-                echo $cadena;
+				echo "\n----- Mostrar datos de la empresa -----\n" ;
+				//Se verifica que hayan empresas agregadas:
+				$cantEmpresas = count($empresa->listar());
+				if ($cantEmpresas == 0) {
+					echo "	\n>>> ERROR. Aún no se han agregado empresas.\n";
+				} else {
+					//Se listan en pantalla todas las empresas almacenadas:
+					echo mostrar($empresa->listar());
+					do {
+						echo "| Seleccione una empresa: ";
+						$nroEmpresa = trim(fgets(STDIN));
+						$empresaEncontrada = $empresa->buscar($nroEmpresa);
+						if ($empresaEncontrada == false) {
+							echo "	\n>>> ERROR. El número de empresa seleccionado es incorrecto.\n";
+						}
+					} while($empresaEncontrada != true);
+					$cadena = $empresa->__toString(); // es igual a: echo $empresa;
+					echo $cadena;
+				}
 			break;
 			case 9:
 				echo ">>> Ha salido del programa.";
