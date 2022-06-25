@@ -301,9 +301,15 @@
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consulta)) {
                     if ($row2 = $base->Registro()) {
-                        $resp = $row2['idviaje'];
-                        //$resp = $row2[$this->getCodigoViaje()];
                         //$resp = $row2['AUTO_INCREMENT'];
+
+                        //$resp = $base->devuelveIDInsercion($row2);
+                        //$resp = $row2['idviaje'];
+
+                        $row2 = $this->buscar($row2);
+                        $resp = $row2->getCodigoViaje();
+                        
+                        //$resp = $row2[$this->getCodigoViaje()];
                         //$lastid = mysqli_insert_id($con);
                         //$resp = $row2->lastInsertId();
                     }
