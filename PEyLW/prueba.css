@@ -2,15 +2,21 @@
     color: black;
     font-family: 'Courier New', Courier, monospace;
 }
+form {
+    text-align: center;
+    border: 1px solid blue;
+    padding: 10px;
+    width: 50%;
+    height: 300px;
+}
 /* Estilos del div contenedor */
 #capaRoja {
     position: relative;
     border: 1px solid red;
     color: rgb(62, 61, 61);
     border-radius: 10px;
-    width: 70%;
+    width: 100%;
     height: 200px;
-    margin-top: 35px;
 }
 /* Estilos del botón de acción */
 .button {
@@ -23,7 +29,6 @@
     margin: 0 10px 0 0;
     width: 180px;
     position: relative;
-    float: left;
 }
 .button:hover {
     background-color: rgb(62, 61, 61);
