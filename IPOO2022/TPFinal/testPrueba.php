@@ -59,6 +59,7 @@
 		echo ">> ";
 		$opcion = trim(fgets(STDIN));
 		switch ($opcion) {
+			//-----------------------------------------------------------------------------------------------------------------
 			case 1:
 				echo "\n--------- Crear un viaje ---------\n";
 				//Se piden los datos del viaje:
@@ -150,10 +151,6 @@
 				echo "| Ingrese el precio: ";
 				$precio = trim(fgets(STDIN));
 				$viaje->setImporte($precio);
-				
-				//Parámetros del viaje:
-				//$codViaje, $destino, $capacidadMaxima, $idEmpresa,
-				//$objResponsable, $precio, $tipoAsiento, $trayectoriaViaje
 
 				//Se especifican las características del viaje:
 				do {
@@ -232,7 +229,7 @@
 					$dni = trim(fgets(STDIN));
 					$pasajeroRepetido = $pasajero->buscar($dni);
 					if ($pasajeroRepetido == true) {
-						echo "  >>> El pasajero ingresado ya se encuentra en el viaje.\n";
+						echo "  >>> ERROR. El pasajero ingresado ya se encuentra en el viaje.\n";
 						$i = $i - 1;
 					} else {
 						echo "+ Ingrese el nombre del pasajero: ";
@@ -242,30 +239,29 @@
 						echo "+ Ingrese el número de teléfono del pasajero: ";
 						$telefono = trim(fgets(STDIN));
 						//Se obtiene el último ID asignado a un viaje:
-						$ultimoIdAsignado = $viaje->obtenerUltimoId();	//<--------- obtenerUltimoId()
+						//$ultimoIdAsignado = $viaje->obtenerUltimoId();	<--------- obtenerUltimoId()
+						$ultimoIdAsignado = $viaje->getCodigoViaje();
 						$nuevoPasajero = new Pasajero();
 						$nuevoPasajero->cargar($dni, $nombre, $apellido, $telefono, $ultimoIdAsignado);
 						array_push($coleccionPasajeros, $nuevoPasajero);
 						echo "+| Pasajero agregado: \n".$nuevoPasajero;
 
 						//Se inserta el viaje y los pasajeros en la BD:
-						//$insercionViaje = $viaje->insertar();
-						//$resultado = ($insercionViaje?"Se agregó el viaje con éxito.":"ERROR. El viaje no se pudo agregar.");
 						foreach ($coleccionPasajeros as $unPasajero) {
 							if ($unPasajero->insertar()) {
-								echo "	\n>>> Pasajero agregado con éxito\n";
+								echo "	>>> Pasajero agregado con éxito\n";
 							} else {
 								echo $unPasajero->getmensajeoperacion();
 							}
 						}
 						$viaje->setObjArrayPasajeros($coleccionPasajeros);
-						//echo $viaje->Insertar()?"":$viaje->getMensajeOperacion();
 					}
 				}
-				echo "\n	>>> Viaje agregado con éxito.\n";
+				echo "	\n>>> Viaje agregado con éxito.<<<\n";
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 2:
-				echo "\n----- Modificar el viaje -----\n";
+				echo "\n----- Modificar viaje -----\n";
 				//Se verifica que hayan viajes creados:
 				$cantViajes = count($viaje->listar());
 				if ($cantViajes == 0) {
@@ -278,7 +274,7 @@
 						$nroViaje = trim(fgets(STDIN));
 						$viajeEncontrado = $viaje->buscar($nroViaje);
 						if ($viajeEncontrado == false) {
-							echo "\n	>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
+							echo "	>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
 						}
 					} while($viajeEncontrado != true);
 					//Se piden los nuevos datos del viaje:
@@ -287,10 +283,10 @@
 					$viaje->setDestino($nuevoDestino);
 					echo "  + Ingrese la nueva capacidad máxima de pasajeros del viaje: ";
 					$nuevaCapacidad = trim(fgets(STDIN));
+					$viaje->setCapacidadPasajeros($nuevaCapacidad);
 					echo "  + Ingrese el nuevo precio del viaje: ";
 					$nuevoPrecio = trim(fgets(STDIN));
 					$viaje->setImporte($nuevoPrecio);
-					echo "¿Desea modificar las especificaciones del viaje?";
 					do {
 						echo "| ¿Desea modificar las especificaciones del viaje? (1 ó 2):\n";
 						echo "1. Si\n";
@@ -366,6 +362,7 @@
 					}
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 3:
 				echo "\n----- Eliminar viaje -----\n";
 				//Se verifica que hayan viajes creados:
@@ -395,6 +392,7 @@
 					echo "\n	>>> Viaje eliminado exitosamente.\n";
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 4:
 				echo "\n----- Mostrar datos del viaje -----\n";
 				//Se verifica que hayan viajes creados:
@@ -412,10 +410,13 @@
 							echo "\n	>>> ERROR. El número de viaje seleccionado es incorrecto.\n";
 						}
 					} while($viajeEncontrado != true);
+					echo "\n----------------------------------------------\n";
 					$cadena = $viaje->__toString(); // es igual a: echo $viaje;
-					echo $cadena;
+					echo "\n".$cadena;
+					echo "----------------------------------------------\n";
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 5:
 				echo "\n----- Agregar empresa -----\n";
 				//Se piden los datos de la empresa:
@@ -434,6 +435,7 @@
 					echo $empresa->getMensajeOperacion();
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 6:
 				echo "\n----- Modificar datos de la empresa -----\n";
 				//Se verifica que hayan empresas agregadas:
@@ -467,6 +469,7 @@
 					}
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 7:
 				echo "\n----- Eliminar empresa -----\n" ;
 				//Se verifica que hayan empresas agregadas:
@@ -494,6 +497,7 @@
 					}
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 8:
 				echo "\n----- Mostrar datos de la empresa -----\n" ;
 				//Se verifica que hayan empresas agregadas:
@@ -515,6 +519,7 @@
 					echo $cadena;
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 9:
 				echo "\n----- Modificar lista de responsables -----\n";
 				do {
@@ -610,6 +615,7 @@
 					}
 				}
 			break;
+			//-----------------------------------------------------------------------------------------------------------------
 			case 10:
 				echo ">>> Ha salido del programa.";
 				break;

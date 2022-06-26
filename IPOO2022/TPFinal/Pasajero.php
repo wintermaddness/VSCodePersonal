@@ -65,12 +65,19 @@
         }
 
         public function __toString() {
+            $cadenaViaje = "";
+            $viaje = new Viaje();
+            //Se obtiene el ID del viaje:
+            if ($viaje->Buscar($this->getIdViaje())) {
+                $cadenaViaje .= $viaje->getCodigoViaje();
+            }
             $cadena = "-- -- -- DATOS DEL PASAJERO -- -- --\n".
                     "+ Nombre: ".$this->getNombre()."\n".
                     "+ Apellido: ".$this->getApellido()."\n".
                     "+ DNI: ".$this->getDni()."\n".
                     "+ Teléfono: ".$this->getTelefono()."\n".
-                    "+ ID Viaje: ".$this->getIdViaje()."\n";
+                    //"+ ID Viaje: ".$this->getIdViaje()."\n";
+                    "+ ID Viaje: ".$cadenaViaje."\n";
             return $cadena;
         }
 

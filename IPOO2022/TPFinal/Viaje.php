@@ -111,17 +111,29 @@
 
         public function __toString() {
             $pasajeros = $this->getObjArrayPasajeros();
-            $objResponsable = $this->getObjResponsable();
+            $cadenaResponsable = "";
+            $cadenaEmpresa = "";
+            $responsable = new ResponsableV();
+            $empresa = new Empresa();
+            //Se obtienen los datos del responsable del viaje:
+            if ($responsable->Buscar($this->getObjResponsable())) {
+                $cadenaResponsable .= $responsable;
+            }
+            //Se obtienen los datos de la empresa asociada al viaje:
+            if($empresa->Buscar($this->getIdEmpresa())){
+                $cadenaEmpresa .= $empresa;
+            }
             $cadena = "-- -- -- DATOS DEL VIAJE -- -- --\n"
                     ."+| Código del viaje: ".$this->getCodigoViaje()."\n"
                     ."+| Destino: ".$this->getDestino()."\n"
                     ."+| Capacidad de pasajeros: ".$this->getCapacidadPasajeros()."\n"
-                    ."+| Cantidad de pasajeros: " .count($pasajeros)."\n"
+                    ."+| Cantidad de pasajeros: ".count($pasajeros)."\n"
                     ."+| Tipo de asiento: ".$this->getTipoAsiento()."\n"
                     ."+| Trayectoria: ".$this->getIdayvuelta()."\n"
                     ."+| Importe del viaje: ".$this->getImporte()."\n"
-                    ."+| ID Empresa: ".$this->getIdEmpresa()."\n"
-                    .$objResponsable->__toString()."\n"; 
+                    //."+| ID Empresa: ".$this->getIdEmpresa()."\n"
+                    .$cadenaEmpresa."\n"
+                    .$cadenaResponsable."\n";
             return $cadena;
         }
 
@@ -306,8 +318,8 @@
                         //$resp = $base->devuelveIDInsercion($row2);
                         //$resp = $row2['idviaje'];
 
-                        $row2 = $this->buscar($row2);
-                        $resp = $row2->getCodigoViaje();
+                        //$row2 = $this->buscar($row2);
+                        //$resp = $row2->getCodigoViaje();
                         
                         //$resp = $row2[$this->getCodigoViaje()];
                         //$lastid = mysqli_insert_id($con);
