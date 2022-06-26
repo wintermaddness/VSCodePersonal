@@ -292,6 +292,38 @@
         }
 
         /**
+         * Métod 6: listarPasajeros - 
+         * Devuelve un array con todos los pasajeros asociados a un viaje en la BD.
+         * @return array
+         */
+        public function listarPasajeros() {
+            $arregloPasajeros = null;
+            $base = new BaseDatos();
+            $consulta = "SELECT * FROM pasajero WHERE idviaje = ".$this->getCodigoViaje();
+            $consulta .= " ORDER BY papellido";
+            if ($base->Iniciar()) {
+                if ($base->Ejecutar($consulta)) {
+                    $arregloPasajeros = array();
+                    while ($row2=$base->Registro()) {
+                        $dni = $row2['rdocumento'];
+                        $nombre = $row2['pnombre'];
+                        $apellido = $row2['papellido'];
+                        $telefono = $row2['ptelefono'];
+                        $idViaje = $row2['idviaje'];
+
+                        $pasajero = new Pasajero($dni, $nombre, $apellido, $telefono, $idViaje);
+                        array_push($arregloPasajeros, $pasajero);
+                    }
+                } else {
+                    $this->setmensajeoperacion($base->getError());
+                }
+            } else {
+                $this->setmensajeoperacion($base->getError());
+            }
+            return $arregloPasajeros;
+        }
+
+        /**
          * Método 6: obtenerUltimoId - 
          * Método que retorna el valor del ID de la última inserción.
          * @return mixed
