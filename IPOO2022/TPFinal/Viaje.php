@@ -232,6 +232,7 @@
                                         '".$this->getIdayvuelta()."')";
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaInsertar)) {
+                    echo $this->setCodigoViaje($base->DevolverID()); //(!)
                     $resp = true;
                 } else {
                     $this->setmensajeoperacion($base->getError());	
@@ -311,7 +312,8 @@
                         $telefono = $row2['ptelefono'];
                         $idViaje = $row2['idviaje'];
 
-                        $pasajero = new Pasajero($dni, $nombre, $apellido, $telefono, $idViaje);
+                        $pasajero = new Pasajero();
+                        $pasajero->cargar($dni, $nombre, $apellido, $telefono, $idViaje);
                         array_push($arregloPasajeros, $pasajero);
                     }
                 } else {
@@ -321,6 +323,62 @@
                 $this->setmensajeoperacion($base->getError());
             }
             return $arregloPasajeros;
+        }
+
+        /**
+         * Método 7: listarDatosViajes - 
+         * Retorna un string con los datos completos del viaje (case 4).
+         * @return string
+         */
+        public function listarDatosViajes() {
+            $arregloPasajeros = $this->listarPasajeros();
+            $pasajeros = count($arregloPasajeros);
+            $cadenaResponsable = "";
+            $cadenaEmpresa = "";
+            $responsable = new ResponsableV();
+            $empresa = new Empresa();
+            //Se obtienen los datos del responsable del viaje:
+            if ($responsable->Buscar($this->getObjResponsable())) {
+                $cadenaResponsable .= $responsable;
+            }
+            //Se obtienen los datos de la empresa asociada al viaje:
+            if ($empresa->Buscar($this->getIdEmpresa())){
+                $cadenaEmpresa .= $empresa;
+            }
+            //Se obtienen los datos de los pasajeros del viaje:
+            if ($pasajeros == 0) {
+                $cadenaPasajero = "El viaje no tiene pasajeros.\n";
+            } else {
+                $cadenaPasajero = $this->mostrarDatosPasajeros($arregloPasajeros);
+            }
+            $cadena = "-- -- -- DATOS DEL VIAJE -- -- --\n"
+                    ."+| Código del viaje: ".$this->getCodigoViaje()."\n"
+                    ."+| Destino: ".$this->getDestino()."\n"
+                    ."+| Capacidad de pasajeros: ".$this->getCapacidadPasajeros()."\n"
+                    ."+| Cantidad de pasajeros: ".$pasajeros."\n"
+                    ."+| Tipo de asiento: ".$this->getTipoAsiento()."\n"
+                    ."+| Trayectoria: ".$this->getIdayvuelta()."\n"
+                    ."+| Importe del viaje: ".$this->getImporte()."\n"
+                    //."+| ID Empresa: ".$this->getIdEmpresa()."\n"
+                    .$cadenaEmpresa."\n"
+                    .$cadenaResponsable."\n"
+                    ."-- -- -- LISTA DE PASAJEROS -- -- --\n".$cadenaPasajero."\n";
+            return $cadena;
+        }
+
+        /**
+         * Método 8: mostrarDatosPasajeros - 
+         * Dado un arreglo de pasajeros, lo recorre y retorna un string con los datos de cada pasajero.
+         * @return string
+         */
+        public function mostrarDatosPasajeros($arrayPasajeros) {
+            $i = 1;
+            $cadenaPasajero = "";
+            foreach ($arrayPasajeros as $elemento) {
+                $cadenaPasajero .= "PASAJERO (".$i.") ".$elemento;
+                $i++;
+            }
+            return $cadenaPasajero;
         }
 
         /**
@@ -364,21 +422,6 @@
                 $this->setMensajeOperacion($base->getError());
             }
             return $resp;
-        }
-
-        /**
-         * Método 7: traerViaje - 
-         * Trae un viaje de la BD a partir del id recibido.
-         * @param int $id
-         * @return object $funcionEncontrada
-         */
-        public function traerViaje($id) {
-            $viaje = new Viaje();
-            $viajeEncontrado = $viaje->buscar($id);
-            if (!$viajeEncontrado) {
-                $viaje = null;
-            }
-            return $viaje;
         }
     }
 ?>

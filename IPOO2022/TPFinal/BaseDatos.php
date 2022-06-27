@@ -113,5 +113,10 @@
             }
             return $resp;
         }
+
+        public function DevolverID() {   
+            $last_id = $this->CONEXION->insert_id;
+            return $last_id;
+        }
     }
 ?>

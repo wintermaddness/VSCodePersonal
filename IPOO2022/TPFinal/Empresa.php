@@ -134,6 +134,7 @@
                                         '".$this->getEdireccion()."')";
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaInsertar)) {
+                    echo $this->setIdEmpresa($base->DevolverID()); //(!)
                     $resp = true;
                 } else {
                     $this->setmensajeoperacion($base->getError());	
@@ -195,7 +196,7 @@
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consulta)) {
                     $arrayViajes = array();
-                    while ($row2=$base->Registro()) {
+                    while ($row2 = $base->Registro()) {
                         $codigoViaje = $row2['idviaje'];
                         $destino = $row2['vdestino'];
                         $capacidadPasajeros = $row2['vcantmaxpasajeros'];
@@ -222,8 +223,7 @@
          * Función que elimina todos los viajes asociados a una empresa específica.
          * @return boolean
          */
-        function EliminarViajesEmpresa()
-        {
+        function EliminarViajesEmpresa() {
             $resp = false;
             $listaDeViajes = $this->listarViajesEmpresa();
             foreach ($listaDeViajes as $unViaje) {
@@ -234,21 +234,6 @@
                 $unViaje->Eliminar();
             }
             return $resp;
-        }
-
-        /**
-         * Método 8: traerEmpresa - 
-         * Trae una empresa de la BD a partir del id recibido.
-         * @param int $id
-         * @return object $empresaEncontrada
-         */
-        public function traerEmpresa($id) {
-            $empresa = new Empresa();
-            $empresaEncontrada = $empresa->buscar($id);
-            if (!$empresaEncontrada) {
-                $empresa = null;
-            }
-            return $empresa;
         }
     }
 ?>
