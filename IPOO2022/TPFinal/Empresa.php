@@ -97,7 +97,7 @@
                 $consultaEmpresa = $consultaEmpresa.' where '.$condicion;
             }
 
-            $consultaEmpresa .= " order by enombre ";
+            $consultaEmpresa .= " order by idempresa ";
             //echo $consultaEmpresa;
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaEmpresa)) {				
@@ -134,7 +134,8 @@
                                         '".$this->getEdireccion()."')";
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaInsertar)) {
-                    echo $this->setIdEmpresa($base->DevolverID()); //(!)
+                    //$this->setIdEmpresa($base->DevolverID()); (!)
+                    $this->setIdEmpresa($base->devuelveIDInsercion($consultaInsertar));
                     $resp = true;
                 } else {
                     $this->setmensajeoperacion($base->getError());	

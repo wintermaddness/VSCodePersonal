@@ -110,7 +110,7 @@
         }
 
         public function __toString() {
-            $pasajeros = $this->getObjArrayPasajeros();
+            $pasajeros = $this->listarPasajeros();
             $cadenaResponsable = "";
             $cadenaEmpresa = "";
             $responsable = new ResponsableV();
@@ -347,7 +347,7 @@
             }
             //Se obtienen los datos de los pasajeros del viaje:
             if ($pasajeros == 0) {
-                $cadenaPasajero = "El viaje no tiene pasajeros.\n";
+                $cadenaPasajero = " >>> El viaje no tiene pasajeros.\n";
             } else {
                 $cadenaPasajero = $this->mostrarDatosPasajeros($arregloPasajeros);
             }

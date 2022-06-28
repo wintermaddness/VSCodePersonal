@@ -61,6 +61,7 @@
 			//-----------------------------------------------------------------------------------------------------------------
 			case 1:
 				echo "\n--------- Crear un viaje ---------\n";
+				$viaje = new Viaje;
 				//Se piden los datos del viaje:
 				echo "\n>>> Por favor, ingrese los datos del viaje <<<\n";
 				echo "| Ingrese el destino: ";
@@ -517,18 +518,19 @@
 									$ultimoIdAsignado = $viaje->getCodigoViaje();
 									$nuevoPasajero = new Pasajero();
 									$nuevoPasajero->cargar($dni, $nombre, $apellido, $telefono, $ultimoIdAsignado);
-									array_push($coleccionPasajeros, $nuevoPasajero);
+									$nuevaColeccionPasajeros = [];
+									array_push($nuevaColeccionPasajeros, $nuevoPasajero);
 									echo "+| Pasajero agregado: \n".$nuevoPasajero;
 
 									//Se inserta el viaje y los pasajeros en la BD:
-									foreach ($coleccionPasajeros as $unPasajero) {
+									foreach ($nuevaColeccionPasajeros as $unPasajero) {
 										if ($unPasajero->insertar()) {
 											echo "	>>> Pasajero agregado con éxito\n";
 										} else {
 											echo $unPasajero->getmensajeoperacion();
 										}
 									}
-									$viaje->setObjArrayPasajeros($coleccionPasajeros);
+									$viaje->setObjArrayPasajeros($nuevaColeccionPasajeros);
 								}
 							}
 						} elseif ($opcionPasajero == 2) {//Se modifican pasajeros del viaje:
@@ -619,14 +621,26 @@
 						}
 					} while($viajeEncontrado != true);
 					//Si el arreglo de pasajeros no está vacío, se elimina c/u de los pasajeros del viaje elegido:
-					if ($viaje->getobjArrayPasajeros() != []) {
-						$arrayPasajerosViaje = $viaje->getobjArrayPasajeros();
+					/*if ($viaje->getobjArrayPasajeros() != []) {
+						$arrayPasajerosViaje = $viaje->listarPasajeros();
 						foreach ($arrayPasajerosViaje as $unPasajero) {
 							$unPasajero->eliminar();
 						}
+					}*/
+					
+					$listaDePasajeros = $viaje->listarPasajeros();
+					//Si el viaje tiene pasajeros, se eliminan los pasajeros y luego el viaje:
+					if (count($listaDePasajeros) != 0 ) {
+						foreach ($listaDePasajeros as $unPasajero) {
+							$unPasajero->Eliminar();
+						}
+						$viaje->Eliminar();
+					} else {
+						$viaje->eliminar();
 					}
+					
 					//Finalmente, se elimina el viaje:
-					$viaje->eliminar();
+					//$viaje->eliminar();
 					echo "\n	>>> Viaje eliminado exitosamente.\n";
 				}
 			break;
@@ -880,7 +894,7 @@
 					} while($responsableEncontrado != true);
 					echo "\n----------------------------------------------\n";
 					$cadena = $responsable->__toString(); // es igual a: echo $responsable;
-					echo $cadena;
+					echo "\n".$cadena;
 					echo "\n----------------------------------------------\n";
 				}
 			break;
