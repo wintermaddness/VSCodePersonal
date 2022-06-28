@@ -7,12 +7,12 @@
     <title>Cubo - Borrador</title>
     <link rel="stylesheet" href="cube.css">
     <script>
-        window.addEventListener('scroll', function()  {
+        window.addEventListener('scroll', function() {
             let elements = document.getElementsByClassName('scroll-content');
             let screenSize = window.innerHeight;
-            for(var i = 0; i < elements.length; i++) {
+            for (var i=0; i<elements.length; i++) {
                 let element = elements[i];
-                if(element.getBoundingClientRect().top < screenSize) {
+                if (element.getBoundingClientRect().top < screenSize) {
                     element.classList.add('visible');
                 } else {
                     element.classList.remove('visible');
