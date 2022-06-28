@@ -190,6 +190,11 @@
             return $resp;
         }
 
+        /**
+         * Método 6: listarViajesEmpresa - 
+         * Función que retorna un arreglo con todos los viajes asociados a una empresa específica.
+         * @return array
+         */
         public function listarViajesEmpresa() {
             $arrayViajes = null;
             $base = new BaseDatos();

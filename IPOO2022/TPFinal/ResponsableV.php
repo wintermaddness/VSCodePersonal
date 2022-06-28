@@ -62,7 +62,7 @@
         }
 
         public function __toString() {
-            $cadena = "-- -- -- RESPONSABLE -- -- --\n".
+            $cadena = "-- -- -- DATOS DEL RESPONSABLE -- -- --\n".
                     "+ Nombre: ".$this->getNombre()."\n".
                     "+ Apellido: ".$this->getApellido()."\n".
                     "+ N° de empleado: ".$this->getNroEmpleado()."\n".
