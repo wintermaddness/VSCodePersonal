@@ -61,7 +61,7 @@ h3, h4 {
 	overflow: hidden;
 	background-color: #333;
     height: 3em;
-    border-bottom: 1px solid #dcb03b;
+    border-bottom: 3px solid #dcb03b;
 }
 #nav li {
 	width: 100%;
@@ -98,7 +98,7 @@ h3, h4 {
 	padding: 4.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 445px;
+	width: 600px;
 	color: #fff;
 }
 .button {
@@ -136,9 +136,9 @@ h3, h4 {
 #cuerpo {
     position: relative;
 	display: block;
-    margin-top: -650px;
-    border-top: 1px solid #dcb03b;
-    /*border-bottom: solid #dcb03b;*/
+    margin-top: -724px;
+    /*border-top: 1px solid #dcb03b;
+    border-bottom: solid #dcb03b;*/
 	text-align: justify;
 }
 
@@ -153,7 +153,8 @@ h3, h4 {
 /* First image (Logo. Full height) */
 .bgimg-1 {
     background-image: url("Images/Cabecera2.jpg");
-    border-bottom: 2px solid #dcb03b;
+    /*border-top: 2px solid #dcb03b;*/
+	border-bottom: 2px solid #dcb03b;
     min-height: 100%;
 }
 .bgimg-1:before { /*Oscurecer la imagen de la cabecera*/
@@ -183,7 +184,7 @@ h3, h4 {
 .w3-hover-opacity {
     cursor: pointer;
 }
-/* Turn off parallax scrolling for tablets and phones */
+/* Desactivar el desplazamiento para tablets y teléfonos (ignorar) */
 @media only screen and (max-device-width: 1600px) {
     .bgimg-1, .bgimg-2, .bgimg-3 {
         background-attachment: scroll;
@@ -192,7 +193,7 @@ h3, h4 {
 }
 .w3-input {
 	border-radius: 10px;
-	background-color: #333;
+	background-color: #333 /*transparent*/;
 	padding: 8px;
 	display: block;
 	border: none;

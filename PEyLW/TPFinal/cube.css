@@ -89,7 +89,7 @@ body {
 	padding: 8.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 445px;
+	width: 600px;
 	color: #fff;
 }
 .button {
@@ -164,7 +164,7 @@ body {
 #cuerpo {
     position: relative;
 	display: block;
-    margin-top: -649px;
+    margin-top: -724px;
     border-top: 2px solid #dcb03b;
 }
 
@@ -199,7 +199,7 @@ p {
 }
 .content {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); /*repeat(): toma el número de columnas, seguido del tamaño de la columna*/
     grid-template-rows: repeat(5, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px; 
@@ -291,15 +291,30 @@ p {
     transform: translate(0, 0);
 }
 
-#separador {
-    /*border: 1px solid royalblue;*/
-    border-top: solid #dcb03b;
-    background-color: #333;
-	color: white;
-    /*margin: 5em 0 0;*/
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
+.separador {
+	/*border: 1px solid red;*/
+	height: 15em;
+	width: 100%;
+	text-align: center;
+    padding: 5em 0;
+	background-color: rgba(62,62,61,255);
+}
+.textoSeparador {
+	/*border: 1px solid blue;*/
+    color: #fafafa;
+	padding: 10px;
+	letter-spacing: 10px;
+    margin-bottom: 50px;
+	font-size: xx-large;
+	text-align: center;
+	text-shadow: 10px 5px 10px #000000; /*Text-Shadow: left/vertical bottom/horizontal blur color +inset*/
+}
+.separador p {
+    color: #fff;
+	letter-spacing: normal;
+	text-align: center;
+	font-style: oblique;
+	font-size: 15px;
 }
 /* fin SECCIONES y CONTENIDO PRINCIPAL */
 

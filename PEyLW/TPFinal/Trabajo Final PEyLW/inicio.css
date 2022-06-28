@@ -86,10 +86,11 @@ body {
 	margin: 50px auto;
 }
 #buscador .search {
+	/*border: 1px red solid;*/
 	padding: 8.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 445px;
+	width: 600px;
 	color: #fff;
 }
 .button {
@@ -137,8 +138,8 @@ body {
 	width: 100%;
 	/*height: calc(350px + 0.5em);*/
     border-top: solid #dcb03b;
-	border-bottom: solid #dcb03b;
-	margin-top: -650px;
+	/*border-bottom: solid #dcb03b;*/
+	margin-top: -724px;
 }
 .slide-open:checked + .slide-item {
 	position: static;
@@ -236,7 +237,7 @@ li:nth-child(6) .slide-circulo {
     position: relative;
 	display: block;
 	box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
-    margin-top: -273px;
+    margin-top: -306px;
     border-top: 4px solid #dcb03b;
     border-bottom: solid #dcb03b;
 }
@@ -289,17 +290,13 @@ li:nth-child(6) .slide-circulo {
 }
 /* fin LATERAL */
 
-#cuerpo {
-	border-bottom: 2px solid #e0b84b;
-}
-
 /* CONTENIDO PRINCIPAL */
 #principal {
     margin-top: -175px;
 }
 #contenido {
-	/*border: 1px solid lime;*/
-	column-width: 200px;
+	/*border: 1px solid red;*/
+	column-width: 225px;
 	column-gap: 20px;
 	position: relative;
 	float: right;
@@ -323,7 +320,8 @@ li:nth-child(6) .slide-circulo {
 	border: 2px solid rgb(81, 84, 86);
 	padding: 10px;
 	margin: 0 0 1.5em 0;
-	height: 455px;
+	height: 470px;
+	/*border: 1px solid red;*/
 }
 
 .card:hover {
@@ -338,8 +336,8 @@ li:nth-child(6) .slide-circulo {
 	letter-spacing: normal;
 }
 .card img {
-	height: 340px;
-	width: 224px;
+	height: 385px;
+	width: 254px;
 	text-align: center;
 	padding: 0 0;
 	border: 3px groove rgba(51, 51, 51, 0.663);
@@ -347,7 +345,7 @@ li:nth-child(6) .slide-circulo {
 	object-fit: cover;
 }
 .card-tittle {
-	width: 224px;
+	width: 254px;
 	height: 55px;
 	margin-bottom: 5px;
 	text-align: center;

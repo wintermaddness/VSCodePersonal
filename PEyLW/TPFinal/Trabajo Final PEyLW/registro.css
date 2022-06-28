@@ -90,7 +90,7 @@ body {
 	padding: 8.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 445px;
+	width: 600px;
 	color: #fff;
 }
 .button {
@@ -178,7 +178,7 @@ body {
         /*border: 1px solid red;*/
         position: relative;
         display: block;
-        margin-top: -648px;
+        margin-top: -724px;
         border-top: 2px solid #dcb03b;
 
         height: calc(100% - 40px);
@@ -242,7 +242,7 @@ body {
     }
     .eula {
         color: rgb(0, 0, 0);
-        font-size: 14px;
+        font-size: 15px;
         line-height: 1.5;
         margin: 43px;
         text-align: justify;
@@ -303,6 +303,9 @@ body {
     }
     input:focus {
         border: 2px solid #dcb03b;
+    }
+    #formulario .required { /*Icono de campo requerido*/
+        color: #dcb03b;
     }
 
     /* Estilos de los iconos del formulario */

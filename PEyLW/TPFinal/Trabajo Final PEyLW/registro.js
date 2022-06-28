@@ -22,11 +22,13 @@ form.addEventListener("submit", e => {
         //El nombre debe tener al menos 6 caracteres: 
         warnings += 'El nombre no es válido.<br>';
         nombre.style.borderColor = 'red';
+        nombre.focus();
         entrar = true;
     } else if (!regexName.test(nombre.value)) {
         //El nombre debe tener sólo letras:
         warnings += 'Nombre inválido <br>(ingrese sólo letras)<br>';
         nombre.style.borderColor = 'red';
+        nombre.focus();
         entrar = true;
     } else {
         nombre.style.borderColor = 'palegreen';
@@ -36,6 +38,7 @@ form.addEventListener("submit", e => {
     if (!regexEmail.test(email.value)) {
         warnings += 'El email no es válido.<br>';
         email.style.borderColor = 'red';
+        email.focus();
         entrar = true;
     } else {
         email.style.borderColor = 'palegreen';
@@ -46,11 +49,13 @@ form.addEventListener("submit", e => {
         //La contraseña debe ser sólo numérica:
         warnings += 'Contraseña inválida<br>(ingrese sólo números)<br>';
         pass.style.borderColor = 'red';
+        pass.focus();
         entrar = true;
     } else if (pass.value.length < 8) {
         //La contraseña debe tener al menos 8 caracteres:
         warnings += 'La contraseña no es válida.<br>';
         pass.style.borderColor = 'red';
+        pass.focus();
         entrar = true;
     } else {
         pass.style.borderColor = 'palegreen';

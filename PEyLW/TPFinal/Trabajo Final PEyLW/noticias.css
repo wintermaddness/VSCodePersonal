@@ -89,7 +89,7 @@ body {
 	padding: 8.5px 15px;
 	background: #333;
 	border: 1.5px solid #dcb03b;
-	width: 445px;
+	width: 600px;
 	color: #fff;
 }
 .button {
@@ -127,7 +127,7 @@ body {
 #cuerpo {
     position: relative;
 	display: block;
-    margin-top: -648px;
+    margin-top: -724px;
     border-top: 2px solid #dcb03b;
 }
 
@@ -139,9 +139,26 @@ body {
 
 .separador {
 	/*border: 1px solid red;*/
-	height: 5em;
+	height: 30em;
 	width: 100%;
+	text-align: center;
 	background-color: rgba(62,62,61,255);
+}
+.separador2 {
+	/*border: 1px solid red;*/
+	height: 10em;
+	width: 100%;
+	text-align: center;
+	background-color: rgba(62,62,61,255);
+}
+.textoSeparador {
+	/*border: 1px solid blue;*/
+    color: #fafafa;
+	padding: 10px;
+	letter-spacing: 10px;
+	font-size: xx-large;
+	text-align: center;
+	text-shadow: 10px 5px 10px #000000; /*Text-Shadow: left/vertical bottom/horizontal blur color +inset*/
 }
 
 #lb1, #lb2, #lb3 {
@@ -156,7 +173,7 @@ body {
 	letter-spacing: normal;
 	text-align: justify;
 	font-style: oblique;
-	font-size: small;
+	font-size: 15px;
 }
 
 #img {
