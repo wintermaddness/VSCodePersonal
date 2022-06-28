@@ -127,7 +127,7 @@ body {
 #cuerpo {
     position: relative;
 	display: block;
-    margin-top: -648px;
+    margin-top: -724px;
     border-top: 1px solid #dcb03b;
     border-bottom: 1px solid #dcb03b;
 }
@@ -210,14 +210,17 @@ body {
 	border: 2px solid rgb(81, 84, 86);
 	padding: 10px;
 	margin: 0 0 1.5em 0;
-	height: 425px;
+	height: 465px;
+	width: 270px;
+	/*border: 1px solid red;*/
 }
 .card h2 {
 	padding: 5px;
+	/*border: 1px solid red;*/
 }
 .card img {
-	height: 340px;
-	width: 224px;
+	height: 380px;
+	width: 247px;
 	text-align: center;
 	padding: 0 0;
 	border: 3px groove rgba(51, 51, 51, 0.663);
@@ -225,7 +228,7 @@ body {
 	object-fit: cover;
 }
 .card-tittle {
-	width: 224px;
+	width: 247px;
 	height: 55px;
 	margin-bottom: 5px;
 	text-align: center;
@@ -238,8 +241,10 @@ body {
 }
 
 #card-info {
-    width: 788px;
-    height: 455px;
+    width: 905px;
+    height: 465px;
+	margin-left: 40px;
+	/*border: 1px solid red;*/
     /*border: 2px solid rgb(81, 84, 86);*/
 }
 #card-info #info-libro {
@@ -250,7 +255,7 @@ body {
     background-color: #dcb03b;
 }
 #info-libro p {
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: normal;
 }
 

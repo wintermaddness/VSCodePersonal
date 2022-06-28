@@ -1,202 +1,138 @@
 <!DOCTYPE html>
-    <head>
-        <!-- Boxicons -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-        <link rel="stylesheet" href="trabajoFinal.css">
-        <link rel="shortcut icon" href="/img/channels4_profile.jpg" type="image/x-icon">
-        <title>Lepen</title>
-        <script type="text/javascript">
-            window.addEventListener("scroll", function(){
-                var header = document.querySelector("header");
-                header.classList.toggle("abajo",window.scrollY>0)
-            })
-        </script>
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Charis+SIL&display=swap');
-            *{
-                box-sizing: border-box;
-                padding: 0;
-                margin: 0;
-                text-decoration: none;
-                list-style: none;
-                font-family: inherit;
-            }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Dorada - Contacto</title>
+    <link rel="stylesheet" href="contacto.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
+</head>
+<body>
+    <div id="contenedor">
+        <div id="nav">
+            <ul>
+                <li>
+                    <img src="Images/klipartz.com.png" id="logo1" alt="Logo Lectura Dorada">
+                    <h1>
+                        Lectura Dorada
+                    </h1>
+                </li>
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="Promociones.html">Promociones</a></li>
+                <li><a href="Noticias.html">Noticias</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
+                <li><a href="Registro.html">Registro</a></li>
+                <li>
+                    <form id="buscador">
+                        <input type="text" placeholder="Buscar..." class="search" required>
+                        <span class="arrow"></span><input type="button" value="Búsqueda" class="button">
+                    </form>
+                </li>
+            </ul>
+        </div>
 
-            body {
-                border: 1px solid red;
-            }
-            .logoheader img{
-                width: 75px;
-                padding-left: 10px;
-                transition: 1s;
-            }
-            header{
-                background-color: #222;
-                display: flex;
-                justify-content:space-between; 
-                align-items: center;
-                padding: 10px ; 
-                position: fixed;
-                top: 0;
-                left: 0;
-                z-index: 10;
-                width: 100%;
-                transition: 1s;
-            }
-            header.abajo{
-                padding: 5px;
-                height: 50px;
-            }
-            header.abajo .logoheader{
-                border: 1px solid fuchsia;
-                height: 10px;
-                margin-bottom: 50px; 
-            }
-            nav a {
-                color: antiquewhite;
-                text-align: left;
-                padding-right: 100px;
-                font-size: 20px;
-                transition: 1s;
-            }
-            nav a:hover {
-                text-decoration: underline;
-            }
-            /* Div contenedor del video */
-            .fotofondo {
-                border: 1px solid orange;
-                background-image: url(/img/f3e488fa8461e2683055eaaca8c29978.jpg);
-                width: 100%;
-                height: 100vh;
-                position: relative;  
-            }
-            .container-video {
-                border: 1px solid cyan;
-                width: max-content;
-                margin-left: 30px;
-                margin-top: 300px;
-            }
-            video {
-                width: 800px;
-                height: 400px;
-                border-color: rgb(20, 5, 5);
-                border-radius: 10px  
-            }
-
-            /* Divs del footer */
-            .textosini {
-                width: 100%;
-                border: 1px solid green;
-            }
-            .imgmuestra{
-                border: 1px solid red;
-                width: 70%;
-                padding: 5px;
-                display: flex;
-                float: right;  
-                background-color: #222;
-                height: 200px;
-                justify-content: right;
-                color: aliceblue;
-                font-family: 'Charis SIL', serif; 
-            }
-            .nosotrosinicio{
-                border: 1px solid blue;
-                position: flex;
-                float: left;
-                width: 30%;
-                background-color: #222;
-                height: 200px;
-                color: aliceblue;
-                font-family: 'Charis SIL', serif;
-            }
-            .imgcalefaini{
-                height: 200px;
-                width: auto;
-                /*padding-top: 10px;*/
-                padding: 10px;
-            }
-            /* Supongo que este es un div separador */
-            .bordecolor{
-                border: 1px solid yellow;
-                background-color: #0c0c09c7;
-                height: 10px;
-            }
-
-            /* Estilos de los links de Redes Sociales */
-            .bxl-facebook-square{
-                color: darkblue;
-            }
-            .bxl-instagram{
-                color: white;
-            }
-            .bxl-youtube{
-                color: red;
-            }
-            .textosini .nosotrosinicio a {
-                text-decoration: none;
-                color: inherit
-            }
-            /* Prueba de alineación de los párrafos
-            * -> Se puede declarar el text-align:left; dentro de la clase .imgmuestra
-            */
-            .imgmuestra p {
-                text-align: left;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <div class="logoheader">
-            <a href="#"> <img src="/img/images.png"></a>
+        <div id="cuerpo">
+            <div id="direccion">
+                <table>
+                    <tr id="contacto">
+                        <td id="con">
+                            <h4>Contacto</h4>
+                            <p>lecturadorada@hotmail.com.ar</p>
+                            <p>(+54) 298-4141747</p>
+                        </td>
+                        <td id="img">
+                            <img src="Images2/Galería Lectura Dorada P (3).png" alt="Contactenos">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="dir">
+                            <h4>Ubicación</h4>
+                            <p>11 de Marzo 1883, Villa Regina</p>
+                            <p>Provincia de Río Negro, República Argentina</p>
+                        </td>
+                        <td id="mapa">
+                            <div class="mapouter">
+                                <div class="gmap_canvas">
+                                    <iframe src="https://maps.google.com/maps?q=11%20de%20marzo%201883,%20villa%20regina,%20rio%20negro,%20argentina&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" 
+                                    id="gmap_canvas" frameborder="0" scrolling="no" style="width: 800px; height: 400px;"></iframe>
+                                    <a href="https://fnfmod.net" style="display:none">fnf mod</a>
+                                    <style>.mapouter{position:relative;text-align:right;height:400px;width:600px;}</style>
+                                    <a href="https://googlemapsiframegenerator.com" style="display:none">Google Maps Iframe Generator - Código de inserción html gratuito</a>
+                                    <style>.gmap_canvas{overflow:hidden;background:none!important;height:400px;width:799px;}</style>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </div>
-            <nav>
-                <a href="#">Inicio</a>
-                <a href="#">Informacion General</a>
-                <a href="#">Productos</a>
-                <a href="#">Contacto</a>
-            </nav>
-        </header>
-        <main>
-            <div class="fotofondo">
-                <div class="container-video">
-                    <video autoplay loop plays-inline controls muted>
-                        <source src="/img/y2mate.com - Lepen  Proceso de Fabricación 2022 HQ_1080pFHR.mp4">
-                    </video>
+            <div id="separador">
+                <h4>Horarios</h4>
+                <p>Todos los días hasta las 21:00 hs</p>
+                <p>Excepto los fines de semana, porque nosotros también descansamos.</p>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="columna1">
+                        <div class="infoarea">
+                            <div class="footerLogo">
+                                <a href="#">
+                                    <img src="Images/klipartz.com.png" alt="Logo Lectura Dorada" height="60" width="60">
+                                </a>
+                            </div>
+                            <div>
+                                <i>Tu biblioteca en línea</i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="columna2">
+                        <div class="links">
+                            <h4>Info</h4>
+                            <ul>
+                                <li>
+                                    <a href="SobreNosotros.html">Sobre Nosotros</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="columna3">
+                        <h4>Ubicación</h4>
+                        <p>11 de Marzo 1883, Villa Regina</p>
+                        <p>Provincia de Río Negro, República Argentina</p>
+                    </div>
+
+                    <div class="columna4">
+                        <h4>Redes Sociales</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="Images/1.png" height="30" width="30" alt="Facebook" class="social">
+                                </a>
+                                <a href="#">
+                                    <img src="Images/2.png" height="30" width="30" alt="Instagram" class="social">
+                                </a>
+                                <a href="#">
+                                    <img src="Images/3.png" height="30" width="30" alt="Pinterest" class="social">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </main>
-        <footer>
-            <div class="bordecolor">.</div>
-            <div class="textosini">
-                <div class="nosotrosinicio">
-                    <pre>
-                        <big>CONTACTENOS:</big>
-                        <a href="https://www.facebook.com/calefactoreslepen/"> 
-                            Facebook <i class='bx bxl-facebook-square'></i>
-                        </a>
-                        <a href="https://www.instagram.com/lepencalefactores/">
-                            Instagram <i class='bx bxl-instagram'></i>
-                        </a>
-                        <a href="https://www.youtube.com/channel/UCEoawBLHtus7wZfZIx9ptlg">
-                            Youtube <i class='bx bxl-youtube'></i>
-                        </a>
-                        Email: lepentuhogar@gmail.com <i class='bx bxl-gmail' ></i>
-                    </pre>
-                </div>
-                <div class="imgmuestra">
-                    <p>         
-                        Somos la empresa n° 1 dentro del mercado industrial de calefactores a leña. LEPEN busca la conformidad 
-                        y satisfacion del cliente ante todo y ofrece los mejores precios posibles.
-                        Conforme a los avances, nuestras tecnologias, son las indicas para dar 100% de fidelidad a nuestros
-                        consumidores.
-                        © 2022 CALEFACTORES A LEÑA LEPEN - Calefactores a leña de alto rendimiento - LEPEN Calefactores 
-                        - Estufas - Parrillas a leña LEPEN. Desarrollado por. Digito Uno.
-                    </p>  
-                    <img class="imgcalefaini" src="/img/CALEFACTOR-CON-HORNO-12000-CALORIAS.png">
-                </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © 2022 | Diseño por: Aliaga Vidal, Celeste Belén | FAI-3757
+                </p>
             </div>
-            <div class="bordecolor">.</div>    
-        </footer>
-    </body>
+        </div>
+
+    </div>
+</body>
 </html>
