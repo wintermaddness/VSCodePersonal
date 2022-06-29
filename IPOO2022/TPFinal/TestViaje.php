@@ -542,7 +542,7 @@
 								//Se listan en pantalla todos los pasajeros almacenados:
 								echo mostrar($viaje->listarPasajeros());
 								do {
-									echo "| Seleccione un pasajero: ";
+									echo "| Seleccione un pasajero (por el número de documento): ";
 									$nroPasajero = trim(fgets(STDIN));
 									$pasajeroEncontrado = $pasajero->buscar($nroPasajero);
 									if ($pasajeroEncontrado == false) {
@@ -778,6 +778,7 @@
 					} while($empresaEncontrada != true);
 					echo "\n----------------------------------------------\n";
 					$cadena = $empresa->__toString(); // es igual a: echo $empresa;
+					$cadena .= $empresa->mostrarViajesEmpresa();
 					echo $cadena;
 					echo "\n----------------------------------------------\n";
 				}
@@ -894,6 +895,7 @@
 					} while($responsableEncontrado != true);
 					echo "\n----------------------------------------------\n";
 					$cadena = $responsable->__toString(); // es igual a: echo $responsable;
+					$cadena .= $responsable->mostrarViajesResponsable();
 					echo "\n".$cadena;
 					echo "\n----------------------------------------------\n";
 				}

@@ -257,5 +257,28 @@
             }
             return $resp;
         }
+
+        /**
+         * Método 8: mostrarViajesResponsable - 
+         * Dado un responsable retorna una cadena con los datos de los viajes a su cargo.
+         * @return string
+         */
+        public function mostrarViajesResponsable() {
+            $i = 1;
+            $cadenaViaje = "";
+            $listaDeViajes = $this->listarViajesResponsable();
+            if (count($listaDeViajes) == 0) {
+                $cadenaViaje = ">>> El empleado no tiene viajes a su cargo.\n";
+            } else {
+                foreach ($listaDeViajes as $unViaje) {
+                    $cadenaViaje .= "-- -- -- DATOS DEL VIAJE ($i)-- -- --\n"
+                    ."+| Código del viaje: ".$unViaje->getCodigoViaje()."\n"
+                    ."+| Destino: ".$unViaje->getDestino()."\n"
+                    ."+| Capacidad de pasajeros: ".$unViaje->getCapacidadPasajeros()."\n";
+                    $i++;
+                }
+            }
+            return $cadenaViaje;
+        }
     }
 ?>

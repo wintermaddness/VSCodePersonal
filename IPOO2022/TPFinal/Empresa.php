@@ -241,5 +241,28 @@
             }
             return $resp;
         }
+
+        /**
+         * Método 8: mostrarViajesEmpresa - 
+         * Dado una empresa, retorna una cadena con los datos de los viajes a su cargo.
+         * @return string
+         */
+        public function mostrarViajesEmpresa() {
+            $i = 1;
+            $cadenaViaje = "";
+            $listaDeViajes = $this->listarViajesEmpresa();
+            if (count($listaDeViajes) == 0) {
+                $cadenaViaje = ">>> La empresa no tiene viajes a su cargo.\n";
+            } else {
+                foreach ($listaDeViajes as $unViaje) {
+                    $cadenaViaje .= "-- -- -- DATOS DEL VIAJE ($i)-- -- --\n"
+                    ."+| Código del viaje: ".$unViaje->getCodigoViaje()."\n"
+                    ."+| Destino: ".$unViaje->getDestino()."\n"
+                    ."+| Capacidad de pasajeros: ".$unViaje->getCapacidadPasajeros()."\n";
+                    $i++;
+                }
+            }
+            return $cadenaViaje;
+        }
     }
 ?>
