@@ -8,6 +8,37 @@
     <link rel="stylesheet" href="PagPrincipal.css">
     <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script>
+        function cambiar(valor) {
+            if (valor == 1) {
+                //Se cargan los articulos de las categorías:
+                //document.getElementById("contenido").innerHTML = url("categorias.html");
+                document.getElementById("contenido").innerHTML = $(document).ready(function(){$('#contenido').load('categorias.html');});;
+            } else if (valor == 2) {
+                //Se cargan los articulos de los autores:
+            } else if (valor = 3) {
+                //Se cargan los articulos de los packs:
+            } else if (valor  == 4) {
+                //Se cargan los articulos de las sagas:
+            }
+            document.getElementById("MyDiv").innerHTML= "Como estas? ;))...";
+        }
+
+        function cambiarContenido() {
+            $(document).ready(function() {
+                $('categorias').on('click', function() {
+                    $("contenido").load('categorias.html');
+                    return false;
+                });
+            });
+        }
+
+        function cargarDoc() {
+            $(document).ready(function(){
+                $('#contenido').load('categorias.html');
+            });
+        }
+    </script>
 </head>
 <body>
     <div id="contenedor">
@@ -110,16 +141,16 @@
             <div id="lateral">
                 <ul>
                     <li>
-                        <a href="#" title="Ver categorías" accesskey="c">Categorías</a>
+                        <a href="#" title="Ver categorías" accesskey="c" id="categorias" onclick="cambiar(1)">Categorías</a>
                     </li>
                     <li>
-                        <a href="#" title="Ver autores" accesskey="a">Autores</a>
+                        <a href="#" title="Ver autores" accesskey="a" id="autores" onclick="cambiar(2)">Autores</a>
                     </li>
                     <li>
-                        <a href="#" title="Ver packs" accesskey="p">Packs</a>
+                        <a href="#" title="Ver packs" accesskey="p" id="packs" onclick="cambiar(3)">Packs</a>
                     </li>
                     <li>
-                        <a href="#" title="Ver sagas" accesskey="s">Sagas</a>
+                        <a href="#" title="Ver sagas" accesskey="s" id="sagas" onclick="cambiar(4)">Sagas</a>
                     </li>
                 </ul>
             </div>
@@ -200,6 +231,75 @@
                             <a href="#!"><input type="button" value="Siguiente" class="botones"></a>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="categorias" hidden>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>Miguel de Cervantes</h2>
+                </div>
+                <div class="card-image">
+                    <a href="Ebook.html">
+                        <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>Jane Austen</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images2/2.png" alt="Juego De Tronos">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>Mary Shelley</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images2/3.png" alt="El Despertar de los Dragones">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>La Odisea</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images2/4.png" alt="La Odisea">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>Estudio en Escarlata</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images2/5.png" alt="Estudio en Escarlata">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>Las Memorias de Sherlock Holmes</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images/SH3.jpg" alt="Las Memorias de Sherlock Holmes">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>El Despertar del Valiente</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images/MR1.jpg" alt="El Despertar del Valiente">
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-tittle">
+                    <h2>Harry Potter y la Piedra Filosofal</h2>
+                </div>
+                <div class="card-image">
+                    <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal">
                 </div>
             </div>
         </div>

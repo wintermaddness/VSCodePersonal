@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>categorias</title>
+    <style>
+        #categorias {
+            /*border: 1px solid red;*/
+            column-width: 225px;
+            column-gap: 20px;
+            position: relative;
+            float: right;
+            width: 80%;
+            padding: 1em 1em 1em 1em;
+            border-radius: 20px 0 0 0;
+            border-top: 4px solid #dcb03b;
+            border-left: 4px solid #dcb03b;
+            background-color: #fcfcfc;
+            /*margin: 2em auto;*/
+            margin: 0;
+            margin-top: 100px;
+            font: .7em/1.2 Arial, Helvetica, sans-serif;
+            text-align: justify;
+        }
+        .card {
+            break-inside: avoid;
+            page-break-inside: avoid;
+            border-radius: 10px;
+            background-color: rgb(208, 203, 203);
+            border: 2px solid rgb(81, 84, 86);
+            padding: 10px;
+            margin: 0 0 1.5em 0;
+            height: 470px;
+            /*border: 1px solid red;*/
+        }
+
+        .card:hover {
+            box-shadow: 5px 8px 10px #000000;
+            transform: scale(1) translateY(1px); 
+            z-index: 1; 
+            border-bottom: 0 none;
+        }
+
+        .card h2 {
+            padding: 5px;
+            letter-spacing: normal;
+        }
+        .card img {
+            height: 385px;
+            width: 254px;
+            text-align: center;
+            padding: 0 0;
+            border: 3px groove rgba(51, 51, 51, 0.663);
+            border-radius: 5% 5%;
+            object-fit: cover;
+        }
+        .card-tittle {
+            width: 254px;
+            height: 55px;
+            margin-bottom: 5px;
+            text-align: center;
+            border: 3px groove rgba(51, 51, 51, 0.663);
+        }
+        .card-image {
+            /*border: 1px solid red;*/
+            width: 224px;
+            height: 340px;
+        }
+    </style>
+</head>
+<body>
+    <div id="categorias">
+        <div class="card">
+            <div class="card-tittle">
+                <h2>Miguel de Cervantes</h2>
+            </div>
+            <div class="card-image">
+                <a href="Ebook.html">
+                    <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
+                </a>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>Jane Austen</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images2/2.png" alt="Juego De Tronos">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>Mary Shelley</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images2/3.png" alt="El Despertar de los Dragones">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>La Odisea</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images2/4.png" alt="La Odisea">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>Estudio en Escarlata</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images2/5.png" alt="Estudio en Escarlata">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>Las Memorias de Sherlock Holmes</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images/SH3.jpg" alt="Las Memorias de Sherlock Holmes">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>El Despertar del Valiente</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images/MR1.jpg" alt="El Despertar del Valiente">
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-tittle">
+                <h2>Harry Potter y la Piedra Filosofal</h2>
+            </div>
+            <div class="card-image">
+                <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
