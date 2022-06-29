@@ -210,6 +210,11 @@
             return $resp;
         }
 
+        /**
+         * Método 6: listarViajesResponsable - 
+         * Función que retorna un arreglo con todos los viajes asociados a un responsable específico.
+         * @return array
+         */
         public function listarViajesResponsable() {
             $arrayViajes = null;
             $base = new BaseDatos();
