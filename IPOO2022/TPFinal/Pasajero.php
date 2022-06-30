@@ -5,7 +5,7 @@
         private $nombre;
         private $apellido;
         private $telefono;
-        private $idViaje;
+        private $idViaje; //objViaje
         private $mensajeoperacion;
 
         //Métodos de acceso:
@@ -65,19 +65,19 @@
         }
 
         public function __toString() {
-            $cadenaViaje = "";
+            /*$cadenaViaje = "";
             $viaje = new Viaje();
-            //Se obtiene el ID del viaje:
+            Se obtiene el ID del viaje:
             if ($viaje->Buscar($this->getIdViaje())) {
                 $cadenaViaje .= $viaje->getCodigoViaje();
-            }
+            }*/
             $cadena = "-- -- -- DATOS DEL PASAJERO -- -- --\n".
                     "+ Nombre: ".$this->getNombre()."\n".
                     "+ Apellido: ".$this->getApellido()."\n".
                     "+ DNI: ".$this->getDni()."\n".
                     "+ Teléfono: ".$this->getTelefono()."\n".
-                    //"+ ID Viaje: ".$this->getIdViaje()."\n";
-                    "+ ID Viaje: ".$cadenaViaje."\n";
+                    "+ ID Viaje: ".$this->getIdViaje()."\n"; //(!) Tenía que ser un objViaje
+                    //"+ ID Viaje: ".$cadenaViaje."\n";
             return $cadena;
         }
 
@@ -95,11 +95,16 @@
             if ($baseDatos->iniciar()) {
                 if ($baseDatos->ejecutar($consulta)) {
                     if ($row2 = $baseDatos->registro()) {
+                        //Se busca el objViaje por el código de viaje:
+                        $objViaje = new Viaje();
+                        $objViaje->Buscar($this->getIdViaje());
+
                         $this->setDni($nroDocumento);
                         $this->setNombre($row2['pnombre']);
                         $this->setApellido($row2['papellido']);
                         $this->setTelefono($row2['ptelefono']);
-                        $this->setIdViaje($row2['idviaje']);
+                        //$this->setIdViaje($row2['idviaje']); Tiene que ser objViaje
+                        $this->setIdViaje($objViaje->getCodigoViaje());
                         $resp = true;
                     }
                 } else {
@@ -134,13 +139,16 @@
                     $arrayPasajeros = array();
                     while ($row2 = $base->Registro()) {
                         $dni = $row2['rdocumento'];
-                        $nombre = $row2['pnombre'];
+                        /*$nombre = $row2['pnombre'];
                         $apellido = $row2['papellido'];
                         $telefono = $row2['ptelefono'];
                         $idViaje = $row2['idviaje'];
                         $nuevoPasajero = new Pasajero();
                         $nuevoPasajero->cargar($dni, $nombre, $apellido, $telefono, $idViaje);
-                        array_push($arrayPasajeros, $nuevoPasajero);
+                        array_push($arrayPasajeros, $nuevoPasajero);*/
+                        $objPasajero = new Pasajero();
+                        $objPasajero->buscar($dni);
+                        array_push($arrayPasajeros, $objPasajero);
                     }
                  } else {
                     $this->setmensajeoperacion($base->getError());
@@ -164,7 +172,7 @@
                                         '".$this->getNombre()."',
                                         '".$this->getApellido()."',
                                         '".$this->getTelefono()."',
-                                        '".$this->getIdViaje()."')";
+                                        '".$this->getIdViaje()."')"; //objViaje (!)
             if ($base->Iniciar()) {
                 if ($base->Ejecutar($consultaInsertar)) {
                     $resp = true;
