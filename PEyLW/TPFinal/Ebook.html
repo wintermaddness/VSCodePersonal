@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lectura Dorada - Ebook</title>
+    <link rel="stylesheet" href="ebook.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
+    <link rel="stylesheet" href="resenias.css">
+    <style>
+        .required { /*Icono de campo requerido*/
+            color: #dcb03b;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        function commentBox() {
+            var name = document.getElementById('name').value;
+            var comment = document.getElementById('comment').value;
+            var alert = document.getElementById('alerta');
+            //Si los label están vacíos:
+            if (name == "" && comment == "") {
+                //alert("Por favor, introduce la información requerida.");
+                document.getElementById('name').style.borderColor = 'red';
+                document.getElementById('comment').style.borderColor = 'red';
+                alert.innerHTML = "Por favor, introduce la información requerida.";
+            } else if (name == "" && comment != "") {
+                    //Si el label del nombre está vacío:
+                    document.getElementById('name').style.borderColor = 'red';
+                    document.getElementById('comment').style.borderColor = 'green';
+                    alert.innerHTML = "Por favor, introduce tu nombre.";
+            } else if (name != "" && comment == "") {
+                    //Si el label del comentario está vacío:
+                    document.getElementById('name').style.borderColor = 'green';
+                    document.getElementById('comment').style.borderColor = 'red';
+                    alert.innerHTML = "Por favor, introduce un comentario.";
+            } else {
+                //Se quitan los bordes de colores a los labels:
+                document.getElementById('name').style.borderColor = '';
+                document.getElementById('comment').style.borderColor = '';
+                alert.innerHTML = "";
+                //Se crea la sección de comentarios/reseñas:
+                var parent = document.createElement('div');
+                var el_name = document.createElement('h5');
+                var el_message = document.createElement('p');
+                var el_line = document.createElement('hr');
+                var txt_name = document.createTextNode(name);
+                var txt_message = document.createTextNode(comment);
+                el_name.appendChild(txt_name); //NOMBRE del usuario
+                el_message.appendChild(txt_message); //COMENTARIO del usuario
+                el_line.style.border = '1px solid #000'; //HR de separación
+                //Nombre, hr + comentario:
+                parent.appendChild(el_name);
+                parent.appendChild(el_line);
+                parent.appendChild(el_message);
+                //Se muestran en pantalla los comentarios/reseñas:
+                parent.setAttribute('class', 'pane');
+                document.getElementById('result').appendChild(parent);
+                //Se vacían los campos del form:
+                document.getElementById('name').value = "";
+                document.getElementById('comment').value = "";
+            }
+        }
+        
+        $(function() {
+            var list = $('ul');
+            var newInput = $('form');
+            var error = $('.error');
+            error.hide();
+            $('input:checkbox').attr('checked', false);
+            function updateCounter() {
+                var records = $('li').length;
+                $('.counter').text(records);
+            }
+            updateCounter();
+            newInput.on('submit', function(e) {
+                e.preventDefault();
+                var text = $('input:text').val();
+                error.text('Oops! it seems you have attempted to enter a blank task.');
+                if ($('input:text').val().trim().length < 1) {
+                    error.stop(true).fadeIn('normal', function() {
+                        setTimeout(function() {
+                        error.stop(true).fadeOut('normal');
+                        }, 3000);
+                    });
+                } else {
+                    error.hide();
+                    list.append('<li><label><input type="checkbox"><span class="check"></span></label>' + text + '<span class="close"></span></li>');
+                    $('input:text').val('');
+                    updateCounter();
+                }
+            });
+            list.on('change', 'label', function() {
+                $(this).parent('li').toggleClass('complete');
+            });
+            list.on('click', '.close', function() {
+                $(this).parent('li').addClass('fold').slideUp(600, function() {
+                    $(this).remove();
+                    updateCounter();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="nav">
+            <ul>
+                <li>
+                    <img src="Images/klipartz.com.png" id="logo1" alt="Logo Lectura Dorada">
+                    <h1>
+                        Lectura Dorada
+                    </h1>
+                </li>
+                <li><a href="Inicio.html">Inicio</a></li>
+                <li><a href="Promociones.html">Promociones</a></li>
+                <li><a href="Noticias.html">Noticias</a></li>
+                <li><a href="Contacto.html">Contacto</a></li>
+                <li><a href="SobreNosotros.html">Sobre Nosotros</a></li>
+                <li><a href="Registro.html">Registro</a></li>
+                <li>
+                    <form id="buscador">
+                        <input type="text" placeholder="Buscar..." class="search" required>
+                        <span class="arrow"></span><input type="button" value="Búsqueda" class="button">
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div id="cuerpo">
+            <div id="lateral">
+                <ul>
+                    <li>
+                        <a href="#" title="Ver categorías. AccessKey: c" accesskey="c">
+                            Categorías
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Ver autores. AccessKey: a" accesskey="a">
+                            Autores
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Ver packs. AccessKey: p" accesskey="p">
+                            Packs
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Ver sagas. AccessKey: s" accesskey="s">
+                            Sagas
+                        </a>
+                    </li>
+                </ul>
+            </div>
+    
+            <div id="principal">
+                <div id="contenido">
+                    <div class="card">
+                        <div class="card-tittle">
+                            <h2>Harry Potter y el prisionero de Azkaban</h2>
+                        </div>
+                        <div class="card-image">
+                            <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
+                        </div>
+                    </div>
+
+                    <div id="card-info">
+                        <div id="info-libro">
+                            <p>
+                                <b>Harry Potter y el prisionero de Azkaban</b> (título original en inglés, Harry Potter and the Prisoner of Azkaban),
+                                tercer libro de la serie literaria Harry Potter, escrita por la autora británica <b>J. K. Rowling</b> en 1999, narra
+                                los hechos que suceden a lo largo del tercer curso de su protagonista, Harry Potter, en el Colegio Hogwarts.
+                                Aunque en la novela no aparece el antagonista de la serie, Lord Voldemort, la trama presenta una nueva situación
+                                de riesgo para el personaje central: Sirius Black, uno de los asesinos de Voldemort, se fuga de la prisión de Azkaban
+                                para asesinar a Harry y dejar el camino libre para el regreso de su amo al poder. Las autoridades de la comunidad mágica
+                                reaccionan ante la noticia cercando el colegio y otros lugares de su jurisdicción con los dementores, criaturas tenebrosas
+                                que ofician de carceleros en Azkaban.
+                            </p>
+                        </div>
+
+                        <div id="info-autor">
+                            <table>
+                                <tr class="img-autor">
+                                    <td>
+                                        <img src="Images2/jkRowling.jpg" alt="J.K Rowling">
+                                    </td>
+                                    <td id="autor">
+                                        AUTOR: J.K Rowling
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div id="buy">
+                            <ul>
+                                <li>
+                                    <a href="#!"><input type="button" value="Comprar" class="botones"></a>
+                                    <a href="#!"><input type="button" value="Añadir a favoritos" class="botones"></a>
+                                    <a href="#!"><input type="button" value="Compartir" class="botones"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="tags">
+                    <div id="tittle">
+                        <h2>Etiquetas relacionadas</h2>
+                    </div>
+                    <div class="etiquetas">
+                        <ul>
+                            <li>
+                                <a href="#!">rowling</a>
+                                <a href="#!">harrypotter</a>
+                                <a href="#!">magia</a>
+                                <a href="#!">hechiceria</a>
+                                <a href="#!">jovenes</a>
+                                <a href="#!">escuela</a>
+                                <a href="#!">fantasia</a>
+                                <a href="#!">potter</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="similares">
+                    <div id="content2">
+                        <div id="carrusel2">
+                            <div class="carrusel2">
+                                <div class="gen">
+                                    <img src="Images/HP1.jpg" alt="Harry Potter 1" width="210" height="285" />
+                                </div>
+                                <div class="gen">
+                                    <img src="Images/HP2.jpg" alt="Harry Potter 2" width="210" height="285" />
+                                </div>
+                                <div class="gen">
+                                    <img src="Images/HP3.jpg"  alt="Harry Potter 3" width="210" height="285" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ts">
+                            <span class="titulos">Títulos</span><br>
+                            <span class="masVistos">SIMILARES</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección de reseñas -->
+            <div id="container">
+                <h1>RESEÑAS</h1>
+                <div class="counter"></div>
+                    <ul>
+                    <li><label><input type="checkbox"><span class="check"></span></label>Book a business class flight to London<span class="close"></span></li>
+                    <li><label><input type="checkbox"><span class="check"></span></label>Submit annual financial report to Manager<span class="close"></span></li>
+                    <li><label><input type="checkbox"><span class="check"></span></label>Organise catering for Wednesday's event<span class="close"></span></li>
+                    <li><label><input type="checkbox"><span class="check"></span></label>Purchase new ink cartridges for printer<span class="close"></span></li>
+                    <li><label><input type="checkbox"><span class="check"></span></label>Pick up car from the auto repair shop<span class="close"></span></li>
+                    </ul>
+                <form>
+                    <div class="form_group">
+                        <input id="newItem" type="text" placeholder="Agregar una reseña"/>
+                        <button type="submit"><span>Agregar</span></button>
+                        <div class="error"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container2">
+                <div class="row">
+                    <div class="columna1">
+                        <div class="infoarea">
+                            <div class="footerLogo">
+                                <a href="#">
+                                    <img src="Images/klipartz.com.png" alt="Logo Lectura Dorada" height="60" width="60">
+                                </a>
+                            </div>
+                            <div>
+                                <i>Tu biblioteca en línea</i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="columna2">
+                        <div class="links">
+                            <h4>Info</h4>
+                            <ul>
+                                <li>
+                                    <a href="SobreNosotros.html">Sobre Nosotros</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="columna3">
+                        <h4>Ubicación</h4>
+                        <p>11 de Marzo 1883, Villa Regina</p>
+                        <p>Provincia de Río Negro, República Argentina</p>
+                    </div>
+
+                    <div class="columna4">
+                        <h4>Redes Sociales</h4>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    <img src="Images/1.png" height="30" width="30" alt="Facebook" class="social">
+                                </a>
+                                <a href="#">
+                                    <img src="Images/2.png" height="30" width="30" alt="Instagram" class="social">
+                                </a>
+                                <a href="#">
+                                    <img src="Images/3.png" height="30" width="30" alt="Pinterest" class="social">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © 2022 | Diseño por: Aliaga Vidal, Celeste Belén | FAI-3757
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

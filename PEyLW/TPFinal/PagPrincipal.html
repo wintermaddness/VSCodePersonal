@@ -8,37 +8,115 @@
     <link rel="stylesheet" href="PagPrincipal.css">
     <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="cards.js"></script>
     <script>
-        function cambiar(valor) {
-            if (valor == 1) {
-                //Se cargan los articulos de las categorías:
-                //document.getElementById("contenido").innerHTML = url("categorias.html");
-                document.getElementById("contenido").innerHTML = $(document).ready(function(){$('#contenido').load('categorias.html');});;
-            } else if (valor == 2) {
-                //Se cargan los articulos de los autores:
-            } else if (valor = 3) {
-                //Se cargan los articulos de los packs:
-            } else if (valor  == 4) {
-                //Se cargan los articulos de las sagas:
+        /*$(document).ready(function() { 
+            $(".contenido").each(function() {
+                var href = $(this).attr("href"); 
+                $(this).click(function() { 
+                    $(".categorias").load(href);
+                }); 
+            }); 
+        });*/
+
+        $(document).ready(function(){
+            $('.image').hover(function(){
+                $(this).find('.contenthover').stop().animate({top:'0px'}, 500); //500: velocidad de animación
+            },
+            function() {
+                $(this).find('.contenthover').stop().animate({top:'100%'}, 500);
+            });
+        });
+        function cambiarContenidoCategorias() {
+            /*let cards = document.getElementsByClassName("card-tittle");
+            for (i in cards) {
+                cards[i].style.height = "25px";
             }
-            document.getElementById("MyDiv").innerHTML= "Como estas? ;))...";
+            let cImg = document.getElementsByClassName("card-image");
+            for (i in cImg) {
+                cImg[i].style.height = "145px";
+            }*/
+            let cards = document.querySelectorAll(".card");
+            for (i in cards) {
+                cards[i].style.height = "185px";
+                cards[i].style.width = "1185px";
+            }
+            /*let cardsI = document.querySelectorAll(".card-image");
+            for (i in cardsI) {
+                cardsI[i].style.height = "165px";
+            }*/
+            let img = document.querySelectorAll("img");
+            for (i in img) {
+                img[i].style.height = "145px";
+                img[i].style.width = "1160px";
+                img[i].src = "https://th.bing.com/th/id/OIP.X0vtdwTo5gyHwCHHcB3ifgHaEK?w=286&h=180&c=7&r=0&o=5&pid=1.7";
+            }
+            document.getElementById("tarjeta1").style.height = "185px";
+            document.getElementById("tarjeta1").style.width = "1190px";
+            document.getElementById("img1").style.height = "145px";
+            document.getElementById("img1").style.width = "1160px";
+            document.getElementById("primero").innerHTML = "Clásicos";
+            document.getElementById("img1").src = "https://th.bing.com/th/id/OIP.X0vtdwTo5gyHwCHHcB3ifgHaEK?w=286&h=180&c=7&r=0&o=5&pid=1.7";
         }
 
-        function cambiarContenido() {
-            $(document).ready(function() {
-                $('categorias').on('click', function() {
-                    $("contenido").load('categorias.html');
-                    return false;
-                });
-            });
+        function cambiarContenidoAutores() {
+            document.getElementById("primero").innerHTML = "Miguel de Cervantes<br>(1547 - 1616)";
+            document.getElementById("img1").src = "https://th.bing.com/th/id/OIP.LxUSyu3aDtrdnM7J_Ll3JgAAAA?w=126&h=173&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("segundo").innerHTML = "Jane Austen<br>(1775 - 1817)";
+            document.getElementById("img2").src = "https://th.bing.com/th/id/OIP.GbLvYG-tZKZx_AvKHNTh2AHaKQ?w=131&h=183&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("tercero").innerHTML = "Mary Shelley<br>(1797 - 1851)";
+            document.getElementById("img3").src = "https://th.bing.com/th/id/OIP.46fuUJeKS590p0EPkhdqOwHaJr?w=126&h=180&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("cuarto").innerHTML = "Victor Hugo<br>(1802 - 1885)";
+            document.getElementById("img4").src = "https://th.bing.com/th/id/OIP._G3vCBXUKAxkAYUHkEkagQHaJQ?w=138&h=180&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("quinto").innerHTML = "Charles Dickens<br>(1812-1870)";
+            document.getElementById("img5").src = "https://th.bing.com/th/id/OIP.XdF14gVKNax2Dm3l_MVPSQHaJR?w=138&h=180&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("sexto").innerHTML = "Julio Verne<br>(1828 - 1905)";
+            document.getElementById("img6").src = "https://th.bing.com/th/id/OIP.8ahqvlr3Y5ArxuFiwB1sOgDQEs?w=128&h=184&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("septimo").innerHTML = "Bram Stoker<br>(1847 - 1912)";
+            document.getElementById("img7").src = "https://th.bing.com/th/id/OIP.VN75p_R95G_dAuwNhgCqZQHaJs?w=185&h=243&c=7&r=0&o=5&pid=1.7";
+            document.getElementById("octavo").innerHTML = "León Tolstói<br>(1828 - 1910)";
+            document.getElementById("img8").src = "https://th.bing.com/th/id/OIP.E-0r2f4vzF7OgPT9U1Ck9wHaHC?w=187&h=180&c=7&r=0&o=5&pid=1.7";
         }
-
-        function cargarDoc() {
-            $(document).ready(function(){
-                $('#contenido').load('categorias.html');
-            });
+        function cambiarImagen(a) {
+            document.getElementById("img1").src = a.src;
         }
     </script>
+    <style>
+        .card .card-image {
+            background: none repeat scroll 0 0 rgba(34, 34, 34, 0);
+            width: 254px;
+	        height: 340px;
+        }
+        
+        .card-image a.image {
+            display: block;
+            overflow: hidden;
+        }
+        .card-image .contenthover {
+            height: 385px;
+	        width: 254px;
+            border-radius: 20px;
+            background-color: #000;
+            opacity: 0.8;
+            position: absolute;
+            top: 100%;
+            left: 10px;
+            color:#FFF;
+            font-size: 22px;
+            text-align: center;
+            margin-top: 70px;
+            padding-top: 20px;
+        }
+        .contenthover p {
+            color:#FFF;
+            font-size: 11px;
+            text-align: justify;
+            margin-top: 10px;
+            padding: 5px;
+        }
+    </style>
 </head>
 <body>
     <div id="contenedor">
@@ -141,10 +219,13 @@
             <div id="lateral">
                 <ul>
                     <li>
-                        <a href="#" title="Ver categorías" accesskey="c" id="categorias" onclick="cambiar(1)">Categorías</a>
+                        <a href="#" title="Ver más vistos" accesskey="m" id="masVistos" onclick="cambiar(4)">Más Vistos</a>
                     </li>
                     <li>
-                        <a href="#" title="Ver autores" accesskey="a" id="autores" onclick="cambiar(2)">Autores</a>
+                        <a href="#categorias.html" title="Ver categorías" accesskey="c" id="categorias" onclick="cambiarContenidoCategorias()">Categorías</a>
+                    </li>
+                    <li>
+                        <a href="#" title="Ver autores" accesskey="a" id="autores" onclick="cambiarContenidoAutores()">Autores</a>
                     </li>
                     <li>
                         <a href="#" title="Ver packs" accesskey="p" id="packs" onclick="cambiar(3)">Packs</a>
@@ -157,70 +238,70 @@
     
             <div id="principal">
                 <div id="contenido">
-                    <div class="card">
+                    <div class="card" id="tarjeta1">
                         <div class="card-tittle">
-                            <h2>Harry Potter y el prisionero de Azkaban</h2>
+                            <h2 id="primero">Harry Potter y el prisionero de Azkaban</h2>
                         </div>
                         <div class="card-image">
                             <a href="Ebook.html">
-                                <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban">
+                                <img src="Images2/6.png" alt="Harry Potter y el prisionero de Azkaban" id="img1">
                             </a>
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>Juego de Tronos</h2>
+                            <h2 id="segundo">Juego de Tronos</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images2/2.png" alt="Juego De Tronos">
+                            <img src="Images2/2.png" alt="Juego De Tronos" id="img2">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>El Despertar de los Dragones</h2>
+                            <h2 id="tercero">El Despertar de los Dragones</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images2/3.png" alt="El Despertar de los Dragones">
+                            <img src="Images2/3.png" alt="El Despertar de los Dragones" id="img3">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>La Odisea</h2>
+                            <h2 id="cuarto">La Odisea</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images2/4.png" alt="La Odisea">
+                            <img src="Images2/4.png" alt="La Odisea" id="img4">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>Estudio en Escarlata</h2>
+                            <h2 id="quinto">Estudio en Escarlata</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images2/5.png" alt="Estudio en Escarlata">
+                            <img src="Images2/5.png" alt="Estudio en Escarlata" id="img5">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>Las Memorias de Sherlock Holmes</h2>
+                            <h2 id="sexto">Las Memorias de Sherlock Holmes</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images/SH3.jpg" alt="Las Memorias de Sherlock Holmes">
+                            <img src="Images/SH3.jpg" alt="Las Memorias de Sherlock Holmes" id="img6">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>El Despertar del Valiente</h2>
+                            <h2 id="septimo">El Despertar del Valiente</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images/MR1.jpg" alt="El Despertar del Valiente">
+                            <img src="Images/MR1.jpg" alt="El Despertar del Valiente" id="img7">
                         </div>
                     </div>
-                    <div class="card">
+                    <div class="card" id="tarjeta">
                         <div class="card-tittle">
-                            <h2>Harry Potter y la Piedra Filosofal</h2>
+                            <h2 id="octavo">Harry Potter y la Piedra Filosofal</h2>
                         </div>
                         <div class="card-image">
-                            <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal">
+                            <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal" id="img8">
                         </div>
                     </div>
                 </div>

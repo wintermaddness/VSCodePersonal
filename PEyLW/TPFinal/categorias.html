@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>categorias</title>
     <style>
+        body {
+            background-color: #000000;
+        }
         #categorias {
             /*border: 1px solid red;*/
             column-width: 225px;
@@ -68,13 +71,107 @@
             width: 224px;
             height: 340px;
         }
+
+        #buttons {
+            width: 80%;
+            position: relative;
+            float: right;
+            /*background: #dcb03b;*/
+            text-align: center;
+        }
+        #buttons li {
+            list-style: none;
+            position: relative;
+            /*border: 2px solid #dc3b3b;*/
+            /*background-color: #dcb03b;*/
+            border-left: 4px solid #dcb03b;
+            border-bottom: 4px solid #dcb03b;
+            border-radius: 0 0 0 20px;
+            background-color: #fefefe;
+        }
+        .botones {
+            position: relative;
+            padding: 8px 15px;
+            margin-bottom: 30px;
+            border: 1px solid #dcb03b;
+            background-color: #dcb03b;
+            color: #000000;
+            font-size: 15px;
+            border-radius: 20px 20px;
+        }
+        .botones:hover  {
+            background-color: #e8c051;
+            color: #000000;
+        }
     </style>
+    <script>
+        function cambiarImagen(valor1) {
+            switch (valor1) {
+                case 1:
+                    if (document.getElementById("primero").src == "Images2/6.png") {
+                        document.getElementById("primero").src = "https://th.bing.com/th/id/OIP.LxUSyu3aDtrdnM7J_Ll3JgAAAA?w=126&h=173&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("primero").src = "Images2/6.png";
+                    }
+                break;
+                case 2:
+                    if (document.getElementById("segundo").src == "Images2/2.png") {
+                        document.getElementById("segundo").src = "https://th.bing.com/th/id/OIP.GbLvYG-tZKZx_AvKHNTh2AHaKQ?w=131&h=183&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("segundo").src = "Images2/2.png";
+                    }
+                break;
+                case 3:
+                    if (document.getElementById("tercero").src == "Images2/3.png") {
+                        document.getElementById("tercero").src = "https://th.bing.com/th/id/OIP.46fuUJeKS590p0EPkhdqOwHaJr?w=126&h=180&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("tercero").src = "Images2/3.png";
+                    }
+                break;
+                case 4:
+                    if (document.getElementById("cuarto").src == "Images2/4.png") {
+                        document.getElementById("cuarto").src = "https://th.bing.com/th/id/OIP._G3vCBXUKAxkAYUHkEkagQHaJQ?w=138&h=180&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("cuarto").src = "Images2/4.png";
+                    }
+                break;
+                case 5:
+                    if (document.getElementById("quinto").src == "Images2/5.png") {
+                        document.getElementById("quinto").src = "https://th.bing.com/th/id/OIP.XdF14gVKNax2Dm3l_MVPSQHaJR?w=138&h=180&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("quinto").src = "Images2/5.png";
+                    }
+                break;
+                case 6:
+                    if (document.getElementById("sexto").src == "Images/SH3.jpg") {
+                        document.getElementById("sexto").src = "https://th.bing.com/th/id/OIP.8ahqvlr3Y5ArxuFiwB1sOgDQEs?w=128&h=184&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("sexto").src = "Images/SH3.jpg";
+                    }
+                break;
+                case 7:
+                    if (document.getElementById("septimo").src == "Images/MR1.jpg") {
+                        document.getElementById("septimo").src = "https://th.bing.com/th/id/OIP.VN75p_R95G_dAuwNhgCqZQHaJs?w=185&h=243&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("septimo").src = "Images/MR1.jpg";
+                    }
+                break;
+                case 8:
+                    if (document.getElementById("octavo").src == "Images2/1.png") {
+                        document.getElementById("octavo").src = "https://th.bing.com/th/id/OIP.E-0r2f4vzF7OgPT9U1Ck9wHaHC?w=187&h=180&c=7&r=0&o=5&pid=1.7";
+                    } else {
+                        document.getElementById("octavo").src = "Images2/1.png";
+                    }
+                break;
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="categorias">
         <div class="card">
             <div class="card-tittle">
-                <h2>Miguel de Cervantes</h2>
+                <h2 id="primero">Harry Potter y el prisionero de Azkaban</h2>
             </div>
             <div class="card-image">
                 <a href="Ebook.html">
@@ -138,6 +235,14 @@
                 <img src="Images2/1.png" alt="Harry Potter y La Piedra Filosofal">
             </div>
         </div>
+    </div>
+    <div id="buttons">
+        <ul>
+            <li>
+                <a href="#!"><input type="button" value="Anterior" class="botones"></a>
+                <a href="#!"><input type="button" value="Siguiente" class="botones"></a>
+            </li>
+        </ul>
     </div>
 </body>
 </html>
