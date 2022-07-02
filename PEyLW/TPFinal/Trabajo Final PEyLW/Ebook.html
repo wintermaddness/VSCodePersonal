@@ -7,6 +7,113 @@
     <title>Lectura Dorada - Ebook</title>
     <link rel="stylesheet" href="ebook.css">
     <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
+    <link rel="stylesheet" href="resenias.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script>
+        function commentBox() {
+            var name = document.getElementById('name').value;
+            var comment = document.getElementById('comment').value;
+            var alert = document.getElementById('alerta');
+            //Si los label están vacíos:
+            if (name == "" && comment == "") {
+                //alert("Por favor, introduce la información requerida.");
+                document.getElementById('name').style.borderColor = 'red';
+                document.getElementById('comment').style.borderColor = 'red';
+                alert.innerHTML = "Por favor, introduce la información requerida.";
+            } else if (name == "" && comment != "") {
+                    //Si el label del nombre está vacío:
+                    document.getElementById('name').style.borderColor = 'red';
+                    document.getElementById('comment').style.borderColor = 'green';
+                    alert.innerHTML = "Por favor, introduce tu nombre.";
+            } else if (name != "" && comment == "") {
+                    //Si el label del comentario está vacío:
+                    document.getElementById('name').style.borderColor = 'green';
+                    document.getElementById('comment').style.borderColor = 'red';
+                    alert.innerHTML = "Por favor, introduce un comentario.";
+            } else {
+                //Se quitan los bordes de colores a los labels:
+                document.getElementById('name').style.borderColor = '';
+                document.getElementById('comment').style.borderColor = '';
+                alert.innerHTML = "";
+                //Se crea la sección de comentarios/reseñas:
+                var parent = document.createElement('div');
+                var el_name = document.createElement('h5');
+                var el_message = document.createElement('p');
+                var el_line = document.createElement('hr');
+                var txt_name = document.createTextNode(name);
+                var txt_message = document.createTextNode(comment);
+                el_name.appendChild(txt_name); //NOMBRE del usuario
+                el_message.appendChild(txt_message); //COMENTARIO del usuario
+                el_line.style.border = '1px solid #000'; //HR de separación
+                //Nombre, hr + comentario:
+                parent.appendChild(el_name);
+                parent.appendChild(el_line);
+                parent.appendChild(el_message);
+                //Se muestran en pantalla los comentarios/reseñas:
+                parent.setAttribute('class', 'pane');
+                document.getElementById('result').appendChild(parent);
+                //Se vacían los campos del form:
+                document.getElementById('name').value = "";
+                document.getElementById('comment').value = "";
+            }
+        }
+        
+        //Función para la sección de reseñas:
+        $(function() {
+            var list = $('.ulList');
+            //var list = document.getElementById("ulList");
+            var newInput = $('.form');
+            var error = $('.error');
+            error.hide();
+            //Se inicializan todos los items sin completar:
+            $('input:checkbox').attr('checked', false);
+            //Se inicializa el contador de items (esquina superior derecha):
+            function updateCounter() {
+                //var records = $('li').length;
+                var records = document.getElementsByClassName("item").length;
+                $('.counter').text(records);
+            }
+            //Se actualiza el contador:
+            updateCounter();
+
+            //Se crea un nuevo item:
+            newInput.on('submit', function(e) {
+                e.preventDefault();
+                //var text = $('input:text').val();
+                var name = document.getElementById("newItemName").value;
+                var text = document.getElementById('newItem').value;
+
+                error.text('¡Oops! Parece que has intentado introducir una reseña en blanco.');
+                //Si el input de la reseña está vacío o tiene menos de 1 caracter:
+                //if ($('input:text').val().trim().length < 1) {
+                if (text < 1) {
+                    error.stop(true).fadeIn('normal', function() {
+                        setTimeout(function() {
+                        error.stop(true).fadeOut('normal');
+                        }, 3000);
+                    });
+                } else {
+                    error.hide();
+                    list.append('<li class="item"><label><input type="checkbox"><span class="check"></span></label>' + name + ' - ' + text + '<span class="close"></span></li>');
+                    $('input:text').val('');
+                    updateCounter();
+                }
+            });
+            //Se marca un item como completo al clickear el "O":
+            list.on('change', 'label', function() {
+                $(this).parent('li').toggleClass('complete');
+            });
+            //Se cierra un item al clickear la "X":
+            list.on('click', '.close', function() {
+                $(this).parent('li').addClass('fold').slideUp(600, function() {
+                    //Se remueve el item:
+                    $(this).remove();
+                    //Se actualiza el contador:
+                    updateCounter();
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div id="contenedor">
@@ -149,10 +256,33 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Sección de reseñas -->
+            <div id="contResenias">
+                <div id="container">
+                    <h1>RESEÑAS</h1>
+                    <div class="counter"></div>
+                        <ul class="ulList">
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Caelum - ¡Este libro es una obra de arte!<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Raleigh - Muy satisfecho con mi compra.<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Chuck - Interesante.<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Mako - Debería haber leído la saga en orden...<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Newt - ¡Dude, tienes que leer esto!<span class="close"></span></li>
+                        </ul>
+                    <form class="form">
+                        <div class="form_group">
+                            <input id="newItemName" type="text" placeholder="Agrega tu nombre..."/>
+                            <input id="newItem" type="text" placeholder="Agrega una reseña..."/>
+                            <button type="submit"><span>Agregar</span></button>
+                            <div class="error"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
 
         <div id="footer">
-            <div class="container">
+            <div class="container2">
                 <div class="row">
                     <div class="columna1">
                         <div class="infoarea">

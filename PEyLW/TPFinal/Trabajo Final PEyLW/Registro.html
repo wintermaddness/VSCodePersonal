@@ -52,6 +52,9 @@
                     <div class="eula">
                         Al iniciar sesión, aceptas todos nuestros términos y <a href="SobreNosotros.html#politicas">políticas</a>.
                     </div>
+                    <div class="check">
+                        <input type="checkbox"><p>Quiero recibir noticias, recomendaciones y promociones</p>
+                    </div>
                 </div>
                 <div class="right">
                     <form action="" method="POST" id="formulario">
@@ -69,8 +72,15 @@
                             <i class="far fa-envelope"></i>
                             <input type="email" name="email" id="correo-electrónico" maxlength="40" placeholder="SherLocked@gmail.com"/>
                         </div>
+
+                        <!-- Entrada de fecha de nacimiento -->
+                        <div>
+                            <label for="password">Fecha de nacimiento <span class="required">*</span></label>
+                            <i class="fas fa-calendar"></i>
+                            <input type="date" name="date" id="fecha-nac" maxlength="16" placeholder="Ingresar fecha de nacimiento"/>
+                        </div>
             
-                        <!--   Entrada de la contraseña -->
+                        <!-- Entrada de la contraseña -->
                         <div>
                             <label for="password">Contraseña <span class="required">*</span></label>
                             <i class="fas fa-lock"></i>

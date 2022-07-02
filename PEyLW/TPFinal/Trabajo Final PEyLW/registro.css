@@ -199,7 +199,7 @@ body {
         /*border: 1px solid green;*/
         display: flex;
         height: 426px;
-        margin: 165px auto;
+        margin: 165px auto 260px;
         width: 640px;
     }
     @media (max-width: 767px) {
@@ -217,7 +217,7 @@ body {
             top: 20px;
             position: relative;
             width: 50%;
-            height: 390px;
+            height: 495px;
             border-radius: 20px 0 0 20px;
     }
     /*@media (max-width: 767px) {
@@ -254,6 +254,24 @@ body {
     .eula a:hover {
         font-style: italic;
     }
+    .check {
+        /*border: 1px solid red;*/
+        padding: 10px;
+    }
+    .check p {
+        margin-left: 55px;
+    }
+    input[type='checkbox'] {
+        border: solid 1px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        cursor: pointer;
+        display: inline-block;
+        height: 15px;
+        width: 15px;
+        left: 40px;
+        position: absolute;
+        top: 74%;
+    }  
 
     .right {
         background: rgb(37, 37, 37);
@@ -263,7 +281,7 @@ body {
         color: #ffffff;
         position: relative;
         width: 50%;
-        height: 425px;
+        height: 530px;
     }
     #formulario {
         display: flex;

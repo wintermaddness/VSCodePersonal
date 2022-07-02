@@ -8,11 +8,6 @@
     <link rel="stylesheet" href="ebook.css">
     <link rel="icon" type="image/png" sizes="32x32" href="Images/icon.ico">
     <link rel="stylesheet" href="resenias.css">
-    <style>
-        .required { /*Icono de campo requerido*/
-            color: #dcb03b;
-        }
-    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script>
         function commentBox() {
@@ -63,22 +58,35 @@
             }
         }
         
+        //Función para la sección de reseñas:
         $(function() {
-            var list = $('ul');
-            var newInput = $('form');
+            var list = $('.ulList');
+            //var list = document.getElementById("ulList");
+            var newInput = $('.form');
             var error = $('.error');
             error.hide();
+            //Se inicializan todos los items sin completar:
             $('input:checkbox').attr('checked', false);
+            //Se inicializa el contador de items (esquina superior derecha):
             function updateCounter() {
-                var records = $('li').length;
+                //var records = $('li').length;
+                var records = document.getElementsByClassName("item").length;
                 $('.counter').text(records);
             }
+            //Se actualiza el contador:
             updateCounter();
+
+            //Se crea un nuevo item:
             newInput.on('submit', function(e) {
                 e.preventDefault();
-                var text = $('input:text').val();
-                error.text('Oops! it seems you have attempted to enter a blank task.');
-                if ($('input:text').val().trim().length < 1) {
+                //var text = $('input:text').val();
+                var name = document.getElementById("newItemName").value;
+                var text = document.getElementById('newItem').value;
+
+                error.text('¡Oops! Parece que has intentado introducir una reseña en blanco.');
+                //Si el input de la reseña está vacío o tiene menos de 1 caracter:
+                //if ($('input:text').val().trim().length < 1) {
+                if (text < 1) {
                     error.stop(true).fadeIn('normal', function() {
                         setTimeout(function() {
                         error.stop(true).fadeOut('normal');
@@ -86,17 +94,21 @@
                     });
                 } else {
                     error.hide();
-                    list.append('<li><label><input type="checkbox"><span class="check"></span></label>' + text + '<span class="close"></span></li>');
+                    list.append('<li class="item"><label><input type="checkbox"><span class="check"></span></label>' + name + ' - ' + text + '<span class="close"></span></li>');
                     $('input:text').val('');
                     updateCounter();
                 }
             });
+            //Se marca un item como completo al clickear el "O":
             list.on('change', 'label', function() {
                 $(this).parent('li').toggleClass('complete');
             });
+            //Se cierra un item al clickear la "X":
             list.on('click', '.close', function() {
                 $(this).parent('li').addClass('fold').slideUp(600, function() {
+                    //Se remueve el item:
                     $(this).remove();
+                    //Se actualiza el contador:
                     updateCounter();
                 });
             });
@@ -246,23 +258,26 @@
             </div>
 
             <!-- Sección de reseñas -->
-            <div id="container">
-                <h1>RESEÑAS</h1>
-                <div class="counter"></div>
-                    <ul>
-                    <li><label><input type="checkbox"><span class="check"></span></label>Book a business class flight to London<span class="close"></span></li>
-                    <li><label><input type="checkbox"><span class="check"></span></label>Submit annual financial report to Manager<span class="close"></span></li>
-                    <li><label><input type="checkbox"><span class="check"></span></label>Organise catering for Wednesday's event<span class="close"></span></li>
-                    <li><label><input type="checkbox"><span class="check"></span></label>Purchase new ink cartridges for printer<span class="close"></span></li>
-                    <li><label><input type="checkbox"><span class="check"></span></label>Pick up car from the auto repair shop<span class="close"></span></li>
-                    </ul>
-                <form>
-                    <div class="form_group">
-                        <input id="newItem" type="text" placeholder="Agregar una reseña"/>
-                        <button type="submit"><span>Agregar</span></button>
-                        <div class="error"></div>
-                    </div>
-                </form>
+            <div id="contResenias">
+                <div id="container">
+                    <h1>RESEÑAS</h1>
+                    <div class="counter"></div>
+                        <ul class="ulList">
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Caelum - ¡Este libro es una obra de arte!<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Raleigh - Muy satisfecho con mi compra.<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Chuck - Interesante.<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Mako - Debería haber leído la saga en orden...<span class="close"></span></li>
+                            <li class="item"><label><input type="checkbox"><span class="check"></span></label>Newt - ¡Dude, tienes que leer esto!<span class="close"></span></li>
+                        </ul>
+                    <form class="form">
+                        <div class="form_group">
+                            <input id="newItemName" type="text" placeholder="Agrega tu nombre..."/>
+                            <input id="newItem" type="text" placeholder="Agrega una reseña..."/>
+                            <button type="submit"><span>Agregar</span></button>
+                            <div class="error"></div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
