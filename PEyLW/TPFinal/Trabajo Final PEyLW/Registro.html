@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class="right">
-                    <form action="" method="POST" id="formulario">
+                    <form action="" method="#POST" id="formulario">
                         <!--<div class="titulo">REGISTRO</div>-->
                         <!-- Entrada para el Nombre de Usuario -->
                         <div>
@@ -75,9 +75,12 @@
 
                         <!-- Entrada de fecha de nacimiento -->
                         <div>
-                            <label for="password">Fecha de nacimiento <span class="required">*</span></label>
+                            <label for="fechaNacimiento">Fecha de nacimiento <span class="required">*</span></label>
                             <i class="fas fa-calendar"></i>
-                            <input type="date" name="date" id="fecha-nac" maxlength="16" placeholder="Ingresar fecha de nacimiento"/>
+                            <!--<input type="text" name="date" id="fecha-nac" maxlength="16" placeholder="dd/mm/aaaa"/>-->
+                            <input type="text" name="date" id="fecha-dia" maxlength="2" placeholder="Día"/>
+                            <input type="text" name="date" id="fecha-mes" maxlength="2" placeholder="Mes"/>
+                            <input type="text" name="date" id="fecha-anio" maxlength="4" placeholder="Año"/>
                         </div>
             
                         <!-- Entrada de la contraseña -->
@@ -91,6 +94,7 @@
                         <button id="btn" type="submit">Registrarse</button>
                         <p class="warnings" id="warnings"></p>
                     </form>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
                     <script src="registro.js"></script>
                 </div>
             </div>

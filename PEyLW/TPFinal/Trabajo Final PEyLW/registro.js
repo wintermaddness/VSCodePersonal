@@ -9,29 +9,10 @@ const pass = document.getElementById("contrasena")
 const form = document.getElementById("formulario")
 const parrafo = document.getElementById("warnings")
 
-const calcularAnio = (e) => {
-    let esBisiesto = null;
-    if (e % 4 == 0) {
-        if (e % 100 == 0) {
-            if (e % 400 == 0) {
-                //El año ingresado es bisiesto:
-                esBisiesto = true;
-            } else {
-                //El año ingresado no es bisiesto:
-                esBisiesto = false;
-            }
-        } else {
-            //El año ingresado es bisiesto:
-            esBisiesto = true;
-        }
-    } else {
-       //El año ingresado no es bisiesto:
-        esBisiesto = false;
-    }
-    return esBisiesto;
-}
-
-const arrayMeses = [[31], [28], [31], [30], [31], [30], [31], [31], [30], [31], [30], [31]];
+let inputMonth = document.querySelector('#fecha-mes');
+let inputDate = document.querySelector('#fecha-dia');
+let inputYear = document.querySelector('#fecha-anio');
+let btnCheck = document.querySelector('#btn');
     
 form.addEventListener("submit", e => {
     e.preventDefault()
@@ -39,107 +20,246 @@ form.addEventListener("submit", e => {
     let entrar = false;
     let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
     let regexName = new RegExp('^[A-Z]+$','i');
-    let regexPattern = /^\d{1,2}\/\d{1,2}\/\d{2,4}$/;
+    let regexDate = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[1-9]|2[1-9])$/;
     let regexPassword = /^[0-9]*$/;
     parrafo.innerHTML = "";
+    let mes = inputMonth.value;
+    let anio = inputYear.value;
+    let dia = inputDate.value;
 
-    /* Validación del usuario */
-    if (nombre.value.length < 6) {
-        //El nombre debe tener al menos 6 caracteres: 
-        warnings += 'El nombre no es válido.<br>';
-        nombre.style.borderColor = 'red';
-        nombre.focus();
-        entrar = true;
-    } else if (!regexName.test(nombre.value)) {
-        //El nombre debe tener sólo letras:
-        warnings += 'Nombre inválido <br>(ingrese sólo letras)<br>';
-        nombre.style.borderColor = 'red';
-        nombre.focus();
+    if (nombre.length == 0 && email.length == 0 && date.length == 0 && pass.length == 0) {
+        warnings += 'Los campos deben estar completos.<br>';
         entrar = true;
     } else {
-        nombre.style.borderColor = 'palegreen';
-    }
-
-    /* Validación del email */
-    if (!regexEmail.test(email.value)) {
-        warnings += 'El email no es válido.<br>';
-        email.style.borderColor = 'red';
-        email.focus();
-        entrar = true;
-    } else {
-        email.style.borderColor = 'palegreen';
-    }
-
-    /* Validación de la fecha de nacimiento */
-    if (!regexPattern.test(date.value)) {
-        //La fecha debe ser d/m/a:
-        warnings += 'La fecha no es válida<br>(ingrese d/m/a)<br>';
-        date.style.borderColor = 'red';
-        //date.focus();
-        entrar = true;
-    } else {
-        date.style.borderColor = 'palegreen';
-    }
-
-    /*let arrayFecha = date.split('/');
-    let anio = parseInt(arrayFecha[2]);
-    let mes = parseInt(arrayFecha[1]) - 1;
-    let dia = parseInt(arrayFecha[0]);
-    //Se comprueba si es año bisiesto:
-    if (calcularAnio(anio)) {
-        //Si es año bisiesto:
-        arrayMeses[1] = 29;
-    } else {
-        arrayMeses[1] = 28;
-    }
-
-    //Se comprueba el mes:
-    if (mes <= 11 && mes >= 0) {
-        //Se comprueba la cantidad de días del mes:
-        let cantidadDias = parseInt(arrayMeses[mes]);
-        if (cantidadDias >= dia) {
-            date.style.borderColor = 'palegreen';
-        } else {
-            warnings += 'La fecha no es válida<br>(ingrese datos correctos)<br>';
-            date.style.borderColor = 'red';
-            date.focus();
+        /* Validación del usuario -----------------------------------------------------------------------------------------------------------*/
+        if (nombre.value.length < 6) {
+            //El nombre debe tener al menos 6 caracteres: 
+            warnings += 'El nombre no es válido.<br>';
+            nombre.style.borderColor = 'red';
+            nombre.focus();
             entrar = true;
+        } else if (!regexName.test(nombre.value)) {
+            //El nombre debe tener sólo letras:
+            warnings += 'Nombre inválido <br>(ingrese sólo letras)<br>';
+            nombre.style.borderColor = 'red';
+            nombre.focus();
+            entrar = true;
+        } else {
+            nombre.style.borderColor = 'palegreen';
         }
-    } else {
-        warnings += 'La fecha no es válida <br>(ingrese datos correctos)<br>';
-        date.style.borderColor = 'red';
-        date.focus();
-        entrar = true;
-    }*/
 
-    /* Validación de la contraseña */
-    if (!regexPassword.test(pass.value)) {
-        //La contraseña debe ser sólo numérica:
-        warnings += 'Contraseña inválida<br>(ingrese sólo números)<br>';
-        pass.style.borderColor = 'red';
-        pass.focus();
-        entrar = true;
-    } else if (pass.value.length < 8) {
-        //La contraseña debe tener al menos 8 caracteres:
-        warnings += 'La contraseña no es válida.<br>';
-        pass.style.borderColor = 'red';
-        pass.focus();
-        entrar = true;
-    } else {
-        pass.style.borderColor = 'palegreen';
+        /* Validación del email -------------------------------------------------------------------------------------------------------------*/
+        if (!regexEmail.test(email.value)) {
+            warnings += 'El email no es válido.<br>';
+            email.style.borderColor = 'red';
+            //email.focus();
+            entrar = true;
+        } else {
+            email.style.borderColor = 'palegreen';
+        }
+
+        /* Validación de la fecha de nacimiento ---------------------------------------------------------------------------------------------*/
+        if (dia.length < 2 && mes.length < 2 && anio < 4) {
+            //La fecha debe tener al menos 6 caracteres (+ las barras separadoras): 
+            warnings += 'La fecha no es válida.<br>';
+            /*date.style.borderColor = 'red';
+            date.focus();*/
+            //Si los campos de la fecha están incompletos:
+            inputDate.style.borderColor = 'red';
+            inputMonth.style.borderColor = 'red';
+            inputYear.style.borderColor = 'red';
+            entrar = true;
+        } else if (dia.length == "" || mes.length == "" || anio.length == "") {//Se verifican c/u de los campos de fecha:
+            warnings += 'La fecha no es válida<br>(Ingrese día, mes y año)<br>';
+            if (dia.length != "") {
+                inputDate.style.borderColor = 'palegreen';
+                entrar = true;
+            } else if (mes.length != "") {
+                inputMonth.style.borderColor = 'palegreen';
+                entrar = true;
+            } else if (anio.length != "") {
+                inputYear.style.borderColor = 'palegreen';
+                entrar = true;
+            } else {
+                inputDate.style.borderColor = 'red';
+                inputMonth.style.borderColor = 'red';
+                inputYear.style.borderColor = 'red';
+                entrar = true;
+            }
+            /*inputDate.style.borderColor = 'red';
+            inputMonth.style.borderColor = 'red';
+            inputYear.style.borderColor = 'red';
+            entrar = true;*/
+        } else if (dia.length != "" && mes.length != "" && anio.length != "") {
+            //Si los días son menores a 1:
+            if (dia < 1) {
+                warnings += 'La fecha no es válida<br>(ERROR: Días inferiores a 1)<br>';
+                inputDate.style.borderColor = 'red';
+                //inputMonth.style.borderColor = 'palegreen';
+                inputYear.style.borderColor = 'palegreen';
+                entrar = true;
+            } else if (dia > 31) {//Si los días son mayores a 31:
+                warnings += 'La fecha no es válida<br>(ERROR: Ingrese 28, 29, 30 o 31 días)<br>';
+                inputDate.style.borderColor = 'red';
+                entrar = true;
+            } else {
+                //Se comprueba si el mes se corresponde con los días:
+                if ((mes) <= 12 && (mes) >= 1) {
+                    mes = mes - 1;
+                    //Si el mes es "febrero":
+                    if ((mes) == 1) {
+                        //Si los días son mayores que 29 (sólo si el año es bisiesto):
+                        if (this.calcularAnio(anio) == true) {
+                            if (dia > 29) {
+                                warnings += 'La fecha no es válida<br>(ERROR: Días superiores al año bisiesto)<br>';
+                                inputDate.style.borderColor = 'red';
+                                inputMonth.style.borderColor = 'palegreen';
+                                inputYear.style.borderColor = 'palegreen';
+                                entrar = true;
+
+                            } else {
+                                inputDate.style.borderColor = 'palegreen';
+                                inputMonth.style.borderColor = 'palegreen';
+                                inputYear.style.borderColor = 'palegreen';
+                            }
+                        } else {
+                            //Si los días son mayores que 28 (sólo si el año no es bisiesto):
+                            if (dia > 28) {
+                                warnings += 'La fecha no es válida<br>(ERROR: Ingrese hasta 28 días)<br>';
+                                inputDate.style.borderColor = 'red';
+                                inputMonth.style.borderColor = 'palegreen';
+                                inputYear.style.borderColor = 'palegreen';
+                                entrar = true;
+                            } else {
+                                inputDate.style.borderColor = 'palegreen';
+                                inputMonth.style.borderColor = 'palegreen';
+                                inputYear.style.borderColor = 'palegreen';
+                            }
+                        }
+                    } else {
+                        //Si el mes no se corresponde con la cantidad de días (31 días):
+                        if ((mes == 0 || mes == 2 || mes == 4 || mes == 6 || mes == 7 || mes == 9 || mes == 11) && (dia > 31 || dia < 1)) {
+                            warnings += 'La fecha no es válida<br>(ERROR: Ingrese hasta 31 días)<br>';
+                            inputDate.style.borderColor = 'red';
+                            inputMonth.style.borderColor = 'palegreen';
+                            inputYear.style.borderColor = 'palegreen';
+                            entrar = true;
+                        } else {
+                            inputDate.style.borderColor = 'palegreen';
+                            inputMonth.style.borderColor = 'palegreen';
+                            inputYear.style.borderColor = 'palegreen';
+                        }
+                        //Si el mes no se corresponde con la cantidad de días (30 días):
+                        if ((mes == 3 || mes == 5 || mes == 8 || mes == 10) && (dia > 30 || dia < 1)) {
+                            warnings += 'La fecha no es válida<br>(ERROR: Ingrese hasta 30 días)<br>';
+                            inputDate.style.borderColor = 'red';
+                            inputMonth.style.borderColor = 'palegreen';
+                            inputYear.style.borderColor = 'palegreen';
+                            entrar = true;
+                        } else {
+                            inputDate.style.borderColor = 'palegreen';
+                            inputMonth.style.borderColor = 'palegreen';
+                            inputYear.style.borderColor = 'palegreen';
+                        }
+                        /*comprobar si la cantidad de dias esta bien:
+                        let cantidadDias = parseInt(arrayMeses[mes-1]);
+                        if (cantidadDias >= dia) {
+                            //date.style.borderColor = 'palegreen';
+                            inputDate.style.borderColor = 'palegreen';
+                            inputMonth.style.borderColor = 'palegreen';
+                            inputYear.style.borderColor = 'palegreen';
+                        } else {
+                            warnings += 'La fecha no es válida<br>(ERROR en días)<br>';
+                            //date.style.borderColor = 'red';
+                            inputDate.style.borderColor = 'red';
+                            inputMonth.style.borderColor = 'palegreen';
+                            inputYear.style.borderColor = 'palegreen';
+                            entrar = true;
+                        }*/
+                    }
+                } else {
+                    warnings += 'La fecha no es válida<br>(ERROR en meses)<br>';
+                    //date.style.borderColor = 'red';
+                    inputDate.style.borderColor = 'red';
+                    inputMonth.style.borderColor = 'red';
+                    inputYear.style.borderColor = 'palegreen';
+                    entrar = true;
+                }
+            }
+        } else {
+            //date.style.borderColor = 'palegreen';
+            inputDate.style.borderColor = 'palegreen';
+            inputMonth.style.borderColor = 'palegreen';
+            inputYear.style.borderColor = 'palegreen';
+        }
+
+        /* Validación de la contraseña ---------------------------------------------------------------------------------------------*/
+        if (!regexPassword.test(pass.value)) {
+            //La contraseña debe ser sólo numérica:
+            warnings += 'Contraseña inválida<br>(ingrese sólo números)<br>';
+            pass.style.borderColor = 'red';
+            //pass.focus();
+            entrar = true;
+        } else if (pass.value.length < 8) {
+            //La contraseña debe tener al menos 8 caracteres:
+            warnings += 'La contraseña no es válida.<br>';
+            pass.style.borderColor = 'red';
+            //pass.focus();
+            entrar = true;
+        } else {
+            pass.style.borderColor = 'palegreen';
+        }
     }
-    
-    /* Validación del formulario */
+
+    /* Validación del formulario --------------------------------------------------------------------------------------------------*/
     if (entrar) {
         parrafo.innerHTML = warnings /* Msj de error */
+        parrafo.stop(true).fadeIn('normal', function() {
+            setTimeout(function() {
+            parrafo.stop(true).fadeOut('normal');
+            }, 3000);
+        });
     } else {
+        //Se vacían los campos:
+        vaciarCampos();
+        //Mensaje de registro:
         parrafo.innerHTML = "Registro exitoso"
+        //Se quita el borde de color a los campos:
         nombre.style.borderColor = '';
         email.style.borderColor = '';
-        date.style.borderColor = '';
+        inputDate.style.borderColor = '';
+        inputMonth.style.borderColor = '';
+        inputYear.style.borderColor = '';
         pass.style.borderColor = '';
     }
 })
+
+/* Retorna TRUE si el año ingresado es bisiesto */
+function calcularAnio(anio) {
+    let esBisiesto = false;
+    if (anio % 100 == 0) {
+        if (anio % 400 == 0) {
+            esBisiesto = true;
+        }
+    } else {
+        if ((anio % 4) == 0) {
+            esBisiesto = true;
+        }
+    }
+    return esBisiesto;
+}
+/* Establece los días de cada mes */
+const arrayMeses = [[31], [28], [31], [30], [31], [30], [31], [31], [30], [31], [30], [31]];
+/*  Vacía los campos ingresados */
+function vaciarCampos() {
+    nombre.value = "";
+    email.value = "";
+    inputDate.value = "";
+    inputMonth.value = "";
+    inputYear.value = "";
+    pass.value = "";
+}
+
 /**
  * regexEmail: colección de expresiones regulares (regex) útiles para validar direcciónes de correo electrónico.
  * ^ indica que el patrón debe iniciar con los caracteres dentro de los corchetes

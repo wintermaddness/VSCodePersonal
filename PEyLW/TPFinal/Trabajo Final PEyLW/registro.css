@@ -315,6 +315,17 @@ body {
         /*border: 2px solid #dcb03b;*/
         padding: 0 10px 0 30px;
     }
+    #formulario #fecha-dia {
+        width: 30%;
+    }
+    #formulario #fecha-mes {
+        width: 30%;
+        padding: 0 10px 0 25px;
+    }
+    #formulario #fecha-anio {
+        width: 35%;
+        padding: 0 10px 0 25px;
+    }
     #formulario div {
         position: relative;
         margin-bottom: 15px;
