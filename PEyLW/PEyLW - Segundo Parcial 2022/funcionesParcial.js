@@ -1,9 +1,10 @@
 /**
  * Items sin resolver:
- * Verificar que esa persona (DNI) no haya votado previamente.
- * Debe sumarse el voto al candidato que corresponde. Para ello estan creados los siguientes spans que inicialmente tiene el numero "0".
- * El DNI debe adicionarse al div "Votantes", separado por "-".
- * En el caso de que un DNI ya haya sido registrado el sistema debe emitir una alerta con el mensaje "Esta persona ya emitió su voto. El fraude está mal claro que sí" (no debe permitir continuar). 
+ * Verificar que esa persona (DNI) no haya votado previamente. (Listo.)
+ * Debe sumarse el voto al candidato que corresponde. Para ello estan creados los siguientes spans que inicialmente tiene el numero "0". (Listo.)
+ * El DNI debe adicionarse al div "Votantes", separado por "-". (Listo.)
+ * En el caso de que un DNI ya haya sido registrado el sistema debe emitir una alerta con el mensaje: 
+ * "Esta persona ya emitió su voto. El fraude está mal claro que sí" (no debe permitir continuar). (Listo.)
  */
 
 /**
