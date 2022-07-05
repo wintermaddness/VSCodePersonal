@@ -10,6 +10,27 @@ Released for free under a Creative Commons Attribution 2.5 License
 	
 }
 
+#formulario #alertaCandidato {
+	margin-top: 5px;
+	padding-left: 10px;
+	font-size: 10px;
+	color: red;
+	line-height: normal;
+}
+#formulario #alertaDocumento {
+	margin-top: 5px;
+	padding-left: 10px;
+	font-size: 10px;
+	color: red;
+	line-height: normal;
+}
+#formulario #alertaSexo {
+	margin-top: 5px;
+	padding-left: 10px;
+	font-size: 10px;
+	color: red;
+	line-height: normal;
+}
 
 body {
 	background: #FFFFFF url(images/img01.gif) repeat-x;

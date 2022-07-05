@@ -9,25 +9,10 @@
 /**
  * Vacía los campos ingresados:
  */
- function vaciarCampos(){
+function vaciarCampos() {
     document.getElementById("txCandidato").value = "";
     document.getElementById("txDNI").value = "";
     document.getElementById("txSexo").value = "";
-}
-
-/**
- * @param {*} input 
- * Colorea de rojo el borde del input con valor incorrecto:
- */
-function colorearBorde(input){
-    input.style.borderColor = "red";
-}
-/**
- * @param {*} input 
- * Colorea de verde el borde del input con valor correcto:
- */
- function colorearBorde2(input){
-    input.style.borderColor = "green";
 }
 
 /**
@@ -37,12 +22,12 @@ function resetearColorBordes() {
     //Se obtienen los input:
     inputCandidato = document.getElementById("txCandidato");
     inputDocumento = document.getElementById("txDNI");
-    unputSexo = document.getElementById("txSexo");
+    inputSexo = document.getElementById("txSexo");
     
     //Retorna los bordes al color original:
-    inputCandidato.style.borderColor = "";
-    inputDocumento.style.borderColor = "";
-    unputSexo.style.borderColor = "";
+    inputCandidato.style.borderColor = '';
+    inputDocumento.style.borderColor = '';
+    inputSexo.style.borderColor = '';
 }
 
 /**
@@ -51,120 +36,115 @@ function resetearColorBordes() {
  */
 function verificarFormulario() {
     //Inicialización de variables:
-    var valorIngresado, formValido;
+    var valorIngresado, formValido, alerta;
+    alertaCandidato = document.getElementById("alertaCandidato");
+    alertaDni = document.getElementById("alertaDocumento");
+    alertaSexo = document.getElementById("alertaSexo");
     formValido = true;
 
     /* -------------------------------------------------------------------------------------------------------------------- */
-    //Se almacena el valor del input "txCandidato":
-    valorIngresado = document.getElementById("txCandidato");
-    
-    //Si el campo está vacio, el borde del input se vuelve de color rojo y el formulario no es válido:
-    if (valorIngresado.value == "" || isNaN(valorIngresado.value)) {
-        colorearBorde(valorIngresado);
-        formValido = false;
-    } else if (valorIngresado.value != "kodos" || valorIngresado.value != "kang" || valorIngresado.value != "blanco") {
-        colorearBorde(valorIngresado);
-        formValido = false;
+    //Se verifica el valor del input "txCandidato":
+    valorIngresado = document.getElementById("txCandidato").value.toUpperCase();
+    if (valorIngresado == "KODOS") {
+        alertaCandidato.innerHTML = "";
+        document.getElementById("txCandidato").style.borderColor = 'palegreen';
+    } else if (valorIngresado == "KANG") {
+        alertaCandidato.innerHTML = "";
+        document.getElementById("txCandidato").style.borderColor = 'palegreen';
+    } else if (valorIngresado == "BLANCO") {
+        alertaCandidato.innerHTML = "";
+        document.getElementById("txCandidato").style.borderColor = 'palegreen';
     } else {
-        colorearBorde2(valorIngresado);
-    }
-
-    /* -------------------------------------------------------------------------------------------------------------------- */
-    //Se almacena el valor del input "txSexo"
-    valorIngresado = document.getElementById("txSexo");
-    
-    //Si el campo está vacio, el borde del input se vuelve de color rojo y el formulario no es válido:
-    if (valorIngresado.value == "" || isNaN(valorIngresado.value)) {
-        colorearBorde(valorIngresado);
+        //alert("(1) ERROR EN CANDIDATO: Ingrese Kodos, Kang o Blanco");
+        alertaCandidato.innerHTML = "(1) ERROR EN CANDIDATO: Ingrese Kodos, Kang o Blanco";
+        document.getElementById("txCandidato").style.borderColor = 'red';
         formValido = false;
-    } else if (valorIngresado.toUpperCase() != "M" || valorIngresado.toUpperCase() != "F") {
-        colorearBorde(valorIngresado);
-        formValido = false;
-    } else {
-        colorearBorde2(valorIngresado);
     }
 
     /* -------------------------------------------------------------------------------------------------------------------- */
     //Se almacena el valor del input "txDNI" y se "parsea" su valor a int:
-    valorIngresado = document.getElementById("txDNI");
-    var num = parseInt(valorIngresado.value);
-    
-    //Si el campo está vacio, el borde del input se vuelve de color rojo y el formulario no es válido:
-    if (valorIngresado.value == "" || !isNaN(valorIngresado.value)) {
-        colorearBorde(valorIngresado);
-        formValido = false;
+    valorIngresado = parseInt(document.getElementById("txDNI").value);
+    if (valorIngresado >= 1000000 && valorIngresado <= 999999999) {
+        alertaDni.innerHTML = "";
+        document.getElementById("txDNI").style.borderColor = 'palegreen';
     } else {
-        //Dado dos rangos, se verifica que el valor del DNI se encuentre entre ellos:
-        var rangoUno = 1000000;
-        var rangoDos = 999999999;
-        
-        // Si el dni ingresado no está entre rangoUno y rangoDos, el borde del input se vuelve de color rojo y el formulario no es válido:
-        if (rangoUno > num || num > rangoDos) {
-            colorearBorde(valorIngresado);
-            formValido = false;
-        } else {
-            colorearBorde2(valorIngresado);
+        //alert("(2) ERROR EN DNI: Ingrese un documento entre 1.000.000 y 999.999.999");
+        alertaDni.innerHTML = "(2) ERROR EN DNI: Ingrese un documento entre 1.000.000 y 999.999.999";
+        document.getElementById("txDNI").style.borderColor = 'red';
+        formValido = false;
+    }
+
+    /* -------------------------------------------------------------------------------------------------------------------- */
+    //Se verifica el valor del input "txSexo":
+    valorIngresado = document.getElementById("txSexo").value.toUpperCase();
+    if (valorIngresado == "M" || valorIngresado == "F") {
+        alertaSexo.innerHTML = "";
+        document.getElementById("txSexo").style.borderColor = 'palegreen';
+    } else {
+        //alert("(3) ERROR EN SEXO: Ingrese M o F");
+        alertaSexo.innerHTML = "(3) ERROR EN SEXO: Ingrese M o F";
+        document.getElementById("txSexo").style.borderColor = 'red';
+        formValido = false;
+    }
+    
+    //Se retorna la validación del formulario:
+    return formValido;
+}
+
+var votosKodos = 0;
+var votosKang = 0;
+var votosBlanco = 0;
+function sumarVotoCandidato(candidatoIngresado) {
+    if (candidatoIngresado.toUpperCase() == "KODOS") {
+        votosKodos++;
+        document.getElementById("ResultadosKodos").innerHTML = votosKodos;
+    } else if (candidatoIngresado.toUpperCase() == "KANG") {
+        votosKang++;
+        document.getElementById("ResultadosKang").innerHTML = votosKang;
+    } else {
+        votosBlanco++;
+        document.getElementById("ResultadosBlanco").innerHTML = votosBlanco;
+    }
+}
+
+var registrarVotante = new Array();
+
+function dniRepetido(dniIngresado) {
+    var existeDni = false;
+    for (var i in registrarVotante) {
+        if (registrarVotante[i] == dniIngresado) {
+            existeDni = true;
         }
     }
-    return formValido;
+    return existeDni;
 }
 
 function organizarFormulario() {
     //Declaración e inicialización de variables:
-    var formularioValido, stringDatosVoto, salida;
+    var formularioValido, salida;
 
     //Se verifica y almacena el valor true/false (si el formulario es válido o no);
     formularioValido = verificarFormulario();
     salida = document.getElementById("Votantes");
+    var candidato = document.getElementById("txCandidato").value;
+    var dni = parseInt(document.getElementById("txDNI").value);
+    var sexo = document.getElementById("txSexo").value;
     
-    //Se crea un string con los valores del voto:
-    stringDatosVoto = "Candidato: " + document.getElementById("txCandidato").value +
-                       "<br/>DNI: " + document.getElementById("txDNI").value +
-                        "<br/>Sexo: " + document.getElementById("txSexo").value + "<hr/>";
-    
-    //stringDatosVoto = ['candidato' = document.getElementById("txCandidato").value,
-    //                    'documento' = document.getElementById("txDNI").value,
-    //                    'sexo' = document.getElementById("txSexo").value];
-
-    stringDatosVoto = [document.getElementById("txCandidato").value, document.getElementById("txDNI").value, document.getElementById("txSexo").value];
-
-    //Si el formulario es válido, se ingresan los datos en el div "Votantes":
     if (formularioValido) {
-        //Se registra el string en el div:
-        //salida.innerHTML += stringDatosVoto + "\r\n";
-        //Se registra un voto al candidato elegido:
-        ResultadosKang = document.getElementById("ResultadosKang");
-        ResultadosKodos = document.getElementById("ResultadosKodos");
-        ResultadosBlanco = document.getElementById("ResultadosBlanco");
-
-        var x = 1;
-        var y = 1;
-        var z = 1;
-        if (document.getElementById("txCandidato").value.toUpperCase() == "KODOS") {
-            ResultadosKang.innerHTML += replace('0', x);
-            x++;
-        } else if (document.getElementById("txCandidato").value.toUpperCase() == "KANG") {
-            ResultadosKodos.innerHTML += replace('0', y);
-            y++;
-        } else if (document.getElementById("txCandidato").value.toUpperCase() == "BLANCO") {
-            ResultadosBlanco.innerHTML += replace('0', z);
-            z++;
+        //Se verifica que el DNI no se repita:
+        if (dniRepetido(dni)) {
+            alert("Esta persona ya emitió su voto. El fraude está mal claro que sí");
+            document.getElementById("txDNI").style.borderColor = 'red';
+        } else {
+            sumarVotoCandidato(candidato);
+            registrarVotante.push(dni);
+            salida.innerHTML += "DNI: " + dni + " (" + sexo + ") - ";
+            //Se vacían los input:
+            vaciarCampos();    
+            //Se resetean los colores de los bordes:
+            resetearColorBordes();
         }
-        //Se vacían los input:
-        vaciarCampos();    
-        //Se resetean los colores de los bordes:
-        resetearColorBordes();
+    } else {
+        alert("ERROR: Formulario inválido.");
     }
-
-    let btnRegistrar = document.getElementById('registar');
-    let votos = [];
-    function agregarVoto() {
-        votos.push(stringDatosVoto)
-        btnRegistrar.addEventListener("click", () => {
-            votos.forEach((elemento) => {
-                salida.innerHTML += `<p>${elemento.value}</p>`
-            })
-        })
-    }
-    agregarVoto();
 }

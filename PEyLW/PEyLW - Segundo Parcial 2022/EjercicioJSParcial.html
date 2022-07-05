@@ -34,16 +34,27 @@ Released for free under a Creative Commons Attribution 2.5 License
         <form id="formulario">
             <table style="padding: 10px;">
                 <tr>
-                    <td>Candidato:</td>
-                    <td><input id="txCandidato" name="txCandidato" type="text" style="width:280px" maxlength="20" placeholder="Ingresar candidato"/></td>
+                    <td>CANDIDATO: </td>
+                    <td>
+                        <input id="txCandidato" name="txCandidato" type="text" style="width:280px" maxlength="20" placeholder="Ingresar candidato"/>
+                    </td>
+                    <td id="alertaCandidato"></td>
                 </tr>
+                <br>
                 <tr>
-                    <td>DNI:</td>
-                    <td><input id="txDNI" name="txDNI" type="text" style="width:280px" maxlength="10" placeholder="Ingresar documento"/></td>
+                    <td>DNI: </td>
+                    <td>
+                        <input id="txDNI" name="txDNI" type="text" style="width:280px" maxlength="10" placeholder="Ingresar documento"/>
+                    </td>
+                    <td id="alertaDocumento"></td>
                 </tr>
+                <br>
                 <tr>
-                    <td>Sexo:</td>
-                    <td><input id="txSexo" name="txSexo" type="text" style="width:64px" maxlength="1" placeholder="F/M"/></td>
+                    <td>SEXO: </td>
+                    <td>
+                        <input id="txSexo" name="txSexo" type="text" style="width:64px" maxlength="1" placeholder="F/M"/>
+                    </td>
+                    <td id="alertaSexo"></td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -52,7 +63,7 @@ Released for free under a Creative Commons Attribution 2.5 License
             </table>
         </form>
 
-        <p></p>
+        <p id="alertaCandidato"></p>
 
         <div style="background-color: lightblue; border: 1px solid black;padding: 10px;">
             <span id="ResultadosKang" style="font-size: 72px;">0</span>
@@ -63,7 +74,6 @@ Released for free under a Creative Commons Attribution 2.5 License
         <div style="background-color: lightpink; border: 1px solid black;padding: 10px;">
             <span id="ResultadosKodos" style="font-size: 72px;">0</span>
             <img src="images/VoteKodos.png" height="80" style="float:right">
-
         </div>
         <br />
 
