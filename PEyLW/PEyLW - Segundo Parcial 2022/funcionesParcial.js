@@ -36,7 +36,7 @@ function resetearColorBordes() {
  */
 function verificarFormulario() {
     //Inicialización de variables:
-    var valorIngresado, formValido, alerta;
+    var valorIngresado, formValido, alertaCandidato, alertaDni, alertaSexo;
     alertaCandidato = document.getElementById("alertaCandidato");
     alertaDni = document.getElementById("alertaDocumento");
     alertaSexo = document.getElementById("alertaSexo");
