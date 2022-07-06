@@ -12,7 +12,8 @@ Released for free under a Creative Commons Attribution 2.5 License
 body {
 	background: #FFFFFF url(images/img01.gif) repeat-x;
 	font: normal small;
-	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #999999;
 	/* el tipo de letra de be ser Arial */	
 	/* El color de la letra para el body debe ser #999999 */
 }
@@ -74,7 +75,10 @@ img {
 
 .boxed {
 	margin-bottom: 1em;
-	
+	background-color: #F7F7F7;
+	background-image: url("Images/img07.gif");
+	background-repeat: no-repeat;
+	border: 1px solid #CCCCCC;
 	/* Este elemento debe tener un color de fondo #F7F7F7 
 		y la imagen img07.gif de fondo sin repetir y tambien
 		un borde de 1 pixel solido y de color #CCCCCC */
@@ -133,7 +137,7 @@ img {
 	margin: 0;	
 	list-style: none;
 	line-height: normal;
-	
+	padding-top: 100px;
 	/* Agregar un padding top de 100px*/
 }
 
@@ -239,6 +243,8 @@ img {
 
 #sidebar {
 	width: 220px;
+	position: relative;
+	float: left;
 	/* Este div debe flotar a la izquierda */
 	
 }
@@ -296,7 +302,9 @@ img {
 	margin: 0;
 	padding: 0 0 0 10px;	
 	font-size: x-small;
-
+	background-image: url("Images/img09.gif");
+	background-repeat: no-repeat;
+	background-position: center left;
 	/* Este elemento debe tener la imagen img09.gif de fondo sin repetir ubicada al centro izquierda  */
 }
 
