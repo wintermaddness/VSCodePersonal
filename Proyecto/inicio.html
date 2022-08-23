@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Inicio - Prueba</title>
+        <link rel="stylesheet" href="inicio.css">
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap">-->
+        <link href="https://fonts.googleapis.com/css2? family=Alice&display=swap" rel="stylesheet"> <!--H1-->
+        <link href="https://fonts.googleapis.com/css2? family=Edu+TAS+Beginner&family=Poppins:ital,wght@1,300&display=swap" rel="stylesheet"> <!--H2-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous"/> <!-- Iconos -->
+        <link rel="icon" type="image/png" sizes="32x32" href="logoeraser.ico"> <!--Icono de página-->
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script>
+            $(window).on('scroll', function() {
+                if ($(window).scrollTop() + $(window).height() > $('header').outerHeight()) {
+                  $('.arrow').hide();
+                } else {
+                  $('.arrow').show();
+                }
+            });
+            $('.arrow').click(function(){
+                $('body, html').animate({scrollTop: $('body, html').prop("scrollHeight")}, 500);
+            });
+
+            function llamaralancla() {
+              document.location.href = "#ancla";
+            }
+
+            $(document).ready(function(){
+              $('.arrow').click(function(){
+                $('body, html').animate({
+                  scrollTop: '0px'
+                }, 500);
+              });
+
+              $(window).scroll(function() {
+                var scrollButton = document.getElementById("arrow")
+                if ($(this).scrollTop() > 0) {
+                  $('.arrow').slideDown(500); //500: indica la velocidad de animación de la flecha
+                } else {
+                  $('.arrow').slideUp(1000);
+                }
+              });
+            });
+
+            $(".hover").mouseleave(
+              function () {
+                $(this).removeClass("hover");
+              }
+            );
+
+            window.addEventListener('scroll', function() {
+                let elements = document.getElementsByClassName('scroll-content');
+                let screenSize = window.innerHeight;
+                for (var i=0; i<elements.length; i++) {
+                    let element = elements[i];
+                    if (element.getBoundingClientRect().top < screenSize) {
+                        element.classList.add('visible');
+                    } else {
+                        element.classList.remove('visible');
+                    }
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <video id="ancla" class="video-bg" src="https://player.vimeo.com/progressive_redirect/playback/724697352/rendition/720p/file.mp4?loc=external&oauth2_token_id=1027659655&signature=e5ae4a821463b2fd30efa4b20f545d0864ece669b5edb8f6acb1f897bb1c64af"
+        playsinline autoplay muted loop poster="/imagen-preview.png"></video>
+        <header>
+            <div id="seccion-logo">
+                <img src="logoeraser.png" alt="Logo Luz y Vida" id="logo1">
+                <h1>LUZ & VIDA</h1>
+            </div>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#">Eventos</a>
+                <a href="#">Contacto</a>
+                <a href="#">Sobre Nosotros</a>
+            </nav>
+            <!--<div class="arrow animated bounce"></div>-->
+        </header>
+
+        <section class="cuerpo"> <!-- Sección del contenido -->
+          <section class="content gray"> <!-- Sección de fondo -->
+            <div class="scroll-content fadeRight"> <!-- Contenedor deslizante -->
+              <!-- Sección 1 -->
+              <figure class="snip1218">
+                <div class="image"><img src="manos.png" alt="Comunion"/>
+                  <p>
+                    "Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us."
+                  </p>
+                </div>
+                <figcaption>
+                  <h3>Horarios de<span> Reunión</span></h3>
+                  <h5>Cultos</h5>
+                </figcaption>
+              </figure>
+              <!-- Sección 2 -->
+              <figure class="snip1218">
+                <div class="image"><img src="biblia.png" alt="Lectura Bíblica"/>
+                  <p>
+                    "Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us."
+                  </p>
+                </div>
+                <figcaption>
+                  <h3>Lectura<span> Semanal</span></h3>
+                  <h5>Devocionales</h5>
+                  <!--<div class="icons">  Sección de iconos sociales 
+                    <a href="#"><i class="ion-social-reddit-outline"></i></a>
+                    <a href="#"> <i class="ion-social-twitter-outline"></i></a>
+                    <a href="#"> <i class="ion-social-vimeo-outline"></i></a>
+                  </div>-->
+                </figcaption>
+              </figure>
+              <!-- Sección 3 -->
+              <figure class="snip1218">
+                <div class="image"><img src="cross.png" alt="Oración"/>
+                  <p>
+                    "Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us."
+                  </p>
+                </div>
+                <figcaption>
+                  <h3>Pedidos de<span> Oración</span></h3>
+                  <h5>Asistencia</h5>
+                </figcaption>
+              </figure>
+              <!-- Sección 4 -->
+              <figure class="snip1218">
+                <div class="image"><img src="https://cdn.pixabay.com/photo/2022/07/25/20/13/church-7344496__340.jpg" alt="Reunión"/>
+                  <p>
+                    "Sometimes I think the surest sign that intelligent life exists elsewhere in the universe is that none of it has tried to contact us."
+                  </p>
+                </div>
+                <figcaption>
+                  <h3>Nuestros <span> Servicios</span></h3>
+                  <h5>Reuniones</h5>
+                </figcaption>
+              </figure>
+            </div>
+          </section>
+        </section>
+
+        <footer class="footer">
+          <div class="footer__addr">
+            <div>
+              <h1 class="footer__logo">Luz & Vida</h1>
+              <!--<img src="LOGO LUZ Y VIDA - Grises.png" alt="Logo Iglesia Luz y Vida" id="logo_footer">-->
+            </div>
+            <div>
+              <!--<h2>Contacto</h2>-->
+              <address>
+                11 de Marzo 1883, Villa Regina, Río Negro - Rep. Argentina<br>
+                (+54) 9298 414-1747<br>
+              </address>
+            </div>
+          </div>
+          
+          <ul class="footer__nav">
+            <!--<li class="nav__item">
+              <h2 class="nav__title">Contacto</h2>
+              <ul class="nav__ul">
+                <li>
+                  11 de Marzo 1883, Villa Regina, Río Negro - Rep. Argentina
+                </li>
+                <li>
+                  (+54) 9298 414-1747
+                </li>
+              </ul>
+            </li>-->
+
+            <li class="nav__item">
+              <h2 class="nav__title">Eventos</h2>
+              <ul class="nav__ul">
+                <li>
+                  <a href="#">Reuniones</a>
+                </li>
+                <li>
+                  <a href="#">Asambleas</a>
+                </li>
+                <li>
+                  <a href="#">Transmisiones</a>
+                </li>
+              </ul>
+            </li>
+            
+            <li class="nav__item nav__item--extra">
+              <h2 class="nav__title">Grupos</h2>
+              <ul class="nav__ul nav__ul--extra">
+                <li>
+                  <a href="#">Grupo de Varones</a>
+                </li>
+                <li>
+                  <a href="#">Grupo de Mujeres</a>
+                </li>
+                <li>
+                  <a href="#">Grupo de Jóvenes</a>
+                </li>
+                <li>
+                  <a href="#">Grupo de Niños</a>
+                </li>
+              </ul>
+            </li>
+            
+            <li class="nav__item">
+              <h2 class="nav__title">Legal</h2>
+              <ul class="nav__ul">
+                <li>
+                  <a href="#">Políticas de Privacidad</a>
+                </li>
+                <li>
+                  <a href="#">Términos de Uso</a>
+                </li>
+                <li>
+                  <a href="#">Ayuda del sitio</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav__item nav__item--extra2">
+              <h2 class="nav__title">Medios Sociales</h2>
+              <ul class="nav__ul">
+                <li class="social-links">
+                  <a href=""><i class="fab fa-facebook-f"></i></a>
+                  <a href=""><i class="fab fa-twitter"></i></a>
+                  <a href=""><i class="fab fa-instagram"></i></a>
+                </li>
+                <li class="social-links">
+                  <a href=""><i class="fab fa-linkedin-in"></i></a>
+                  <a href=""><i class="fab fa-tumblr"></i></a>
+                  <a href=""><i class="fab fa-reddit-alien"></i></a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          
+          <div class="legal">
+            <p>&copy; 2022 Luz & Vida. Todos los derechos reservados.</p>
+            <div class="arrow animated bounce" onclick="llamaralancla()"></div>
+            <div class="legal__links">
+              <span>Hecho con <span class="heart">♥</span> por Luz & Vida</span>
+            </div>
+          </div>
+        </footer>
+
+        <ul class="slideshow">
+          <li><span></span></li>
+          <li><span>2</span></li>
+          <li><span></span></li>
+          <li><span></span></li>
+          <li><span></span></li>
+        </ul>
+    </body>
+</html>
