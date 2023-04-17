@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+		<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+		<title>Navbar02</title>
+		<link rel="stylesheet" href="stylesInicioPrueba02.css"/>
+	</head>
+	<body>
+		<header class="primary-header">
+			<nav class="navbar container">
+				<a href="index.html" class="logo">LUZ & VIDA.</a>
+				<ul class="nav-list">
+					<li>
+						<a href="index.html" class="nav-link">Inicio</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link">Eventos</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link">Sobre Nosotros</a>
+					</li>
+					<li>
+						<a href="#" class="nav-link">Contacto</a>
+					</li>
+				</ul>
+				<a href="#" class="button">Escríbenos</a>
+			</nav>
+		</header>
+
+		<section class="hero"></section>
+		<section class="demo-content"></section>
+
+		<script>
+			const isScrolling = () => {
+				const headerEl = document.querySelector('.primary-header')
+				let windowPosition = window.scrollY > 250
+				headerEl.classList.toggle('active', windowPosition)
+			}
+			window.addEventListener('scroll', isScrolling)
+		</script>
+	</body>
+</html>
